@@ -20,16 +20,16 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.17.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="K近邻算法一、什么是k近邻算法给定一个训练数据集、对新的输入实例，在训练集中找到与该实例最邻近的k个实例，这k个实例的多数属于某个类，就把该输入实例分为这个类。如下图所示：输入新的❓点判断它属于classA还是classB 那么问题来了k近邻算法市最近邻，那么这个最近邻怎么判断？计算距离！怎么计算距离 二、距离度量1、欧几里得距离$$d(x,y)&#x3D;\sqrt{\displaystyl">
+    <meta name="description" content="K近邻算法">
 <meta property="og:type" content="article">
 <meta property="og:title" content="K近邻算法">
 <meta property="og:url" content="http://example.com/posts/1516846897/index.html">
 <meta property="og:site_name" content="Hjie">
-<meta property="og:description" content="K近邻算法一、什么是k近邻算法给定一个训练数据集、对新的输入实例，在训练集中找到与该实例最邻近的k个实例，这k个实例的多数属于某个类，就把该输入实例分为这个类。如下图所示：输入新的❓点判断它属于classA还是classB 那么问题来了k近邻算法市最近邻，那么这个最近邻怎么判断？计算距离！怎么计算距离 二、距离度量1、欧几里得距离$$d(x,y)&#x3D;\sqrt{\displaystyl">
+<meta property="og:description" content="K近邻算法">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/K%E8%BF%91%E9%82%BB%E7%AE%97%E6%B3%95/bVc6KUZ.png">
 <meta property="article:published_time" content="2023-06-04T06:13:42.924Z">
-<meta property="article:modified_time" content="2023-06-04T06:40:57.331Z">
+<meta property="article:modified_time" content="2023-06-04T06:45:35.833Z">
 <meta property="article:author" content="hjie">
 <meta property="article:tag" content="机器学习">
 <meta property="article:tag" content="分类算法">
@@ -160,13 +160,13 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">11</span>
+          <span class="site-state-item-count">10</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-count">2</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
@@ -228,7 +228,7 @@
       <span class="post-meta-item-text">发表于</span>
       
 
-      <time title="创建时间：2023-06-04 14:13:42 / 修改时间：14:40:57" itemprop="dateCreated datePublished" datetime="2023-06-04T14:13:42+08:00">2023-06-04</time>
+      <time title="创建时间：2023-06-04 14:13:42 / 修改时间：14:45:35" itemprop="dateCreated datePublished" datetime="2023-06-04T14:13:42+08:00">2023-06-04</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -249,9 +249,8 @@
     
     
     
-    <div class="post-body" itemprop="articleBody"><span id="more"></span>
-
-<h1 id="K近邻算法"><a href="#K近邻算法" class="headerlink" title="K近邻算法"></a>K近邻算法</h1><h2 id="一、什么是k近邻算法"><a href="#一、什么是k近邻算法" class="headerlink" title="一、什么是k近邻算法"></a>一、什么是k近邻算法</h2><p>给定一个训练数据集、对新的输入实例，在训练集中找到与该实例<strong>最邻近</strong>的k个实例，<strong>这k个</strong>实例的多数属于某个类，就把该输入实例分为这个类。如下图所示：输入新的❓点判断它属于classA还是classB</p>
+    <div class="post-body" itemprop="articleBody"><h1 id="K近邻算法"><a href="#K近邻算法" class="headerlink" title="K近邻算法"></a>K近邻算法</h1><span id="more"></span>
+<h2 id="一、什么是k近邻算法"><a href="#一、什么是k近邻算法" class="headerlink" title="一、什么是k近邻算法"></a>一、什么是k近邻算法</h2><p>给定一个训练数据集、对新的输入实例，在训练集中找到与该实例<strong>最邻近</strong>的k个实例，<strong>这k个</strong>实例的多数属于某个类，就把该输入实例分为这个类。如下图所示：输入新的❓点判断它属于classA还是classB</p>
 <p><img data-src="/images/loading/loading.gif" data-original="/K%E8%BF%91%E9%82%BB%E7%AE%97%E6%B3%95/bVc6KUZ.png"><br>那么问题来了k近邻算法市<strong>最近邻</strong>，那么这个最近邻怎么判断？计算距离！怎么计算距离</p>
 <h2 id="二、距离度量"><a href="#二、距离度量" class="headerlink" title="二、距离度量"></a>二、距离度量</h2><h3 id="1、欧几里得距离"><a href="#1、欧几里得距离" class="headerlink" title="1、欧几里得距离"></a>1、欧几里得距离</h3><p>$$<br>d(x,y)&#x3D;\sqrt{\displaystyle\sum_{i&#x3D;1}^{n}(y_i-x_i)^2}<br>$$</p>
 <h3 id="3、曼哈顿距离"><a href="#3、曼哈顿距离" class="headerlink" title="3、曼哈顿距离"></a>3、曼哈顿距离</h3><p>$$<br>d(x,y)&#x3D;(\displaystyle\sum_{i&#x3D;0}^{n}{|y_i-x_i|})<br>$$</p>

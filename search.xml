@@ -3,9 +3,8 @@
   <entry>
     <title>K近邻算法</title>
     <url>/posts/1516846897/</url>
-    <content><![CDATA[<span id="more"></span>
-
-<h1 id="K近邻算法"><a href="#K近邻算法" class="headerlink" title="K近邻算法"></a>K近邻算法</h1><h2 id="一、什么是k近邻算法"><a href="#一、什么是k近邻算法" class="headerlink" title="一、什么是k近邻算法"></a>一、什么是k近邻算法</h2><p>给定一个训练数据集、对新的输入实例，在训练集中找到与该实例<strong>最邻近</strong>的k个实例，<strong>这k个</strong>实例的多数属于某个类，就把该输入实例分为这个类。如下图所示：输入新的❓点判断它属于classA还是classB</p>
+    <content><![CDATA[<h1 id="K近邻算法"><a href="#K近邻算法" class="headerlink" title="K近邻算法"></a>K近邻算法</h1><span id="more"></span>
+<h2 id="一、什么是k近邻算法"><a href="#一、什么是k近邻算法" class="headerlink" title="一、什么是k近邻算法"></a>一、什么是k近邻算法</h2><p>给定一个训练数据集、对新的输入实例，在训练集中找到与该实例<strong>最邻近</strong>的k个实例，<strong>这k个</strong>实例的多数属于某个类，就把该输入实例分为这个类。如下图所示：输入新的❓点判断它属于classA还是classB</p>
 <p><img data-src="/K%E8%BF%91%E9%82%BB%E7%AE%97%E6%B3%95/bVc6KUZ.png"><br>那么问题来了k近邻算法市<strong>最近邻</strong>，那么这个最近邻怎么判断？计算距离！怎么计算距离</p>
 <h2 id="二、距离度量"><a href="#二、距离度量" class="headerlink" title="二、距离度量"></a>二、距离度量</h2><h3 id="1、欧几里得距离"><a href="#1、欧几里得距离" class="headerlink" title="1、欧几里得距离"></a>1、欧几里得距离</h3><p>$$<br>d(x,y)&#x3D;\sqrt{\displaystyle\sum_{i&#x3D;1}^{n}(y_i-x_i)^2}<br>$$</p>
 <h3 id="3、曼哈顿距离"><a href="#3、曼哈顿距离" class="headerlink" title="3、曼哈顿距离"></a>3、曼哈顿距离</h3><p>$$<br>d(x,y)&#x3D;(\displaystyle\sum_{i&#x3D;0}^{n}{|y_i-x_i|})<br>$$</p>
@@ -40,8 +39,8 @@
   <entry>
     <title>多层感知机（MLP）</title>
     <url>/posts/1497842915/</url>
-    <content><![CDATA[<span id="more"></span>
-<h1 id="多层感知机（MLP）"><a href="#多层感知机（MLP）" class="headerlink" title="多层感知机（MLP）"></a>多层感知机（MLP）</h1><blockquote>
+    <content><![CDATA[<h1 id="多层感知机（MLP）"><a href="#多层感知机（MLP）" class="headerlink" title="多层感知机（MLP）"></a>多层感知机（MLP）</h1><span id="more"></span>
+<blockquote>
 <p><strong>本文章基于3Blue1Brown视频并且结合自己学习总结的笔记</strong></p>
 </blockquote>
 <blockquote>
@@ -103,8 +102,8 @@
   <entry>
     <title>深度学习——pytorch学习</title>
     <url>/posts/1867073817/</url>
-    <content><![CDATA[<span id="more"></span>
-<h1 id="Pytorch学习"><a href="#Pytorch学习" class="headerlink" title="Pytorch学习"></a>Pytorch学习</h1><p>[toc]</p>
+    <content><![CDATA[<h1 id="Pytorch学习"><a href="#Pytorch学习" class="headerlink" title="Pytorch学习"></a>Pytorch学习</h1><span id="more"></span>
+<p>[toc]</p>
 <h2 id="pytorch基本操作"><a href="#pytorch基本操作" class="headerlink" title="pytorch基本操作"></a>pytorch基本操作</h2><p>pytorch使用前首先了解一个一个概念：张量。个人觉得没必要去了解他到底是一种什么东西，可以将其与我们numpy中数组一起进行了解</p>
 <blockquote>
 <p>张量可以看作是⼀个多维数组。标量可以看作是0维张量，向量可以看作1维张量，矩阵可以看作是⼆维张量</p>
@@ -184,8 +183,8 @@
   <entry>
     <title>pytorch实现CNN</title>
     <url>/posts/3220359105/</url>
-    <content><![CDATA[<span id="more"></span>
-<h1 id="pytorch实现CNN"><a href="#pytorch实现CNN" class="headerlink" title="pytorch实现CNN"></a>pytorch实现CNN</h1><p>nn.Conv2d<br>torch.nn.Conv2d(in_channels, out_channels, kernel_size, stride&#x3D;1, padding&#x3D;0, dilation&#x3D;1, groups&#x3D;1, bias&#x3D;True, padding_mode&#x3D;’zeros’, device&#x3D;None, dtype&#x3D;None)<br><strong>参数解释</strong><br>1、in_channels (int) – 输入图像中的通道数<br>2、out_channels (int) – 卷积产生的通道数<br>3、kernel_size (int or tuple) – 卷积核的大小<br>4、stride (int or tuple, optional) – 卷积的步幅，默认值：1<br>5、padding (int, tuple or str, optional) – 添加到输入的所有四个边的填充，默认值：0<br>6、padding_mode (str, optional) – ‘zeros’, ‘reflect’, ‘replicate’ or ‘circular’，默认: ‘zeros’<br>6、dilation (int or tuple, optional) – 内核元素之间的间距，默认值：1<br>7、groups (int, optional) – 从输入通道到输出通道的阻塞连接数，默认值：1<br>8、bias (bool, optional) – 如果是 “真”，则在输出中增加一个可学习的偏置，默认值： 真  </p>
+    <content><![CDATA[<h1 id="pytorch实现CNN"><a href="#pytorch实现CNN" class="headerlink" title="pytorch实现CNN"></a>pytorch实现CNN</h1><span id="more"></span>
+<p>nn.Conv2d<br>torch.nn.Conv2d(in_channels, out_channels, kernel_size, stride&#x3D;1, padding&#x3D;0, dilation&#x3D;1, groups&#x3D;1, bias&#x3D;True, padding_mode&#x3D;’zeros’, device&#x3D;None, dtype&#x3D;None)<br><strong>参数解释</strong><br>1、in_channels (int) – 输入图像中的通道数<br>2、out_channels (int) – 卷积产生的通道数<br>3、kernel_size (int or tuple) – 卷积核的大小<br>4、stride (int or tuple, optional) – 卷积的步幅，默认值：1<br>5、padding (int, tuple or str, optional) – 添加到输入的所有四个边的填充，默认值：0<br>6、padding_mode (str, optional) – ‘zeros’, ‘reflect’, ‘replicate’ or ‘circular’，默认: ‘zeros’<br>6、dilation (int or tuple, optional) – 内核元素之间的间距，默认值：1<br>7、groups (int, optional) – 从输入通道到输出通道的阻塞连接数，默认值：1<br>8、bias (bool, optional) – 如果是 “真”，则在输出中增加一个可学习的偏置，默认值： 真  </p>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> matplotlib <span class="keyword">import</span> pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> collections</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"><span class="keyword">import</span> torch.nn <span class="keyword">as</span> nn</span><br><span class="line"><span class="keyword">import</span> torch.nn.functional <span class="keyword">as</span> F</span><br><span class="line"><span class="keyword">import</span> torch.optim <span class="keyword">as</span> optim</span><br><span class="line"></span><br><span class="line">torch.set_printoptions(edgeitems=<span class="number">2</span>)</span><br><span class="line">torch.manual_seed(<span class="number">123</span>)</span><br><span class="line">class_names = [<span class="string">&#x27;airplane&#x27;</span>,<span class="string">&#x27;automobile&#x27;</span>,<span class="string">&#x27;bird&#x27;</span>,<span class="string">&#x27;cat&#x27;</span>,<span class="string">&#x27;deer&#x27;</span>,<span class="string">&#x27;dog&#x27;</span>,<span class="string">&#x27;frog&#x27;</span>,<span class="string">&#x27;horse&#x27;</span>,<span class="string">&#x27;ship&#x27;</span>,<span class="string">&#x27;truck&#x27;</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment">#下载数据</span></span><br><span class="line"><span class="keyword">from</span> torchvision <span class="keyword">import</span> datasets, transforms</span><br><span class="line">data_path = <span class="string">&#x27;E:/CIFAR-10/&#x27;</span> </span><br><span class="line">cifar10 = datasets.CIFAR10(</span><br><span class="line">    data_path, train=<span class="literal">True</span>, download=<span class="literal">True</span>,</span><br><span class="line">    transform=transforms.Compose([</span><br><span class="line">        transforms.ToTensor(),</span><br><span class="line">        transforms.Normalize((<span class="number">0.4915</span>, <span class="number">0.4823</span>, <span class="number">0.4468</span>),</span><br><span class="line">                             (<span class="number">0.2470</span>, <span class="number">0.2435</span>, <span class="number">0.2616</span>))</span><br><span class="line">    ]))</span><br><span class="line">cifar10_val = datasets.CIFAR10(</span><br><span class="line">    data_path, train=<span class="literal">False</span>, download=<span class="literal">True</span>,</span><br><span class="line">    transform=transforms.Compose([</span><br><span class="line">        transforms.ToTensor(),</span><br><span class="line">        transforms.Normalize((<span class="number">0.4915</span>, <span class="number">0.4823</span>, <span class="number">0.4468</span>),</span><br><span class="line">                             (<span class="number">0.2470</span>, <span class="number">0.2435</span>, <span class="number">0.2616</span>))</span><br><span class="line">    ]))</span><br><span class="line"><span class="comment">#识别鸟和飞机</span></span><br><span class="line">label_map = &#123;<span class="number">0</span>: <span class="number">0</span>, <span class="number">2</span>: <span class="number">1</span>&#125;</span><br><span class="line">class_names = [<span class="string">&#x27;airplane&#x27;</span>, <span class="string">&#x27;bird&#x27;</span>]</span><br><span class="line">cifar2 = [(img, label_map[label]) <span class="keyword">for</span> img, label <span class="keyword">in</span> cifar10 <span class="keyword">if</span> label <span class="keyword">in</span> [<span class="number">0</span>, <span class="number">2</span>]]</span><br><span class="line">cifar2_val = [(img, label_map[label]) <span class="keyword">for</span> img, label <span class="keyword">in</span> cifar10_val <span class="keyword">if</span> label <span class="keyword">in</span> [<span class="number">0</span>, <span class="number">2</span>]]</span><br><span class="line"><span class="comment">#定义神经网络模型</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Net</span>(nn.Module):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="built_in">super</span>().__init__()</span><br><span class="line">        self.conv1 = nn.Conv2d(<span class="number">3</span>, <span class="number">16</span>, kernel_size=<span class="number">3</span>, padding=<span class="number">1</span>)</span><br><span class="line">        self.act1 = nn.Tanh()</span><br><span class="line">        self.pool1 = nn.MaxPool2d(<span class="number">2</span>)</span><br><span class="line">        self.conv2 = nn.Conv2d(<span class="number">16</span>, <span class="number">8</span>, kernel_size=<span class="number">3</span>, padding=<span class="number">1</span>)</span><br><span class="line">        self.act2 = nn.Tanh()</span><br><span class="line">        self.pool2 = nn.MaxPool2d(<span class="number">2</span>)</span><br><span class="line">        self.fc1 = nn.Linear(<span class="number">8</span> * <span class="number">8</span> * <span class="number">8</span>, <span class="number">32</span>)</span><br><span class="line">        self.act3 = nn.Tanh()</span><br><span class="line">        self.fc2 = nn.Linear(<span class="number">32</span>, <span class="number">2</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">forward</span>(<span class="params">self, x</span>):</span><br><span class="line">        out = self.pool1(self.act1(self.conv1(x)))</span><br><span class="line">        out = self.pool2(self.act2(self.conv2(out)))</span><br><span class="line">        out = out.view(-<span class="number">1</span>, <span class="number">8</span> * <span class="number">8</span> * <span class="number">8</span>)</span><br><span class="line">        out = self.act3(self.fc1(out))</span><br><span class="line">        out = self.fc2(out)</span><br><span class="line">        <span class="keyword">return</span> out</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> datetime  </span><br><span class="line"><span class="comment">#定义损失函数</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">training_loop</span>(<span class="params">n_epochs, optimizer, model, loss_fn, train_loader</span>):</span><br><span class="line">    <span class="keyword">for</span> epoch <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, n_epochs + <span class="number">1</span>): </span><br><span class="line">        loss_train = <span class="number">0.0</span></span><br><span class="line">        <span class="keyword">for</span> imgs, labels <span class="keyword">in</span> train_loader:</span><br><span class="line">            <span class="comment">#利用GPU计算</span></span><br><span class="line">            imgs = imgs.to(<span class="string">&quot;cuda:0&quot;</span>)</span><br><span class="line">            labels = labels.to(<span class="string">&quot;cuda:0&quot;</span>)</span><br><span class="line">            <span class="comment">#计算损失函数</span></span><br><span class="line">            outputs = model(imgs)</span><br><span class="line">            loss = loss_fn(outputs, labels)</span><br><span class="line">            <span class="comment">#随机梯度下降更新参数</span></span><br><span class="line">            optimizer.zero_grad()</span><br><span class="line">            loss.backward()</span><br><span class="line">            optimizer.step()</span><br><span class="line">            loss_train += loss.item()</span><br><span class="line">        <span class="keyword">if</span> epoch == <span class="number">1</span> <span class="keyword">or</span> epoch % <span class="number">10</span> == <span class="number">0</span>:</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&#x27;&#123;&#125; Epoch &#123;&#125;, 训练损失&#123;&#125;&#x27;</span>.<span class="built_in">format</span>(datetime.datetime.now(), epoch,</span><br><span class="line">                loss_train / <span class="built_in">len</span>(train_loader))) </span><br></pre></td></tr></table></figure>
 
 <p>运行</p>
@@ -202,7 +201,8 @@
   <entry>
     <title>决策树算法</title>
     <url>/posts/4012468743/</url>
-    <content><![CDATA[<span id="more"></span>
+    <content><![CDATA[<p><strong>决策树</strong>是一个预测模型；他代表的是对象属性与对象值之间的一种映射关系。树中每个节点表示某个对象，而每个分叉路径则代表某个可能的属性值，而每个叶节点则对应从根节点到该叶节点所经历的路径所表示的对象的值。决策树仅有单一输出，若欲有复数输出，可以建立独立的决策树以处理不同输出。 数据挖掘中决策树是一种经常要用到的技术，可以用于分析数据，同样也可以用来作预测，从数据产生决策树的机器学习技术叫做 <strong>决策树学习</strong> ,通俗说就是<strong>决策树</strong></p>
+<span id="more"></span>
 
 <h2 id="一、什么是决策树算法"><a href="#一、什么是决策树算法" class="headerlink" title="一、什么是决策树算法"></a>一、什么是决策树算法</h2><p><strong>决策树</strong>是一个预测模型；他代表的是对象属性与对象值之间的一种映射关系。树中每个节点表示某个对象，而每个分叉路径则代表某个可能的属性值，而每个叶节点则对应从根节点到该叶节点所经历的路径所表示的对象的值。决策树仅有单一输出，若欲有复数输出，可以建立独立的决策树以处理不同输出。 数据挖掘中决策树是一种经常要用到的技术，可以用于分析数据，同样也可以用来作预测，从数据产生决策树的机器学习技术叫做 <strong>决策树学习</strong> ,通俗说就是<strong>决策树</strong></p>
 <blockquote>
@@ -390,33 +390,6 @@
       <tags>
         <tag>分类算法</tag>
         <tag>深度学习</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>sklearn目录</title>
-    <url>/posts/1013618639/</url>
-    <content><![CDATA[<h1 id="硬啃sklearn"><a href="#硬啃sklearn" class="headerlink" title="硬啃sklearn"></a>硬啃sklearn</h1><h2 id="一、分类模型"><a href="#一、分类模型" class="headerlink" title="一、分类模型"></a>一、分类模型</h2><table>
-<thead>
-<tr>
-<th>🗡</th>
-<th>🐕</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>最小二乘法</td>
-<td><a href="https://shangxiaaabb.github.io/blog/1904751086.html">https://shangxiaaabb.github.io/blog/1904751086.html</a></td>
-</tr>
-<tr>
-<td>岭回归</td>
-<td><a href="https://shangxiaaabb.github.io/blog/470077716.html">https://shangxiaaabb.github.io/blog/470077716.html</a></td>
-</tr>
-</tbody></table>
-<h2 id="二、回归模型"><a href="#二、回归模型" class="headerlink" title="二、回归模型"></a>二、回归模型</h2>]]></content>
-      <categories>
-        <category>sklearn</category>
-      </categories>
-      <tags>
-        <tag>机器学习</tag>
       </tags>
   </entry>
   <entry>
@@ -679,9 +652,9 @@
   <entry>
     <title>贝叶斯分类器</title>
     <url>/posts/2045861030/</url>
-    <content><![CDATA[<span id="more"></span>
+    <content><![CDATA[<h1 id="朴素贝叶斯分类器"><a href="#朴素贝叶斯分类器" class="headerlink" title="朴素贝叶斯分类器"></a>朴素贝叶斯分类器</h1><span id="more"></span>
 
-<h1 id="朴素贝叶斯分类器"><a href="#朴素贝叶斯分类器" class="headerlink" title="朴素贝叶斯分类器"></a>朴素贝叶斯分类器</h1><h2 id="数学理论"><a href="#数学理论" class="headerlink" title="数学理论"></a>数学理论</h2><ul>
+<h2 id="数学理论"><a href="#数学理论" class="headerlink" title="数学理论"></a>数学理论</h2><ul>
 <li><strong>先验概率</strong></li>
 </ul>
 <p>根据以往经验和分析得到的概率</p>
@@ -824,7 +797,8 @@
   <entry>
     <title>逻辑斯蒂回归</title>
     <url>/posts/317190628/</url>
-    <content><![CDATA[<h1 id="Logistic回归-逻辑斯蒂回归"><a href="#Logistic回归-逻辑斯蒂回归" class="headerlink" title="Logistic回归(逻辑斯蒂回归)"></a>Logistic回归(逻辑斯蒂回归)</h1><p>[toc]</p>
+    <content><![CDATA[<span id="more"></span>
+<h1 id="Logistic回归-逻辑斯蒂回归"><a href="#Logistic回归-逻辑斯蒂回归" class="headerlink" title="Logistic回归(逻辑斯蒂回归)"></a>Logistic回归(逻辑斯蒂回归)</h1><p>[toc]</p>
 <blockquote>
 <p>首先明确一点Logistic回归虽然叫回归，但是<strong>一般用于二分类问题</strong>，也就是说还是分类算法的一种！</p>
 </blockquote>
