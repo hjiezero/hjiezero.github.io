@@ -3,8 +3,10 @@
   <entry>
     <title>K近邻算法</title>
     <url>/posts/1516846897/</url>
-    <content><![CDATA[<h1 id="K近邻算法"><a href="#K近邻算法" class="headerlink" title="K近邻算法"></a>K近邻算法</h1><h2 id="一、什么是k近邻算法"><a href="#一、什么是k近邻算法" class="headerlink" title="一、什么是k近邻算法"></a>一、什么是k近邻算法</h2><p>给定一个训练数据集、对新的输入实例，在训练集中找到与该实例<strong>最邻近</strong>的k个实例，<strong>这k个</strong>实例的多数属于某个类，就把该输入实例分为这个类。如下图所示：输入新的❓点判断它属于classA还是classB</p>
-<p><img src="/K%E8%BF%91%E9%82%BB%E7%AE%97%E6%B3%95/bVc6KUZ.png"><br>那么问题来了k近邻算法市<strong>最近邻</strong>，那么这个最近邻怎么判断？计算距离！怎么计算距离</p>
+    <content><![CDATA[<span id="more"></span>
+
+<h1 id="K近邻算法"><a href="#K近邻算法" class="headerlink" title="K近邻算法"></a>K近邻算法</h1><h2 id="一、什么是k近邻算法"><a href="#一、什么是k近邻算法" class="headerlink" title="一、什么是k近邻算法"></a>一、什么是k近邻算法</h2><p>给定一个训练数据集、对新的输入实例，在训练集中找到与该实例<strong>最邻近</strong>的k个实例，<strong>这k个</strong>实例的多数属于某个类，就把该输入实例分为这个类。如下图所示：输入新的❓点判断它属于classA还是classB</p>
+<p><img data-src="/K%E8%BF%91%E9%82%BB%E7%AE%97%E6%B3%95/bVc6KUZ.png"><br>那么问题来了k近邻算法市<strong>最近邻</strong>，那么这个最近邻怎么判断？计算距离！怎么计算距离</p>
 <h2 id="二、距离度量"><a href="#二、距离度量" class="headerlink" title="二、距离度量"></a>二、距离度量</h2><h3 id="1、欧几里得距离"><a href="#1、欧几里得距离" class="headerlink" title="1、欧几里得距离"></a>1、欧几里得距离</h3><p>$$<br>d(x,y)&#x3D;\sqrt{\displaystyle\sum_{i&#x3D;1}^{n}(y_i-x_i)^2}<br>$$</p>
 <h3 id="3、曼哈顿距离"><a href="#3、曼哈顿距离" class="headerlink" title="3、曼哈顿距离"></a>3、曼哈顿距离</h3><p>$$<br>d(x,y)&#x3D;(\displaystyle\sum_{i&#x3D;0}^{n}{|y_i-x_i|})<br>$$</p>
 <h3 id="4、闵可夫斯基距离"><a href="#4、闵可夫斯基距离" class="headerlink" title="4、闵可夫斯基距离"></a>4、闵可夫斯基距离</h3><p>$$<br>Minkowski Distance&#x3D;(\displaystyle\sum_{i&#x3D;0}^{n}{|y_i-x_i|})^\frac{1}{p}<br>$$</p>
@@ -38,7 +40,8 @@
   <entry>
     <title>多层感知机（MLP）</title>
     <url>/posts/1497842915/</url>
-    <content><![CDATA[<h1 id="多层感知机（MLP）"><a href="#多层感知机（MLP）" class="headerlink" title="多层感知机（MLP）"></a>多层感知机（MLP）</h1><blockquote>
+    <content><![CDATA[<span id="more"></span>
+<h1 id="多层感知机（MLP）"><a href="#多层感知机（MLP）" class="headerlink" title="多层感知机（MLP）"></a>多层感知机（MLP）</h1><blockquote>
 <p><strong>本文章基于3Blue1Brown视频并且结合自己学习总结的笔记</strong></p>
 </blockquote>
 <blockquote>
@@ -50,22 +53,22 @@
 <li>自己也在学习深度学习（花书），会不断更新此文章，尽可能的让这篇文章完美</li>
 </ul>
 </blockquote>
-<h2 id="引入"><a href="#引入" class="headerlink" title="引入"></a>引入</h2><p>以<strong>手写字体识别为例</strong>，我们人类可以很容易对一个手写字体进行识别比如下图：<br><img src="/MLP(%E5%A4%9A%E5%B1%82%E6%84%9F%E7%9F%A5%E6%9C%BA)/1680678137054.png" alt="1680678137054"><br>我们可以十分自信的说：这个数字是3！但是对于计算机并非如此！计算机并没有如同人类一样的视觉细胞，那么怎么让计算机认识这数字呢？我们在<strong>K近邻算法</strong>中有一个手写字体识别实验，我们是直接将数字<strong>进行2值化</strong></p>
+<h2 id="引入"><a href="#引入" class="headerlink" title="引入"></a>引入</h2><p>以<strong>手写字体识别为例</strong>，我们人类可以很容易对一个手写字体进行识别比如下图：<br><img data-src="/MLP(%E5%A4%9A%E5%B1%82%E6%84%9F%E7%9F%A5%E6%9C%BA)/1680678137054.png" alt="1680678137054"><br>我们可以十分自信的说：这个数字是3！但是对于计算机并非如此！计算机并没有如同人类一样的视觉细胞，那么怎么让计算机认识这数字呢？我们在<strong>K近邻算法</strong>中有一个手写字体识别实验，我们是直接将数字<strong>进行2值化</strong></p>
 <blockquote>
 <p>将数字转化为0-1，如下图：</p>
-<p><img src="/MLP(%E5%A4%9A%E5%B1%82%E6%84%9F%E7%9F%A5%E6%9C%BA)/1680678374250.png" alt="1680678374250"></p>
+<p><img data-src="/MLP(%E5%A4%9A%E5%B1%82%E6%84%9F%E7%9F%A5%E6%9C%BA)/1680678374250.png" alt="1680678374250"></p>
 </blockquote>
-<p>然后将32x32的图像直接转化为1x1024，而后利用K近邻算法进行判别。这不妨是一个很好的办法，不过在数据量十分大的时候，计算会特别慢，另外一种办法直接将数字转化为不同的<strong>灰度值矩阵</strong>，如下：<img src="/MLP(%E5%A4%9A%E5%B1%82%E6%84%9F%E7%9F%A5%E6%9C%BA)/1680679926805.png" alt="1680679926805"></p>
+<p>然后将32x32的图像直接转化为1x1024，而后利用K近邻算法进行判别。这不妨是一个很好的办法，不过在数据量十分大的时候，计算会特别慢，另外一种办法直接将数字转化为不同的<strong>灰度值矩阵</strong>，如下：<img data-src="/MLP(%E5%A4%9A%E5%B1%82%E6%84%9F%E7%9F%A5%E6%9C%BA)/1680679926805.png" alt="1680679926805"></p>
 <p>我们后续介绍多层感知机也是灰度值变换后图像进行判别。</p>
 <h2 id="什么是多层感知机"><a href="#什么是多层感知机" class="headerlink" title="什么是多层感知机"></a>什么是多层感知机</h2><p>在介绍多层感知机前（不解释定义之类的，都可以自行百度），我们先了解<strong>单层神经网络</strong>的基本结构，<strong>单层神经网络</strong>一般由：输入层、输出层构成。如下：</p>
-<p><img src="/MLP(%E5%A4%9A%E5%B1%82%E6%84%9F%E7%9F%A5%E6%9C%BA)/1680679100906.png" alt="1680679100906"></p>
+<p><img data-src="/MLP(%E5%A4%9A%E5%B1%82%E6%84%9F%E7%9F%A5%E6%9C%BA)/1680679100906.png" alt="1680679100906"></p>
 <p>先暂时不解释各个层的作用，我们继续介绍<strong>多层感知机</strong>：</p>
-<p><img src="/MLP(%E5%A4%9A%E5%B1%82%E6%84%9F%E7%9F%A5%E6%9C%BA)/1680679187931.png" alt="1680679187931"></p>
+<p><img data-src="/MLP(%E5%A4%9A%E5%B1%82%E6%84%9F%E7%9F%A5%E6%9C%BA)/1680679187931.png" alt="1680679187931"></p>
 <p>对比两图最明显的区别就是<strong>多层感知机</strong>相较于<strong>单层神经网络</strong>额外的多了一个<strong>隐藏层</strong>。是不是该解释一下1每一层的作用了呢？不！（直接对概念下定义是很难理解的）我们借助我们引入的例子来对没一层进行解释。我们设计一个多层感知机模型如下（为什么这样设计后续解释，从左至右：<strong>输入层（784）–&gt;隐藏层（n）–&gt;隐藏层（n）–&gt;输出层（10）</strong>）：</p>
 <ul>
 <li><strong>括号里面数字代表层的数目</strong></li>
 </ul>
-<p><img src="/MLP(%E5%A4%9A%E5%B1%82%E6%84%9F%E7%9F%A5%E6%9C%BA)/1680679616132.png" alt="1680679616132"></p>
+<p><img data-src="/MLP(%E5%A4%9A%E5%B1%82%E6%84%9F%E7%9F%A5%E6%9C%BA)/1680679616132.png" alt="1680679616132"></p>
 <p>引入中我们已经提到手写数字已经被我们转化为一个<strong>28x28的灰度值矩阵</strong>，下面开始解释每一层都在干些什么事情！</p>
 <hr>
 <p><strong>输入层</strong></p>
@@ -82,12 +85,12 @@
 <h2 id="激活函数"><a href="#激活函数" class="headerlink" title="激活函数"></a>激活函数</h2><p>激活函数判别来确定神经元是否应该被激活，常见三类激活函数如下：</p>
 <h3 id="sigmoid函数"><a href="#sigmoid函数" class="headerlink" title="sigmoid函数"></a>sigmoid函数</h3><p>$$<br>sigmoid(x)&#x3D;\frac{1}{1+exp(-z)}<br>$$</p>
 <p>$$<br>z&#x3D;w_1a_1……w_na_n+b_0<br>$$</p>
-<p>$b_0$代表偏置，用于判别激活函数为多少情况下神经元是否被激活<br>函数图像如下：<br><img src="/MLP(%E5%A4%9A%E5%B1%82%E6%84%9F%E7%9F%A5%E6%9C%BA)/1680682161756.png" alt="1680682161756"></p>
+<p>$b_0$代表偏置，用于判别激活函数为多少情况下神经元是否被激活<br>函数图像如下：<br><img data-src="/MLP(%E5%A4%9A%E5%B1%82%E6%84%9F%E7%9F%A5%E6%9C%BA)/1680682161756.png" alt="1680682161756"></p>
 <h3 id="Relu函数"><a href="#Relu函数" class="headerlink" title="Relu函数"></a>Relu函数</h3><p>$$<br>Relu(z)&#x3D;max(x,0)<br>$$</p>
-<p>函数图像如下：<br><img src="/MLP(%E5%A4%9A%E5%B1%82%E6%84%9F%E7%9F%A5%E6%9C%BA)/1680682133055.png" alt="1680682133055"></p>
+<p>函数图像如下：<br><img data-src="/MLP(%E5%A4%9A%E5%B1%82%E6%84%9F%E7%9F%A5%E6%9C%BA)/1680682133055.png" alt="1680682133055"></p>
 <p>所有小于0的数字都处理为0</p>
 <h3 id="tanh函数"><a href="#tanh函数" class="headerlink" title="tanh函数"></a>tanh函数</h3><p>$$<br>tanh(z)&#x3D;\frac{1+exp(-2z)}{1+exp(-2z)}<br>$$</p>
-<p>函数图像如下：<br><img src="/MLP(%E5%A4%9A%E5%B1%82%E6%84%9F%E7%9F%A5%E6%9C%BA)/1680682185279.png" alt="1680682185279"></p>
+<p>函数图像如下：<br><img data-src="/MLP(%E5%A4%9A%E5%B1%82%E6%84%9F%E7%9F%A5%E6%9C%BA)/1680682185279.png" alt="1680682185279"></p>
 ]]></content>
       <categories>
         <category>深度学习</category>
@@ -98,33 +101,16 @@
       </tags>
   </entry>
   <entry>
-    <title>Hello World</title>
-    <url>/posts/16107/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-]]></content>
-  </entry>
-  <entry>
     <title>深度学习——pytorch学习</title>
     <url>/posts/1867073817/</url>
-    <content><![CDATA[<h1 id="Pytorch学习"><a href="#Pytorch学习" class="headerlink" title="Pytorch学习"></a>Pytorch学习</h1><p>[toc]</p>
+    <content><![CDATA[<span id="more"></span>
+<h1 id="Pytorch学习"><a href="#Pytorch学习" class="headerlink" title="Pytorch学习"></a>Pytorch学习</h1><p>[toc]</p>
 <h2 id="pytorch基本操作"><a href="#pytorch基本操作" class="headerlink" title="pytorch基本操作"></a>pytorch基本操作</h2><p>pytorch使用前首先了解一个一个概念：张量。个人觉得没必要去了解他到底是一种什么东西，可以将其与我们numpy中数组一起进行了解</p>
 <blockquote>
 <p>张量可以看作是⼀个多维数组。标量可以看作是0维张量，向量可以看作1维张量，矩阵可以看作是⼆维张量</p>
 </blockquote>
 <p>那么我们后续也都是围绕张量进行展开了解</p>
-<h3 id="数据操作"><a href="#数据操作" class="headerlink" title="数据操作"></a>数据操作</h3><h4 id="创建张量"><a href="#创建张量" class="headerlink" title="创建张量"></a>创建张量</h4><p><img src="/pytorch%E5%AD%A6%E4%B9%A0/1680163291680.png" alt="1680163291680"></p>
+<h3 id="数据操作"><a href="#数据操作" class="headerlink" title="数据操作"></a>数据操作</h3><h4 id="创建张量"><a href="#创建张量" class="headerlink" title="创建张量"></a>创建张量</h4><p><img data-src="/pytorch%E5%AD%A6%E4%B9%A0/1680163291680.png" alt="1680163291680"></p>
 <blockquote>
 <p>注意使用pytorch就不得不了解一大特点：利用GPU计算。</p>
 </blockquote>
@@ -139,7 +125,7 @@
 <li><p><strong>索引</strong><br>索引出来的结果与原数据共享内存，也即修改⼀个，另⼀个会跟着修改。</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">b = x[<span class="number">0</span>:<span class="number">1</span>]</span><br><span class="line"><span class="built_in">print</span>(b)</span><br><span class="line">-&gt;tensor([[<span class="number">0.6847</span>, <span class="number">0.9743</span>, <span class="number">0.9259</span>]])</span><br><span class="line">b +=<span class="number">2</span></span><br><span class="line"><span class="built_in">print</span>(x[<span class="number">0</span>,:])</span><br><span class="line">-&gt;tensor([<span class="number">2.6847</span>, <span class="number">2.9743</span>, <span class="number">2.9259</span>])</span><br></pre></td></tr></table></figure>
 
-<p><img src="/pytorch%E5%AD%A6%E4%B9%A0/1680164219080.png" alt="1680164219080"></p>
+<p><img data-src="/pytorch%E5%AD%A6%E4%B9%A0/1680164219080.png" alt="1680164219080"></p>
 </li>
 <li><p><strong>改变形状</strong></p>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">c = x.view(<span class="number">15</span>)</span><br><span class="line">c</span><br><span class="line">-&gt;tensor([<span class="number">2.6847</span>, <span class="number">2.9743</span>, <span class="number">2.9259</span>, <span class="number">0.7470</span>, <span class="number">0.2349</span>, <span class="number">0.6642</span>, <span class="number">0.3026</span>, <span class="number">0.1884</span>, <span class="number">0.9414</span>,</span><br><span class="line">        <span class="number">0.4747</span>, <span class="number">0.8469</span>, <span class="number">0.7788</span>, <span class="number">0.9762</span>, <span class="number">0.4373</span>, <span class="number">0.6214</span>])</span><br><span class="line">c +=<span class="number">1</span></span><br><span class="line">x</span><br><span class="line">-&gt;tensor([[<span class="number">3.6847</span>, <span class="number">3.9743</span>, <span class="number">3.9259</span>],</span><br><span class="line">        [<span class="number">1.7470</span>, <span class="number">1.2349</span>, <span class="number">1.6642</span>],</span><br><span class="line">        [<span class="number">1.3026</span>, <span class="number">1.1884</span>, <span class="number">1.9414</span>],</span><br><span class="line">        [<span class="number">1.4747</span>, <span class="number">1.8469</span>, <span class="number">1.7788</span>],</span><br><span class="line">        [<span class="number">1.9762</span>, <span class="number">1.4373</span>, <span class="number">1.6214</span>]])</span><br></pre></td></tr></table></figure>
@@ -147,7 +133,7 @@
 <p>利用view()函数返回的新tensor与源tensor共享内存（其实是同⼀个tensor），也即更改其中的⼀个，另<br>外⼀个也会跟着改变。所以如果我们想返回⼀个真正新的副本（即不共享内存）该怎么办呢？Pytorch还提供了⼀个reshape()可以改变形状，但是此函数并不能保证返回的是其拷⻉，所以不推荐使⽤。推荐先<br>⽤ clone 创造⼀个副本。</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">x_clone = x.clone()</span><br><span class="line">x_clone +=<span class="number">1</span></span><br><span class="line"><span class="built_in">print</span>(x_clone, <span class="string">&#x27;\n&#x27;</span>, x)</span><br><span class="line">-&gt;tensor([[<span class="number">4.6847</span>, <span class="number">4.9743</span>, <span class="number">4.9259</span>],</span><br><span class="line">        [<span class="number">2.7470</span>, <span class="number">2.2349</span>, <span class="number">2.6642</span>],</span><br><span class="line">        [<span class="number">2.3026</span>, <span class="number">2.1884</span>, <span class="number">2.9414</span>],</span><br><span class="line">        [<span class="number">2.4747</span>, <span class="number">2.8469</span>, <span class="number">2.7788</span>],</span><br><span class="line">        [<span class="number">2.9762</span>, <span class="number">2.4373</span>, <span class="number">2.6214</span>]]) </span><br><span class="line"> tensor([[<span class="number">3.6847</span>, <span class="number">3.9743</span>, <span class="number">3.9259</span>],</span><br><span class="line">        [<span class="number">1.7470</span>, <span class="number">1.2349</span>, <span class="number">1.6642</span>],</span><br><span class="line">        [<span class="number">1.3026</span>, <span class="number">1.1884</span>, <span class="number">1.9414</span>],</span><br><span class="line">        [<span class="number">1.4747</span>, <span class="number">1.8469</span>, <span class="number">1.7788</span>],</span><br><span class="line">        [<span class="number">1.9762</span>, <span class="number">1.4373</span>, <span class="number">1.6214</span>]])</span><br></pre></td></tr></table></figure></li>
 <li><p><strong>线性代数</strong></p>
-<p><img src="/pytorch%E5%AD%A6%E4%B9%A0/1680164657109.png" alt="1680164657109"></p>
+<p><img data-src="/pytorch%E5%AD%A6%E4%B9%A0/1680164657109.png" alt="1680164657109"></p>
 <blockquote>
 <p>官方文档：<a href="https://pytorch.org/docs/stable/tensors.html">torch.Tensor — PyTorch 2.0 documentation</a></p>
 </blockquote>
@@ -182,7 +168,7 @@
 <p>不过在此处需要一个<strong>注意事项</strong>，我们的p必须是一个标量，也就是说p必须是一个数字，不然结果会报错。</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">x = torch.tensor([<span class="number">2.</span>, <span class="number">1.</span>], requires_grad=<span class="literal">True</span>)</span><br><span class="line">y = torch.tensor([[<span class="number">1.</span>, <span class="number">2.</span>], [<span class="number">3.</span>, <span class="number">4.</span>]], requires_grad=<span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line">z = torch.mm(x.view(<span class="number">1</span>, <span class="number">2</span>), y)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;z:<span class="subst">&#123;z&#125;</span>&quot;</span>)</span><br><span class="line">z.backward(torch.Tensor([[<span class="number">1.</span>, <span class="number">0</span>]]), retain_graph=<span class="literal">True</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;x.grad: <span class="subst">&#123;x.grad&#125;</span>&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;y.grad: <span class="subst">&#123;y.grad&#125;</span>&quot;</span>)</span><br><span class="line"></span><br><span class="line">--&gt;z:tensor([[<span class="number">5.</span>, <span class="number">8.</span>]], grad_fn=&lt;MmBackward&gt;)</span><br><span class="line">x.grad: tensor([[<span class="number">1.</span>, <span class="number">3.</span>]])</span><br><span class="line">y.grad: tensor([[<span class="number">2.</span>, <span class="number">0.</span>],</span><br><span class="line">        [<span class="number">1.</span>, <span class="number">0.</span>]])</span><br></pre></td></tr></table></figure>
 
-<p>算法解释如下：<br><img src="/pytorch%E5%AD%A6%E4%B9%A0/1680176521877.png" alt="1680176521877"><br>我们在对z进行求梯度的时候，指定了参数[1,0]也就是相对于进行了加权操作</p>
+<p>算法解释如下：<br><img data-src="/pytorch%E5%AD%A6%E4%B9%A0/1680176521877.png" alt="1680176521877"><br>我们在对z进行求梯度的时候，指定了参数[1,0]也就是相对于进行了加权操作</p>
 <h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://www.w3cschool.cn/article/9034837.html">https://www.w3cschool.cn/article/9034837.html</a></p>
 <p><a href="https://blog.csdn.net/qq_39208832/article/details/117415229">https://blog.csdn.net/qq_39208832/article/details/117415229</a></p>
 <p><a href="https://pytorch.org/tutorials/beginner/blitz/autograd_tutorial.html#sphx-glr-beginner-blitz-autograd-tutorial-py">https://pytorch.org/tutorials/beginner/blitz/autograd_tutorial.html#sphx-glr-beginner-blitz-autograd-tutorial-py</a></p>
@@ -198,7 +184,8 @@
   <entry>
     <title>pytorch实现CNN</title>
     <url>/posts/3220359105/</url>
-    <content><![CDATA[<h1 id="pytorch实现CNN"><a href="#pytorch实现CNN" class="headerlink" title="pytorch实现CNN"></a>pytorch实现CNN</h1><p>nn.Conv2d<br>torch.nn.Conv2d(in_channels, out_channels, kernel_size, stride&#x3D;1, padding&#x3D;0, dilation&#x3D;1, groups&#x3D;1, bias&#x3D;True, padding_mode&#x3D;’zeros’, device&#x3D;None, dtype&#x3D;None)<br><strong>参数解释</strong><br>1、in_channels (int) – 输入图像中的通道数<br>2、out_channels (int) – 卷积产生的通道数<br>3、kernel_size (int or tuple) – 卷积核的大小<br>4、stride (int or tuple, optional) – 卷积的步幅，默认值：1<br>5、padding (int, tuple or str, optional) – 添加到输入的所有四个边的填充，默认值：0<br>6、padding_mode (str, optional) – ‘zeros’, ‘reflect’, ‘replicate’ or ‘circular’，默认: ‘zeros’<br>6、dilation (int or tuple, optional) – 内核元素之间的间距，默认值：1<br>7、groups (int, optional) – 从输入通道到输出通道的阻塞连接数，默认值：1<br>8、bias (bool, optional) – 如果是 “真”，则在输出中增加一个可学习的偏置，默认值： 真  </p>
+    <content><![CDATA[<span id="more"></span>
+<h1 id="pytorch实现CNN"><a href="#pytorch实现CNN" class="headerlink" title="pytorch实现CNN"></a>pytorch实现CNN</h1><p>nn.Conv2d<br>torch.nn.Conv2d(in_channels, out_channels, kernel_size, stride&#x3D;1, padding&#x3D;0, dilation&#x3D;1, groups&#x3D;1, bias&#x3D;True, padding_mode&#x3D;’zeros’, device&#x3D;None, dtype&#x3D;None)<br><strong>参数解释</strong><br>1、in_channels (int) – 输入图像中的通道数<br>2、out_channels (int) – 卷积产生的通道数<br>3、kernel_size (int or tuple) – 卷积核的大小<br>4、stride (int or tuple, optional) – 卷积的步幅，默认值：1<br>5、padding (int, tuple or str, optional) – 添加到输入的所有四个边的填充，默认值：0<br>6、padding_mode (str, optional) – ‘zeros’, ‘reflect’, ‘replicate’ or ‘circular’，默认: ‘zeros’<br>6、dilation (int or tuple, optional) – 内核元素之间的间距，默认值：1<br>7、groups (int, optional) – 从输入通道到输出通道的阻塞连接数，默认值：1<br>8、bias (bool, optional) – 如果是 “真”，则在输出中增加一个可学习的偏置，默认值： 真  </p>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> matplotlib <span class="keyword">import</span> pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> collections</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"><span class="keyword">import</span> torch.nn <span class="keyword">as</span> nn</span><br><span class="line"><span class="keyword">import</span> torch.nn.functional <span class="keyword">as</span> F</span><br><span class="line"><span class="keyword">import</span> torch.optim <span class="keyword">as</span> optim</span><br><span class="line"></span><br><span class="line">torch.set_printoptions(edgeitems=<span class="number">2</span>)</span><br><span class="line">torch.manual_seed(<span class="number">123</span>)</span><br><span class="line">class_names = [<span class="string">&#x27;airplane&#x27;</span>,<span class="string">&#x27;automobile&#x27;</span>,<span class="string">&#x27;bird&#x27;</span>,<span class="string">&#x27;cat&#x27;</span>,<span class="string">&#x27;deer&#x27;</span>,<span class="string">&#x27;dog&#x27;</span>,<span class="string">&#x27;frog&#x27;</span>,<span class="string">&#x27;horse&#x27;</span>,<span class="string">&#x27;ship&#x27;</span>,<span class="string">&#x27;truck&#x27;</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment">#下载数据</span></span><br><span class="line"><span class="keyword">from</span> torchvision <span class="keyword">import</span> datasets, transforms</span><br><span class="line">data_path = <span class="string">&#x27;E:/CIFAR-10/&#x27;</span> </span><br><span class="line">cifar10 = datasets.CIFAR10(</span><br><span class="line">    data_path, train=<span class="literal">True</span>, download=<span class="literal">True</span>,</span><br><span class="line">    transform=transforms.Compose([</span><br><span class="line">        transforms.ToTensor(),</span><br><span class="line">        transforms.Normalize((<span class="number">0.4915</span>, <span class="number">0.4823</span>, <span class="number">0.4468</span>),</span><br><span class="line">                             (<span class="number">0.2470</span>, <span class="number">0.2435</span>, <span class="number">0.2616</span>))</span><br><span class="line">    ]))</span><br><span class="line">cifar10_val = datasets.CIFAR10(</span><br><span class="line">    data_path, train=<span class="literal">False</span>, download=<span class="literal">True</span>,</span><br><span class="line">    transform=transforms.Compose([</span><br><span class="line">        transforms.ToTensor(),</span><br><span class="line">        transforms.Normalize((<span class="number">0.4915</span>, <span class="number">0.4823</span>, <span class="number">0.4468</span>),</span><br><span class="line">                             (<span class="number">0.2470</span>, <span class="number">0.2435</span>, <span class="number">0.2616</span>))</span><br><span class="line">    ]))</span><br><span class="line"><span class="comment">#识别鸟和飞机</span></span><br><span class="line">label_map = &#123;<span class="number">0</span>: <span class="number">0</span>, <span class="number">2</span>: <span class="number">1</span>&#125;</span><br><span class="line">class_names = [<span class="string">&#x27;airplane&#x27;</span>, <span class="string">&#x27;bird&#x27;</span>]</span><br><span class="line">cifar2 = [(img, label_map[label]) <span class="keyword">for</span> img, label <span class="keyword">in</span> cifar10 <span class="keyword">if</span> label <span class="keyword">in</span> [<span class="number">0</span>, <span class="number">2</span>]]</span><br><span class="line">cifar2_val = [(img, label_map[label]) <span class="keyword">for</span> img, label <span class="keyword">in</span> cifar10_val <span class="keyword">if</span> label <span class="keyword">in</span> [<span class="number">0</span>, <span class="number">2</span>]]</span><br><span class="line"><span class="comment">#定义神经网络模型</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Net</span>(nn.Module):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="built_in">super</span>().__init__()</span><br><span class="line">        self.conv1 = nn.Conv2d(<span class="number">3</span>, <span class="number">16</span>, kernel_size=<span class="number">3</span>, padding=<span class="number">1</span>)</span><br><span class="line">        self.act1 = nn.Tanh()</span><br><span class="line">        self.pool1 = nn.MaxPool2d(<span class="number">2</span>)</span><br><span class="line">        self.conv2 = nn.Conv2d(<span class="number">16</span>, <span class="number">8</span>, kernel_size=<span class="number">3</span>, padding=<span class="number">1</span>)</span><br><span class="line">        self.act2 = nn.Tanh()</span><br><span class="line">        self.pool2 = nn.MaxPool2d(<span class="number">2</span>)</span><br><span class="line">        self.fc1 = nn.Linear(<span class="number">8</span> * <span class="number">8</span> * <span class="number">8</span>, <span class="number">32</span>)</span><br><span class="line">        self.act3 = nn.Tanh()</span><br><span class="line">        self.fc2 = nn.Linear(<span class="number">32</span>, <span class="number">2</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">forward</span>(<span class="params">self, x</span>):</span><br><span class="line">        out = self.pool1(self.act1(self.conv1(x)))</span><br><span class="line">        out = self.pool2(self.act2(self.conv2(out)))</span><br><span class="line">        out = out.view(-<span class="number">1</span>, <span class="number">8</span> * <span class="number">8</span> * <span class="number">8</span>)</span><br><span class="line">        out = self.act3(self.fc1(out))</span><br><span class="line">        out = self.fc2(out)</span><br><span class="line">        <span class="keyword">return</span> out</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> datetime  </span><br><span class="line"><span class="comment">#定义损失函数</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">training_loop</span>(<span class="params">n_epochs, optimizer, model, loss_fn, train_loader</span>):</span><br><span class="line">    <span class="keyword">for</span> epoch <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, n_epochs + <span class="number">1</span>): </span><br><span class="line">        loss_train = <span class="number">0.0</span></span><br><span class="line">        <span class="keyword">for</span> imgs, labels <span class="keyword">in</span> train_loader:</span><br><span class="line">            <span class="comment">#利用GPU计算</span></span><br><span class="line">            imgs = imgs.to(<span class="string">&quot;cuda:0&quot;</span>)</span><br><span class="line">            labels = labels.to(<span class="string">&quot;cuda:0&quot;</span>)</span><br><span class="line">            <span class="comment">#计算损失函数</span></span><br><span class="line">            outputs = model(imgs)</span><br><span class="line">            loss = loss_fn(outputs, labels)</span><br><span class="line">            <span class="comment">#随机梯度下降更新参数</span></span><br><span class="line">            optimizer.zero_grad()</span><br><span class="line">            loss.backward()</span><br><span class="line">            optimizer.step()</span><br><span class="line">            loss_train += loss.item()</span><br><span class="line">        <span class="keyword">if</span> epoch == <span class="number">1</span> <span class="keyword">or</span> epoch % <span class="number">10</span> == <span class="number">0</span>:</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&#x27;&#123;&#125; Epoch &#123;&#125;, 训练损失&#123;&#125;&#x27;</span>.<span class="built_in">format</span>(datetime.datetime.now(), epoch,</span><br><span class="line">                loss_train / <span class="built_in">len</span>(train_loader))) </span><br></pre></td></tr></table></figure>
 
 <p>运行</p>
@@ -213,64 +200,10 @@
       </tags>
   </entry>
   <entry>
-    <title>sklearn-线性模型</title>
-    <url>/posts/1904751086/</url>
-    <content><![CDATA[<h1 id="线性模型"><a href="#线性模型" class="headerlink" title="线性模型"></a>线性模型</h1><p>线性模型表达式：$\hat{y}(w,x)&#x3D;w_0+w_1x_1+…w_nx_n$，待估计参数：$w_0…..w_n$</p>
-<h1 id="1、原理"><a href="#1、原理" class="headerlink" title="1、原理"></a>1、原理</h1><h2 id="1-1、最小二乘法"><a href="#1-1、最小二乘法" class="headerlink" title="1.1、最小二乘法"></a>1.1、最小二乘法</h2><p><strong>原理</strong>：计算估计值$\hat{y}$与实际值$y$之间最小平方和，即残差最小</p>
-<p>$$<br>\text{残差：}\hat{y}-y\<br>\text{最小残差平方和：}min\sum_{i&#x3D;1}^{n}(\hat{y_i}-y_i)^2,其中\hat{y}&#x3D;wx,w：为系数矩阵<br>$$</p>
-<p>普通最小二乘法的系数估计依赖于特征的独立性，最小二乘法估计值对观察目标的随机误差变得非常敏感，产生较大的方差。</p>
-<h2 id="1-2、岭回归"><a href="#1-2、岭回归" class="headerlink" title="1.2、岭回归"></a>1.2、岭回归</h2><h3 id="1-2-1-回归处理"><a href="#1-2-1-回归处理" class="headerlink" title="1.2.1 回归处理"></a>1.2.1 回归处理</h3><p>对于最小二乘法添加“惩罚因子”避免最小二乘法过拟合出现：</p>
-<p>$$<br>最小二乘法：min\sum_{i&#x3D;1}^{n}(\hat{y_i}-y_i)^2,其中\hat{y}&#x3D;wx,w：为系数矩阵\<br>添加“惩罚因子”：min\sum_{i&#x3D;1}^{n}(\hat{y_i}-y_i)^2+\alpha||w||^2,其中\hat{y}&#x3D;wx,w：为系数矩阵<br>$$</p>
-<p>其中参数$\alpha$控制收缩，收缩量越大，因此系数对共线性变得越平稳<br><img src="/image/%E7%BA%BF%E6%80%A7%E6%A8%A1%E5%9E%8B/1683273841368.png" alt="1683273841368"></p>
-<h3 id="1-2-2-分类处理"><a href="#1-2-2-分类处理" class="headerlink" title="1.2.2 分类处理"></a>1.2.2 分类处理</h3><h1 id="2、代码"><a href="#2、代码" class="headerlink" title="2、代码"></a>2、代码</h1><h2 id="2-1-线性模型"><a href="#2-1-线性模型" class="headerlink" title="2.1 线性模型"></a>2.1 线性模型</h2><h3 id="2-1-1-🐕线性回归"><a href="#2-1-1-🐕线性回归" class="headerlink" title="2.1.1 🐕线性回归"></a>2.1.1 🐕线性回归</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">form sklearn.linear_model <span class="keyword">import</span> LinearRegression</span><br></pre></td></tr></table></figure>
-
-<p><strong>参数解释：</strong><br>1、fit_intercept:bool, default&#x3D;True</p>
-<blockquote>
-<p>是否计算截距，默认：True</p>
-</blockquote>
-<p>2、copy_X:bool, default&#x3D;True</p>
-<blockquote>
-<p>是否覆盖x，默认：True<br><strong>方法：</strong></p>
-</blockquote>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">LinearRegression().fit(x,y) <span class="comment">#使用线性拟合去拟合(x,y)</span></span><br><span class="line">LinearRegression().get_params()<span class="comment">#获得参数</span></span><br><span class="line">LinearRegression().predict()<span class="comment">#预测</span></span><br><span class="line">LinearRegression().score(X, y, sample_weight=<span class="literal">None</span>)<span class="comment">#评价/得分</span></span><br><span class="line">LinearRegression().set_params()</span><br></pre></td></tr></table></figure>
-
-<p>$.score()得到的评分为R^2$</p>
-<p><strong>操作</strong>：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment">#设y=x1+2x2+3</span></span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">from</span> sklearn.linear_model <span class="keyword">import</span> LinearRegression</span><br><span class="line"></span><br><span class="line"><span class="comment">#设置x,y</span></span><br><span class="line">x = np.array([[<span class="number">1</span>, <span class="number">1</span>], [<span class="number">1</span>, <span class="number">2</span>], [<span class="number">2</span>, <span class="number">2</span>], [<span class="number">2</span>, <span class="number">3</span>]])</span><br><span class="line">y = np.dot(x, np.array([<span class="number">1</span>, <span class="number">2</span>])) + <span class="number">3</span></span><br><span class="line">reg = LinearRegression().fit(x,y1)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;模型R2：&#123;&#125;，模型预测：&#123;&#125;&quot;</span>.<span class="built_in">format</span>(reg.score(x,y),reg.predict(np.array([[<span class="number">3</span>,<span class="number">3</span>]]))))</span><br><span class="line"><span class="comment">#y=array([ 6,  8,  9, 11])</span></span><br><span class="line">&gt;模型R2：-<span class="number">2.846153846153845</span>，模型预测：[<span class="number">10.</span>]</span><br></pre></td></tr></table></figure>
-
-<h3 id="2-1-2-🐕岭回归"><a href="#2-1-2-🐕岭回归" class="headerlink" title="2.1.2 🐕岭回归"></a>2.1.2 🐕岭回归</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.linear_model <span class="keyword">import</span> Ridge</span><br></pre></td></tr></table></figure>
-
-<p><strong>参数解释：</strong><br>1、alpha:{float, ndarray of shape (n_targets,)},default&#x3D;1.0</p>
-<blockquote>
-<p>惩罚因子设置：$\alpha$</p>
-</blockquote>
-<p>2、fit_intercept:bool, default&#x3D;True</p>
-<blockquote>
-<p>是否设置截距</p>
-</blockquote>
-<p>3、copy_X:ool, default&#x3D;True<br>4、solver:{‘auto’, ‘svd’, ‘cholesky’, ‘lsqr’, ‘sparse_cg’, ‘sag’, ‘saga’, ‘lbfgs’}, default&#x3D;’auto’</p>
-<blockquote>
-<p><strong>函数求解器：理解为参数的求解方式</strong><br>“auto”根据数据类型自动选择求解器。<br>“svd”使用 X 的奇异值分解来计算岭系数。它是最稳定的求解器，特别是对于奇异矩阵比“cholesky”更稳定，但代价是更慢。<br>“cholesky”使用标准的 scipy.linalg.solve 函数来获得封闭形式的解决方案。<br>“sparse_cg”使用 scipy.sparse.linalg.cg 中的共轭梯度求解器。作为迭代算法，此求解器比“cholesky”更适合大规模数据（可以设置 tol 和 max_iter）。<br>“lsqr”使用专用正则化最小二乘例程 scipy.sparse.linalg.lsqr。它是最快的并且使用迭代过程。<br>“sag”使用随机平均梯度下降，“saga”使用其改进的无偏版本，名为 SAGA。这两种方法也使用迭代过程，并且当 n_samples 和 n_features 都很大时通常比其他求解器更快。请注意，“sag”和“saga”快速收敛只能保证具有大致相同比例的特征。您可以使用 sklearn.preprocessing 中的缩放器预处理数据。<br>‘lbfgs’ 使用在 scipy.optimize.minimize 中实现的L-BFGS-B 算法。它只能在 positive 为 True 时使用。</p>
-</blockquote>
-<p><strong>方法</strong>:</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">Ridge().fit(x,y) <span class="comment">#使用线性拟合去拟合(x,y)</span></span><br><span class="line">Ridge().get_params()<span class="comment">#获得参数</span></span><br><span class="line">Ridge().predict()<span class="comment">#预测</span></span><br><span class="line">Ridge().score(X, y, sample_weight=<span class="literal">None</span>)<span class="comment">#评价/得分</span></span><br><span class="line">Ridge().set_params()</span><br></pre></td></tr></table></figure>
-
-<p><strong>操作</strong>:</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.linear_model <span class="keyword">import</span> Ridge</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line">x = np.array([[<span class="number">1</span>, <span class="number">1</span>], [<span class="number">1</span>, <span class="number">2</span>], [<span class="number">2</span>, <span class="number">2</span>], [<span class="number">2</span>, <span class="number">3</span>]])</span><br><span class="line">y = np.dot(x, np.array([<span class="number">1</span>, <span class="number">2</span>])) + <span class="number">3</span></span><br><span class="line">rng = Ridge(alpha=<span class="number">0.5</span>).fit(x,y)</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>机器学习</category>
-        <category>sklearn</category>
-      </categories>
-      <tags>
-        <tag>机器学习</tag>
-        <tag>sklearn</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>决策树算法</title>
     <url>/posts/4012468743/</url>
-    <content><![CDATA[<p>[toc]</p>
+    <content><![CDATA[<span id="more"></span>
+
 <h2 id="一、什么是决策树算法"><a href="#一、什么是决策树算法" class="headerlink" title="一、什么是决策树算法"></a>一、什么是决策树算法</h2><p><strong>决策树</strong>是一个预测模型；他代表的是对象属性与对象值之间的一种映射关系。树中每个节点表示某个对象，而每个分叉路径则代表某个可能的属性值，而每个叶节点则对应从根节点到该叶节点所经历的路径所表示的对象的值。决策树仅有单一输出，若欲有复数输出，可以建立独立的决策树以处理不同输出。 数据挖掘中决策树是一种经常要用到的技术，可以用于分析数据，同样也可以用来作预测，从数据产生决策树的机器学习技术叫做 <strong>决策树学习</strong> ,通俗说就是<strong>决策树</strong></p>
 <blockquote>
 <p>维基百科：<a href="https://zh.wikipedia.org/zh-cn/%E5%86%B3%E7%AD%96%E6%A0%91#%E7%AE%80%E4%BB%8B">https://zh.wikipedia.org/zh-cn/%E5%86%B3%E7%AD%96%E6%A0%91#%E7%AE%80%E4%BB%8B</a></p>
@@ -290,7 +223,7 @@
 <p>$$<br>信息增益Gain(D,a)&#x3D;Ent(D)-\sum_{v&#x3D;1}^{V}\frac{|D^v|}{|D|}Ent(D^v) \V:离散属性a的可能取值的个数<br>$$</p>
 <p>怎么使用？再次借用周志华老师书上例子，我们来区分好瓜坏瓜。</p>
 <blockquote>
-<p><img src="/%E5%86%B3%E7%AD%96%E6%A0%91%E7%AE%97%E6%B3%95/bVc6L9J.png" alt="决策树算法"></p>
+<p><img data-src="/%E5%86%B3%E7%AD%96%E6%A0%91%E7%AE%97%E6%B3%95/bVc6L9J.png" alt="决策树算法"></p>
 <ul>
 <li><strong>注释</strong>：本文都是采用的ID3决策树算法</li>
 </ul>
@@ -335,7 +268,8 @@
   <entry>
     <title>初识深度学习</title>
     <url>/posts/3065358813/</url>
-    <content><![CDATA[<h1 id="初识深度学习"><a href="#初识深度学习" class="headerlink" title="初识深度学习"></a>初识深度学习</h1><hr>
+    <content><![CDATA[<h1 id="初识深度学习"><a href="#初识深度学习" class="headerlink" title="初识深度学习"></a>初识深度学习</h1><span id="more"></span>
+<hr>
 <p><strong>注：</strong></p>
 <p>1、本文为个人学习笔记，所以内容大多比较简练不做过多解释</p>
 <p>2、文章参考书籍：1、《python深度学习》[美] 弗朗索瓦·肖莱　著 张亮 译；2、《深度学习》(花书)</p>
@@ -344,7 +278,7 @@
 <p>n、后续用到什么就继续继续补充</p>
 <hr>
 <p>[toc]</p>
-<h2 id="一、初识神经网络"><a href="#一、初识神经网络" class="headerlink" title="一、初识神经网络"></a>一、初识神经网络</h2><h3 id="1-1-神经网络的工作原理"><a href="#1-1-神经网络的工作原理" class="headerlink" title="1.1 神经网络的工作原理"></a>1.1 神经网络的工作原理</h3><p><img src="/%E5%88%9D%E8%AF%86%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/1680779540890.png" alt="1680779540890"></p>
+<h2 id="一、初识神经网络"><a href="#一、初识神经网络" class="headerlink" title="一、初识神经网络"></a>一、初识神经网络</h2><h3 id="1-1-神经网络的工作原理"><a href="#1-1-神经网络的工作原理" class="headerlink" title="1.1 神经网络的工作原理"></a>1.1 神经网络的工作原理</h3><p><img data-src="/%E5%88%9D%E8%AF%86%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/1680779540890.png" alt="1680779540890"></p>
 <ul>
 <li>优化器：随机梯度下降、牛顿法</li>
 <li>层：可以取类比多层感知机模型中的隐藏层</li>
@@ -364,14 +298,14 @@
 <p><strong>pytorch的具体语法，后续继续补充</strong></p>
 </blockquote>
 <h5 id="1-2-1-1-时间序列数据"><a href="#1-2-1-1-时间序列数据" class="headerlink" title="1.2.1.1 时间序列数据"></a>1.2.1.1 时间序列数据</h5><p>以股票交易为例：每时每刻都存在交易，并且每时每刻对于不同的股票也都存在买入、卖出。那么我们可以借助3D张量进行表示：</p>
-<p><img src="/%E5%88%9D%E8%AF%86%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/1680782513691.png" alt="1680782513691"></p>
+<p><img data-src="/%E5%88%9D%E8%AF%86%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/1680782513691.png" alt="1680782513691"></p>
 <ul>
 <li><strong>时间步长</strong>：可以假设是1分钟内进行交易</li>
 <li><strong>特征</strong>：某一个股票进行的交易</li>
 <li><strong>样本</strong>：不同的层可以表示是不同股票：茅台。。。。。</li>
 </ul>
 <h5 id="1-2-1-2-图像数据"><a href="#1-2-1-2-图像数据" class="headerlink" title="1.2.1.2 图像数据"></a>1.2.1.2 图像数据</h5><p>一张<strong>彩色</strong>图片可以由3部分构成：高度、宽度、颜色深度（灰度图像只有一个颜色通道可以取消颜色深度），那么图片也是3D张量：</p>
-<p><img src="/%E5%88%9D%E8%AF%86%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/1680782799812.png" alt="1680782792"></p>
+<p><img data-src="/%E5%88%9D%E8%AF%86%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/1680782799812.png" alt="1680782792"></p>
 <blockquote>
 <p>假设图片为<strong>彩色</strong>，大小为256x256。那么我们张量可以如此表示：（n, 256, 256, 3)。n：图片数目；3：彩色图片一般3种颜色（光的3原色）</p>
 </blockquote>
@@ -385,7 +319,7 @@
 <p><a href="https://www.w3cschool.cn/pytorch/pytorch-5ubt3bby.html">1、PyTorch是什么？_w3cschool</a></p>
 </blockquote>
 <h4 id="1-2-3-基于梯度优化"><a href="#1-2-3-基于梯度优化" class="headerlink" title="1.2.3 基于梯度优化"></a>1.2.3 基于梯度优化</h4><p>在此引用神经网络工作原理图：</p>
-<p><img src="/%E5%88%9D%E8%AF%86%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/1680779540890.png" alt="1680779540890"></p>
+<p><img data-src="/%E5%88%9D%E8%AF%86%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/1680779540890.png" alt="1680779540890"></p>
 <p>在多层感知机模型中有3类常用的激活函数：Sigmoid、Relu、Tannh。假设卷积神经网络只有2层：$f(x)&#x3D;f^{(1)}(f^{(2)}(x,w,b))$此处我们的$f^{(2)}$就是我们的激活函数，而$w,b$就是我们的权重。一开始，这些权重矩阵取较小的<strong>随机值</strong>，这一步叫作<strong>随机初始化</strong>，他们肯定不会得到任何有用的表示。虽然得到的表示是没有意义的，但这是一个起点。下一步则是根据反馈信号逐渐调节这些权重。这个逐渐调节的过程叫作<strong>训练</strong>，也就是机器学习中的学习。</p>
 <p>上述过程发生在一个训练循环（training loop）内，其具体过程如下。必要时一直重复这些步骤。</p>
 <ul>
@@ -424,7 +358,7 @@
 <p>1、简单的留出验证（上述代码）</p>
 <p>2、<strong>K 折验证</strong></p>
 <p>将数据划分为大小相同的 K 个分区。对于每个分区 i，在剩余的 K-1 个分区上训练模型，然后在分区 i 上评估模型。最终分数等于 K 个分数的平均值。</p>
-<p><img src="/%E5%88%9D%E8%AF%86%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/1680867838870.png" alt="1680867838870"></p>
+<p><img data-src="/%E5%88%9D%E8%AF%86%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/1680867838870.png" alt="1680867838870"></p>
 </blockquote>
 <p>我们最终的目的是我们设计的模型在测试集上、训练集上的测试效果都满足我们的要求。在此过程中涉及两个问题：1、<strong>欠拟合</strong>：模型不能再训练集上或者足够低的误差；2、<strong>过拟合</strong>：训练误差和测试误差之间差距过大。</p>
 <h3 id="2-2-正则化"><a href="#2-2-正则化" class="headerlink" title="2.2 正则化"></a>2.2 正则化</h3><p>为了防止模型从训练数据中学到错误或无关紧要的模式，<strong>最优解决方法是获取更多的训练数据</strong>。模型的训练数据越多，泛化能力自然也越好。如果无法获取更多数据，次优解决方法是<strong>调节模型允许存储的信息量</strong>，或对模型允许存储的信息加以约束。如果一个网络只能记住几个模式，那么优化过程会迫使模型集中学习最重要的模式，这样更可能得到良好的泛化。这种降低过拟合的方法叫作正则化。</p>
@@ -486,107 +420,10 @@
       </tags>
   </entry>
   <entry>
-    <title>sklearn-线性模型-岭回归</title>
-    <url>/posts/470077716/</url>
-    <content><![CDATA[<h1 id="1、🗡岭回归原理"><a href="#1、🗡岭回归原理" class="headerlink" title="1、🗡岭回归原理"></a>1、🗡岭回归原理</h1><h2 id="1-1-回归"><a href="#1-1-回归" class="headerlink" title="1.1 回归"></a>1.1 回归</h2><p>对于最小二乘法添加“惩罚因子”避免最小二乘法过拟合出现：</p>
-<p>$$<br>最小二乘法：min\sum_{i&#x3D;1}^{n}(\hat{y_i}-y_i)^2,其中\hat{y}&#x3D;wx,w：为系数矩阵\<br>添加“惩罚因子”：min\sum_{i&#x3D;1}^{n}(\hat{y_i}-y_i)^2+\alpha||w||^2,其中\hat{y}&#x3D;wx,w：为系数矩阵<br>$$</p>
-<p>其中参数$\alpha$控制收缩，收缩量越大，因此系数对共线性变得越平稳<br><img src="/image/%E7%BA%BF%E6%80%A7%E6%A8%A1%E5%9E%8B/1683273841368.png" alt="1683273841368"></p>
-<h2 id="1-2-分类"><a href="#1-2-分类" class="headerlink" title="1.2 分类"></a>1.2 分类</h2><p>岭回归分类操作：对于二分类问题，将分类变量转化为{-1,1}进而使得问题转化为回归问题</p>
-<h1 id="2、-🐕岭回归代码"><a href="#2、-🐕岭回归代码" class="headerlink" title="2、 🐕岭回归代码"></a>2、 🐕岭回归代码</h1><h2 id="2-1-岭回归–回归"><a href="#2-1-岭回归–回归" class="headerlink" title="2.1 岭回归–回归"></a>2.1 岭回归–回归</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.linear_model <span class="keyword">import</span> Ridge</span><br></pre></td></tr></table></figure>
-<p><strong>参数解释：</strong><br>1、alpha:{float, ndarray of shape (n_targets,)},default&#x3D;1.0</p>
-<blockquote>
-<p>惩罚因子设置：$\alpha$</p>
-</blockquote>
-<p>2、fit_intercept:bool, default&#x3D;True</p>
-<blockquote>
-<p>是否设置截距</p>
-</blockquote>
-<p>3、copy_X:ool, default&#x3D;True</p>
-<p>4、solver:{‘auto’, ‘svd’, ‘cholesky’, ‘lsqr’, ‘sparse_cg’, ‘sag’, ‘saga’, ‘lbfgs’}, default&#x3D;’auto’</p>
-<blockquote>
-<p><strong>函数求解器：理解为参数的求解方式</strong></p>
-</blockquote>
-<blockquote>
-<p>“auto”根据数据类型自动选择求解器。</p>
-</blockquote>
-<blockquote>
-<p>“svd”使用 X 的奇异值分解来计算岭系数。它是最稳定的求解器，特别是对于奇异矩阵比“cholesky”更稳定，但代价是更慢。</p>
-</blockquote>
-<blockquote>
-<p>“cholesky”使用标准的 scipy.linalg.solve 函数来获得封闭形式的解决方案。</p>
-</blockquote>
-<blockquote>
-<p>“sparse_cg”使用 scipy.sparse.linalg.cg 中的共轭梯度求解器。作为迭代算法，此求解器比“cholesky”更适合大规模数据（可以设置 tol 和 max_iter）。</p>
-</blockquote>
-<blockquote>
-<p>“lsqr”使用专用正则化最小二乘例程 scipy.sparse.linalg.lsqr。它是最快的并且使用迭代过程。</p>
-</blockquote>
-<blockquote>
-<p>“sag”使用随机平均梯度下降，“saga”使用其改进的无偏版本，名为 SAGA。这两种方法也使用迭代过程，并且当 n_samples 和 n_features 都很大时通常比其他求解器更快。请注意，“sag”和“saga”快速收敛只能保证具有大致相同比例的特征。您可以使用 sklearn.preprocessing 中的缩放器预处理数据。</p>
-</blockquote>
-<blockquote>
-<p>‘lbfgs’ 使用在 scipy.optimize.minimize 中实现的L-BFGS-B 算法。它只能在 positive 为 True 时使用。</p>
-</blockquote>
-<p><strong>方法</strong>:</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">Ridge().fit(x,y) <span class="comment">#使用线性拟合去拟合(x,y)</span></span><br><span class="line">Ridge().get_params()<span class="comment">#获得参数</span></span><br><span class="line">Ridge().predict()<span class="comment">#预测</span></span><br><span class="line">Ridge().score(X, y, sample_weight=<span class="literal">None</span>)<span class="comment">#评价/得分</span></span><br><span class="line">Ridge().set_params()</span><br></pre></td></tr></table></figure>
-
-<p><strong>操作</strong>:</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.linear_model <span class="keyword">import</span> Ridge</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line">x = np.array([[<span class="number">1</span>, <span class="number">1</span>], [<span class="number">1</span>, <span class="number">2</span>], [<span class="number">2</span>, <span class="number">2</span>], [<span class="number">2</span>, <span class="number">3</span>]])</span><br><span class="line">y = np.dot(x, np.array([<span class="number">1</span>, <span class="number">2</span>])) +<span class="number">3</span></span><br><span class="line">rng = Ridge(alpha=<span class="number">0.5</span>).fit(x,y)</span><br></pre></td></tr></table></figure>
-
-<h2 id="2-2-岭回归–分类"><a href="#2-2-岭回归–分类" class="headerlink" title="2.2 岭回归–分类"></a>2.2 岭回归–分类</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.linear_model <span class="keyword">import</span> RidgeClassifier</span><br></pre></td></tr></table></figure>
-<p><strong>参数解释</strong><br>1、alpha:{float, ndarray of shape (n_targets,)},default&#x3D;1.0</p>
-<blockquote>
-<p>惩罚因子设置：$\alpha$</p>
-</blockquote>
-<p>2、fit_intercept:bool, default&#x3D;True</p>
-<blockquote>
-<p>是否设置截距</p>
-</blockquote>
-<p>3、copy_X:ool, default&#x3D;True</p>
-<p>4、solver:{‘auto’, ‘svd’, ‘cholesky’, ‘lsqr’, ‘sparse_cg’, ‘sag’, ‘saga’, ‘lbfgs’}, default&#x3D;’auto’</p>
-<blockquote>
-<p><strong>函数求解器：理解为参数的求解方式</strong></p>
-</blockquote>
-<blockquote>
-<p>“auto”根据数据类型自动选择求解器。</p>
-</blockquote>
-<blockquote>
-<p>“svd”使用 X 的奇异值分解来计算岭系数。它是最稳定的求解器，特别是对于奇异矩阵比“cholesky”更稳定，但代价是更慢。</p>
-</blockquote>
-<blockquote>
-<p>“cholesky”使用标准的 scipy.linalg.solve 函数来获得封闭形式的解决方案。</p>
-</blockquote>
-<blockquote>
-<p>“sparse_cg”使用 scipy.sparse.linalg.cg 中的共轭梯度求解器。作为迭代算法，此求解器比“cholesky”更适合大规模数据（可以设置 tol 和 max_iter）。</p>
-</blockquote>
-<blockquote>
-<p>“lsqr”使用专用正则化最小二乘例程 scipy.sparse.linalg.lsqr。它是最快的并且使用迭代过程。</p>
-</blockquote>
-<blockquote>
-<p>“sag”使用随机平均梯度下降，“saga”使用其改进的无偏版本，名为 SAGA。这两种方法也使用迭代过程，并且当 n_samples 和 n_features 都很大时通常比其他求解器更快。请注意，“sag”和“saga”快速收敛只能保证具有大致相同比例的特征。您可以使用 sklearn.preprocessing 中的缩放器预处理数据。</p>
-</blockquote>
-<blockquote>
-<p>‘lbfgs’ 使用在 scipy.optimize.minimize 中实现的L-BFGS-B 算法。它只能在 positive 为 True 时使用。</p>
-</blockquote>
-<p>5、class_weight:dict or ‘balanced’, default&#x3D;None</p>
-<blockquote>
-<p>分类权重</p>
-</blockquote>
-<p><strong>方法</strong>:</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">RidgeClassifier.fit(x,y) <span class="comment">#使用线性拟合去拟合(x,y)</span></span><br><span class="line">RidgeClassifier.get_params()<span class="comment">#获得参数</span></span><br><span class="line">RidgeClassifier.predict()<span class="comment">#预测</span></span><br><span class="line">RidgeClassifier.score(X, y, sample_weight=<span class="literal">None</span>)<span class="comment">#评价/得分</span></span><br><span class="line">RidgeClassifier.set_params()</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>机器学习</category>
-        <category>sklearn</category>
-        <category>线性模型</category>
-      </categories>
-      <tags>
-        <tag>机器学习</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>支持向量机</title>
     <url>/posts/671832206/</url>
-    <content><![CDATA[<h1 id="支持向量机-SVM"><a href="#支持向量机-SVM" class="headerlink" title="支持向量机(SVM)"></a>支持向量机(SVM)</h1><p>[toc]</p>
+    <content><![CDATA[<h1 id="支持向量机-SVM"><a href="#支持向量机-SVM" class="headerlink" title="支持向量机(SVM)"></a>支持向量机(SVM)</h1><span id="more"></span>
+<p>[toc]</p>
 <h2 id="一、什么是支持向量机"><a href="#一、什么是支持向量机" class="headerlink" title="一、什么是支持向量机"></a>一、什么是支持向量机</h2><p>支持向量机在高纬或无限维空间中构造<strong>超平面</strong>或超平面集合，其可以用于分类、回归或其他任务。直观来说，分类边界距离最近的训练资料点越远越好，因为这样可以缩小分类器的<strong>泛化误差</strong>。</p>
 <blockquote>
 <p><a href="https://zh.wikipedia.org/zh-cn/%E6%94%AF%E6%8C%81%E5%90%91%E9%87%8F%E6%9C%BA">https://zh.wikipedia.org/zh-cn/%E6%94%AF%E6%8C%81%E5%90%91%E9%87%8F%E6%9C%BA</a></p>
@@ -596,7 +433,7 @@
 <li>什么是超平面呢？</li>
 </ul>
 <p>假如咱们是在用支持向量机来处理二分类问题吧。咱们设想假如在一个直角坐标系里面存在两个不同类别：黑点和紫点。现在我们需要将他们进行分离，你会怎么做？你或许会说：这还不简单直接画一条线不久完事了吗？看来你明白什么是<strong>超平面</strong>，好的我们看下图：</p>
-<p><img src="/%E6%94%AF%E6%8C%81%E5%90%91%E9%87%8F%E6%9C%BA/1678697314457.png" alt="1678697314457"></p>
+<p><img data-src="/%E6%94%AF%E6%8C%81%E5%90%91%E9%87%8F%E6%9C%BA/1678697314457.png" alt="1678697314457"></p>
 <p>那么到底是蓝色好呢？还是黄色好呢？这就是我们要提的第二个概念——泛化误差</p>
 <ul>
 <li>什么是泛化误差</li>
@@ -661,25 +498,25 @@
 <p>$$<br>公式3;;max\sum_{i&#x3D;1}^{m}\alpha_i-\frac{1}{2}\sum_{i&#x3D;1}^{m}\sum_{j&#x3D;1}^{m}\alpha_iy_ix^T_i\alpha_jy_jx_j<br>$$</p>
 <blockquote>
 <p>计算步骤如下：</p>
-<p><img src="/%E6%94%AF%E6%8C%81%E5%90%91%E9%87%8F%E6%9C%BA/1678763077705.png" alt="1678763077705"></p>
+<p><img data-src="/%E6%94%AF%E6%8C%81%E5%90%91%E9%87%8F%E6%9C%BA/1678763077705.png" alt="1678763077705"></p>
 </blockquote>
 <p>上述过程需要满足KKT条件：</p>
 <p>$$<br>\begin{cases}<br>    \alpha_i\ge0\y_if(x_i)-1\ge0\\alpha_i(y_if(x_i)-1)&#x3D;0<br>\end{cases}<br>$$</p>
 <h3 id="2-3-核函数"><a href="#2-3-核函数" class="headerlink" title="2.3 核函数"></a>2.3 核函数</h3><p>前面我们讲诉了线性可分，那么可能就会有人有疑问：那么会不会存在线性不可分的问题呢？我们先看下图：</p>
-<p><img src="/%E6%94%AF%E6%8C%81%E5%90%91%E9%87%8F%E6%9C%BA/1678789201324.png" alt="1678789201324"></p>
+<p><img data-src="/%E6%94%AF%E6%8C%81%E5%90%91%E9%87%8F%E6%9C%BA/1678789201324.png" alt="1678789201324"></p>
 <p>同样都是黑点紫点但是无论你如何画直线都不可能找到这么一条直线能够完美的将两者进行区分，那么是不是支持向量机就不起作用了？但是，从图很容易看到我们可以绘制一个圆圈将两者分开，也就是说存在一种方法将他们划分开来。但是我们知道支持向量机算法是找到一个<strong>超平面</strong>去划分数据集合，显然圆是不符合我们要求的，那怎么办呢？就是我么今天要讲的主角——核函数</p>
 <blockquote>
 <p><em><strong>核函数</strong></em>：将样本点从低纬映射到高维的特征空间。</p>
 </blockquote>
-<p><img src="/%E6%94%AF%E6%8C%81%E5%90%91%E9%87%8F%E6%9C%BA/1678789607922.png" alt="1678789607922"></p>
+<p><img data-src="/%E6%94%AF%E6%8C%81%E5%90%91%E9%87%8F%E6%9C%BA/1678789607922.png" alt="1678789607922"></p>
 <p>从上图很容易知道开始在2维空间我们找不到一条直线划分，但是映射到3维空间时，此时就可以找到一个超平面把他们划分开来。那么此时我们线性可分模型就转化成：</p>
 <p>$$<br>f(x)&#x3D;w^T\phi(x)+b;;\phi:代表x的映射<br>$$</p>
 <p>对偶问题转化为：</p>
 <p>$$<br>max\sum_{i&#x3D;1}^{m}\alpha_i-\frac{1}{2}\sum_{i&#x3D;1}^{m}\sum_{j&#x3D;1}^{m}\alpha_iy_i\phi(x_i)^T\alpha_jy_j\phi(x_j)\\text{我们令}k&#x3D;\phi(x_i)^T\phi(x_j)即我们的核函数<br>$$</p>
 <p>几种常用的核函数：</p>
-<p><img src="/%E6%94%AF%E6%8C%81%E5%90%91%E9%87%8F%E6%9C%BA/1678790610325.png" alt="1678790610325"></p>
+<p><img data-src="/%E6%94%AF%E6%8C%81%E5%90%91%E9%87%8F%E6%9C%BA/1678790610325.png" alt="1678790610325"></p>
 <h3 id="2-4-软间隔、正则化"><a href="#2-4-软间隔、正则化" class="headerlink" title="2.4 软间隔、正则化"></a>2.4 软间隔、正则化</h3><p>什么？间隔还有软硬之分？此软硬非我们所认为的软硬！我们前面所设想的都是：我们绘制的超平面可以<strong>完全</strong>将我们的数据点进行划分，但是会不会存在这么一种情况——无论你如何绘制超平面总是会有部分点会错分呢？见下图：</p>
-<p><img src="/%E6%94%AF%E6%8C%81%E5%90%91%E9%87%8F%E6%9C%BA/1679056981202.png" alt="1679056981202"></p>
+<p><img data-src="/%E6%94%AF%E6%8C%81%E5%90%91%E9%87%8F%E6%9C%BA%5C1679056981202.png" alt="1679056981202"></p>
 <p>总是有小黑跑到小紫这边，同时也总是有小紫跑到小黑这边。那么软间隔就是<strong>允许支持向量机在一些样本上出错</strong></p>
 <h2 id="三、Python代码"><a href="#三、Python代码" class="headerlink" title="三、Python代码"></a>三、Python代码</h2><h2 id="四、评价"><a href="#四、评价" class="headerlink" title="四、评价"></a>四、评价</h2><p><strong>优点</strong></p>
 <ul>
@@ -713,68 +550,12 @@
       </tags>
   </entry>
   <entry>
-    <title>数值计算</title>
-    <url>/posts/3172772673/</url>
-    <content><![CDATA[<blockquote>
-<p>前言：最近在学习深度学习，想借着暑假时间将深度学习基础理论、机器学习理论学完。并且如果时间允许进一步学习pytorch、以及将机器学习进行复现(python)。所以部分文章作为自己学习笔记，以便于后续阅读。</p>
-</blockquote>
-<p>理论学习书籍：</p>
-<ul>
-<li><strong>《深度学习》开源地址：<a href="http://www.deeplearningbook.org/">http://www.deeplearningbook.org</a></strong></li>
-<li><strong>《机器学习》周志华 清华大学出版社</strong></li>
-<li><strong>《机器学习公式推导(南瓜书)》</strong></li>
-</ul>
-<p>实操书籍：</p>
-<ul>
-<li><strong>《动手学深度学习pytorch》开源地址：<a href="https://zh-v2.d2l.ai/d2l-zh-pytorch.pdf">https://zh-v2.d2l.ai/d2l-zh-pytorch.pdf</a></strong></li>
-<li><strong>《pytorch深度学习实战》</strong></li>
-<li><strong><a href="https://scikit-learn.org/">https://scikit-learn.org/</a></strong></li>
-</ul>
-<p>[toc]</p>
-<h1 id="数值计算"><a href="#数值计算" class="headerlink" title="数值计算"></a>数值计算</h1><h2 id="基础理论"><a href="#基础理论" class="headerlink" title="基础理论"></a>基础理论</h2><ul>
-<li><strong>梯度、导数、方向导数</strong></li>
-</ul>
-<p>首先从二维平面上的角度进行解释：在二维上我们如何计算导数？</p>
-<p>$$<br>\lim_{x \to a}{\frac{f(x)-f(a)}{x-a}}<br>$$</p>
-<p>其在二维平面上的表述：<br><img src="/%E6%95%B0%E5%80%BC%E8%AE%A1%E7%AE%97/1680502924121.png" alt="1680502924121"><br>但是如果重新设想在三维平面上会是怎么样子的？在三维上导数可以向着各个方向——<strong>方向导数</strong>，而我们的梯度就是其方向上方向导数最大，其大小正好是此最大方向导数。</p>
-<blockquote>
-<p><a href="https://www.zhihu.com/question/36301367">https://www.zhihu.com/question/36301367</a><br><a href="https://zh.wikipedia.org/wiki/%E5%AF%BC%E6%95%B0">https://zh.wikipedia.org/wiki/%E5%AF%BC%E6%95%B0</a></p>
-</blockquote>
-<h2 id="上溢和下溢"><a href="#上溢和下溢" class="headerlink" title="上溢和下溢"></a>上溢和下溢</h2><p>我们知道计算机对于数字存储都是有限制的（无法在有限的内下精确表述），也就是说可能会出现数字舍入的问题，那么此时可能就会有问题出现：数字四舍五入出现0（下溢），数字无穷（上溢）。于是人们提出<strong>softmax函数</strong>：</p>
-<p>$$<br>softmax(x)&#x3D;\frac{exp(x_i)}{\sum_{j&#x3D;1}^{n}{x_j}}<br>$$</p>
-<p>但是我们假设$x_i$是一个常数C，那么还是会出现上溢、下溢的问题。那么可以通过计算：$softmax(z)$  $z&#x3D;x-max_ix_i$解决上两个问题。<br>在解释<strong>梯度下降算法</strong>以及<strong>牛顿法</strong>之前我们必须先了解这两个算法目的是干嘛。我们常常需要计算函数f(x)的最值情况。比如说：$f(x)&#x3D;x^2$的最值，可能很容易就计算得到在$x&#x3D;0$时取得，但是如果函数特别复杂（比如说：逻辑斯蒂回归），那么怎么解决？</p>
-<h2 id="梯度下降算法"><a href="#梯度下降算法" class="headerlink" title="梯度下降算法"></a>梯度下降算法</h2><p>介绍梯度下降算法之前，我们先了解下面几个概念：</p>
-<ul>
-<li>目标函数：需要最小化或者最大化的函数</li>
-<li>损失函数：目标函数最小化</li>
-</ul>
-<p>回想我们前面所了解的梯度知识，然后看下面这幅图：<br><img src="/%E6%95%B0%E5%80%BC%E8%AE%A1%E7%AE%97/1680504988382.png" alt="1680504988382"><br>对于函数$f(x)&#x3D;\frac{1}{2}x^2$我们很容易知道在x&#x3D;0的时候函数会有最小值，但是计算机并非如此！他可能会一个一个点不断的进行尝试而后去比较大小，最后得到最值情况。比如说：当点x落在x&#x3D;0的右侧时，我们函数导数大于0，那么此时我们需要向左移动才能找到最小值。左侧同理。进而得到梯度下降算法</p>
-<p>$$<br>x &#x3D; x-\eta\nabla_x f(x)<br>$$</p>
-<blockquote>
-<p>其中：$\eta:学习率$,$\nabla:梯度$</p>
-</blockquote>
-<blockquote>
-<p><a href="https://www.zhihu.com/question/305638940">https://www.zhihu.com/question/305638940</a></p>
-</blockquote>
-<h2 id="牛顿法"><a href="#牛顿法" class="headerlink" title="牛顿法"></a>牛顿法</h2><p>$$<br>x_{n+1}&#x3D;x_n-\frac{f(x)}{f^{‘}(x)}<br>$$</p>
-<p>下面图片更加直观的了解<br><img src="/%E6%95%B0%E5%80%BC%E8%AE%A1%E7%AE%97/%E7%89%9B%E9%A1%BF%E6%B3%95.gif" alt="1680506537705"></p>
-<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><p>1、《deep learning Ian Goodfellow and Yoshua Bengio and Aaron Courville》 <a href="http://www.deeplearningbook.org/">http://www.deeplearningbook.org</a><br>2、<a href="https://www.zhihu.com/question/36301367">https://www.zhihu.com/question/36301367</a></p>
-]]></content>
-      <categories>
-        <category>深度学习</category>
-      </categories>
-      <tags>
-        <tag>深度学习</tag>
-        <tag>梯度下降</tag>
-        <tag>牛顿法</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>机器学习评价标准</title>
     <url>/posts/2592384004/</url>
-    <content><![CDATA[<h1 id="机器学习评估指标"><a href="#机器学习评估指标" class="headerlink" title="机器学习评估指标"></a>机器学习评估指标</h1><h2 id="一、分类算法"><a href="#一、分类算法" class="headerlink" title="一、分类算法"></a>一、分类算法</h2><p><strong>混淆矩阵</strong></p>
+    <content><![CDATA[<span id="more"></span>
+<h1 id="机器学习评估指标"><a href="#机器学习评估指标" class="headerlink" title="机器学习评估指标"></a>机器学习评估指标</h1><h2 id="一、分类算法"><a href="#一、分类算法" class="headerlink" title="一、分类算法"></a>一、分类算法</h2><p><strong>混淆矩阵</strong></p>
 <blockquote>
-<p>混淆矩阵是监督学习中的一种可视化工具，主要用于比较分类结果和实例的真实信息。矩阵中的每一行代表实例的 <strong>预测类别</strong> ,每一列代表实例的 <strong>真实类别</strong> 。<br><img src="/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E8%AF%84%E4%BB%B7%E6%A0%87%E5%87%86%5C20230320110308.png"></p>
+<p>混淆矩阵是监督学习中的一种可视化工具，主要用于比较分类结果和实例的真实信息。矩阵中的每一行代表实例的 <strong>预测类别</strong> ,每一列代表实例的 <strong>真实类别</strong> 。<br><img data-src="/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E8%AF%84%E4%BB%B7%E6%A0%87%E5%87%86%5C20230320110308.png"></p>
 </blockquote>
 <p>混淆矩阵的指标</p>
 <blockquote>
@@ -869,11 +650,11 @@
 <p>$$<br>TPR&#x3D;\frac{TP}{TP+FN}&#x3D;\frac{4}{4+0}<br>$$</p>
 <p>$$<br>FPR&#x3D;\frac{FP}{FP+TN}&#x3D;\frac{4}{4+0}<br>$$</p>
 <p>这样的话我们就可以在ROC曲线上标记一个点，通过不断的移动阈值我们就可以得到一个ROC曲线<br>因此我们可以得到：</p>
-<p><img src="/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E8%AF%84%E4%BB%B7%E6%A0%87%E5%87%86/1679811953429.png" alt="1679811953429"></p>
+<p><img data-src="/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E8%AF%84%E4%BB%B7%E6%A0%87%E5%87%86/1679811953429.png" alt="1679811953429"></p>
 </blockquote>
 <p>这样的话我们就可以得到一条ROC曲线，但是问题有来了要是我们得到另外一条ROC曲线，也就是说我们现在有两条ROC曲线，那么我们应该怎么判断呢？这就是接下来要说的AUC值，问题又来了怎么知道AUC的值呢？—–&gt;计算面积阿伟。没错就是计算面积，我们可以通过计算不同ROC曲线与FPR的面积进而得到不同AUC的值，从而判断哪条ROC曲线更加的好！</p>
 <p>那么问题来了上述分析都是针对二分类问题，实际生活中并没有那么多非黑即白的事情，更多的是<strong>多分类的问题</strong>，什么是多分类？维基百科给出的定义：多元分类是将实例分配到多个（多于两个）类别中的其中一个（将实例分配到两个类别中的其中一个被称为二分类）。显然，分类算法可以分为二分类和多分类两种，而多分类算法可以通过将其转化为多个二分类来实现。简单从字面理解很容易，比如说给出大量的交通图片，交给计算机去将这些图片进行分类，划分什么是🚗🚆✈等等，那么对于多分类问题其评价指标如何？上述分析方法是否依旧行得通？对于多元分类我们可以将多分类化成二分类问题，比如说下图：</p>
-<p><img src="/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E8%AF%84%E4%BB%B7%E6%A0%87%E5%87%86/1679811981387.png" alt="1679811981387"></p>
+<p><img data-src="/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E8%AF%84%E4%BB%B7%E6%A0%87%E5%87%86/1679811981387.png" alt="1679811981387"></p>
 <h2 id="二、回归算法评价指标"><a href="#二、回归算法评价指标" class="headerlink" title="二、回归算法评价指标"></a>二、回归算法评价指标</h2><h3 id="1、RMSE均方根误差"><a href="#1、RMSE均方根误差" class="headerlink" title="1、RMSE均方根误差"></a>1、RMSE均方根误差</h3><p>$$<br>RMSE(X,h)&#x3D;\sqrt[2]{\frac{1}{m}\displaystyle\sum^{m}_{i&#x3D;1}(h(x_i)-y_i)^2}<br>$$</p>
 <h3 id="2、MSE均方误差"><a href="#2、MSE均方误差" class="headerlink" title="2、MSE均方误差"></a>2、MSE均方误差</h3><p>$$<br>MSE(X,h)&#x3D;\frac{1}{m}\displaystyle\sum^{m}_{i&#x3D;1}(h(x_i)-y_i)^2<br>$$</p>
 <h3 id="3、MAE平均绝对误差"><a href="#3、MAE平均绝对误差" class="headerlink" title="3、MAE平均绝对误差"></a>3、MAE平均绝对误差</h3><p>$$<br>MAE(X,h)&#x3D;\frac{1}{m}\displaystyle\sum^{m}_{i&#x3D;1}(|h(x_i|)-y_i|<br>$$</p>
@@ -898,11 +679,9 @@
   <entry>
     <title>贝叶斯分类器</title>
     <url>/posts/2045861030/</url>
-    <content><![CDATA[<h1 id="朴素贝叶斯分类器"><a href="#朴素贝叶斯分类器" class="headerlink" title="朴素贝叶斯分类器"></a>朴素贝叶斯分类器</h1><p>[toc]</p>
-<hr>
-<p>介绍之前说一个悲伤的故事：由于是自己重新学习机器学习算法，学校期间好多有关机器学习算法的课程都没怎么解释这个算法，而且老师上课一言难尽！然后我参加研究生复试，被问到这个算法当时人都傻了，听说过但是自己真的没有仔细去了解啊！害！被自己菜的一言难尽</p>
-<hr>
-<h2 id="数学理论"><a href="#数学理论" class="headerlink" title="数学理论"></a>数学理论</h2><ul>
+    <content><![CDATA[<span id="more"></span>
+
+<h1 id="朴素贝叶斯分类器"><a href="#朴素贝叶斯分类器" class="headerlink" title="朴素贝叶斯分类器"></a>朴素贝叶斯分类器</h1><h2 id="数学理论"><a href="#数学理论" class="headerlink" title="数学理论"></a>数学理论</h2><ul>
 <li><strong>先验概率</strong></li>
 </ul>
 <p>根据以往经验和分析得到的概率</p>

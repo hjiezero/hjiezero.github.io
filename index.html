@@ -151,18 +151,18 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">15</span>
+          <span class="site-state-item-count">11</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-count">3</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-count">10</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -218,7 +218,7 @@
       <span class="post-meta-item-text">发表于</span>
       
 
-      <time title="创建时间：2023-06-04 14:13:42 / 修改时间：14:13:43" itemprop="dateCreated datePublished" datetime="2023-06-04T14:13:42+08:00">2023-06-04</time>
+      <time title="创建时间：2023-06-04 14:13:42 / 修改时间：14:40:57" itemprop="dateCreated datePublished" datetime="2023-06-04T14:13:42+08:00">2023-06-04</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -240,8 +240,10 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h1 id="K近邻算法"><a href="#K近邻算法" class="headerlink" title="K近邻算法"></a>K近邻算法</h1><h2 id="一、什么是k近邻算法"><a href="#一、什么是k近邻算法" class="headerlink" title="一、什么是k近邻算法"></a>一、什么是k近邻算法</h2><p>给定一个训练数据集、对新的输入实例，在训练集中找到与该实例<strong>最邻近</strong>的k个实例，<strong>这k个</strong>实例的多数属于某个类，就把该输入实例分为这个类。如下图所示：输入新的❓点判断它属于classA还是classB</p>
-<p><img src="/images/loading/loading.gif" data-original="/K%E8%BF%91%E9%82%BB%E7%AE%97%E6%B3%95/bVc6KUZ.png"><br>那么问题来了k近邻算法市<strong>最近邻</strong>，那么这个最近邻怎么判断？计算距离！怎么计算距离</p>
+          <span id="more"></span>
+
+<h1 id="K近邻算法"><a href="#K近邻算法" class="headerlink" title="K近邻算法"></a>K近邻算法</h1><h2 id="一、什么是k近邻算法"><a href="#一、什么是k近邻算法" class="headerlink" title="一、什么是k近邻算法"></a>一、什么是k近邻算法</h2><p>给定一个训练数据集、对新的输入实例，在训练集中找到与该实例<strong>最邻近</strong>的k个实例，<strong>这k个</strong>实例的多数属于某个类，就把该输入实例分为这个类。如下图所示：输入新的❓点判断它属于classA还是classB</p>
+<p><img data-src="/images/loading/loading.gif" data-original="/K%E8%BF%91%E9%82%BB%E7%AE%97%E6%B3%95/bVc6KUZ.png"><br>那么问题来了k近邻算法市<strong>最近邻</strong>，那么这个最近邻怎么判断？计算距离！怎么计算距离</p>
 <h2 id="二、距离度量"><a href="#二、距离度量" class="headerlink" title="二、距离度量"></a>二、距离度量</h2><h3 id="1、欧几里得距离"><a href="#1、欧几里得距离" class="headerlink" title="1、欧几里得距离"></a>1、欧几里得距离</h3><p>$$<br>d(x,y)&#x3D;\sqrt{\displaystyle\sum_{i&#x3D;1}^{n}(y_i-x_i)^2}<br>$$</p>
 <h3 id="3、曼哈顿距离"><a href="#3、曼哈顿距离" class="headerlink" title="3、曼哈顿距离"></a>3、曼哈顿距离</h3><p>$$<br>d(x,y)&#x3D;(\displaystyle\sum_{i&#x3D;0}^{n}{|y_i-x_i|})<br>$$</p>
 <h3 id="4、闵可夫斯基距离"><a href="#4、闵可夫斯基距离" class="headerlink" title="4、闵可夫斯基距离"></a>4、闵可夫斯基距离</h3><p>$$<br>Minkowski Distance&#x3D;(\displaystyle\sum_{i&#x3D;0}^{n}{|y_i-x_i|})^\frac{1}{p}<br>$$</p>
@@ -317,8 +319,9 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
+      
 
-      <time title="创建时间：2023-06-04 14:13:11" itemprop="dateCreated datePublished" datetime="2023-06-04T14:13:11+08:00">2023-06-04</time>
+      <time title="创建时间：2023-06-04 14:13:11 / 修改时间：14:39:39" itemprop="dateCreated datePublished" datetime="2023-06-04T14:13:11+08:00">2023-06-04</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -340,245 +343,15 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h1 id="支持向量机-SVM"><a href="#支持向量机-SVM" class="headerlink" title="支持向量机(SVM)"></a>支持向量机(SVM)</h1><p>[toc]</p>
-<h2 id="一、什么是支持向量机"><a href="#一、什么是支持向量机" class="headerlink" title="一、什么是支持向量机"></a>一、什么是支持向量机</h2><p>支持向量机在高纬或无限维空间中构造<strong>超平面</strong>或超平面集合，其可以用于分类、回归或其他任务。直观来说，分类边界距离最近的训练资料点越远越好，因为这样可以缩小分类器的<strong>泛化误差</strong>。</p>
-<blockquote>
-<p><a target="_blank" rel="noopener" href="https://zh.wikipedia.org/zh-cn/%E6%94%AF%E6%8C%81%E5%90%91%E9%87%8F%E6%9C%BA">https://zh.wikipedia.org/zh-cn/%E6%94%AF%E6%8C%81%E5%90%91%E9%87%8F%E6%9C%BA</a></p>
-</blockquote>
-<p>里面涉及到几个概念：1、超平面；2、泛化误差；3、支持向量</p>
-<ul>
-<li>什么是超平面呢？</li>
-</ul>
-<p>假如咱们是在用支持向量机来处理二分类问题吧。咱们设想假如在一个直角坐标系里面存在两个不同类别：黑点和紫点。现在我们需要将他们进行分离，你会怎么做？你或许会说：这还不简单直接画一条线不久完事了吗？看来你明白什么是<strong>超平面</strong>，好的我们看下图：</p>
-<p><img src="/images/loading/loading.gif" data-original="/%E6%94%AF%E6%8C%81%E5%90%91%E9%87%8F%E6%9C%BA/1678697314457.png" alt="1678697314457"></p>
-<p>那么到底是蓝色好呢？还是黄色好呢？这就是我们要提的第二个概念——泛化误差</p>
-<ul>
-<li>什么是泛化误差</li>
-</ul>
-<p>仔细看图可能会绝对蓝色最佳呀，为什么呢？因为箭头标记的点他是距离最短的呀！听起来似乎很有道理，<strong>但是</strong>，我们一般实验都是取部分样本进行测试，由于训练集的局限性或噪声的因素，训练集外的样本可能比图中的训练样本更接近两个类的分隔界，这将使许多划分超平面出现错误，而黄色的超平面受影响最小。这就是我们要考虑的——泛化误差！直观理解就是：在新加入样本点的时候超平面依旧可以很好的划分数据点。</p>
-<ul>
-<li>什么是支持向量</li>
-</ul>
-<p>我们将超平面分别加减常数C这样的话我们的超平面就会发生移动但是移动多少呢？当我们移动到接触样本数据点，而这些样本数据点就决定了我们的<strong>间隔距离</strong>（卖个关子），他们就叫<strong>支持向量</strong></p>
-<p>说了那么多，怎么求这个超平面方程呢？(<strong>可能会涉及许多的数学知识，想直接了解代码直接跳过这部分</strong>)</p>
-<h2 id="二、数学理论"><a href="#二、数学理论" class="headerlink" title="二、数学理论"></a>二、数学理论</h2><p>机器学习算法和数学知识离不开关系，我尽可能的简化数学知识，当然如果只想要代码也可以，但是得知道如何<strong>调参</strong></p>
-<blockquote>
-<p>支持向量机的有效性取决于核函数、核参数和软间隔参数 <em>C</em> 的选择</p>
-</blockquote>
-<h3 id="2-1-数学预备知识"><a href="#2-1-数学预备知识" class="headerlink" title="2.1 数学预备知识"></a>2.1 数学预备知识</h3><ul>
-<li>两直线距离</li>
-</ul>
-<p>$$<br>设存在两平行直线：A_0x+B_0y+b_0&#x3D;0；A_0x+B_0y+b_1&#x3D;0；则他们之间的距离为:\d&#x3D;\frac{|b_1-b_0|}{\sqrt{A_0^2+B_0^2}}<br>$$</p>
-<ul>
-<li>二次规划问题<br>形如：</li>
-</ul>
-<p>$$<br>min;;c^Tx+\frac{1}{2}x^TQx\subject;to:Dx\geqslant d\Ax&#x3D;b<br>$$</p>
-<p>如果Q≥0时，那么此时就是凸优化问题</p>
-<ul>
-<li>拉格朗日乘子法</li>
-</ul>
-<p>拉格朗日乘子法是一种将约束优化问题转化为无约束优化问题的方法，我们现在要求解如下优化（最小化）问题：</p>
-<p>$$<br>minf(x);;s.t.;g(x)&#x3D;0<br>$$</p>
-<p>也就是求解f(x)在约束条件g(x)&#x3D;0的条件下的最小值的问题。那么我们可以引入拉格朗日函数：</p>
-<p>$$<br>L(x,\alpha)&#x3D;f(x)+\alpha g(x);;; \alpha 记作拉格朗日乘子<br>$$</p>
-<blockquote>
-<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/440297403">形象理解拉格朗日乘子法 - 知乎 (zhihu.com)</a></p>
-</blockquote>
-<ul>
-<li>KKT约束条件</li>
-</ul>
-<blockquote>
-<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/38163970">Karush-Kuhn-Tucker (KKT)条件 - 知乎 (zhihu.com)</a></p>
-</blockquote>
-<h3 id="2-2-线性可分支持向量机"><a href="#2-2-线性可分支持向量机" class="headerlink" title="2.2 线性可分支持向量机"></a>2.2 线性可分支持向量机</h3><ul>
-<li>什么是线性可分？</li>
-</ul>
-<p>不说概念，直观理解就是：咱们可以直接通过一条直线或者一个平面去划分数据集，那这就叫线性可分支持向量机！比如说：咱们有训练数据集：$T&#x3D;[(x_1,y_1),(x_2,y_2)]$现在我们需要找到一条直线划分他们，我想你会立马想到$ax+by+c&#x3D;0$这个方程。很好那么我们推广到$n$个点的情况。</p>
-<p>给定训练数据集:</p>
-<p>$$<br>T&#x3D;[(x_1,y_1)……(x_n,y_n)]<br>$$</p>
-<p>这种情况下怎么办呢？同样的方法我们假设超平面方程为：</p>
-<p>$$<br>w^Tx+b&#x3D;0\其中w，b都是模型参数,注意此时w就不是一个数字而是一个向量！<br>$$</p>
-<p>那么的话咱们方程也有了，接下来问题就转化成求解$w,b$参数具体的值的问题了。再次回顾我们2元的点到直线距离公式：$d&#x3D;\frac{|ax+by+c|}{\sqrt{a^2+b^2}}$同样的道理我们推到到多维情况：</p>
-<p>$$<br>d&#x3D;\frac{|w^Tx+b|}{||w||}<br>$$</p>
-<p>不要忘记我们的出发点是什么：二分类！也就是说我们要将我们的点划分开来，这样的话是不是在超平面的某一侧是a类另外一侧则是b类，还记得我们前面提到的<strong>间隔距离</strong>吗？我们设：</p>
-<p>$$<br>\begin{cases}<br>    w^Tx_i+b\geqslant1,y_i&#x3D;1\<br>    w^Tx_i+b\leqslant1,y_i&#x3D;-1<br>\end{cases}\\text{这样的话两个超平面的距离就是}r&#x3D;\frac{2}{||w||}<br>$$</p>
-<blockquote>
-<p>超平面距离就可以类比两平行直线之间距离</p>
-</blockquote>
-<p>这样的话我们就是找到最大“间隔”也就是说计算：</p>
-<p>$$<br>max\frac{2}{||w||}简化计算记作min\frac{1}{2}||w||^2\<br>subject;to;y_i(w^Tx_i+b)\geqslant1,;i&#x3D;1,2….n<br>$$</p>
-<p>利用拉格朗日乘子法进行求解：</p>
-<p>$$<br>公式1;;L(w,b,\alpha)&#x3D;\frac{1}{2}||w||^2+\sum_{i&#x3D;1}^{m}\alpha_i(1-y_i(w^Tx_i+b))\||w||^2&#x3D;w^Tw<br>$$</p>
-<p>此时我们对w，b分别计算偏导并且令其为0得到:</p>
-<p>$$<br>公式2;;w&#x3D;\sum_{i&#x3D;1}^{m}\alpha_iy_ix_i;;\sum_{i&#x3D;1}^{m}\alpha_iy_i&#x3D;0<br>$$</p>
-<p>将公式2代入公式1得到对偶问题：</p>
-<p>$$<br>公式3;;max\sum_{i&#x3D;1}^{m}\alpha_i-\frac{1}{2}\sum_{i&#x3D;1}^{m}\sum_{j&#x3D;1}^{m}\alpha_iy_ix^T_i\alpha_jy_jx_j<br>$$</p>
-<blockquote>
-<p>计算步骤如下：</p>
-<p><img src="/images/loading/loading.gif" data-original="/%E6%94%AF%E6%8C%81%E5%90%91%E9%87%8F%E6%9C%BA/1678763077705.png" alt="1678763077705"></p>
-</blockquote>
-<p>上述过程需要满足KKT条件：</p>
-<p>$$<br>\begin{cases}<br>    \alpha_i\ge0\y_if(x_i)-1\ge0\\alpha_i(y_if(x_i)-1)&#x3D;0<br>\end{cases}<br>$$</p>
-<h3 id="2-3-核函数"><a href="#2-3-核函数" class="headerlink" title="2.3 核函数"></a>2.3 核函数</h3><p>前面我们讲诉了线性可分，那么可能就会有人有疑问：那么会不会存在线性不可分的问题呢？我们先看下图：</p>
-<p><img src="/images/loading/loading.gif" data-original="/%E6%94%AF%E6%8C%81%E5%90%91%E9%87%8F%E6%9C%BA/1678789201324.png" alt="1678789201324"></p>
-<p>同样都是黑点紫点但是无论你如何画直线都不可能找到这么一条直线能够完美的将两者进行区分，那么是不是支持向量机就不起作用了？但是，从图很容易看到我们可以绘制一个圆圈将两者分开，也就是说存在一种方法将他们划分开来。但是我们知道支持向量机算法是找到一个<strong>超平面</strong>去划分数据集合，显然圆是不符合我们要求的，那怎么办呢？就是我么今天要讲的主角——核函数</p>
-<blockquote>
-<p><em><strong>核函数</strong></em>：将样本点从低纬映射到高维的特征空间。</p>
-</blockquote>
-<p><img src="/images/loading/loading.gif" data-original="/%E6%94%AF%E6%8C%81%E5%90%91%E9%87%8F%E6%9C%BA/1678789607922.png" alt="1678789607922"></p>
-<p>从上图很容易知道开始在2维空间我们找不到一条直线划分，但是映射到3维空间时，此时就可以找到一个超平面把他们划分开来。那么此时我们线性可分模型就转化成：</p>
-<p>$$<br>f(x)&#x3D;w^T\phi(x)+b;;\phi:代表x的映射<br>$$</p>
-<p>对偶问题转化为：</p>
-<p>$$<br>max\sum_{i&#x3D;1}^{m}\alpha_i-\frac{1}{2}\sum_{i&#x3D;1}^{m}\sum_{j&#x3D;1}^{m}\alpha_iy_i\phi(x_i)^T\alpha_jy_j\phi(x_j)\\text{我们令}k&#x3D;\phi(x_i)^T\phi(x_j)即我们的核函数<br>$$</p>
-<p>几种常用的核函数：</p>
-<p><img src="/images/loading/loading.gif" data-original="/%E6%94%AF%E6%8C%81%E5%90%91%E9%87%8F%E6%9C%BA/1678790610325.png" alt="1678790610325"></p>
-<h3 id="2-4-软间隔、正则化"><a href="#2-4-软间隔、正则化" class="headerlink" title="2.4 软间隔、正则化"></a>2.4 软间隔、正则化</h3><p>什么？间隔还有软硬之分？此软硬非我们所认为的软硬！我们前面所设想的都是：我们绘制的超平面可以<strong>完全</strong>将我们的数据点进行划分，但是会不会存在这么一种情况——无论你如何绘制超平面总是会有部分点会错分呢？见下图：</p>
-<p><img src="/images/loading/loading.gif" data-original="/%E6%94%AF%E6%8C%81%E5%90%91%E9%87%8F%E6%9C%BA/1679056981202.png" alt="1679056981202"></p>
-<p>总是有小黑跑到小紫这边，同时也总是有小紫跑到小黑这边。那么软间隔就是<strong>允许支持向量机在一些样本上出错</strong></p>
-<h2 id="三、Python代码"><a href="#三、Python代码" class="headerlink" title="三、Python代码"></a>三、Python代码</h2><h2 id="四、评价"><a href="#四、评价" class="headerlink" title="四、评价"></a>四、评价</h2><p><strong>优点</strong></p>
-<ul>
-<li>可以解决高维问题，即大型特征空间；</li>
-<li>解决小样本下机器学习问题；</li>
-<li>能够处理非线性特征的相互作用；</li>
-<li>无局部极小值问题；（相对于神经网络等算法）</li>
-<li>无需依赖整个数据；</li>
-<li>泛化能力比较强；</li>
-</ul>
-<p><strong>缺点</strong></p>
-<ul>
-<li>当观测样本很多时，效率并不是很高；</li>
-<li>对非线性问题没有通用解决方案，有时候很难找到一个合适的核函数；</li>
-<li>对于核函数的高维映射解释力不强，尤其是径向基函数；</li>
-<li>常规SVM只支持二分类；</li>
-<li><strong>对缺失数据敏感；</strong></li>
-</ul>
-<h2 id="五、算法流程"><a href="#五、算法流程" class="headerlink" title="五、算法流程"></a>五、算法流程</h2><h2 id="七、参考"><a href="#七、参考" class="headerlink" title="七、参考"></a>七、参考</h2><blockquote>
-<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/440297403">https://zhuanlan.zhihu.com/p/440297403</a></p>
-<p>李航《统计学学习方法(第二版)》</p>
-<p>《西瓜书》</p>
-</blockquote>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/posts/3172772673/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/head.jpg">
-      <meta itemprop="name" content="hjie">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hjie">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Hjie">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/posts/3172772673/" class="post-title-link" itemprop="url">数值计算</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2023-06-04 14:13:10" itemprop="dateCreated datePublished" datetime="2023-06-04T14:13:10+08:00">2023-06-04</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">深度学习</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <blockquote>
-<p>前言：最近在学习深度学习，想借着暑假时间将深度学习基础理论、机器学习理论学完。并且如果时间允许进一步学习pytorch、以及将机器学习进行复现(python)。所以部分文章作为自己学习笔记，以便于后续阅读。</p>
-</blockquote>
-<p>理论学习书籍：</p>
-<ul>
-<li><strong>《深度学习》开源地址：<a target="_blank" rel="noopener" href="http://www.deeplearningbook.org/">http://www.deeplearningbook.org</a></strong></li>
-<li><strong>《机器学习》周志华 清华大学出版社</strong></li>
-<li><strong>《机器学习公式推导(南瓜书)》</strong></li>
-</ul>
-<p>实操书籍：</p>
-<ul>
-<li><strong>《动手学深度学习pytorch》开源地址：<a target="_blank" rel="noopener" href="https://zh-v2.d2l.ai/d2l-zh-pytorch.pdf">https://zh-v2.d2l.ai/d2l-zh-pytorch.pdf</a></strong></li>
-<li><strong>《pytorch深度学习实战》</strong></li>
-<li><strong><a target="_blank" rel="noopener" href="https://scikit-learn.org/">https://scikit-learn.org/</a></strong></li>
-</ul>
-<p>[toc]</p>
-<h1 id="数值计算"><a href="#数值计算" class="headerlink" title="数值计算"></a>数值计算</h1><h2 id="基础理论"><a href="#基础理论" class="headerlink" title="基础理论"></a>基础理论</h2><ul>
-<li><strong>梯度、导数、方向导数</strong></li>
-</ul>
-<p>首先从二维平面上的角度进行解释：在二维上我们如何计算导数？</p>
-<p>$$<br>\lim_{x \to a}{\frac{f(x)-f(a)}{x-a}}<br>$$</p>
-<p>其在二维平面上的表述：<br><img src="/images/loading/loading.gif" data-original="/%E6%95%B0%E5%80%BC%E8%AE%A1%E7%AE%97/1680502924121.png" alt="1680502924121"><br>但是如果重新设想在三维平面上会是怎么样子的？在三维上导数可以向着各个方向——<strong>方向导数</strong>，而我们的梯度就是其方向上方向导数最大，其大小正好是此最大方向导数。</p>
-<blockquote>
-<p><a target="_blank" rel="noopener" href="https://www.zhihu.com/question/36301367">https://www.zhihu.com/question/36301367</a><br><a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E5%AF%BC%E6%95%B0">https://zh.wikipedia.org/wiki/%E5%AF%BC%E6%95%B0</a></p>
-</blockquote>
-<h2 id="上溢和下溢"><a href="#上溢和下溢" class="headerlink" title="上溢和下溢"></a>上溢和下溢</h2><p>我们知道计算机对于数字存储都是有限制的（无法在有限的内下精确表述），也就是说可能会出现数字舍入的问题，那么此时可能就会有问题出现：数字四舍五入出现0（下溢），数字无穷（上溢）。于是人们提出<strong>softmax函数</strong>：</p>
-<p>$$<br>softmax(x)&#x3D;\frac{exp(x_i)}{\sum_{j&#x3D;1}^{n}{x_j}}<br>$$</p>
-<p>但是我们假设$x_i$是一个常数C，那么还是会出现上溢、下溢的问题。那么可以通过计算：$softmax(z)$  $z&#x3D;x-max_ix_i$解决上两个问题。<br>在解释<strong>梯度下降算法</strong>以及<strong>牛顿法</strong>之前我们必须先了解这两个算法目的是干嘛。我们常常需要计算函数f(x)的最值情况。比如说：$f(x)&#x3D;x^2$的最值，可能很容易就计算得到在$x&#x3D;0$时取得，但是如果函数特别复杂（比如说：逻辑斯蒂回归），那么怎么解决？</p>
-<h2 id="梯度下降算法"><a href="#梯度下降算法" class="headerlink" title="梯度下降算法"></a>梯度下降算法</h2><p>介绍梯度下降算法之前，我们先了解下面几个概念：</p>
-<ul>
-<li>目标函数：需要最小化或者最大化的函数</li>
-<li>损失函数：目标函数最小化</li>
-</ul>
-<p>回想我们前面所了解的梯度知识，然后看下面这幅图：<br><img src="/images/loading/loading.gif" data-original="/%E6%95%B0%E5%80%BC%E8%AE%A1%E7%AE%97/1680504988382.png" alt="1680504988382"><br>对于函数$f(x)&#x3D;\frac{1}{2}x^2$我们很容易知道在x&#x3D;0的时候函数会有最小值，但是计算机并非如此！他可能会一个一个点不断的进行尝试而后去比较大小，最后得到最值情况。比如说：当点x落在x&#x3D;0的右侧时，我们函数导数大于0，那么此时我们需要向左移动才能找到最小值。左侧同理。进而得到梯度下降算法</p>
-<p>$$<br>x &#x3D; x-\eta\nabla_x f(x)<br>$$</p>
-<blockquote>
-<p>其中：$\eta:学习率$,$\nabla:梯度$</p>
-</blockquote>
-<blockquote>
-<p><a target="_blank" rel="noopener" href="https://www.zhihu.com/question/305638940">https://www.zhihu.com/question/305638940</a></p>
-</blockquote>
-<h2 id="牛顿法"><a href="#牛顿法" class="headerlink" title="牛顿法"></a>牛顿法</h2><p>$$<br>x_{n+1}&#x3D;x_n-\frac{f(x)}{f^{‘}(x)}<br>$$</p>
-<p>下面图片更加直观的了解<br><img src="/images/loading/loading.gif" data-original="/%E6%95%B0%E5%80%BC%E8%AE%A1%E7%AE%97/%E7%89%9B%E9%A1%BF%E6%B3%95.gif" alt="1680506537705"></p>
-<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><p>1、《deep learning Ian Goodfellow and Yoshua Bengio and Aaron Courville》 <a target="_blank" rel="noopener" href="http://www.deeplearningbook.org/">http://www.deeplearningbook.org</a><br>2、<a target="_blank" rel="noopener" href="https://www.zhihu.com/question/36301367">https://www.zhihu.com/question/36301367</a></p>
-
+          <h1 id="支持向量机-SVM"><a href="#支持向量机-SVM" class="headerlink" title="支持向量机(SVM)"></a>支持向量机(SVM)</h1>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/posts/671832206/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -707,176 +480,6 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/posts/470077716/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/head.jpg">
-      <meta itemprop="name" content="hjie">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hjie">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Hjie">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/posts/470077716/" class="post-title-link" itemprop="url">sklearn-线性模型-岭回归</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2023-06-04 14:13:09" itemprop="dateCreated datePublished" datetime="2023-06-04T14:13:09+08:00">2023-06-04</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">机器学习</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/sklearn/" itemprop="url" rel="index"><span itemprop="name">sklearn</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/sklearn/%E7%BA%BF%E6%80%A7%E6%A8%A1%E5%9E%8B/" itemprop="url" rel="index"><span itemprop="name">线性模型</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="1、🗡岭回归原理"><a href="#1、🗡岭回归原理" class="headerlink" title="1、🗡岭回归原理"></a>1、🗡岭回归原理</h1><h2 id="1-1-回归"><a href="#1-1-回归" class="headerlink" title="1.1 回归"></a>1.1 回归</h2><p>对于最小二乘法添加“惩罚因子”避免最小二乘法过拟合出现：</p>
-<p>$$<br>最小二乘法：min\sum_{i&#x3D;1}^{n}(\hat{y_i}-y_i)^2,其中\hat{y}&#x3D;wx,w：为系数矩阵\<br>添加“惩罚因子”：min\sum_{i&#x3D;1}^{n}(\hat{y_i}-y_i)^2+\alpha||w||^2,其中\hat{y}&#x3D;wx,w：为系数矩阵<br>$$</p>
-<p>其中参数$\alpha$控制收缩，收缩量越大，因此系数对共线性变得越平稳<br><img src="/images/loading/loading.gif" data-original="/image/%E7%BA%BF%E6%80%A7%E6%A8%A1%E5%9E%8B/1683273841368.png" alt="1683273841368"></p>
-<h2 id="1-2-分类"><a href="#1-2-分类" class="headerlink" title="1.2 分类"></a>1.2 分类</h2><p>岭回归分类操作：对于二分类问题，将分类变量转化为{-1,1}进而使得问题转化为回归问题</p>
-<h1 id="2、-🐕岭回归代码"><a href="#2、-🐕岭回归代码" class="headerlink" title="2、 🐕岭回归代码"></a>2、 🐕岭回归代码</h1><h2 id="2-1-岭回归–回归"><a href="#2-1-岭回归–回归" class="headerlink" title="2.1 岭回归–回归"></a>2.1 岭回归–回归</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.linear_model <span class="keyword">import</span> Ridge</span><br></pre></td></tr></table></figure>
-<p><strong>参数解释：</strong><br>1、alpha:{float, ndarray of shape (n_targets,)},default&#x3D;1.0</p>
-<blockquote>
-<p>惩罚因子设置：$\alpha$</p>
-</blockquote>
-<p>2、fit_intercept:bool, default&#x3D;True</p>
-<blockquote>
-<p>是否设置截距</p>
-</blockquote>
-<p>3、copy_X:ool, default&#x3D;True</p>
-<p>4、solver:{‘auto’, ‘svd’, ‘cholesky’, ‘lsqr’, ‘sparse_cg’, ‘sag’, ‘saga’, ‘lbfgs’}, default&#x3D;’auto’</p>
-<blockquote>
-<p><strong>函数求解器：理解为参数的求解方式</strong></p>
-</blockquote>
-<blockquote>
-<p>“auto”根据数据类型自动选择求解器。</p>
-</blockquote>
-<blockquote>
-<p>“svd”使用 X 的奇异值分解来计算岭系数。它是最稳定的求解器，特别是对于奇异矩阵比“cholesky”更稳定，但代价是更慢。</p>
-</blockquote>
-<blockquote>
-<p>“cholesky”使用标准的 scipy.linalg.solve 函数来获得封闭形式的解决方案。</p>
-</blockquote>
-<blockquote>
-<p>“sparse_cg”使用 scipy.sparse.linalg.cg 中的共轭梯度求解器。作为迭代算法，此求解器比“cholesky”更适合大规模数据（可以设置 tol 和 max_iter）。</p>
-</blockquote>
-<blockquote>
-<p>“lsqr”使用专用正则化最小二乘例程 scipy.sparse.linalg.lsqr。它是最快的并且使用迭代过程。</p>
-</blockquote>
-<blockquote>
-<p>“sag”使用随机平均梯度下降，“saga”使用其改进的无偏版本，名为 SAGA。这两种方法也使用迭代过程，并且当 n_samples 和 n_features 都很大时通常比其他求解器更快。请注意，“sag”和“saga”快速收敛只能保证具有大致相同比例的特征。您可以使用 sklearn.preprocessing 中的缩放器预处理数据。</p>
-</blockquote>
-<blockquote>
-<p>‘lbfgs’ 使用在 scipy.optimize.minimize 中实现的L-BFGS-B 算法。它只能在 positive 为 True 时使用。</p>
-</blockquote>
-<p><strong>方法</strong>:</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Ridge().fit(x,y) <span class="comment">#使用线性拟合去拟合(x,y)</span></span><br><span class="line">Ridge().get_params()<span class="comment">#获得参数</span></span><br><span class="line">Ridge().predict()<span class="comment">#预测</span></span><br><span class="line">Ridge().score(X, y, sample_weight=<span class="literal">None</span>)<span class="comment">#评价/得分</span></span><br><span class="line">Ridge().set_params()</span><br></pre></td></tr></table></figure>
-
-<p><strong>操作</strong>:</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.linear_model <span class="keyword">import</span> Ridge</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line">x = np.array([[<span class="number">1</span>, <span class="number">1</span>], [<span class="number">1</span>, <span class="number">2</span>], [<span class="number">2</span>, <span class="number">2</span>], [<span class="number">2</span>, <span class="number">3</span>]])</span><br><span class="line">y = np.dot(x, np.array([<span class="number">1</span>, <span class="number">2</span>])) +<span class="number">3</span></span><br><span class="line">rng = Ridge(alpha=<span class="number">0.5</span>).fit(x,y)</span><br></pre></td></tr></table></figure>
-
-<h2 id="2-2-岭回归–分类"><a href="#2-2-岭回归–分类" class="headerlink" title="2.2 岭回归–分类"></a>2.2 岭回归–分类</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.linear_model <span class="keyword">import</span> RidgeClassifier</span><br></pre></td></tr></table></figure>
-<p><strong>参数解释</strong><br>1、alpha:{float, ndarray of shape (n_targets,)},default&#x3D;1.0</p>
-<blockquote>
-<p>惩罚因子设置：$\alpha$</p>
-</blockquote>
-<p>2、fit_intercept:bool, default&#x3D;True</p>
-<blockquote>
-<p>是否设置截距</p>
-</blockquote>
-<p>3、copy_X:ool, default&#x3D;True</p>
-<p>4、solver:{‘auto’, ‘svd’, ‘cholesky’, ‘lsqr’, ‘sparse_cg’, ‘sag’, ‘saga’, ‘lbfgs’}, default&#x3D;’auto’</p>
-<blockquote>
-<p><strong>函数求解器：理解为参数的求解方式</strong></p>
-</blockquote>
-<blockquote>
-<p>“auto”根据数据类型自动选择求解器。</p>
-</blockquote>
-<blockquote>
-<p>“svd”使用 X 的奇异值分解来计算岭系数。它是最稳定的求解器，特别是对于奇异矩阵比“cholesky”更稳定，但代价是更慢。</p>
-</blockquote>
-<blockquote>
-<p>“cholesky”使用标准的 scipy.linalg.solve 函数来获得封闭形式的解决方案。</p>
-</blockquote>
-<blockquote>
-<p>“sparse_cg”使用 scipy.sparse.linalg.cg 中的共轭梯度求解器。作为迭代算法，此求解器比“cholesky”更适合大规模数据（可以设置 tol 和 max_iter）。</p>
-</blockquote>
-<blockquote>
-<p>“lsqr”使用专用正则化最小二乘例程 scipy.sparse.linalg.lsqr。它是最快的并且使用迭代过程。</p>
-</blockquote>
-<blockquote>
-<p>“sag”使用随机平均梯度下降，“saga”使用其改进的无偏版本，名为 SAGA。这两种方法也使用迭代过程，并且当 n_samples 和 n_features 都很大时通常比其他求解器更快。请注意，“sag”和“saga”快速收敛只能保证具有大致相同比例的特征。您可以使用 sklearn.preprocessing 中的缩放器预处理数据。</p>
-</blockquote>
-<blockquote>
-<p>‘lbfgs’ 使用在 scipy.optimize.minimize 中实现的L-BFGS-B 算法。它只能在 positive 为 True 时使用。</p>
-</blockquote>
-<p>5、class_weight:dict or ‘balanced’, default&#x3D;None</p>
-<blockquote>
-<p>分类权重</p>
-</blockquote>
-<p><strong>方法</strong>:</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">RidgeClassifier.fit(x,y) <span class="comment">#使用线性拟合去拟合(x,y)</span></span><br><span class="line">RidgeClassifier.get_params()<span class="comment">#获得参数</span></span><br><span class="line">RidgeClassifier.predict()<span class="comment">#预测</span></span><br><span class="line">RidgeClassifier.score(X, y, sample_weight=<span class="literal">None</span>)<span class="comment">#评价/得分</span></span><br><span class="line">RidgeClassifier.set_params()</span><br></pre></td></tr></table></figure>
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
     <link itemprop="mainEntityOfPage" href="http://example.com/posts/4012468743/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -905,8 +508,9 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
+      
 
-      <time title="创建时间：2023-06-04 14:13:09" itemprop="dateCreated datePublished" datetime="2023-06-04T14:13:09+08:00">2023-06-04</time>
+      <time title="创建时间：2023-06-04 14:13:09 / 修改时间：14:40:23" itemprop="dateCreated datePublished" datetime="2023-06-04T14:13:09+08:00">2023-06-04</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -928,7 +532,8 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <p>[toc]</p>
+          <span id="more"></span>
+
 <h2 id="一、什么是决策树算法"><a href="#一、什么是决策树算法" class="headerlink" title="一、什么是决策树算法"></a>一、什么是决策树算法</h2><p><strong>决策树</strong>是一个预测模型；他代表的是对象属性与对象值之间的一种映射关系。树中每个节点表示某个对象，而每个分叉路径则代表某个可能的属性值，而每个叶节点则对应从根节点到该叶节点所经历的路径所表示的对象的值。决策树仅有单一输出，若欲有复数输出，可以建立独立的决策树以处理不同输出。 数据挖掘中决策树是一种经常要用到的技术，可以用于分析数据，同样也可以用来作预测，从数据产生决策树的机器学习技术叫做 <strong>决策树学习</strong> ,通俗说就是<strong>决策树</strong></p>
 <blockquote>
 <p>维基百科：<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/zh-cn/%E5%86%B3%E7%AD%96%E6%A0%91#%E7%AE%80%E4%BB%8B">https://zh.wikipedia.org/zh-cn/%E5%86%B3%E7%AD%96%E6%A0%91#%E7%AE%80%E4%BB%8B</a></p>
@@ -948,7 +553,7 @@
 <p>$$<br>信息增益Gain(D,a)&#x3D;Ent(D)-\sum_{v&#x3D;1}^{V}\frac{|D^v|}{|D|}Ent(D^v) \V:离散属性a的可能取值的个数<br>$$</p>
 <p>怎么使用？再次借用周志华老师书上例子，我们来区分好瓜坏瓜。</p>
 <blockquote>
-<p><img src="/images/loading/loading.gif" data-original="/%E5%86%B3%E7%AD%96%E6%A0%91%E7%AE%97%E6%B3%95/bVc6L9J.png" alt="决策树算法"></p>
+<p><img data-src="/images/loading/loading.gif" data-original="/%E5%86%B3%E7%AD%96%E6%A0%91%E7%AE%97%E6%B3%95/bVc6L9J.png" alt="决策树算法"></p>
 <ul>
 <li><strong>注释</strong>：本文都是采用的ID3决策树算法</li>
 </ul>
@@ -1035,8 +640,9 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
+      
 
-      <time title="创建时间：2023-06-04 14:13:08" itemprop="dateCreated datePublished" datetime="2023-06-04T14:13:08+08:00">2023-06-04</time>
+      <time title="创建时间：2023-06-04 14:13:08 / 修改时间：14:40:09" itemprop="dateCreated datePublished" datetime="2023-06-04T14:13:08+08:00">2023-06-04</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1058,9 +664,10 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h1 id="机器学习评估指标"><a href="#机器学习评估指标" class="headerlink" title="机器学习评估指标"></a>机器学习评估指标</h1><h2 id="一、分类算法"><a href="#一、分类算法" class="headerlink" title="一、分类算法"></a>一、分类算法</h2><p><strong>混淆矩阵</strong></p>
+          <span id="more"></span>
+<h1 id="机器学习评估指标"><a href="#机器学习评估指标" class="headerlink" title="机器学习评估指标"></a>机器学习评估指标</h1><h2 id="一、分类算法"><a href="#一、分类算法" class="headerlink" title="一、分类算法"></a>一、分类算法</h2><p><strong>混淆矩阵</strong></p>
 <blockquote>
-<p>混淆矩阵是监督学习中的一种可视化工具，主要用于比较分类结果和实例的真实信息。矩阵中的每一行代表实例的 <strong>预测类别</strong> ,每一列代表实例的 <strong>真实类别</strong> 。<br><img src="/images/loading/loading.gif" data-original="/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E8%AF%84%E4%BB%B7%E6%A0%87%E5%87%86%5C20230320110308.png"></p>
+<p>混淆矩阵是监督学习中的一种可视化工具，主要用于比较分类结果和实例的真实信息。矩阵中的每一行代表实例的 <strong>预测类别</strong> ,每一列代表实例的 <strong>真实类别</strong> 。<br><img data-src="/images/loading/loading.gif" data-original="/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E8%AF%84%E4%BB%B7%E6%A0%87%E5%87%86%5C20230320110308.png"></p>
 </blockquote>
 <p>混淆矩阵的指标</p>
 <blockquote>
@@ -1155,11 +762,11 @@
 <p>$$<br>TPR&#x3D;\frac{TP}{TP+FN}&#x3D;\frac{4}{4+0}<br>$$</p>
 <p>$$<br>FPR&#x3D;\frac{FP}{FP+TN}&#x3D;\frac{4}{4+0}<br>$$</p>
 <p>这样的话我们就可以在ROC曲线上标记一个点，通过不断的移动阈值我们就可以得到一个ROC曲线<br>因此我们可以得到：</p>
-<p><img src="/images/loading/loading.gif" data-original="/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E8%AF%84%E4%BB%B7%E6%A0%87%E5%87%86/1679811953429.png" alt="1679811953429"></p>
+<p><img data-src="/images/loading/loading.gif" data-original="/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E8%AF%84%E4%BB%B7%E6%A0%87%E5%87%86/1679811953429.png" alt="1679811953429"></p>
 </blockquote>
 <p>这样的话我们就可以得到一条ROC曲线，但是问题有来了要是我们得到另外一条ROC曲线，也就是说我们现在有两条ROC曲线，那么我们应该怎么判断呢？这就是接下来要说的AUC值，问题又来了怎么知道AUC的值呢？—–&gt;计算面积阿伟。没错就是计算面积，我们可以通过计算不同ROC曲线与FPR的面积进而得到不同AUC的值，从而判断哪条ROC曲线更加的好！</p>
 <p>那么问题来了上述分析都是针对二分类问题，实际生活中并没有那么多非黑即白的事情，更多的是<strong>多分类的问题</strong>，什么是多分类？维基百科给出的定义：多元分类是将实例分配到多个（多于两个）类别中的其中一个（将实例分配到两个类别中的其中一个被称为二分类）。显然，分类算法可以分为二分类和多分类两种，而多分类算法可以通过将其转化为多个二分类来实现。简单从字面理解很容易，比如说给出大量的交通图片，交给计算机去将这些图片进行分类，划分什么是🚗🚆✈等等，那么对于多分类问题其评价指标如何？上述分析方法是否依旧行得通？对于多元分类我们可以将多分类化成二分类问题，比如说下图：</p>
-<p><img src="/images/loading/loading.gif" data-original="/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E8%AF%84%E4%BB%B7%E6%A0%87%E5%87%86/1679811981387.png" alt="1679811981387"></p>
+<p><img data-src="/images/loading/loading.gif" data-original="/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E8%AF%84%E4%BB%B7%E6%A0%87%E5%87%86/1679811981387.png" alt="1679811981387"></p>
 <h2 id="二、回归算法评价指标"><a href="#二、回归算法评价指标" class="headerlink" title="二、回归算法评价指标"></a>二、回归算法评价指标</h2><h3 id="1、RMSE均方根误差"><a href="#1、RMSE均方根误差" class="headerlink" title="1、RMSE均方根误差"></a>1、RMSE均方根误差</h3><p>$$<br>RMSE(X,h)&#x3D;\sqrt[2]{\frac{1}{m}\displaystyle\sum^{m}_{i&#x3D;1}(h(x_i)-y_i)^2}<br>$$</p>
 <h3 id="2、MSE均方误差"><a href="#2、MSE均方误差" class="headerlink" title="2、MSE均方误差"></a>2、MSE均方误差</h3><p>$$<br>MSE(X,h)&#x3D;\frac{1}{m}\displaystyle\sum^{m}_{i&#x3D;1}(h(x_i)-y_i)^2<br>$$</p>
 <h3 id="3、MAE平均绝对误差"><a href="#3、MAE平均绝对误差" class="headerlink" title="3、MAE平均绝对误差"></a>3、MAE平均绝对误差</h3><p>$$<br>MAE(X,h)&#x3D;\frac{1}{m}\displaystyle\sum^{m}_{i&#x3D;1}(|h(x_i|)-y_i|<br>$$</p>
@@ -1319,8 +926,9 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
+      
 
-      <time title="创建时间：2023-06-04 14:13:07" itemprop="dateCreated datePublished" datetime="2023-06-04T14:13:07+08:00">2023-06-04</time>
+      <time title="创建时间：2023-06-04 14:13:07 / 修改时间：14:39:55" itemprop="dateCreated datePublished" datetime="2023-06-04T14:13:07+08:00">2023-06-04</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1342,121 +950,15 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h1 id="初识深度学习"><a href="#初识深度学习" class="headerlink" title="初识深度学习"></a>初识深度学习</h1><hr>
-<p><strong>注：</strong></p>
-<p>1、本文为个人学习笔记，所以内容大多比较简练不做过多解释</p>
-<p>2、文章参考书籍：1、《python深度学习》[美] 弗朗索瓦·肖莱　著 张亮 译；2、《深度学习》(花书)</p>
-<p>3、部分内容自己阅读参考文献进行补充</p>
-<p>4、大部分代码都是<strong>基于pytorch</strong>进行编写&lt;先学原理后学代码&gt;</p>
-<p>n、后续用到什么就继续继续补充</p>
-<hr>
-<p>[toc]</p>
-<h2 id="一、初识神经网络"><a href="#一、初识神经网络" class="headerlink" title="一、初识神经网络"></a>一、初识神经网络</h2><h3 id="1-1-神经网络的工作原理"><a href="#1-1-神经网络的工作原理" class="headerlink" title="1.1 神经网络的工作原理"></a>1.1 神经网络的工作原理</h3><p><img src="/images/loading/loading.gif" data-original="/%E5%88%9D%E8%AF%86%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/1680779540890.png" alt="1680779540890"></p>
-<ul>
-<li>优化器：随机梯度下降、牛顿法</li>
-<li>层：可以取类比多层感知机模型中的隐藏层</li>
-<li>数据变换：激活函数</li>
-</ul>
-<p>进一步解释见：2.2.3 基于梯度优化</p>
-<h3 id="1-2-神经网络基础知识"><a href="#1-2-神经网络基础知识" class="headerlink" title="1.2 神经网络基础知识"></a>1.2 神经网络基础知识</h3><h4 id="1-2-1-张量"><a href="#1-2-1-张量" class="headerlink" title="1.2.1 张量"></a>1.2.1 张量</h4><p>关于张量的了解其实没必要过多去解释他到底是个什么样子的，python编程过程中可以直接将其与numpy的矩阵一起了解(<strong>下以pytorch为例</strong>)</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch</span><br><span class="line">a = torch.ones(<span class="number">3</span>,<span class="number">2</span>)</span><br><span class="line">a</span><br><span class="line">&gt;tensor([[<span class="number">1.</span>, <span class="number">1.</span>],</span><br><span class="line">        [<span class="number">1.</span>, <span class="number">1.</span>],</span><br><span class="line">        [<span class="number">1.</span>, <span class="number">1.</span>]])</span><br></pre></td></tr></table></figure>
-
-<p>但是张量的一些基本性质还是需要了解：</p>
-<ul>
-<li><strong>轴的个数（阶）</strong>。例如，3D 张量有 3 个轴，矩阵有 2 个轴。这在 Numpy 等 Python 库中也叫张量的 ndim。</li>
-<li><strong>形状</strong>。这是一个整数元组，表示张量沿每个轴的维度大小（元素个数）。例如，上述列子就是一个二维的3x2</li>
-<li><strong>数据类型</strong>。这是张量中所包含数据的类型，例如，张量的类型可以是 float32、uint8、float64 等。在极少数情况下，你可能会遇到字符（char）张量。注意，Numpy（以及大多数其他库）中不存在字符串张量，因为张量存储在预先分配的连续内存段中，而字符串的长度是可变的，无法用这种方式存储。</li>
-</ul>
-<blockquote>
-<p><strong>pytorch的具体语法，后续继续补充</strong></p>
-</blockquote>
-<h5 id="1-2-1-1-时间序列数据"><a href="#1-2-1-1-时间序列数据" class="headerlink" title="1.2.1.1 时间序列数据"></a>1.2.1.1 时间序列数据</h5><p>以股票交易为例：每时每刻都存在交易，并且每时每刻对于不同的股票也都存在买入、卖出。那么我们可以借助3D张量进行表示：</p>
-<p><img src="/images/loading/loading.gif" data-original="/%E5%88%9D%E8%AF%86%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/1680782513691.png" alt="1680782513691"></p>
-<ul>
-<li><strong>时间步长</strong>：可以假设是1分钟内进行交易</li>
-<li><strong>特征</strong>：某一个股票进行的交易</li>
-<li><strong>样本</strong>：不同的层可以表示是不同股票：茅台。。。。。</li>
-</ul>
-<h5 id="1-2-1-2-图像数据"><a href="#1-2-1-2-图像数据" class="headerlink" title="1.2.1.2 图像数据"></a>1.2.1.2 图像数据</h5><p>一张<strong>彩色</strong>图片可以由3部分构成：高度、宽度、颜色深度（灰度图像只有一个颜色通道可以取消颜色深度），那么图片也是3D张量：</p>
-<p><img src="/images/loading/loading.gif" data-original="/%E5%88%9D%E8%AF%86%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/1680782799812.png" alt="1680782792"></p>
-<blockquote>
-<p>假设图片为<strong>彩色</strong>，大小为256x256。那么我们张量可以如此表示：（n, 256, 256, 3)。n：图片数目；3：彩色图片一般3种颜色（光的3原色）</p>
-</blockquote>
-<blockquote>
-<p><a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E4%B8%89%E5%8E%9F%E8%89%B2%E5%8E%9F%E7%90%86/6969780">三原色原理_百度百科 (baidu.com)</a></p>
-</blockquote>
-<p>$$<br>\textcolor{red}{注意}\text{:PyTorch 模块要求张量排列为 C×H×W（分别表示通道、高度和宽度）而tensorflow则是：H×WxC}<br>$$</p>
-<h5 id="1-2-1-3-视频数据"><a href="#1-2-1-3-视频数据" class="headerlink" title="1.2.1.3 视频数据"></a>1.2.1.3 视频数据</h5><p>视频是一帧一帧所构成的，也就是说我们看到的视频都是一张一张的图片，也就是说一个视频是一个4D张量（不同视频构成5D张量）</p>
-<h4 id="1-2-2-张量的运算"><a href="#1-2-2-张量的运算" class="headerlink" title="1.2.2 张量的运算"></a>1.2.2 张量的运算</h4><blockquote>
-<p>后续补充！</p>
-<p><a target="_blank" rel="noopener" href="https://www.w3cschool.cn/pytorch/pytorch-5ubt3bby.html">1、PyTorch是什么？_w3cschool</a></p>
-</blockquote>
-<h4 id="1-2-3-基于梯度优化"><a href="#1-2-3-基于梯度优化" class="headerlink" title="1.2.3 基于梯度优化"></a>1.2.3 基于梯度优化</h4><p>在此引用神经网络工作原理图：</p>
-<p><img src="/images/loading/loading.gif" data-original="/%E5%88%9D%E8%AF%86%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/1680779540890.png" alt="1680779540890"></p>
-<p>在多层感知机模型中有3类常用的激活函数：Sigmoid、Relu、Tannh。假设卷积神经网络只有2层：$f(x)&#x3D;f^{(1)}(f^{(2)}(x,w,b))$此处我们的$f^{(2)}$就是我们的激活函数，而$w,b$就是我们的权重。一开始，这些权重矩阵取较小的<strong>随机值</strong>，这一步叫作<strong>随机初始化</strong>，他们肯定不会得到任何有用的表示。虽然得到的表示是没有意义的，但这是一个起点。下一步则是根据反馈信号逐渐调节这些权重。这个逐渐调节的过程叫作<strong>训练</strong>，也就是机器学习中的学习。</p>
-<p>上述过程发生在一个训练循环（training loop）内，其具体过程如下。必要时一直重复这些步骤。</p>
-<ul>
-<li>(1) 抽取训练样本 x 和对应目标 y 组成的数据批量。</li>
-<li>(2) 在 x 上运行网络［这一步叫作<strong>前向传播</strong>］，得到预测值 y_pred。</li>
-<li>(3) 计算网络在这批数据上的<em>损失</em>，用于衡量 y_pred 和 y 之间的距离。</li>
-<li>(4) 更新网络的所有权重，使网络在这批数据上的损失略微下降</li>
-</ul>
-<blockquote>
-<p><em>关于权重深度学习有何不同</em></p>
-<p>先前的机器学习技术（浅层学习）仅包含将输入数据变换到一两个连续的表示空间，通常使用简单的变换，比如高维非线性投影（SVM）或决策树。但这些技术通常无法得到复杂问题所需要的精确表示。因此，人们必须竭尽全力让初始输入数据更适合用这些方法处理，也必须手动为数据设计好的表示层。这叫作<strong>特征工程</strong>，深度学习完全将这个步骤自动化。</p>
-</blockquote>
-<p>上述步骤复杂在于更新权重！我们更新权重的目的：使得损失函数最小。我们使用得方法是：<strong>随机梯度下降：</strong></p>
-<ul>
-<li>(1) 抽取训练样本 x 和对应目标 y 组成的数据批量。</li>
-<li>(2) 在 x 上运行网络，得到预测值 y_pred。</li>
-<li>(3) 计算网络在这批数据上的损失，用于衡量 y_pred 和 y 之间的距离。</li>
-<li>(4) 计算损失相对于网络参数的梯度［一次<strong>反向传播</strong>］。</li>
-<li>(5) 将参数沿着梯度的反方向移动一点，比如 W -&#x3D; step * gradient，从而使这批数据上的损失减小一点。</li>
-</ul>
-<p>前向传播和反向传播：</p>
-<ul>
-<li>前向传播：输入提供的初始信息x，然后传播给每一层得隐藏单元，最终产出输出y</li>
-<li>反向传播：允许来自代价函数的信息通过网络向后流动，以便计算梯度</li>
-</ul>
-<blockquote>
-<p>设存在模型：$\widehat{y}&#x3D;wx+b$，设损失函数为：$J&#x3D;\frac{1}{2}(y-\widehat{y})^2$。</p>
-<p><strong>前向传播</strong>：我们直接输入$x$最后返回y</p>
-<p><strong>反向传播</strong>：我们在初始化参数：$w,b$时候所得到$\widehat{y}$损失函数值比较大。那么根据梯度下降我们需要对$w，b$进行更新于是就有：梯度：$\nabla_{w}J &#x3D;\dfrac{\partial J}{\partial \widehat{y}}\dfrac{\partial \widehat{y}}{\partial {w}}$，所以：$w&#x3D;w-\epsilon\nabla_{w}J$，我们计算梯度的过程就是反向传播过程</p>
-</blockquote>
-<h2 id="二、机器学习补充"><a href="#二、机器学习补充" class="headerlink" title="二、机器学习补充"></a>二、机器学习补充</h2><h3 id="2-1-机器学习模型评估"><a href="#2-1-机器学习模型评估" class="headerlink" title="2.1 机器学习模型评估"></a>2.1 机器学习模型评估</h3><p>机器学习的目的是得到可以<strong>泛化的模型</strong>，即在前所未见的数据上表现很好。在机器学习过程中我们经常需要对数据进行切分：划分训练集、测试集。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.model_selection <span class="keyword">import</span> train_test_split </span><br><span class="line">x_train, x_test, y_train, y_test= train_test_split(x,y,test_size=<span class="number">0.2</span>) <span class="comment">#选取20%的数据作为测试数据</span></span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>切分有两种：</p>
-<p>1、简单的留出验证（上述代码）</p>
-<p>2、<strong>K 折验证</strong></p>
-<p>将数据划分为大小相同的 K 个分区。对于每个分区 i，在剩余的 K-1 个分区上训练模型，然后在分区 i 上评估模型。最终分数等于 K 个分数的平均值。</p>
-<p><img src="/images/loading/loading.gif" data-original="/%E5%88%9D%E8%AF%86%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/1680867838870.png" alt="1680867838870"></p>
-</blockquote>
-<p>我们最终的目的是我们设计的模型在测试集上、训练集上的测试效果都满足我们的要求。在此过程中涉及两个问题：1、<strong>欠拟合</strong>：模型不能再训练集上或者足够低的误差；2、<strong>过拟合</strong>：训练误差和测试误差之间差距过大。</p>
-<h3 id="2-2-正则化"><a href="#2-2-正则化" class="headerlink" title="2.2 正则化"></a>2.2 正则化</h3><p>为了防止模型从训练数据中学到错误或无关紧要的模式，<strong>最优解决方法是获取更多的训练数据</strong>。模型的训练数据越多，泛化能力自然也越好。如果无法获取更多数据，次优解决方法是<strong>调节模型允许存储的信息量</strong>，或对模型允许存储的信息加以约束。如果一个网络只能记住几个模式，那么优化过程会迫使模型集中学习最重要的模式，这样更可能得到良好的泛化。这种降低过拟合的方法叫作正则化。</p>
-<h3 id="2-2-1-添加权重正则化"><a href="#2-2-1-添加权重正则化" class="headerlink" title="2.2.1 添加权重正则化"></a>2.2.1 添加权重正则化</h3><p>L2正则化：</p>
-<p>$$<br>\widehat{J}(w,x,y)&#x3D;J(w,x,y)+\frac{\alpha}{2}||w||^2<br>$$</p>
-<p>L1正则化：</p>
-<p>$$<br>\widehat{J}(w,x,y)&#x3D;J(w,x,y)+\alpha||w||<br>$$</p>
-<p>上述函数：$J$：损失函数，$||w||$：我们添加正则化项。在此过程中我们只对权重做惩罚而不对偏置做惩罚。</p>
-<h2 id="2-3-机器学习流程"><a href="#2-3-机器学习流程" class="headerlink" title="2.3 机器学习流程"></a>2.3 机器学习流程</h2><p>1、定义问题，收集数据集</p>
-<p>2、选择衡量成功的指标</p>
-<blockquote>
-<p>选择合适评价指标：RMSE、准确率、召回率等</p>
-</blockquote>
-<p>3、确定评估方法</p>
-<blockquote>
-<p>验证集、K折交叉验证等</p>
-</blockquote>
-<p>4、准备数据</p>
-<p>5、建立模型并优化</p>
-<blockquote>
-<p>正则化、调节超参数</p>
-</blockquote>
-<h2 id="三、推荐文献"><a href="#三、推荐文献" class="headerlink" title="三、推荐文献"></a>三、推荐文献</h2><p>1、LECUN Y, BENGIO Y, HINTON G. Deep learning[J&#x2F;OL]. Nature, 2015, 521(7553): 436-444. <a target="_blank" rel="noopener" href="https://doi.org/10.1038/nature14539">https://doi.org/10.1038/nature14539</a>.</p>
-<p>2、RUMELHART D E, HINTON G E, WILLIAMS R J. Learning representations by back-propagating errors[J&#x2F;OL]. Nature, 1986, 323(6088): 533-536. <a target="_blank" rel="noopener" href="https://doi.org/10.1038/323533a0">https://doi.org/10.1038/323533a0</a>.</p>
-
+          <h1 id="初识深度学习"><a href="#初识深度学习" class="headerlink" title="初识深度学习"></a>初识深度学习</h1>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/posts/3065358813/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -1510,8 +1012,9 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
+      
 
-      <time title="创建时间：2023-06-04 14:13:06" itemprop="dateCreated datePublished" datetime="2023-06-04T14:13:06+08:00">2023-06-04</time>
+      <time title="创建时间：2023-06-04 14:13:06 / 修改时间：14:37:34" itemprop="dateCreated datePublished" datetime="2023-06-04T14:13:06+08:00">2023-06-04</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1533,11 +1036,9 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h1 id="朴素贝叶斯分类器"><a href="#朴素贝叶斯分类器" class="headerlink" title="朴素贝叶斯分类器"></a>朴素贝叶斯分类器</h1><p>[toc]</p>
-<hr>
-<p>介绍之前说一个悲伤的故事：由于是自己重新学习机器学习算法，学校期间好多有关机器学习算法的课程都没怎么解释这个算法，而且老师上课一言难尽！然后我参加研究生复试，被问到这个算法当时人都傻了，听说过但是自己真的没有仔细去了解啊！害！被自己菜的一言难尽</p>
-<hr>
-<h2 id="数学理论"><a href="#数学理论" class="headerlink" title="数学理论"></a>数学理论</h2><ul>
+          <span id="more"></span>
+
+<h1 id="朴素贝叶斯分类器"><a href="#朴素贝叶斯分类器" class="headerlink" title="朴素贝叶斯分类器"></a>朴素贝叶斯分类器</h1><h2 id="数学理论"><a href="#数学理论" class="headerlink" title="数学理论"></a>数学理论</h2><ul>
 <li><strong>先验概率</strong></li>
 </ul>
 <p>根据以往经验和分析得到的概率</p>
@@ -1668,6 +1169,237 @@
 </ul>
 <p>而后判别男和女的概率大小进而判别是男性还是女性！</p>
 </blockquote>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/posts/1867073817/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/head.jpg">
+      <meta itemprop="name" content="hjie">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hjie">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Hjie">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/posts/1867073817/" class="post-title-link" itemprop="url">深度学习——pytorch学习</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2023-06-04 14:13:05 / 修改时间：14:41:38" itemprop="dateCreated datePublished" datetime="2023-06-04T14:13:05+08:00">2023-06-04</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">深度学习</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <span id="more"></span>
+<h1 id="Pytorch学习"><a href="#Pytorch学习" class="headerlink" title="Pytorch学习"></a>Pytorch学习</h1><p>[toc]</p>
+<h2 id="pytorch基本操作"><a href="#pytorch基本操作" class="headerlink" title="pytorch基本操作"></a>pytorch基本操作</h2><p>pytorch使用前首先了解一个一个概念：张量。个人觉得没必要去了解他到底是一种什么东西，可以将其与我们numpy中数组一起进行了解</p>
+<blockquote>
+<p>张量可以看作是⼀个多维数组。标量可以看作是0维张量，向量可以看作1维张量，矩阵可以看作是⼆维张量</p>
+</blockquote>
+<p>那么我们后续也都是围绕张量进行展开了解</p>
+<h3 id="数据操作"><a href="#数据操作" class="headerlink" title="数据操作"></a>数据操作</h3><h4 id="创建张量"><a href="#创建张量" class="headerlink" title="创建张量"></a>创建张量</h4><p><img data-src="/images/loading/loading.gif" data-original="/pytorch%E5%AD%A6%E4%B9%A0/1680163291680.png" alt="1680163291680"></p>
+<blockquote>
+<p>注意使用pytorch就不得不了解一大特点：利用GPU计算。</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;a = torch.ones(<span class="number">5</span>,<span class="number">3</span>,device=<span class="string">&#x27;cuda&#x27;</span>,dtype=torch.float64)<span class="comment">#设置类型，gpu</span></span><br><span class="line">&gt;&gt;a</span><br><span class="line">tensor([[<span class="number">1.</span>, <span class="number">1.</span>, <span class="number">1.</span>],</span><br><span class="line">        [<span class="number">1.</span>, <span class="number">1.</span>, <span class="number">1.</span>],</span><br><span class="line">        [<span class="number">1.</span>, <span class="number">1.</span>, <span class="number">1.</span>],</span><br><span class="line">        [<span class="number">1.</span>, <span class="number">1.</span>, <span class="number">1.</span>],</span><br><span class="line">        [<span class="number">1.</span>, <span class="number">1.</span>, <span class="number">1.</span>]], device=<span class="string">&#x27;cuda:0&#x27;</span>, dtype=torch.float64)</span><br><span class="line">&gt;&gt;<span class="built_in">print</span>(a.size(),a.shape)</span><br><span class="line">torch.Size([<span class="number">5</span>, <span class="number">3</span>]) torch.Size([<span class="number">5</span>, <span class="number">3</span>])</span><br></pre></td></tr></table></figure>
+
+<h4 id="操作"><a href="#操作" class="headerlink" title="操作"></a>操作</h4><ul>
+<li><strong>加法运算</strong></li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(x+y)</span><br><span class="line"><span class="built_in">print</span>(torch.add(x,y))</span><br><span class="line"><span class="built_in">print</span>(y.add(x))</span><br><span class="line">-&gt;tensor([[<span class="number">0.9841</span>, <span class="number">1.1514</span>, <span class="number">1.0982</span>],</span><br><span class="line">        [<span class="number">0.9974</span>, <span class="number">0.4662</span>, <span class="number">1.5250</span>],</span><br><span class="line">        [<span class="number">0.5120</span>, <span class="number">0.3424</span>, <span class="number">1.6973</span>],</span><br><span class="line">        [<span class="number">1.1808</span>, <span class="number">1.1172</span>, <span class="number">1.6786</span>],</span><br><span class="line">        [<span class="number">1.9113</span>, <span class="number">1.3679</span>, <span class="number">1.3846</span>]])</span><br><span class="line">三个结果都一样</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p><strong>索引</strong><br>索引出来的结果与原数据共享内存，也即修改⼀个，另⼀个会跟着修改。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">b = x[<span class="number">0</span>:<span class="number">1</span>]</span><br><span class="line"><span class="built_in">print</span>(b)</span><br><span class="line">-&gt;tensor([[<span class="number">0.6847</span>, <span class="number">0.9743</span>, <span class="number">0.9259</span>]])</span><br><span class="line">b +=<span class="number">2</span></span><br><span class="line"><span class="built_in">print</span>(x[<span class="number">0</span>,:])</span><br><span class="line">-&gt;tensor([<span class="number">2.6847</span>, <span class="number">2.9743</span>, <span class="number">2.9259</span>])</span><br></pre></td></tr></table></figure>
+
+<p><img data-src="/images/loading/loading.gif" data-original="/pytorch%E5%AD%A6%E4%B9%A0/1680164219080.png" alt="1680164219080"></p>
+</li>
+<li><p><strong>改变形状</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">c = x.view(<span class="number">15</span>)</span><br><span class="line">c</span><br><span class="line">-&gt;tensor([<span class="number">2.6847</span>, <span class="number">2.9743</span>, <span class="number">2.9259</span>, <span class="number">0.7470</span>, <span class="number">0.2349</span>, <span class="number">0.6642</span>, <span class="number">0.3026</span>, <span class="number">0.1884</span>, <span class="number">0.9414</span>,</span><br><span class="line">        <span class="number">0.4747</span>, <span class="number">0.8469</span>, <span class="number">0.7788</span>, <span class="number">0.9762</span>, <span class="number">0.4373</span>, <span class="number">0.6214</span>])</span><br><span class="line">c +=<span class="number">1</span></span><br><span class="line">x</span><br><span class="line">-&gt;tensor([[<span class="number">3.6847</span>, <span class="number">3.9743</span>, <span class="number">3.9259</span>],</span><br><span class="line">        [<span class="number">1.7470</span>, <span class="number">1.2349</span>, <span class="number">1.6642</span>],</span><br><span class="line">        [<span class="number">1.3026</span>, <span class="number">1.1884</span>, <span class="number">1.9414</span>],</span><br><span class="line">        [<span class="number">1.4747</span>, <span class="number">1.8469</span>, <span class="number">1.7788</span>],</span><br><span class="line">        [<span class="number">1.9762</span>, <span class="number">1.4373</span>, <span class="number">1.6214</span>]])</span><br></pre></td></tr></table></figure>
+
+<p>利用view()函数返回的新tensor与源tensor共享内存（其实是同⼀个tensor），也即更改其中的⼀个，另<br>外⼀个也会跟着改变。所以如果我们想返回⼀个真正新的副本（即不共享内存）该怎么办呢？Pytorch还提供了⼀个reshape()可以改变形状，但是此函数并不能保证返回的是其拷⻉，所以不推荐使⽤。推荐先<br>⽤ clone 创造⼀个副本。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">x_clone = x.clone()</span><br><span class="line">x_clone +=<span class="number">1</span></span><br><span class="line"><span class="built_in">print</span>(x_clone, <span class="string">&#x27;\n&#x27;</span>, x)</span><br><span class="line">-&gt;tensor([[<span class="number">4.6847</span>, <span class="number">4.9743</span>, <span class="number">4.9259</span>],</span><br><span class="line">        [<span class="number">2.7470</span>, <span class="number">2.2349</span>, <span class="number">2.6642</span>],</span><br><span class="line">        [<span class="number">2.3026</span>, <span class="number">2.1884</span>, <span class="number">2.9414</span>],</span><br><span class="line">        [<span class="number">2.4747</span>, <span class="number">2.8469</span>, <span class="number">2.7788</span>],</span><br><span class="line">        [<span class="number">2.9762</span>, <span class="number">2.4373</span>, <span class="number">2.6214</span>]]) </span><br><span class="line"> tensor([[<span class="number">3.6847</span>, <span class="number">3.9743</span>, <span class="number">3.9259</span>],</span><br><span class="line">        [<span class="number">1.7470</span>, <span class="number">1.2349</span>, <span class="number">1.6642</span>],</span><br><span class="line">        [<span class="number">1.3026</span>, <span class="number">1.1884</span>, <span class="number">1.9414</span>],</span><br><span class="line">        [<span class="number">1.4747</span>, <span class="number">1.8469</span>, <span class="number">1.7788</span>],</span><br><span class="line">        [<span class="number">1.9762</span>, <span class="number">1.4373</span>, <span class="number">1.6214</span>]])</span><br></pre></td></tr></table></figure></li>
+<li><p><strong>线性代数</strong></p>
+<p><img data-src="/images/loading/loading.gif" data-original="/pytorch%E5%AD%A6%E4%B9%A0/1680164657109.png" alt="1680164657109"></p>
+<blockquote>
+<p>官方文档：<a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/tensors.html">torch.Tensor — PyTorch 2.0 documentation</a></p>
+</blockquote>
+</li>
+<li><p><strong>广播机制</strong><br>线性代数告诉我们，要是两个矩阵形状不同是不可以直接相加的，但是pytorch的广播机制可以实现此类计算。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">x = torch.arange(<span class="number">1</span>, <span class="number">3</span>).view(<span class="number">1</span>, <span class="number">2</span>)</span><br><span class="line"><span class="built_in">print</span>(x)</span><br><span class="line">y = torch.arange(<span class="number">1</span>, <span class="number">4</span>).view(<span class="number">3</span>, <span class="number">1</span>)</span><br><span class="line"><span class="built_in">print</span>(y)</span><br><span class="line"><span class="built_in">print</span>(x + y)</span><br><span class="line">-&gt;tensor([[<span class="number">1</span>, <span class="number">2</span>]])</span><br><span class="line">tensor([[<span class="number">1</span>],</span><br><span class="line">        [<span class="number">2</span>],</span><br><span class="line">        [<span class="number">3</span>]])</span><br><span class="line">tensor([[<span class="number">2</span>, <span class="number">3</span>],</span><br><span class="line">        [<span class="number">3</span>, <span class="number">4</span>],</span><br><span class="line">        [<span class="number">4</span>, <span class="number">5</span>]])</span><br></pre></td></tr></table></figure>
+
+<p>计算过程中，由于x，y的形状是不相同的，通过广播机制，会将x进行拓展，也就是将x变成3x2，y变成3x2而后再进行计算。</p>
+</li>
+</ul>
+<h3 id="tensor和numpy相互转换"><a href="#tensor和numpy相互转换" class="headerlink" title="tensor和numpy相互转换"></a>tensor和numpy相互转换</h3><p>我们很容易⽤ numpy() 和 from_numpy() 将 Tensor 和NumPy中的数组相互转换。但是需要注意的⼀<br>点是： <strong>这两个函数所产⽣的的 Tensor 和NumPy中的数组共享相同的内存（所以他们之间的转换很<br>快），改变其中⼀个时另⼀个也会改变！！！</strong></p>
+<blockquote>
+<p>还有⼀个常⽤的将NumPy中的array转换成 Tensor 的⽅法就是 torch.tensor() , 需要注意的<br>是，此⽅法总是会进⾏数据拷⻉（就会消耗更多的时间和空间），所以返回的 Tensor 和原来的数<br>据不再共享内</p>
+</blockquote>
+<ul>
+<li>numpy()<br>将tensor转换为numpy形式</li>
+<li>torch.from_numpy()<br>将numpy转换为tensor</li>
+</ul>
+<h2 id="自动求梯度"><a href="#自动求梯度" class="headerlink" title="自动求梯度"></a>自动求梯度</h2><blockquote>
+<p><a target="_blank" rel="noopener" href="https://pytorch.org/tutorials/beginner/blitz/autograd_tutorial.html#sphx-glr-beginner-blitz-autograd-tutorial-py">A Gentle Introduction to torch.autograd — PyTorch Tutorials 2.0.0+cu117 documentation</a></p>
+</blockquote>
+<p>在生成tensor时候我们添加属性 (requires_grad&#x3D;True )，它将开始追踪(track)在其上的所有操作（这样就可以利⽤链式法则进⾏梯度传播了）。完成计算后，可以调⽤.backward() 来完成所有梯度计算。此Tensor的梯度将累积到.grad 属性中。</p>
+<p>如果不想要被继续追踪，可以调⽤ .detach() 将其从追踪记录中分离出来，这样就可以防⽌将来的计算被追踪，这样梯度就传不过去了。此外，还可以⽤ with torch.no_grad() 将不想被追踪的操作代码块包裹起来，这种⽅法在评估模型的时候很常⽤，因为在评估模型时，我们并不需要计算可训练参数（requires_grad&#x3D;True）的梯度。</p>
+<blockquote>
+<p>通俗的来讲就是我们添加 requires_grad 可以记录在张量上所进行的所有的操作</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">x = torch.ones(<span class="number">2</span>,<span class="number">2</span>,requires_grad=<span class="literal">True</span>)</span><br><span class="line">y = x+ <span class="number">2</span></span><br><span class="line">z = y*y*<span class="number">3</span></span><br><span class="line">p = z.mean()</span><br><span class="line"><span class="built_in">print</span>(p)</span><br><span class="line">-&gt;tensor(<span class="number">27.</span>, grad_fn=&lt;MeanBackward0&gt;)</span><br><span class="line">p.backward()</span><br><span class="line"><span class="built_in">print</span>(x.grad)</span><br><span class="line">-&gt;tensor([[<span class="number">4.5000</span>, <span class="number">4.5000</span>],</span><br><span class="line">        [<span class="number">4.5000</span>, <span class="number">4.5000</span>]])</span><br></pre></td></tr></table></figure>
+
+<p>计算结果怎么来的呢？首先我们知道p所进行的计算如下</p>
+<p>$$<br>p&#x3D;\frac{1}{4}\sum3(x_i+2)^2<br>$$</p>
+<p>$$<br>\dfrac{\partial p}{\partial x}|_{x_i&#x3D;1}&#x3D;\frac{9}{2}&#x3D;4.5<br>$$</p>
+<p>不过在此处需要一个<strong>注意事项</strong>，我们的p必须是一个标量，也就是说p必须是一个数字，不然结果会报错。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">x = torch.tensor([<span class="number">2.</span>, <span class="number">1.</span>], requires_grad=<span class="literal">True</span>)</span><br><span class="line">y = torch.tensor([[<span class="number">1.</span>, <span class="number">2.</span>], [<span class="number">3.</span>, <span class="number">4.</span>]], requires_grad=<span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line">z = torch.mm(x.view(<span class="number">1</span>, <span class="number">2</span>), y)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;z:<span class="subst">&#123;z&#125;</span>&quot;</span>)</span><br><span class="line">z.backward(torch.Tensor([[<span class="number">1.</span>, <span class="number">0</span>]]), retain_graph=<span class="literal">True</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;x.grad: <span class="subst">&#123;x.grad&#125;</span>&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;y.grad: <span class="subst">&#123;y.grad&#125;</span>&quot;</span>)</span><br><span class="line"></span><br><span class="line">--&gt;z:tensor([[<span class="number">5.</span>, <span class="number">8.</span>]], grad_fn=&lt;MmBackward&gt;)</span><br><span class="line">x.grad: tensor([[<span class="number">1.</span>, <span class="number">3.</span>]])</span><br><span class="line">y.grad: tensor([[<span class="number">2.</span>, <span class="number">0.</span>],</span><br><span class="line">        [<span class="number">1.</span>, <span class="number">0.</span>]])</span><br></pre></td></tr></table></figure>
+
+<p>算法解释如下：<br><img data-src="/images/loading/loading.gif" data-original="/pytorch%E5%AD%A6%E4%B9%A0/1680176521877.png" alt="1680176521877"><br>我们在对z进行求梯度的时候，指定了参数[1,0]也就是相对于进行了加权操作</p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a target="_blank" rel="noopener" href="https://www.w3cschool.cn/article/9034837.html">https://www.w3cschool.cn/article/9034837.html</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_39208832/article/details/117415229">https://blog.csdn.net/qq_39208832/article/details/117415229</a></p>
+<p><a target="_blank" rel="noopener" href="https://pytorch.org/tutorials/beginner/blitz/autograd_tutorial.html#sphx-glr-beginner-blitz-autograd-tutorial-py">https://pytorch.org/tutorials/beginner/blitz/autograd_tutorial.html#sphx-glr-beginner-blitz-autograd-tutorial-py</a></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/posts/3220359105/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/head.jpg">
+      <meta itemprop="name" content="hjie">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hjie">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Hjie">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/posts/3220359105/" class="post-title-link" itemprop="url">pytorch实现CNN</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2023-06-04 14:13:05 / 修改时间：14:41:23" itemprop="dateCreated datePublished" datetime="2023-06-04T14:13:05+08:00">2023-06-04</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">深度学习</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <span id="more"></span>
+<h1 id="pytorch实现CNN"><a href="#pytorch实现CNN" class="headerlink" title="pytorch实现CNN"></a>pytorch实现CNN</h1><p>nn.Conv2d<br>torch.nn.Conv2d(in_channels, out_channels, kernel_size, stride&#x3D;1, padding&#x3D;0, dilation&#x3D;1, groups&#x3D;1, bias&#x3D;True, padding_mode&#x3D;’zeros’, device&#x3D;None, dtype&#x3D;None)<br><strong>参数解释</strong><br>1、in_channels (int) – 输入图像中的通道数<br>2、out_channels (int) – 卷积产生的通道数<br>3、kernel_size (int or tuple) – 卷积核的大小<br>4、stride (int or tuple, optional) – 卷积的步幅，默认值：1<br>5、padding (int, tuple or str, optional) – 添加到输入的所有四个边的填充，默认值：0<br>6、padding_mode (str, optional) – ‘zeros’, ‘reflect’, ‘replicate’ or ‘circular’，默认: ‘zeros’<br>6、dilation (int or tuple, optional) – 内核元素之间的间距，默认值：1<br>7、groups (int, optional) – 从输入通道到输出通道的阻塞连接数，默认值：1<br>8、bias (bool, optional) – 如果是 “真”，则在输出中增加一个可学习的偏置，默认值： 真  </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> matplotlib <span class="keyword">import</span> pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> collections</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"><span class="keyword">import</span> torch.nn <span class="keyword">as</span> nn</span><br><span class="line"><span class="keyword">import</span> torch.nn.functional <span class="keyword">as</span> F</span><br><span class="line"><span class="keyword">import</span> torch.optim <span class="keyword">as</span> optim</span><br><span class="line"></span><br><span class="line">torch.set_printoptions(edgeitems=<span class="number">2</span>)</span><br><span class="line">torch.manual_seed(<span class="number">123</span>)</span><br><span class="line">class_names = [<span class="string">&#x27;airplane&#x27;</span>,<span class="string">&#x27;automobile&#x27;</span>,<span class="string">&#x27;bird&#x27;</span>,<span class="string">&#x27;cat&#x27;</span>,<span class="string">&#x27;deer&#x27;</span>,<span class="string">&#x27;dog&#x27;</span>,<span class="string">&#x27;frog&#x27;</span>,<span class="string">&#x27;horse&#x27;</span>,<span class="string">&#x27;ship&#x27;</span>,<span class="string">&#x27;truck&#x27;</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment">#下载数据</span></span><br><span class="line"><span class="keyword">from</span> torchvision <span class="keyword">import</span> datasets, transforms</span><br><span class="line">data_path = <span class="string">&#x27;E:/CIFAR-10/&#x27;</span> </span><br><span class="line">cifar10 = datasets.CIFAR10(</span><br><span class="line">    data_path, train=<span class="literal">True</span>, download=<span class="literal">True</span>,</span><br><span class="line">    transform=transforms.Compose([</span><br><span class="line">        transforms.ToTensor(),</span><br><span class="line">        transforms.Normalize((<span class="number">0.4915</span>, <span class="number">0.4823</span>, <span class="number">0.4468</span>),</span><br><span class="line">                             (<span class="number">0.2470</span>, <span class="number">0.2435</span>, <span class="number">0.2616</span>))</span><br><span class="line">    ]))</span><br><span class="line">cifar10_val = datasets.CIFAR10(</span><br><span class="line">    data_path, train=<span class="literal">False</span>, download=<span class="literal">True</span>,</span><br><span class="line">    transform=transforms.Compose([</span><br><span class="line">        transforms.ToTensor(),</span><br><span class="line">        transforms.Normalize((<span class="number">0.4915</span>, <span class="number">0.4823</span>, <span class="number">0.4468</span>),</span><br><span class="line">                             (<span class="number">0.2470</span>, <span class="number">0.2435</span>, <span class="number">0.2616</span>))</span><br><span class="line">    ]))</span><br><span class="line"><span class="comment">#识别鸟和飞机</span></span><br><span class="line">label_map = &#123;<span class="number">0</span>: <span class="number">0</span>, <span class="number">2</span>: <span class="number">1</span>&#125;</span><br><span class="line">class_names = [<span class="string">&#x27;airplane&#x27;</span>, <span class="string">&#x27;bird&#x27;</span>]</span><br><span class="line">cifar2 = [(img, label_map[label]) <span class="keyword">for</span> img, label <span class="keyword">in</span> cifar10 <span class="keyword">if</span> label <span class="keyword">in</span> [<span class="number">0</span>, <span class="number">2</span>]]</span><br><span class="line">cifar2_val = [(img, label_map[label]) <span class="keyword">for</span> img, label <span class="keyword">in</span> cifar10_val <span class="keyword">if</span> label <span class="keyword">in</span> [<span class="number">0</span>, <span class="number">2</span>]]</span><br><span class="line"><span class="comment">#定义神经网络模型</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Net</span>(nn.Module):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="built_in">super</span>().__init__()</span><br><span class="line">        self.conv1 = nn.Conv2d(<span class="number">3</span>, <span class="number">16</span>, kernel_size=<span class="number">3</span>, padding=<span class="number">1</span>)</span><br><span class="line">        self.act1 = nn.Tanh()</span><br><span class="line">        self.pool1 = nn.MaxPool2d(<span class="number">2</span>)</span><br><span class="line">        self.conv2 = nn.Conv2d(<span class="number">16</span>, <span class="number">8</span>, kernel_size=<span class="number">3</span>, padding=<span class="number">1</span>)</span><br><span class="line">        self.act2 = nn.Tanh()</span><br><span class="line">        self.pool2 = nn.MaxPool2d(<span class="number">2</span>)</span><br><span class="line">        self.fc1 = nn.Linear(<span class="number">8</span> * <span class="number">8</span> * <span class="number">8</span>, <span class="number">32</span>)</span><br><span class="line">        self.act3 = nn.Tanh()</span><br><span class="line">        self.fc2 = nn.Linear(<span class="number">32</span>, <span class="number">2</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">forward</span>(<span class="params">self, x</span>):</span><br><span class="line">        out = self.pool1(self.act1(self.conv1(x)))</span><br><span class="line">        out = self.pool2(self.act2(self.conv2(out)))</span><br><span class="line">        out = out.view(-<span class="number">1</span>, <span class="number">8</span> * <span class="number">8</span> * <span class="number">8</span>)</span><br><span class="line">        out = self.act3(self.fc1(out))</span><br><span class="line">        out = self.fc2(out)</span><br><span class="line">        <span class="keyword">return</span> out</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> datetime  </span><br><span class="line"><span class="comment">#定义损失函数</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">training_loop</span>(<span class="params">n_epochs, optimizer, model, loss_fn, train_loader</span>):</span><br><span class="line">    <span class="keyword">for</span> epoch <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, n_epochs + <span class="number">1</span>): </span><br><span class="line">        loss_train = <span class="number">0.0</span></span><br><span class="line">        <span class="keyword">for</span> imgs, labels <span class="keyword">in</span> train_loader:</span><br><span class="line">            <span class="comment">#利用GPU计算</span></span><br><span class="line">            imgs = imgs.to(<span class="string">&quot;cuda:0&quot;</span>)</span><br><span class="line">            labels = labels.to(<span class="string">&quot;cuda:0&quot;</span>)</span><br><span class="line">            <span class="comment">#计算损失函数</span></span><br><span class="line">            outputs = model(imgs)</span><br><span class="line">            loss = loss_fn(outputs, labels)</span><br><span class="line">            <span class="comment">#随机梯度下降更新参数</span></span><br><span class="line">            optimizer.zero_grad()</span><br><span class="line">            loss.backward()</span><br><span class="line">            optimizer.step()</span><br><span class="line">            loss_train += loss.item()</span><br><span class="line">        <span class="keyword">if</span> epoch == <span class="number">1</span> <span class="keyword">or</span> epoch % <span class="number">10</span> == <span class="number">0</span>:</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&#x27;&#123;&#125; Epoch &#123;&#125;, 训练损失&#123;&#125;&#x27;</span>.<span class="built_in">format</span>(datetime.datetime.now(), epoch,</span><br><span class="line">                loss_train / <span class="built_in">len</span>(train_loader))) </span><br></pre></td></tr></table></figure>
+
+<p>运行</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">train_loader = torch.utils.data.DataLoader(cifar2, batch_size=<span class="number">64</span>,</span><br><span class="line">                                           shuffle=<span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line">model = Net()</span><br><span class="line">model = model.to(<span class="string">&quot;cuda:0&quot;</span>)</span><br><span class="line">optimizer = optim.SGD(model.parameters(), lr=<span class="number">1e-2</span>)</span><br><span class="line">loss_fn = nn.CrossEntropyLoss()</span><br><span class="line"></span><br><span class="line">training_loop(</span><br><span class="line">    n_epochs = <span class="number">100</span>,</span><br><span class="line">    optimizer = optimizer,</span><br><span class="line">    model = model,</span><br><span class="line">    loss_fn = loss_fn,</span><br><span class="line">    train_loader = train_loader,</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
 
       
     </div>
