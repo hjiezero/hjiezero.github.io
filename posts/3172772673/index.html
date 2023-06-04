@@ -267,7 +267,7 @@
 </ul>
 <p>首先从二维平面上的角度进行解释：在二维上我们如何计算导数？</p>
 <p>$$<br>\lim_{x \to a}{\frac{f(x)-f(a)}{x-a}}<br>$$</p>
-<p>其在二维平面上的表述：<br><img src="/%E6%95%B0%E5%80%BC%E8%AE%A1%E7%AE%97/1680502924121.png" alt="1680502924121"><br>但是如果重新设想在三维平面上会是怎么样子的？在三维上导数可以向着各个方向——<strong>方向导数</strong>，而我们的梯度就是其方向上方向导数最大，其大小正好是此最大方向导数。</p>
+<p>其在二维平面上的表述：<br><img src="/images/loading/loading.gif" data-original="/%E6%95%B0%E5%80%BC%E8%AE%A1%E7%AE%97/1680502924121.png" alt="1680502924121"><br>但是如果重新设想在三维平面上会是怎么样子的？在三维上导数可以向着各个方向——<strong>方向导数</strong>，而我们的梯度就是其方向上方向导数最大，其大小正好是此最大方向导数。</p>
 <blockquote>
 <p><a target="_blank" rel="noopener" href="https://www.zhihu.com/question/36301367">https://www.zhihu.com/question/36301367</a><br><a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E5%AF%BC%E6%95%B0">https://zh.wikipedia.org/wiki/%E5%AF%BC%E6%95%B0</a></p>
 </blockquote>
@@ -279,7 +279,7 @@
 <li>目标函数：需要最小化或者最大化的函数</li>
 <li>损失函数：目标函数最小化</li>
 </ul>
-<p>回想我们前面所了解的梯度知识，然后看下面这幅图：<br><img src="/%E6%95%B0%E5%80%BC%E8%AE%A1%E7%AE%97/1680504988382.png" alt="1680504988382"><br>对于函数$f(x)&#x3D;\frac{1}{2}x^2$我们很容易知道在x&#x3D;0的时候函数会有最小值，但是计算机并非如此！他可能会一个一个点不断的进行尝试而后去比较大小，最后得到最值情况。比如说：当点x落在x&#x3D;0的右侧时，我们函数导数大于0，那么此时我们需要向左移动才能找到最小值。左侧同理。进而得到梯度下降算法</p>
+<p>回想我们前面所了解的梯度知识，然后看下面这幅图：<br><img src="/images/loading/loading.gif" data-original="/%E6%95%B0%E5%80%BC%E8%AE%A1%E7%AE%97/1680504988382.png" alt="1680504988382"><br>对于函数$f(x)&#x3D;\frac{1}{2}x^2$我们很容易知道在x&#x3D;0的时候函数会有最小值，但是计算机并非如此！他可能会一个一个点不断的进行尝试而后去比较大小，最后得到最值情况。比如说：当点x落在x&#x3D;0的右侧时，我们函数导数大于0，那么此时我们需要向左移动才能找到最小值。左侧同理。进而得到梯度下降算法</p>
 <p>$$<br>x &#x3D; x-\eta\nabla_x f(x)<br>$$</p>
 <blockquote>
 <p>其中：$\eta:学习率$,$\nabla:梯度$</p>
@@ -288,7 +288,7 @@
 <p><a target="_blank" rel="noopener" href="https://www.zhihu.com/question/305638940">https://www.zhihu.com/question/305638940</a></p>
 </blockquote>
 <h2 id="牛顿法"><a href="#牛顿法" class="headerlink" title="牛顿法"></a>牛顿法</h2><p>$$<br>x_{n+1}&#x3D;x_n-\frac{f(x)}{f^{‘}(x)}<br>$$</p>
-<p>下面图片更加直观的了解<br><img src="/%E6%95%B0%E5%80%BC%E8%AE%A1%E7%AE%97/%E7%89%9B%E9%A1%BF%E6%B3%95.gif" alt="1680506537705"></p>
+<p>下面图片更加直观的了解<br><img src="/images/loading/loading.gif" data-original="/%E6%95%B0%E5%80%BC%E8%AE%A1%E7%AE%97/%E7%89%9B%E9%A1%BF%E6%B3%95.gif" alt="1680506537705"></p>
 <h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><p>1、《deep learning Ian Goodfellow and Yoshua Bengio and Aaron Courville》 <a target="_blank" rel="noopener" href="http://www.deeplearningbook.org/">http://www.deeplearningbook.org</a><br>2、<a target="_blank" rel="noopener" href="https://www.zhihu.com/question/36301367">https://www.zhihu.com/question/36301367</a></p>
 
     </div>
@@ -495,5 +495,18 @@
 
   
 
-</body>
+
+        <style>
+            [bg-lazy] {
+                background-image: none !important;
+                background-color: #eee !important;
+            }
+        </style>
+        <script>
+            window.imageLazyLoadSetting = {
+                isSPA: false,
+                preloadRatio: 1,
+                processImages: null,
+            };
+        </script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});</script><script>!function(r){r.imageLazyLoadSetting.processImages=t;var e=r.imageLazyLoadSetting.isSPA,n=r.imageLazyLoadSetting.preloadRatio||1,c=a();function a(){var t=Array.prototype.slice.call(document.querySelectorAll("img[data-original]")),e=Array.prototype.slice.call(document.querySelectorAll("[bg-lazy]"));return t.concat(e)}function t(){e&&(c=a());for(var t,o=0;o<c.length;o++)0<=(t=(t=c[o]).getBoundingClientRect()).bottom&&0<=t.left&&t.top<=(r.innerHeight*n||document.documentElement.clientHeight*n)&&function(){var t,e,n,a,i=c[o];e=function(){c=c.filter(function(t){return i!==t}),r.imageLazyLoadSetting.onImageLoaded&&r.imageLazyLoadSetting.onImageLoaded(i)},(t=i).hasAttribute("bg-lazy")?(t.removeAttribute("bg-lazy"),e&&e()):(n=new Image,a=t.getAttribute("data-original"),n.onload=function(){t.src=a,t.removeAttribute("data-original"),e&&e()},t.src!==a&&(n.src=a))}()}function i(){clearTimeout(t.tId),t.tId=setTimeout(t,500)}t(),document.addEventListener("scroll",i),r.addEventListener("resize",i),r.addEventListener("orientationchange",i)}(this);</script></body>
 </html>

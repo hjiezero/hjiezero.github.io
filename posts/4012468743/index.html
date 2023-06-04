@@ -264,7 +264,7 @@
 <p>$$<br>信息增益Gain(D,a)&#x3D;Ent(D)-\sum_{v&#x3D;1}^{V}\frac{|D^v|}{|D|}Ent(D^v) \V:离散属性a的可能取值的个数<br>$$</p>
 <p>怎么使用？再次借用周志华老师书上例子，我们来区分好瓜坏瓜。</p>
 <blockquote>
-<p><img src="/%E5%86%B3%E7%AD%96%E6%A0%91%E7%AE%97%E6%B3%95/bVc6L9J.png" alt="决策树算法"></p>
+<p><img src="/images/loading/loading.gif" data-original="/%E5%86%B3%E7%AD%96%E6%A0%91%E7%AE%97%E6%B3%95/bVc6L9J.png" alt="决策树算法"></p>
 <ul>
 <li><strong>注释</strong>：本文都是采用的ID3决策树算法</li>
 </ul>
@@ -501,5 +501,18 @@
 
   
 
-</body>
+
+        <style>
+            [bg-lazy] {
+                background-image: none !important;
+                background-color: #eee !important;
+            }
+        </style>
+        <script>
+            window.imageLazyLoadSetting = {
+                isSPA: false,
+                preloadRatio: 1,
+                processImages: null,
+            };
+        </script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});</script><script>!function(r){r.imageLazyLoadSetting.processImages=t;var e=r.imageLazyLoadSetting.isSPA,n=r.imageLazyLoadSetting.preloadRatio||1,c=a();function a(){var t=Array.prototype.slice.call(document.querySelectorAll("img[data-original]")),e=Array.prototype.slice.call(document.querySelectorAll("[bg-lazy]"));return t.concat(e)}function t(){e&&(c=a());for(var t,o=0;o<c.length;o++)0<=(t=(t=c[o]).getBoundingClientRect()).bottom&&0<=t.left&&t.top<=(r.innerHeight*n||document.documentElement.clientHeight*n)&&function(){var t,e,n,a,i=c[o];e=function(){c=c.filter(function(t){return i!==t}),r.imageLazyLoadSetting.onImageLoaded&&r.imageLazyLoadSetting.onImageLoaded(i)},(t=i).hasAttribute("bg-lazy")?(t.removeAttribute("bg-lazy"),e&&e()):(n=new Image,a=t.getAttribute("data-original"),n.onload=function(){t.src=a,t.removeAttribute("data-original"),e&&e()},t.src!==a&&(n.src=a))}()}function i(){clearTimeout(t.tId),t.tId=setTimeout(t,500)}t(),document.addEventListener("scroll",i),r.addEventListener("resize",i),r.addEventListener("orientationchange",i)}(this);</script></body>
 </html>

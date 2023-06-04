@@ -247,7 +247,7 @@
       
         <h1 id="机器学习评估指标"><a href="#机器学习评估指标" class="headerlink" title="机器学习评估指标"></a>机器学习评估指标</h1><h2 id="一、分类算法"><a href="#一、分类算法" class="headerlink" title="一、分类算法"></a>一、分类算法</h2><p><strong>混淆矩阵</strong></p>
 <blockquote>
-<p>混淆矩阵是监督学习中的一种可视化工具，主要用于比较分类结果和实例的真实信息。矩阵中的每一行代表实例的 <strong>预测类别</strong> ,每一列代表实例的 <strong>真实类别</strong> 。<br><img src="/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E8%AF%84%E4%BB%B7%E6%A0%87%E5%87%86%5C20230320110308.png"></p>
+<p>混淆矩阵是监督学习中的一种可视化工具，主要用于比较分类结果和实例的真实信息。矩阵中的每一行代表实例的 <strong>预测类别</strong> ,每一列代表实例的 <strong>真实类别</strong> 。<br><img src="/images/loading/loading.gif" data-original="/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E8%AF%84%E4%BB%B7%E6%A0%87%E5%87%86%5C20230320110308.png"></p>
 </blockquote>
 <p>混淆矩阵的指标</p>
 <blockquote>
@@ -342,11 +342,11 @@
 <p>$$<br>TPR&#x3D;\frac{TP}{TP+FN}&#x3D;\frac{4}{4+0}<br>$$</p>
 <p>$$<br>FPR&#x3D;\frac{FP}{FP+TN}&#x3D;\frac{4}{4+0}<br>$$</p>
 <p>这样的话我们就可以在ROC曲线上标记一个点，通过不断的移动阈值我们就可以得到一个ROC曲线<br>因此我们可以得到：</p>
-<p><img src="/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E8%AF%84%E4%BB%B7%E6%A0%87%E5%87%86/1679811953429.png" alt="1679811953429"></p>
+<p><img src="/images/loading/loading.gif" data-original="/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E8%AF%84%E4%BB%B7%E6%A0%87%E5%87%86/1679811953429.png" alt="1679811953429"></p>
 </blockquote>
 <p>这样的话我们就可以得到一条ROC曲线，但是问题有来了要是我们得到另外一条ROC曲线，也就是说我们现在有两条ROC曲线，那么我们应该怎么判断呢？这就是接下来要说的AUC值，问题又来了怎么知道AUC的值呢？—–&gt;计算面积阿伟。没错就是计算面积，我们可以通过计算不同ROC曲线与FPR的面积进而得到不同AUC的值，从而判断哪条ROC曲线更加的好！</p>
 <p>那么问题来了上述分析都是针对二分类问题，实际生活中并没有那么多非黑即白的事情，更多的是<strong>多分类的问题</strong>，什么是多分类？维基百科给出的定义：多元分类是将实例分配到多个（多于两个）类别中的其中一个（将实例分配到两个类别中的其中一个被称为二分类）。显然，分类算法可以分为二分类和多分类两种，而多分类算法可以通过将其转化为多个二分类来实现。简单从字面理解很容易，比如说给出大量的交通图片，交给计算机去将这些图片进行分类，划分什么是🚗🚆✈等等，那么对于多分类问题其评价指标如何？上述分析方法是否依旧行得通？对于多元分类我们可以将多分类化成二分类问题，比如说下图：</p>
-<p><img src="/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E8%AF%84%E4%BB%B7%E6%A0%87%E5%87%86/1679811981387.png" alt="1679811981387"></p>
+<p><img src="/images/loading/loading.gif" data-original="/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E8%AF%84%E4%BB%B7%E6%A0%87%E5%87%86/1679811981387.png" alt="1679811981387"></p>
 <h2 id="二、回归算法评价指标"><a href="#二、回归算法评价指标" class="headerlink" title="二、回归算法评价指标"></a>二、回归算法评价指标</h2><h3 id="1、RMSE均方根误差"><a href="#1、RMSE均方根误差" class="headerlink" title="1、RMSE均方根误差"></a>1、RMSE均方根误差</h3><p>$$<br>RMSE(X,h)&#x3D;\sqrt[2]{\frac{1}{m}\displaystyle\sum^{m}_{i&#x3D;1}(h(x_i)-y_i)^2}<br>$$</p>
 <h3 id="2、MSE均方误差"><a href="#2、MSE均方误差" class="headerlink" title="2、MSE均方误差"></a>2、MSE均方误差</h3><p>$$<br>MSE(X,h)&#x3D;\frac{1}{m}\displaystyle\sum^{m}_{i&#x3D;1}(h(x_i)-y_i)^2<br>$$</p>
 <h3 id="3、MAE平均绝对误差"><a href="#3、MAE平均绝对误差" class="headerlink" title="3、MAE平均绝对误差"></a>3、MAE平均绝对误差</h3><p>$$<br>MAE(X,h)&#x3D;\frac{1}{m}\displaystyle\sum^{m}_{i&#x3D;1}(|h(x_i|)-y_i|<br>$$</p>
@@ -563,5 +563,18 @@
 
   
 
-</body>
+
+        <style>
+            [bg-lazy] {
+                background-image: none !important;
+                background-color: #eee !important;
+            }
+        </style>
+        <script>
+            window.imageLazyLoadSetting = {
+                isSPA: false,
+                preloadRatio: 1,
+                processImages: null,
+            };
+        </script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});</script><script>!function(r){r.imageLazyLoadSetting.processImages=t;var e=r.imageLazyLoadSetting.isSPA,n=r.imageLazyLoadSetting.preloadRatio||1,c=a();function a(){var t=Array.prototype.slice.call(document.querySelectorAll("img[data-original]")),e=Array.prototype.slice.call(document.querySelectorAll("[bg-lazy]"));return t.concat(e)}function t(){e&&(c=a());for(var t,o=0;o<c.length;o++)0<=(t=(t=c[o]).getBoundingClientRect()).bottom&&0<=t.left&&t.top<=(r.innerHeight*n||document.documentElement.clientHeight*n)&&function(){var t,e,n,a,i=c[o];e=function(){c=c.filter(function(t){return i!==t}),r.imageLazyLoadSetting.onImageLoaded&&r.imageLazyLoadSetting.onImageLoaded(i)},(t=i).hasAttribute("bg-lazy")?(t.removeAttribute("bg-lazy"),e&&e()):(n=new Image,a=t.getAttribute("data-original"),n.onload=function(){t.src=a,t.removeAttribute("data-original"),e&&e()},t.src!==a&&(n.src=a))}()}function i(){clearTimeout(t.tId),t.tId=setTimeout(t,500)}t(),document.addEventListener("scroll",i),r.addEventListener("resize",i),r.addEventListener("orientationchange",i)}(this);</script></body>
 </html>

@@ -252,7 +252,7 @@
       
         <h1 id="1、🗡岭回归原理"><a href="#1、🗡岭回归原理" class="headerlink" title="1、🗡岭回归原理"></a>1、🗡岭回归原理</h1><h2 id="1-1-回归"><a href="#1-1-回归" class="headerlink" title="1.1 回归"></a>1.1 回归</h2><p>对于最小二乘法添加“惩罚因子”避免最小二乘法过拟合出现：</p>
 <p>$$<br>最小二乘法：min\sum_{i&#x3D;1}^{n}(\hat{y_i}-y_i)^2,其中\hat{y}&#x3D;wx,w：为系数矩阵\<br>添加“惩罚因子”：min\sum_{i&#x3D;1}^{n}(\hat{y_i}-y_i)^2+\alpha||w||^2,其中\hat{y}&#x3D;wx,w：为系数矩阵<br>$$</p>
-<p>其中参数$\alpha$控制收缩，收缩量越大，因此系数对共线性变得越平稳<br><img src="/image/%E7%BA%BF%E6%80%A7%E6%A8%A1%E5%9E%8B/1683273841368.png" alt="1683273841368"></p>
+<p>其中参数$\alpha$控制收缩，收缩量越大，因此系数对共线性变得越平稳<br><img src="/images/loading/loading.gif" data-original="/image/%E7%BA%BF%E6%80%A7%E6%A8%A1%E5%9E%8B/1683273841368.png" alt="1683273841368"></p>
 <h2 id="1-2-分类"><a href="#1-2-分类" class="headerlink" title="1.2 分类"></a>1.2 分类</h2><p>岭回归分类操作：对于二分类问题，将分类变量转化为{-1,1}进而使得问题转化为回归问题</p>
 <h1 id="2、-🐕岭回归代码"><a href="#2、-🐕岭回归代码" class="headerlink" title="2、 🐕岭回归代码"></a>2、 🐕岭回归代码</h1><h2 id="2-1-岭回归–回归"><a href="#2-1-岭回归–回归" class="headerlink" title="2.1 岭回归–回归"></a>2.1 岭回归–回归</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.linear_model <span class="keyword">import</span> Ridge</span><br></pre></td></tr></table></figure>
 <p><strong>参数解释：</strong><br>1、alpha:{float, ndarray of shape (n_targets,)},default&#x3D;1.0</p>
@@ -538,5 +538,18 @@
 
   
 
-</body>
+
+        <style>
+            [bg-lazy] {
+                background-image: none !important;
+                background-color: #eee !important;
+            }
+        </style>
+        <script>
+            window.imageLazyLoadSetting = {
+                isSPA: false,
+                preloadRatio: 1,
+                processImages: null,
+            };
+        </script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});</script><script>!function(r){r.imageLazyLoadSetting.processImages=t;var e=r.imageLazyLoadSetting.isSPA,n=r.imageLazyLoadSetting.preloadRatio||1,c=a();function a(){var t=Array.prototype.slice.call(document.querySelectorAll("img[data-original]")),e=Array.prototype.slice.call(document.querySelectorAll("[bg-lazy]"));return t.concat(e)}function t(){e&&(c=a());for(var t,o=0;o<c.length;o++)0<=(t=(t=c[o]).getBoundingClientRect()).bottom&&0<=t.left&&t.top<=(r.innerHeight*n||document.documentElement.clientHeight*n)&&function(){var t,e,n,a,i=c[o];e=function(){c=c.filter(function(t){return i!==t}),r.imageLazyLoadSetting.onImageLoaded&&r.imageLazyLoadSetting.onImageLoaded(i)},(t=i).hasAttribute("bg-lazy")?(t.removeAttribute("bg-lazy"),e&&e()):(n=new Image,a=t.getAttribute("data-original"),n.onload=function(){t.src=a,t.removeAttribute("data-original"),e&&e()},t.src!==a&&(n.src=a))}()}function i(){clearTimeout(t.tId),t.tId=setTimeout(t,500)}t(),document.addEventListener("scroll",i),r.addEventListener("resize",i),r.addEventListener("orientationchange",i)}(this);</script></body>
 </html>
