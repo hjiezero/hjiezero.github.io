@@ -959,4 +959,43 @@
         <tag>hexo备份</tag>
       </tags>
   </entry>
+  <entry>
+    <title>机器学习可解释性--LIME</title>
+    <url>/posts/cd6f0230/</url>
+    <content><![CDATA[<p>trusting a prediction or trusting a model<br>如果⼀个机器学习模型运⾏良好，为什么我们仅仅信任该模型⽽忽略为什么做出特定的决策呢？<br>诸如分类准确性之类的单⼀指标⽆法完整地描述⼤多数实际任务。当涉及到预测模型时，需要作出权衡：<strong>你是只想知道预测是什么？</strong>例如，客户流失的概率或某种药物对病⼈的疗效。<strong>还是想知道为什么做出这样的预测？</strong>这种情况下可能为了可解释性付出预测性能下降的代价。在某些情况下，你不必关⼼为什么要做出这样的预测，只要知道模型在测试数据集的预测性能良好就⾜够了。但是在其他情况下，了解 “为什么” 可以帮助你更多地了解问题、数据以及模型可能失败的原因。有些模型可能不需要解释，因为它们是在低风险的环境中使⽤的，这意味着错误不会造成严重后果 (例如，电影推荐系统)，或者该⽅法已经被⼴泛研究和评估 (例如，光学字符识别 OCR)。对可解释性的需求来⾃问题形式化的不完整性，这意味着对于某些问题或任务，仅仅获得预测结果是不够的。该模型还必须解释是怎么获得这个预测的，因为正确的预测只部分地解决了你的原始问题。</p>
+<span id="more"></span>
+<h1 id="机器学习可解释性"><a href="#机器学习可解释性" class="headerlink" title="机器学习可解释性"></a>机器学习可解释性</h1><p>需要建立一个解释器来解释黑盒模型，并且这个解释器必须满足以下特征：<br><strong>可解释性</strong><br>要求解释器的模型与特征都必须是可解释的，像决策树、线性模型都是很适合拿来解释的模型；而可解释的模型必须搭配可解释的特征，才是真正的可解释性，让不了解机器学习的人也能通过解释器理解模型。<br><strong>局部保真度</strong><br>既然我们已经使用了可解释的模型与特征，就不可能期望简单的可解释模型在效果上等同于复杂模型（比如原始CNN分类器）。所以解释器不需要在全局上达到复杂模型的效果，但至少在局部上效果要很接近，而此处的局部代表我们想观察的那个样本的周围。<br><strong>与模型无关</strong><br>这里所指的是与复杂模型无关，换句话说无论多复杂的模型，像是SVM或神经网络，该解释器都可以工作。<br>除了传统的特征重要性排序外，ICE、PDP、SDT、LIME、SHAP都是揭开机器学习模型黑箱的有力工具。</p>
+<ul>
+<li>特征重要性计算依据某个特征进行决策树分裂时，分裂前后的信息增益（基尼系数）；</li>
+<li>ICE和PDP考察某项特征的不同取值对模型输出值的影响；</li>
+<li>SDT用单棵决策树解释其它更复杂的机器学习模型；</li>
+<li>LIME的核心思想是对于每条样本，寻找一个更容易解释的代理模型解释原模型；</li>
+<li>SHAP的概念源于博弈论，核心思想是计算特征对模型输出的边际贡献；</li>
+</ul>
+<hr>
+<h1 id="机器学习可解释性–LIME"><a href="#机器学习可解释性–LIME" class="headerlink" title="机器学习可解释性–LIME"></a>机器学习可解释性–LIME</h1><h2 id="机器学习的解释性"><a href="#机器学习的解释性" class="headerlink" title="机器学习的解释性"></a>机器学习的解释性</h2><p>Trusting a prediction, i.e. whether a user trusts an individual prediction sufficiently to take some action based on it, and  trusting a model, i.e. whether the user trusts a model to behave in reasonable ways if deployed.” (Ribeiro 等, 2016, p. 1135) </p>
+<blockquote>
+<p>信任一个预测，即用户是否充分信任一个个体的预测，并在此基础上采取行动；信任一个模型，即用户是否信任一个模型在部署后的行为是否合</p>
+</blockquote>
+<p>LIME, an algorithm that can explain the predictions of any classifier or regressor in a faithful way, by approximating it locally with an interpretable model.” (Ribeiro 等, 2016, p. 1135)</p>
+<blockquote>
+<p>LIME是一种算法，通过用可解释的模型对其进行局部近似，可以忠实地解释任何分类器或回归器的预测。</p>
+</blockquote>
+<p>所谓机器学习可解释性就是：我们建立了一个模型预测得到了一个结果，但是你这个<strong>结果真的可以让人信服吗</strong>（从实际生产角度考虑，不从模型的准确率的角度考虑）？这个<strong>模型的影响因素</strong>又是什么呢？如下图<a href="%5Bhttps://doi.org/10.1145/2939672.2939778%5D(https://doi.org/10.1145/2939672.2939778)">^2</a>：<br><img data-src="https://s2.loli.net/2023/06/04/Pm6VexD4KinwA2l.png" alt="机器学习可解释性--LIME[^2]" style="zoom:60%;"></p>
+<p>我们通过模型预测流感（flu），通过LIME得到的解释是：喷嚏（sneeze）、头疼（headche）对流感预测是“支持”，而没有疲劳（no fatigue）是“反对”。我们将模型结果交给决策者（human make decision）让她对模型结果做判断。<strong>机器学习</strong>只能作为我们辅助决策的工具，对于实际决策还是依靠<strong>人类</strong>。而我们的决策的依据就是<strong>解释</strong>（explainer），我们根据给出的解释来判别模型是否可作为我们的决策依据。</p>
+<h2 id="LIME原理"><a href="#LIME原理" class="headerlink" title="LIME原理"></a>LIME原理</h2><p><strong>LIME（Local Interpretable Model-agnostic Explanations）</strong>。该模型是一个局部可解释模型，并且是一个与模型自身的无关的可解释方法。<strong>使用训练的局部代理模型来对单个样本进行解释</strong>。假设对于需要解释的黑盒模型，取关注的实例样本，在其附近进行扰动生成新的样本点，并得到黑盒模型的预测值，使用新的数据集训练可解释的模型（如线性回归、决策树），得到对黑盒模型良好的局部近似<a href="%5Bhttps://blog.csdn.net/iqdutao/article/details/108397239%5D(https://blog.csdn.net/iqdutao/article/details/108397239)">^1</a>。</p>
+<p>“The overall goal of LIME is to identify an interpretable model over the interpretable representation that is locally faithful to the classifier.” (Ribeiro 等, 2016, p. 1137) </p>
+<blockquote>
+<p>LIME的总体目标是基于局部可解释性模型 在局部忠实于分类器的可解释表示上识别一个可解释模型。</p>
+</blockquote>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1>]]></content>
+      <categories>
+        <category>机器学习</category>
+      </categories>
+      <tags>
+        <tag>机器学习</tag>
+        <tag>文献笔记</tag>
+        <tag>机器学习可解释性</tag>
+      </tags>
+  </entry>
 </search>
