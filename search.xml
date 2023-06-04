@@ -1,0 +1,829 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title></title>
+    <url>/posts/1/</url>
+    <content><![CDATA[]]></content>
+  </entry>
+  <entry>
+    <title>多层感知机（MLP）</title>
+    <url>/posts/1497842915/</url>
+    <content><![CDATA[<h1 id="多层感知机（MLP）"><a href="#多层感知机（MLP）" class="headerlink" title="多层感知机（MLP）"></a>多层感知机（MLP）</h1><blockquote>
+<p><strong>本文章基于3Blue1Brown视频并且结合自己学习总结的笔记</strong></p>
+</blockquote>
+<blockquote>
+<p>视频链接：<a href="https://www.youtube.com/watch?v=aircAruvnKk">https://www.youtube.com/watch?v=aircAruvnKk</a></p>
+</blockquote>
+<blockquote>
+<p>本文只能帮你快速建立对知识理解，如果想细入了解知识——自己查阅文献以及书籍</p>
+<ul>
+<li>自己也在学习深度学习（花书），会不断更新此文章，尽可能的让这篇文章完美</li>
+</ul>
+</blockquote>
+<h2 id="引入"><a href="#引入" class="headerlink" title="引入"></a>引入</h2><p>以<strong>手写字体识别为例</strong>，我们人类可以很容易对一个手写字体进行识别比如下图：<br><img src="/MLP(%E5%A4%9A%E5%B1%82%E6%84%9F%E7%9F%A5%E6%9C%BA)/1680678137054.png" alt="1680678137054"><br>我们可以十分自信的说：这个数字是3！但是对于计算机并非如此！计算机并没有如同人类一样的视觉细胞，那么怎么让计算机认识这数字呢？我们在<strong>K近邻算法</strong>中有一个手写字体识别实验，我们是直接将数字<strong>进行2值化</strong></p>
+<blockquote>
+<p>将数字转化为0-1，如下图：</p>
+<p><img src="/MLP(%E5%A4%9A%E5%B1%82%E6%84%9F%E7%9F%A5%E6%9C%BA)/1680678374250.png" alt="1680678374250"></p>
+</blockquote>
+<p>然后将32x32的图像直接转化为1x1024，而后利用K近邻算法进行判别。这不妨是一个很好的办法，不过在数据量十分大的时候，计算会特别慢，另外一种办法直接将数字转化为不同的<strong>灰度值矩阵</strong>，如下：<img src="/MLP(%E5%A4%9A%E5%B1%82%E6%84%9F%E7%9F%A5%E6%9C%BA)/1680679926805.png" alt="1680679926805"></p>
+<p>我们后续介绍多层感知机也是灰度值变换后图像进行判别。</p>
+<h2 id="什么是多层感知机"><a href="#什么是多层感知机" class="headerlink" title="什么是多层感知机"></a>什么是多层感知机</h2><p>在介绍多层感知机前（不解释定义之类的，都可以自行百度），我们先了解<strong>单层神经网络</strong>的基本结构，<strong>单层神经网络</strong>一般由：输入层、输出层构成。如下：</p>
+<p><img src="/MLP(%E5%A4%9A%E5%B1%82%E6%84%9F%E7%9F%A5%E6%9C%BA)/1680679100906.png" alt="1680679100906"></p>
+<p>先暂时不解释各个层的作用，我们继续介绍<strong>多层感知机</strong>：</p>
+<p><img src="/MLP(%E5%A4%9A%E5%B1%82%E6%84%9F%E7%9F%A5%E6%9C%BA)/1680679187931.png" alt="1680679187931"></p>
+<p>对比两图最明显的区别就是<strong>多层感知机</strong>相较于<strong>单层神经网络</strong>额外的多了一个<strong>隐藏层</strong>。是不是该解释一下1每一层的作用了呢？不！（直接对概念下定义是很难理解的）我们借助我们引入的例子来对没一层进行解释。我们设计一个多层感知机模型如下（为什么这样设计后续解释，从左至右：<strong>输入层（784）–&gt;隐藏层（n）–&gt;隐藏层（n）–&gt;输出层（10）</strong>）：</p>
+<ul>
+<li><strong>括号里面数字代表层的数目</strong></li>
+</ul>
+<p><img src="/MLP(%E5%A4%9A%E5%B1%82%E6%84%9F%E7%9F%A5%E6%9C%BA)/1680679616132.png" alt="1680679616132"></p>
+<p>引入中我们已经提到手写数字已经被我们转化为一个<strong>28x28的灰度值矩阵</strong>，下面开始解释每一层都在干些什么事情！</p>
+<hr>
+<p><strong>输入层</strong></p>
+<p>我们知道数字已经转化为了一个28x28的灰度值矩阵，我们类似K近邻算法将其再次转为为1x784的矩阵，我们将矩阵中的每一个数字（灰度值）作为我们的<strong>神经元</strong>，也就是说我们拥有784个神经元（也就解释了为什么要设计输入层的数目为784）。</p>
+<hr>
+<p><strong>输出层</strong></p>
+<p>我们知道阿拉伯数字只有0-9（别抬杠说10，难道不是由0-1构成），那么是不是我们数据在经过处理之后返回的结果也应该是0-9，这0-9也就构成了我们的输出层（也就解释了输出层为什么是10）</p>
+<hr>
+<p><strong>隐藏层</strong></p>
+<p>至于隐藏层为什么设计两层，而且每层的数目是n。其实很容易解释，首先你不妨在纸上写任意几个数字（假如你写的是数字9），手写数字9是不是大体上可以分为两部分：9的头部的圆、9的尾部的竖线。依次类推任意数字我们都可以才分成几个部分组成（尽管由相似但是不影响我们对数字识别）。好啦假设我们已经对数字划分完毕，已经划分若干组成成分——我们也就构成了我们<strong>第二层隐藏层</strong>，依次类推是不是还可以继续细分呢？9的头部的圆（o）是不是可以细分其他样式呢？——<strong>第一层隐藏层</strong>。</p>
+<hr>
+<p>解释完各个层都在干嘛，你也没解释我们怎么识别数字呀！别急！接下来就解释！我们假设我们在<strong>第二层隐藏层</strong>得到了一个圈和一个竖线通过组合是不是可以得到数字9？为什么不是数字6呢？我们假设第二次隐藏层的数目是$a_1…..a_n（每一个a_i代表不同数字组成部分）$，细心的你肯定已经发现了不同层之间有着许多<strong>线进行连接</strong>，他们是干嘛的呢？<strong>权重</strong>，正是因为这些权重才能保证我们可以识别数字是9而不是6。以此类推第一场隐藏层也如此！</p>
+<p>以上都是一些口语化解释并没有涉及过多的专业名词，下面开始解释一些理论上的内容！</p>
+<h2 id="激活函数"><a href="#激活函数" class="headerlink" title="激活函数"></a>激活函数</h2><p>激活函数判别来确定神经元是否应该被激活，常见三类激活函数如下：</p>
+<h3 id="sigmoid函数"><a href="#sigmoid函数" class="headerlink" title="sigmoid函数"></a>sigmoid函数</h3><p>$$<br>sigmoid(x)&#x3D;\frac{1}{1+exp(-z)}<br>$$</p>
+<p>$$<br>z&#x3D;w_1a_1……w_na_n+b_0<br>$$</p>
+<p>$b_0$代表偏置，用于判别激活函数为多少情况下神经元是否被激活<br>函数图像如下：<br><img src="/MLP(%E5%A4%9A%E5%B1%82%E6%84%9F%E7%9F%A5%E6%9C%BA)/1680682161756.png" alt="1680682161756"></p>
+<h3 id="Relu函数"><a href="#Relu函数" class="headerlink" title="Relu函数"></a>Relu函数</h3><p>$$<br>Relu(z)&#x3D;max(x,0)<br>$$</p>
+<p>函数图像如下：<br><img src="/MLP(%E5%A4%9A%E5%B1%82%E6%84%9F%E7%9F%A5%E6%9C%BA)/1680682133055.png" alt="1680682133055"></p>
+<p>所有小于0的数字都处理为0</p>
+<h3 id="tanh函数"><a href="#tanh函数" class="headerlink" title="tanh函数"></a>tanh函数</h3><p>$$<br>tanh(z)&#x3D;\frac{1+exp(-2z)}{1+exp(-2z)}<br>$$</p>
+<p>函数图像如下：<br><img src="/MLP(%E5%A4%9A%E5%B1%82%E6%84%9F%E7%9F%A5%E6%9C%BA)/1680682185279.png" alt="1680682185279"></p>
+]]></content>
+      <categories>
+        <category>深度学习</category>
+      </categories>
+      <tags>
+        <tag>深度学习</tag>
+        <tag>多层感知机</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>深度学习——pytorch学习</title>
+    <url>/posts/1867073817/</url>
+    <content><![CDATA[<h1 id="Pytorch学习"><a href="#Pytorch学习" class="headerlink" title="Pytorch学习"></a>Pytorch学习</h1><p>[toc]</p>
+<h2 id="pytorch基本操作"><a href="#pytorch基本操作" class="headerlink" title="pytorch基本操作"></a>pytorch基本操作</h2><p>pytorch使用前首先了解一个一个概念：张量。个人觉得没必要去了解他到底是一种什么东西，可以将其与我们numpy中数组一起进行了解</p>
+<blockquote>
+<p>张量可以看作是⼀个多维数组。标量可以看作是0维张量，向量可以看作1维张量，矩阵可以看作是⼆维张量</p>
+</blockquote>
+<p>那么我们后续也都是围绕张量进行展开了解</p>
+<h3 id="数据操作"><a href="#数据操作" class="headerlink" title="数据操作"></a>数据操作</h3><h4 id="创建张量"><a href="#创建张量" class="headerlink" title="创建张量"></a>创建张量</h4><p><img src="/pytorch%E5%AD%A6%E4%B9%A0/1680163291680.png" alt="1680163291680"></p>
+<blockquote>
+<p>注意使用pytorch就不得不了解一大特点：利用GPU计算。</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">&gt;&gt;a = torch.ones(<span class="number">5</span>,<span class="number">3</span>,device=<span class="string">&#x27;cuda&#x27;</span>,dtype=torch.float64)<span class="comment">#设置类型，gpu</span></span><br><span class="line">&gt;&gt;a</span><br><span class="line">tensor([[<span class="number">1.</span>, <span class="number">1.</span>, <span class="number">1.</span>],</span><br><span class="line">        [<span class="number">1.</span>, <span class="number">1.</span>, <span class="number">1.</span>],</span><br><span class="line">        [<span class="number">1.</span>, <span class="number">1.</span>, <span class="number">1.</span>],</span><br><span class="line">        [<span class="number">1.</span>, <span class="number">1.</span>, <span class="number">1.</span>],</span><br><span class="line">        [<span class="number">1.</span>, <span class="number">1.</span>, <span class="number">1.</span>]], device=<span class="string">&#x27;cuda:0&#x27;</span>, dtype=torch.float64)</span><br><span class="line">&gt;&gt;<span class="built_in">print</span>(a.size(),a.shape)</span><br><span class="line">torch.Size([<span class="number">5</span>, <span class="number">3</span>]) torch.Size([<span class="number">5</span>, <span class="number">3</span>])</span><br></pre></td></tr></table></figure>
+
+<h4 id="操作"><a href="#操作" class="headerlink" title="操作"></a>操作</h4><ul>
+<li><strong>加法运算</strong></li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="built_in">print</span>(x+y)</span><br><span class="line"><span class="built_in">print</span>(torch.add(x,y))</span><br><span class="line"><span class="built_in">print</span>(y.add(x))</span><br><span class="line">-&gt;tensor([[<span class="number">0.9841</span>, <span class="number">1.1514</span>, <span class="number">1.0982</span>],</span><br><span class="line">        [<span class="number">0.9974</span>, <span class="number">0.4662</span>, <span class="number">1.5250</span>],</span><br><span class="line">        [<span class="number">0.5120</span>, <span class="number">0.3424</span>, <span class="number">1.6973</span>],</span><br><span class="line">        [<span class="number">1.1808</span>, <span class="number">1.1172</span>, <span class="number">1.6786</span>],</span><br><span class="line">        [<span class="number">1.9113</span>, <span class="number">1.3679</span>, <span class="number">1.3846</span>]])</span><br><span class="line">三个结果都一样</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p><strong>索引</strong><br>索引出来的结果与原数据共享内存，也即修改⼀个，另⼀个会跟着修改。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">b = x[<span class="number">0</span>:<span class="number">1</span>]</span><br><span class="line"><span class="built_in">print</span>(b)</span><br><span class="line">-&gt;tensor([[<span class="number">0.6847</span>, <span class="number">0.9743</span>, <span class="number">0.9259</span>]])</span><br><span class="line">b +=<span class="number">2</span></span><br><span class="line"><span class="built_in">print</span>(x[<span class="number">0</span>,:])</span><br><span class="line">-&gt;tensor([<span class="number">2.6847</span>, <span class="number">2.9743</span>, <span class="number">2.9259</span>])</span><br></pre></td></tr></table></figure>
+
+<p><img src="/pytorch%E5%AD%A6%E4%B9%A0/1680164219080.png" alt="1680164219080"></p>
+</li>
+<li><p><strong>改变形状</strong></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">c = x.view(<span class="number">15</span>)</span><br><span class="line">c</span><br><span class="line">-&gt;tensor([<span class="number">2.6847</span>, <span class="number">2.9743</span>, <span class="number">2.9259</span>, <span class="number">0.7470</span>, <span class="number">0.2349</span>, <span class="number">0.6642</span>, <span class="number">0.3026</span>, <span class="number">0.1884</span>, <span class="number">0.9414</span>,</span><br><span class="line">        <span class="number">0.4747</span>, <span class="number">0.8469</span>, <span class="number">0.7788</span>, <span class="number">0.9762</span>, <span class="number">0.4373</span>, <span class="number">0.6214</span>])</span><br><span class="line">c +=<span class="number">1</span></span><br><span class="line">x</span><br><span class="line">-&gt;tensor([[<span class="number">3.6847</span>, <span class="number">3.9743</span>, <span class="number">3.9259</span>],</span><br><span class="line">        [<span class="number">1.7470</span>, <span class="number">1.2349</span>, <span class="number">1.6642</span>],</span><br><span class="line">        [<span class="number">1.3026</span>, <span class="number">1.1884</span>, <span class="number">1.9414</span>],</span><br><span class="line">        [<span class="number">1.4747</span>, <span class="number">1.8469</span>, <span class="number">1.7788</span>],</span><br><span class="line">        [<span class="number">1.9762</span>, <span class="number">1.4373</span>, <span class="number">1.6214</span>]])</span><br></pre></td></tr></table></figure>
+
+<p>利用view()函数返回的新tensor与源tensor共享内存（其实是同⼀个tensor），也即更改其中的⼀个，另<br>外⼀个也会跟着改变。所以如果我们想返回⼀个真正新的副本（即不共享内存）该怎么办呢？Pytorch还提供了⼀个reshape()可以改变形状，但是此函数并不能保证返回的是其拷⻉，所以不推荐使⽤。推荐先<br>⽤ clone 创造⼀个副本。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">x_clone = x.clone()</span><br><span class="line">x_clone +=<span class="number">1</span></span><br><span class="line"><span class="built_in">print</span>(x_clone, <span class="string">&#x27;\n&#x27;</span>, x)</span><br><span class="line">-&gt;tensor([[<span class="number">4.6847</span>, <span class="number">4.9743</span>, <span class="number">4.9259</span>],</span><br><span class="line">        [<span class="number">2.7470</span>, <span class="number">2.2349</span>, <span class="number">2.6642</span>],</span><br><span class="line">        [<span class="number">2.3026</span>, <span class="number">2.1884</span>, <span class="number">2.9414</span>],</span><br><span class="line">        [<span class="number">2.4747</span>, <span class="number">2.8469</span>, <span class="number">2.7788</span>],</span><br><span class="line">        [<span class="number">2.9762</span>, <span class="number">2.4373</span>, <span class="number">2.6214</span>]]) </span><br><span class="line"> tensor([[<span class="number">3.6847</span>, <span class="number">3.9743</span>, <span class="number">3.9259</span>],</span><br><span class="line">        [<span class="number">1.7470</span>, <span class="number">1.2349</span>, <span class="number">1.6642</span>],</span><br><span class="line">        [<span class="number">1.3026</span>, <span class="number">1.1884</span>, <span class="number">1.9414</span>],</span><br><span class="line">        [<span class="number">1.4747</span>, <span class="number">1.8469</span>, <span class="number">1.7788</span>],</span><br><span class="line">        [<span class="number">1.9762</span>, <span class="number">1.4373</span>, <span class="number">1.6214</span>]])</span><br></pre></td></tr></table></figure></li>
+<li><p><strong>线性代数</strong></p>
+<p><img src="/pytorch%E5%AD%A6%E4%B9%A0/1680164657109.png" alt="1680164657109"></p>
+<blockquote>
+<p>官方文档：<a href="https://pytorch.org/docs/stable/tensors.html">torch.Tensor — PyTorch 2.0 documentation</a></p>
+</blockquote>
+</li>
+<li><p><strong>广播机制</strong><br>线性代数告诉我们，要是两个矩阵形状不同是不可以直接相加的，但是pytorch的广播机制可以实现此类计算。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">x = torch.arange(<span class="number">1</span>, <span class="number">3</span>).view(<span class="number">1</span>, <span class="number">2</span>)</span><br><span class="line"><span class="built_in">print</span>(x)</span><br><span class="line">y = torch.arange(<span class="number">1</span>, <span class="number">4</span>).view(<span class="number">3</span>, <span class="number">1</span>)</span><br><span class="line"><span class="built_in">print</span>(y)</span><br><span class="line"><span class="built_in">print</span>(x + y)</span><br><span class="line">-&gt;tensor([[<span class="number">1</span>, <span class="number">2</span>]])</span><br><span class="line">tensor([[<span class="number">1</span>],</span><br><span class="line">        [<span class="number">2</span>],</span><br><span class="line">        [<span class="number">3</span>]])</span><br><span class="line">tensor([[<span class="number">2</span>, <span class="number">3</span>],</span><br><span class="line">        [<span class="number">3</span>, <span class="number">4</span>],</span><br><span class="line">        [<span class="number">4</span>, <span class="number">5</span>]])</span><br></pre></td></tr></table></figure>
+
+<p>计算过程中，由于x，y的形状是不相同的，通过广播机制，会将x进行拓展，也就是将x变成3x2，y变成3x2而后再进行计算。</p>
+</li>
+</ul>
+<h3 id="tensor和numpy相互转换"><a href="#tensor和numpy相互转换" class="headerlink" title="tensor和numpy相互转换"></a>tensor和numpy相互转换</h3><p>我们很容易⽤ numpy() 和 from_numpy() 将 Tensor 和NumPy中的数组相互转换。但是需要注意的⼀<br>点是： <strong>这两个函数所产⽣的的 Tensor 和NumPy中的数组共享相同的内存（所以他们之间的转换很<br>快），改变其中⼀个时另⼀个也会改变！！！</strong></p>
+<blockquote>
+<p>还有⼀个常⽤的将NumPy中的array转换成 Tensor 的⽅法就是 torch.tensor() , 需要注意的<br>是，此⽅法总是会进⾏数据拷⻉（就会消耗更多的时间和空间），所以返回的 Tensor 和原来的数<br>据不再共享内</p>
+</blockquote>
+<ul>
+<li>numpy()<br>将tensor转换为numpy形式</li>
+<li>torch.from_numpy()<br>将numpy转换为tensor</li>
+</ul>
+<h2 id="自动求梯度"><a href="#自动求梯度" class="headerlink" title="自动求梯度"></a>自动求梯度</h2><blockquote>
+<p><a href="https://pytorch.org/tutorials/beginner/blitz/autograd_tutorial.html#sphx-glr-beginner-blitz-autograd-tutorial-py">A Gentle Introduction to torch.autograd — PyTorch Tutorials 2.0.0+cu117 documentation</a></p>
+</blockquote>
+<p>在生成tensor时候我们添加属性 (requires_grad&#x3D;True )，它将开始追踪(track)在其上的所有操作（这样就可以利⽤链式法则进⾏梯度传播了）。完成计算后，可以调⽤.backward() 来完成所有梯度计算。此Tensor的梯度将累积到.grad 属性中。</p>
+<p>如果不想要被继续追踪，可以调⽤ .detach() 将其从追踪记录中分离出来，这样就可以防⽌将来的计算被追踪，这样梯度就传不过去了。此外，还可以⽤ with torch.no_grad() 将不想被追踪的操作代码块包裹起来，这种⽅法在评估模型的时候很常⽤，因为在评估模型时，我们并不需要计算可训练参数（requires_grad&#x3D;True）的梯度。</p>
+<blockquote>
+<p>通俗的来讲就是我们添加 requires_grad 可以记录在张量上所进行的所有的操作</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">x = torch.ones(<span class="number">2</span>,<span class="number">2</span>,requires_grad=<span class="literal">True</span>)</span><br><span class="line">y = x+ <span class="number">2</span></span><br><span class="line">z = y*y*<span class="number">3</span></span><br><span class="line">p = z.mean()</span><br><span class="line"><span class="built_in">print</span>(p)</span><br><span class="line">-&gt;tensor(<span class="number">27.</span>, grad_fn=&lt;MeanBackward0&gt;)</span><br><span class="line">p.backward()</span><br><span class="line"><span class="built_in">print</span>(x.grad)</span><br><span class="line">-&gt;tensor([[<span class="number">4.5000</span>, <span class="number">4.5000</span>],</span><br><span class="line">        [<span class="number">4.5000</span>, <span class="number">4.5000</span>]])</span><br></pre></td></tr></table></figure>
+
+<p>计算结果怎么来的呢？首先我们知道p所进行的计算如下</p>
+<p>$$<br>p&#x3D;\frac{1}{4}\sum3(x_i+2)^2<br>$$</p>
+<p>$$<br>\dfrac{\partial p}{\partial x}|_{x_i&#x3D;1}&#x3D;\frac{9}{2}&#x3D;4.5<br>$$</p>
+<p>不过在此处需要一个<strong>注意事项</strong>，我们的p必须是一个标量，也就是说p必须是一个数字，不然结果会报错。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">x = torch.tensor([<span class="number">2.</span>, <span class="number">1.</span>], requires_grad=<span class="literal">True</span>)</span><br><span class="line">y = torch.tensor([[<span class="number">1.</span>, <span class="number">2.</span>], [<span class="number">3.</span>, <span class="number">4.</span>]], requires_grad=<span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line">z = torch.mm(x.view(<span class="number">1</span>, <span class="number">2</span>), y)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;z:<span class="subst">&#123;z&#125;</span>&quot;</span>)</span><br><span class="line">z.backward(torch.Tensor([[<span class="number">1.</span>, <span class="number">0</span>]]), retain_graph=<span class="literal">True</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;x.grad: <span class="subst">&#123;x.grad&#125;</span>&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;y.grad: <span class="subst">&#123;y.grad&#125;</span>&quot;</span>)</span><br><span class="line"></span><br><span class="line">--&gt;z:tensor([[<span class="number">5.</span>, <span class="number">8.</span>]], grad_fn=&lt;MmBackward&gt;)</span><br><span class="line">x.grad: tensor([[<span class="number">1.</span>, <span class="number">3.</span>]])</span><br><span class="line">y.grad: tensor([[<span class="number">2.</span>, <span class="number">0.</span>],</span><br><span class="line">        [<span class="number">1.</span>, <span class="number">0.</span>]])</span><br></pre></td></tr></table></figure>
+
+<p>算法解释如下：<br><img src="/pytorch%E5%AD%A6%E4%B9%A0/1680176521877.png" alt="1680176521877"><br>我们在对z进行求梯度的时候，指定了参数[1,0]也就是相对于进行了加权操作</p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://www.w3cschool.cn/article/9034837.html">https://www.w3cschool.cn/article/9034837.html</a></p>
+<p><a href="https://blog.csdn.net/qq_39208832/article/details/117415229">https://blog.csdn.net/qq_39208832/article/details/117415229</a></p>
+<p><a href="https://pytorch.org/tutorials/beginner/blitz/autograd_tutorial.html#sphx-glr-beginner-blitz-autograd-tutorial-py">https://pytorch.org/tutorials/beginner/blitz/autograd_tutorial.html#sphx-glr-beginner-blitz-autograd-tutorial-py</a></p>
+]]></content>
+      <categories>
+        <category>深度学习</category>
+      </categories>
+      <tags>
+        <tag>深度学习</tag>
+        <tag>Pytorch</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>pytorch实现CNN</title>
+    <url>/posts/3220359105/</url>
+    <content><![CDATA[<h1 id="pytorch实现CNN"><a href="#pytorch实现CNN" class="headerlink" title="pytorch实现CNN"></a>pytorch实现CNN</h1><p>nn.Conv2d<br>torch.nn.Conv2d(in_channels, out_channels, kernel_size, stride&#x3D;1, padding&#x3D;0, dilation&#x3D;1, groups&#x3D;1, bias&#x3D;True, padding_mode&#x3D;’zeros’, device&#x3D;None, dtype&#x3D;None)<br><strong>参数解释</strong><br>1、in_channels (int) – 输入图像中的通道数<br>2、out_channels (int) – 卷积产生的通道数<br>3、kernel_size (int or tuple) – 卷积核的大小<br>4、stride (int or tuple, optional) – 卷积的步幅，默认值：1<br>5、padding (int, tuple or str, optional) – 添加到输入的所有四个边的填充，默认值：0<br>6、padding_mode (str, optional) – ‘zeros’, ‘reflect’, ‘replicate’ or ‘circular’，默认: ‘zeros’<br>6、dilation (int or tuple, optional) – 内核元素之间的间距，默认值：1<br>7、groups (int, optional) – 从输入通道到输出通道的阻塞连接数，默认值：1<br>8、bias (bool, optional) – 如果是 “真”，则在输出中增加一个可学习的偏置，默认值： 真  </p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> matplotlib <span class="keyword">import</span> pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> collections</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"><span class="keyword">import</span> torch.nn <span class="keyword">as</span> nn</span><br><span class="line"><span class="keyword">import</span> torch.nn.functional <span class="keyword">as</span> F</span><br><span class="line"><span class="keyword">import</span> torch.optim <span class="keyword">as</span> optim</span><br><span class="line"></span><br><span class="line">torch.set_printoptions(edgeitems=<span class="number">2</span>)</span><br><span class="line">torch.manual_seed(<span class="number">123</span>)</span><br><span class="line">class_names = [<span class="string">&#x27;airplane&#x27;</span>,<span class="string">&#x27;automobile&#x27;</span>,<span class="string">&#x27;bird&#x27;</span>,<span class="string">&#x27;cat&#x27;</span>,<span class="string">&#x27;deer&#x27;</span>,<span class="string">&#x27;dog&#x27;</span>,<span class="string">&#x27;frog&#x27;</span>,<span class="string">&#x27;horse&#x27;</span>,<span class="string">&#x27;ship&#x27;</span>,<span class="string">&#x27;truck&#x27;</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment">#下载数据</span></span><br><span class="line"><span class="keyword">from</span> torchvision <span class="keyword">import</span> datasets, transforms</span><br><span class="line">data_path = <span class="string">&#x27;E:/CIFAR-10/&#x27;</span> </span><br><span class="line">cifar10 = datasets.CIFAR10(</span><br><span class="line">    data_path, train=<span class="literal">True</span>, download=<span class="literal">True</span>,</span><br><span class="line">    transform=transforms.Compose([</span><br><span class="line">        transforms.ToTensor(),</span><br><span class="line">        transforms.Normalize((<span class="number">0.4915</span>, <span class="number">0.4823</span>, <span class="number">0.4468</span>),</span><br><span class="line">                             (<span class="number">0.2470</span>, <span class="number">0.2435</span>, <span class="number">0.2616</span>))</span><br><span class="line">    ]))</span><br><span class="line">cifar10_val = datasets.CIFAR10(</span><br><span class="line">    data_path, train=<span class="literal">False</span>, download=<span class="literal">True</span>,</span><br><span class="line">    transform=transforms.Compose([</span><br><span class="line">        transforms.ToTensor(),</span><br><span class="line">        transforms.Normalize((<span class="number">0.4915</span>, <span class="number">0.4823</span>, <span class="number">0.4468</span>),</span><br><span class="line">                             (<span class="number">0.2470</span>, <span class="number">0.2435</span>, <span class="number">0.2616</span>))</span><br><span class="line">    ]))</span><br><span class="line"><span class="comment">#识别鸟和飞机</span></span><br><span class="line">label_map = &#123;<span class="number">0</span>: <span class="number">0</span>, <span class="number">2</span>: <span class="number">1</span>&#125;</span><br><span class="line">class_names = [<span class="string">&#x27;airplane&#x27;</span>, <span class="string">&#x27;bird&#x27;</span>]</span><br><span class="line">cifar2 = [(img, label_map[label]) <span class="keyword">for</span> img, label <span class="keyword">in</span> cifar10 <span class="keyword">if</span> label <span class="keyword">in</span> [<span class="number">0</span>, <span class="number">2</span>]]</span><br><span class="line">cifar2_val = [(img, label_map[label]) <span class="keyword">for</span> img, label <span class="keyword">in</span> cifar10_val <span class="keyword">if</span> label <span class="keyword">in</span> [<span class="number">0</span>, <span class="number">2</span>]]</span><br><span class="line"><span class="comment">#定义神经网络模型</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Net</span>(nn.Module):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="built_in">super</span>().__init__()</span><br><span class="line">        self.conv1 = nn.Conv2d(<span class="number">3</span>, <span class="number">16</span>, kernel_size=<span class="number">3</span>, padding=<span class="number">1</span>)</span><br><span class="line">        self.act1 = nn.Tanh()</span><br><span class="line">        self.pool1 = nn.MaxPool2d(<span class="number">2</span>)</span><br><span class="line">        self.conv2 = nn.Conv2d(<span class="number">16</span>, <span class="number">8</span>, kernel_size=<span class="number">3</span>, padding=<span class="number">1</span>)</span><br><span class="line">        self.act2 = nn.Tanh()</span><br><span class="line">        self.pool2 = nn.MaxPool2d(<span class="number">2</span>)</span><br><span class="line">        self.fc1 = nn.Linear(<span class="number">8</span> * <span class="number">8</span> * <span class="number">8</span>, <span class="number">32</span>)</span><br><span class="line">        self.act3 = nn.Tanh()</span><br><span class="line">        self.fc2 = nn.Linear(<span class="number">32</span>, <span class="number">2</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">forward</span>(<span class="params">self, x</span>):</span><br><span class="line">        out = self.pool1(self.act1(self.conv1(x)))</span><br><span class="line">        out = self.pool2(self.act2(self.conv2(out)))</span><br><span class="line">        out = out.view(-<span class="number">1</span>, <span class="number">8</span> * <span class="number">8</span> * <span class="number">8</span>)</span><br><span class="line">        out = self.act3(self.fc1(out))</span><br><span class="line">        out = self.fc2(out)</span><br><span class="line">        <span class="keyword">return</span> out</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> datetime  </span><br><span class="line"><span class="comment">#定义损失函数</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">training_loop</span>(<span class="params">n_epochs, optimizer, model, loss_fn, train_loader</span>):</span><br><span class="line">    <span class="keyword">for</span> epoch <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, n_epochs + <span class="number">1</span>): </span><br><span class="line">        loss_train = <span class="number">0.0</span></span><br><span class="line">        <span class="keyword">for</span> imgs, labels <span class="keyword">in</span> train_loader:</span><br><span class="line">            <span class="comment">#利用GPU计算</span></span><br><span class="line">            imgs = imgs.to(<span class="string">&quot;cuda:0&quot;</span>)</span><br><span class="line">            labels = labels.to(<span class="string">&quot;cuda:0&quot;</span>)</span><br><span class="line">            <span class="comment">#计算损失函数</span></span><br><span class="line">            outputs = model(imgs)</span><br><span class="line">            loss = loss_fn(outputs, labels)</span><br><span class="line">            <span class="comment">#随机梯度下降更新参数</span></span><br><span class="line">            optimizer.zero_grad()</span><br><span class="line">            loss.backward()</span><br><span class="line">            optimizer.step()</span><br><span class="line">            loss_train += loss.item()</span><br><span class="line">        <span class="keyword">if</span> epoch == <span class="number">1</span> <span class="keyword">or</span> epoch % <span class="number">10</span> == <span class="number">0</span>:</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&#x27;&#123;&#125; Epoch &#123;&#125;, 训练损失&#123;&#125;&#x27;</span>.<span class="built_in">format</span>(datetime.datetime.now(), epoch,</span><br><span class="line">                loss_train / <span class="built_in">len</span>(train_loader))) </span><br></pre></td></tr></table></figure>
+
+<p>运行</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">train_loader = torch.utils.data.DataLoader(cifar2, batch_size=<span class="number">64</span>,</span><br><span class="line">                                           shuffle=<span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line">model = Net()</span><br><span class="line">model = model.to(<span class="string">&quot;cuda:0&quot;</span>)</span><br><span class="line">optimizer = optim.SGD(model.parameters(), lr=<span class="number">1e-2</span>)</span><br><span class="line">loss_fn = nn.CrossEntropyLoss()</span><br><span class="line"></span><br><span class="line">training_loop(</span><br><span class="line">    n_epochs = <span class="number">100</span>,</span><br><span class="line">    optimizer = optimizer,</span><br><span class="line">    model = model,</span><br><span class="line">    loss_fn = loss_fn,</span><br><span class="line">    train_loader = train_loader,</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>深度学习</category>
+      </categories>
+      <tags>
+        <tag>深度学习</tag>
+        <tag>CNN</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>初识深度学习</title>
+    <url>/posts/3065358813/</url>
+    <content><![CDATA[<h1 id="初识深度学习"><a href="#初识深度学习" class="headerlink" title="初识深度学习"></a>初识深度学习</h1><hr>
+<p><strong>注：</strong></p>
+<p>1、本文为个人学习笔记，所以内容大多比较简练不做过多解释</p>
+<p>2、文章参考书籍：1、《python深度学习》[美] 弗朗索瓦·肖莱　著 张亮 译；2、《深度学习》(花书)</p>
+<p>3、部分内容自己阅读参考文献进行补充</p>
+<p>4、大部分代码都是<strong>基于pytorch</strong>进行编写&lt;先学原理后学代码&gt;</p>
+<p>n、后续用到什么就继续继续补充</p>
+<hr>
+<p>[toc]</p>
+<h2 id="一、初识神经网络"><a href="#一、初识神经网络" class="headerlink" title="一、初识神经网络"></a>一、初识神经网络</h2><h3 id="1-1-神经网络的工作原理"><a href="#1-1-神经网络的工作原理" class="headerlink" title="1.1 神经网络的工作原理"></a>1.1 神经网络的工作原理</h3><p><img src="/%E5%88%9D%E8%AF%86%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/1680779540890.png" alt="1680779540890"></p>
+<ul>
+<li>优化器：随机梯度下降、牛顿法</li>
+<li>层：可以取类比多层感知机模型中的隐藏层</li>
+<li>数据变换：激活函数</li>
+</ul>
+<p>进一步解释见：2.2.3 基于梯度优化</p>
+<h3 id="1-2-神经网络基础知识"><a href="#1-2-神经网络基础知识" class="headerlink" title="1.2 神经网络基础知识"></a>1.2 神经网络基础知识</h3><h4 id="1-2-1-张量"><a href="#1-2-1-张量" class="headerlink" title="1.2.1 张量"></a>1.2.1 张量</h4><p>关于张量的了解其实没必要过多去解释他到底是个什么样子的，python编程过程中可以直接将其与numpy的矩阵一起了解(<strong>下以pytorch为例</strong>)</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> torch</span><br><span class="line">a = torch.ones(<span class="number">3</span>,<span class="number">2</span>)</span><br><span class="line">a</span><br><span class="line">&gt;tensor([[<span class="number">1.</span>, <span class="number">1.</span>],</span><br><span class="line">        [<span class="number">1.</span>, <span class="number">1.</span>],</span><br><span class="line">        [<span class="number">1.</span>, <span class="number">1.</span>]])</span><br></pre></td></tr></table></figure>
+
+<p>但是张量的一些基本性质还是需要了解：</p>
+<ul>
+<li><strong>轴的个数（阶）</strong>。例如，3D 张量有 3 个轴，矩阵有 2 个轴。这在 Numpy 等 Python 库中也叫张量的 ndim。</li>
+<li><strong>形状</strong>。这是一个整数元组，表示张量沿每个轴的维度大小（元素个数）。例如，上述列子就是一个二维的3x2</li>
+<li><strong>数据类型</strong>。这是张量中所包含数据的类型，例如，张量的类型可以是 float32、uint8、float64 等。在极少数情况下，你可能会遇到字符（char）张量。注意，Numpy（以及大多数其他库）中不存在字符串张量，因为张量存储在预先分配的连续内存段中，而字符串的长度是可变的，无法用这种方式存储。</li>
+</ul>
+<blockquote>
+<p><strong>pytorch的具体语法，后续继续补充</strong></p>
+</blockquote>
+<h5 id="1-2-1-1-时间序列数据"><a href="#1-2-1-1-时间序列数据" class="headerlink" title="1.2.1.1 时间序列数据"></a>1.2.1.1 时间序列数据</h5><p>以股票交易为例：每时每刻都存在交易，并且每时每刻对于不同的股票也都存在买入、卖出。那么我们可以借助3D张量进行表示：</p>
+<p><img src="/%E5%88%9D%E8%AF%86%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/1680782513691.png" alt="1680782513691"></p>
+<ul>
+<li><strong>时间步长</strong>：可以假设是1分钟内进行交易</li>
+<li><strong>特征</strong>：某一个股票进行的交易</li>
+<li><strong>样本</strong>：不同的层可以表示是不同股票：茅台。。。。。</li>
+</ul>
+<h5 id="1-2-1-2-图像数据"><a href="#1-2-1-2-图像数据" class="headerlink" title="1.2.1.2 图像数据"></a>1.2.1.2 图像数据</h5><p>一张<strong>彩色</strong>图片可以由3部分构成：高度、宽度、颜色深度（灰度图像只有一个颜色通道可以取消颜色深度），那么图片也是3D张量：</p>
+<p><img src="/%E5%88%9D%E8%AF%86%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/1680782799812.png" alt="1680782792"></p>
+<blockquote>
+<p>假设图片为<strong>彩色</strong>，大小为256x256。那么我们张量可以如此表示：（n, 256, 256, 3)。n：图片数目；3：彩色图片一般3种颜色（光的3原色）</p>
+</blockquote>
+<blockquote>
+<p><a href="https://baike.baidu.com/item/%E4%B8%89%E5%8E%9F%E8%89%B2%E5%8E%9F%E7%90%86/6969780">三原色原理_百度百科 (baidu.com)</a></p>
+</blockquote>
+<p>$$<br>\textcolor{red}{注意}\text{:PyTorch 模块要求张量排列为 C×H×W（分别表示通道、高度和宽度）而tensorflow则是：H×WxC}<br>$$</p>
+<h5 id="1-2-1-3-视频数据"><a href="#1-2-1-3-视频数据" class="headerlink" title="1.2.1.3 视频数据"></a>1.2.1.3 视频数据</h5><p>视频是一帧一帧所构成的，也就是说我们看到的视频都是一张一张的图片，也就是说一个视频是一个4D张量（不同视频构成5D张量）</p>
+<h4 id="1-2-2-张量的运算"><a href="#1-2-2-张量的运算" class="headerlink" title="1.2.2 张量的运算"></a>1.2.2 张量的运算</h4><blockquote>
+<p>后续补充！</p>
+<p><a href="https://www.w3cschool.cn/pytorch/pytorch-5ubt3bby.html">1、PyTorch是什么？_w3cschool</a></p>
+</blockquote>
+<h4 id="1-2-3-基于梯度优化"><a href="#1-2-3-基于梯度优化" class="headerlink" title="1.2.3 基于梯度优化"></a>1.2.3 基于梯度优化</h4><p>在此引用神经网络工作原理图：</p>
+<p><img src="/%E5%88%9D%E8%AF%86%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/1680779540890.png" alt="1680779540890"></p>
+<p>在多层感知机模型中有3类常用的激活函数：Sigmoid、Relu、Tannh。假设卷积神经网络只有2层：$f(x)&#x3D;f^{(1)}(f^{(2)}(x,w,b))$此处我们的$f^{(2)}$就是我们的激活函数，而$w,b$就是我们的权重。一开始，这些权重矩阵取较小的<strong>随机值</strong>，这一步叫作<strong>随机初始化</strong>，他们肯定不会得到任何有用的表示。虽然得到的表示是没有意义的，但这是一个起点。下一步则是根据反馈信号逐渐调节这些权重。这个逐渐调节的过程叫作<strong>训练</strong>，也就是机器学习中的学习。</p>
+<p>上述过程发生在一个训练循环（training loop）内，其具体过程如下。必要时一直重复这些步骤。</p>
+<ul>
+<li>(1) 抽取训练样本 x 和对应目标 y 组成的数据批量。</li>
+<li>(2) 在 x 上运行网络［这一步叫作<strong>前向传播</strong>］，得到预测值 y_pred。</li>
+<li>(3) 计算网络在这批数据上的<em>损失</em>，用于衡量 y_pred 和 y 之间的距离。</li>
+<li>(4) 更新网络的所有权重，使网络在这批数据上的损失略微下降</li>
+</ul>
+<blockquote>
+<p><em>关于权重深度学习有何不同</em></p>
+<p>先前的机器学习技术（浅层学习）仅包含将输入数据变换到一两个连续的表示空间，通常使用简单的变换，比如高维非线性投影（SVM）或决策树。但这些技术通常无法得到复杂问题所需要的精确表示。因此，人们必须竭尽全力让初始输入数据更适合用这些方法处理，也必须手动为数据设计好的表示层。这叫作<strong>特征工程</strong>，深度学习完全将这个步骤自动化。</p>
+</blockquote>
+<p>上述步骤复杂在于更新权重！我们更新权重的目的：使得损失函数最小。我们使用得方法是：<strong>随机梯度下降：</strong></p>
+<ul>
+<li>(1) 抽取训练样本 x 和对应目标 y 组成的数据批量。</li>
+<li>(2) 在 x 上运行网络，得到预测值 y_pred。</li>
+<li>(3) 计算网络在这批数据上的损失，用于衡量 y_pred 和 y 之间的距离。</li>
+<li>(4) 计算损失相对于网络参数的梯度［一次<strong>反向传播</strong>］。</li>
+<li>(5) 将参数沿着梯度的反方向移动一点，比如 W -&#x3D; step * gradient，从而使这批数据上的损失减小一点。</li>
+</ul>
+<p>前向传播和反向传播：</p>
+<ul>
+<li>前向传播：输入提供的初始信息x，然后传播给每一层得隐藏单元，最终产出输出y</li>
+<li>反向传播：允许来自代价函数的信息通过网络向后流动，以便计算梯度</li>
+</ul>
+<blockquote>
+<p>设存在模型：$\widehat{y}&#x3D;wx+b$，设损失函数为：$J&#x3D;\frac{1}{2}(y-\widehat{y})^2$。</p>
+<p><strong>前向传播</strong>：我们直接输入$x$最后返回y</p>
+<p><strong>反向传播</strong>：我们在初始化参数：$w,b$时候所得到$\widehat{y}$损失函数值比较大。那么根据梯度下降我们需要对$w，b$进行更新于是就有：梯度：$\nabla_{w}J &#x3D;\dfrac{\partial J}{\partial \widehat{y}}\dfrac{\partial \widehat{y}}{\partial {w}}$，所以：$w&#x3D;w-\epsilon\nabla_{w}J$，我们计算梯度的过程就是反向传播过程</p>
+</blockquote>
+<h2 id="二、机器学习补充"><a href="#二、机器学习补充" class="headerlink" title="二、机器学习补充"></a>二、机器学习补充</h2><h3 id="2-1-机器学习模型评估"><a href="#2-1-机器学习模型评估" class="headerlink" title="2.1 机器学习模型评估"></a>2.1 机器学习模型评估</h3><p>机器学习的目的是得到可以<strong>泛化的模型</strong>，即在前所未见的数据上表现很好。在机器学习过程中我们经常需要对数据进行切分：划分训练集、测试集。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.model_selection <span class="keyword">import</span> train_test_split </span><br><span class="line">x_train, x_test, y_train, y_test= train_test_split(x,y,test_size=<span class="number">0.2</span>) <span class="comment">#选取20%的数据作为测试数据</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>切分有两种：</p>
+<p>1、简单的留出验证（上述代码）</p>
+<p>2、<strong>K 折验证</strong></p>
+<p>将数据划分为大小相同的 K 个分区。对于每个分区 i，在剩余的 K-1 个分区上训练模型，然后在分区 i 上评估模型。最终分数等于 K 个分数的平均值。</p>
+<p><img src="/%E5%88%9D%E8%AF%86%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/1680867838870.png" alt="1680867838870"></p>
+</blockquote>
+<p>我们最终的目的是我们设计的模型在测试集上、训练集上的测试效果都满足我们的要求。在此过程中涉及两个问题：1、<strong>欠拟合</strong>：模型不能再训练集上或者足够低的误差；2、<strong>过拟合</strong>：训练误差和测试误差之间差距过大。</p>
+<h3 id="2-2-正则化"><a href="#2-2-正则化" class="headerlink" title="2.2 正则化"></a>2.2 正则化</h3><p>为了防止模型从训练数据中学到错误或无关紧要的模式，<strong>最优解决方法是获取更多的训练数据</strong>。模型的训练数据越多，泛化能力自然也越好。如果无法获取更多数据，次优解决方法是<strong>调节模型允许存储的信息量</strong>，或对模型允许存储的信息加以约束。如果一个网络只能记住几个模式，那么优化过程会迫使模型集中学习最重要的模式，这样更可能得到良好的泛化。这种降低过拟合的方法叫作正则化。</p>
+<h3 id="2-2-1-添加权重正则化"><a href="#2-2-1-添加权重正则化" class="headerlink" title="2.2.1 添加权重正则化"></a>2.2.1 添加权重正则化</h3><p>L2正则化：</p>
+<p>$$<br>\widehat{J}(w,x,y)&#x3D;J(w,x,y)+\frac{\alpha}{2}||w||^2<br>$$</p>
+<p>L1正则化：</p>
+<p>$$<br>\widehat{J}(w,x,y)&#x3D;J(w,x,y)+\alpha||w||<br>$$</p>
+<p>上述函数：$J$：损失函数，$||w||$：我们添加正则化项。在此过程中我们只对权重做惩罚而不对偏置做惩罚。</p>
+<h2 id="2-3-机器学习流程"><a href="#2-3-机器学习流程" class="headerlink" title="2.3 机器学习流程"></a>2.3 机器学习流程</h2><p>1、定义问题，收集数据集</p>
+<p>2、选择衡量成功的指标</p>
+<blockquote>
+<p>选择合适评价指标：RMSE、准确率、召回率等</p>
+</blockquote>
+<p>3、确定评估方法</p>
+<blockquote>
+<p>验证集、K折交叉验证等</p>
+</blockquote>
+<p>4、准备数据</p>
+<p>5、建立模型并优化</p>
+<blockquote>
+<p>正则化、调节超参数</p>
+</blockquote>
+<h2 id="三、推荐文献"><a href="#三、推荐文献" class="headerlink" title="三、推荐文献"></a>三、推荐文献</h2><p>1、LECUN Y, BENGIO Y, HINTON G. Deep learning[J&#x2F;OL]. Nature, 2015, 521(7553): 436-444. <a href="https://doi.org/10.1038/nature14539">https://doi.org/10.1038/nature14539</a>.</p>
+<p>2、RUMELHART D E, HINTON G E, WILLIAMS R J. Learning representations by back-propagating errors[J&#x2F;OL]. Nature, 1986, 323(6088): 533-536. <a href="https://doi.org/10.1038/323533a0">https://doi.org/10.1038/323533a0</a>.</p>
+]]></content>
+      <categories>
+        <category>深度学习</category>
+      </categories>
+      <tags>
+        <tag>深度学习</tag>
+        <tag>分类算法</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>sklearn-线性模型-岭回归</title>
+    <url>/posts/470077716/</url>
+    <content><![CDATA[<h1 id="1、🗡岭回归原理"><a href="#1、🗡岭回归原理" class="headerlink" title="1、🗡岭回归原理"></a>1、🗡岭回归原理</h1><h2 id="1-1-回归"><a href="#1-1-回归" class="headerlink" title="1.1 回归"></a>1.1 回归</h2><p>对于最小二乘法添加“惩罚因子”避免最小二乘法过拟合出现：</p>
+<p>$$<br>最小二乘法：min\sum_{i&#x3D;1}^{n}(\hat{y_i}-y_i)^2,其中\hat{y}&#x3D;wx,w：为系数矩阵\<br>添加“惩罚因子”：min\sum_{i&#x3D;1}^{n}(\hat{y_i}-y_i)^2+\alpha||w||^2,其中\hat{y}&#x3D;wx,w：为系数矩阵<br>$$</p>
+<p>其中参数$\alpha$控制收缩，收缩量越大，因此系数对共线性变得越平稳<br><img src="/image/%E7%BA%BF%E6%80%A7%E6%A8%A1%E5%9E%8B/1683273841368.png" alt="1683273841368"></p>
+<h2 id="1-2-分类"><a href="#1-2-分类" class="headerlink" title="1.2 分类"></a>1.2 分类</h2><p>岭回归分类操作：对于二分类问题，将分类变量转化为{-1,1}进而使得问题转化为回归问题</p>
+<h1 id="2、-🐕岭回归代码"><a href="#2、-🐕岭回归代码" class="headerlink" title="2、 🐕岭回归代码"></a>2、 🐕岭回归代码</h1><h2 id="2-1-岭回归–回归"><a href="#2-1-岭回归–回归" class="headerlink" title="2.1 岭回归–回归"></a>2.1 岭回归–回归</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.linear_model <span class="keyword">import</span> Ridge</span><br></pre></td></tr></table></figure>
+<p><strong>参数解释：</strong><br>1、alpha:{float, ndarray of shape (n_targets,)},default&#x3D;1.0</p>
+<blockquote>
+<p>惩罚因子设置：$\alpha$</p>
+</blockquote>
+<p>2、fit_intercept:bool, default&#x3D;True</p>
+<blockquote>
+<p>是否设置截距</p>
+</blockquote>
+<p>3、copy_X:ool, default&#x3D;True</p>
+<p>4、solver:{‘auto’, ‘svd’, ‘cholesky’, ‘lsqr’, ‘sparse_cg’, ‘sag’, ‘saga’, ‘lbfgs’}, default&#x3D;’auto’</p>
+<blockquote>
+<p><strong>函数求解器：理解为参数的求解方式</strong></p>
+</blockquote>
+<blockquote>
+<p>“auto”根据数据类型自动选择求解器。</p>
+</blockquote>
+<blockquote>
+<p>“svd”使用 X 的奇异值分解来计算岭系数。它是最稳定的求解器，特别是对于奇异矩阵比“cholesky”更稳定，但代价是更慢。</p>
+</blockquote>
+<blockquote>
+<p>“cholesky”使用标准的 scipy.linalg.solve 函数来获得封闭形式的解决方案。</p>
+</blockquote>
+<blockquote>
+<p>“sparse_cg”使用 scipy.sparse.linalg.cg 中的共轭梯度求解器。作为迭代算法，此求解器比“cholesky”更适合大规模数据（可以设置 tol 和 max_iter）。</p>
+</blockquote>
+<blockquote>
+<p>“lsqr”使用专用正则化最小二乘例程 scipy.sparse.linalg.lsqr。它是最快的并且使用迭代过程。</p>
+</blockquote>
+<blockquote>
+<p>“sag”使用随机平均梯度下降，“saga”使用其改进的无偏版本，名为 SAGA。这两种方法也使用迭代过程，并且当 n_samples 和 n_features 都很大时通常比其他求解器更快。请注意，“sag”和“saga”快速收敛只能保证具有大致相同比例的特征。您可以使用 sklearn.preprocessing 中的缩放器预处理数据。</p>
+</blockquote>
+<blockquote>
+<p>‘lbfgs’ 使用在 scipy.optimize.minimize 中实现的L-BFGS-B 算法。它只能在 positive 为 True 时使用。</p>
+</blockquote>
+<p><strong>方法</strong>:</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">Ridge().fit(x,y) <span class="comment">#使用线性拟合去拟合(x,y)</span></span><br><span class="line">Ridge().get_params()<span class="comment">#获得参数</span></span><br><span class="line">Ridge().predict()<span class="comment">#预测</span></span><br><span class="line">Ridge().score(X, y, sample_weight=<span class="literal">None</span>)<span class="comment">#评价/得分</span></span><br><span class="line">Ridge().set_params()</span><br></pre></td></tr></table></figure>
+
+<p><strong>操作</strong>:</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.linear_model <span class="keyword">import</span> Ridge</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line">x = np.array([[<span class="number">1</span>, <span class="number">1</span>], [<span class="number">1</span>, <span class="number">2</span>], [<span class="number">2</span>, <span class="number">2</span>], [<span class="number">2</span>, <span class="number">3</span>]])</span><br><span class="line">y = np.dot(x, np.array([<span class="number">1</span>, <span class="number">2</span>])) +<span class="number">3</span></span><br><span class="line">rng = Ridge(alpha=<span class="number">0.5</span>).fit(x,y)</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-2-岭回归–分类"><a href="#2-2-岭回归–分类" class="headerlink" title="2.2 岭回归–分类"></a>2.2 岭回归–分类</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.linear_model <span class="keyword">import</span> RidgeClassifier</span><br></pre></td></tr></table></figure>
+<p><strong>参数解释</strong><br>1、alpha:{float, ndarray of shape (n_targets,)},default&#x3D;1.0</p>
+<blockquote>
+<p>惩罚因子设置：$\alpha$</p>
+</blockquote>
+<p>2、fit_intercept:bool, default&#x3D;True</p>
+<blockquote>
+<p>是否设置截距</p>
+</blockquote>
+<p>3、copy_X:ool, default&#x3D;True</p>
+<p>4、solver:{‘auto’, ‘svd’, ‘cholesky’, ‘lsqr’, ‘sparse_cg’, ‘sag’, ‘saga’, ‘lbfgs’}, default&#x3D;’auto’</p>
+<blockquote>
+<p><strong>函数求解器：理解为参数的求解方式</strong></p>
+</blockquote>
+<blockquote>
+<p>“auto”根据数据类型自动选择求解器。</p>
+</blockquote>
+<blockquote>
+<p>“svd”使用 X 的奇异值分解来计算岭系数。它是最稳定的求解器，特别是对于奇异矩阵比“cholesky”更稳定，但代价是更慢。</p>
+</blockquote>
+<blockquote>
+<p>“cholesky”使用标准的 scipy.linalg.solve 函数来获得封闭形式的解决方案。</p>
+</blockquote>
+<blockquote>
+<p>“sparse_cg”使用 scipy.sparse.linalg.cg 中的共轭梯度求解器。作为迭代算法，此求解器比“cholesky”更适合大规模数据（可以设置 tol 和 max_iter）。</p>
+</blockquote>
+<blockquote>
+<p>“lsqr”使用专用正则化最小二乘例程 scipy.sparse.linalg.lsqr。它是最快的并且使用迭代过程。</p>
+</blockquote>
+<blockquote>
+<p>“sag”使用随机平均梯度下降，“saga”使用其改进的无偏版本，名为 SAGA。这两种方法也使用迭代过程，并且当 n_samples 和 n_features 都很大时通常比其他求解器更快。请注意，“sag”和“saga”快速收敛只能保证具有大致相同比例的特征。您可以使用 sklearn.preprocessing 中的缩放器预处理数据。</p>
+</blockquote>
+<blockquote>
+<p>‘lbfgs’ 使用在 scipy.optimize.minimize 中实现的L-BFGS-B 算法。它只能在 positive 为 True 时使用。</p>
+</blockquote>
+<p>5、class_weight:dict or ‘balanced’, default&#x3D;None</p>
+<blockquote>
+<p>分类权重</p>
+</blockquote>
+<p><strong>方法</strong>:</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">RidgeClassifier.fit(x,y) <span class="comment">#使用线性拟合去拟合(x,y)</span></span><br><span class="line">RidgeClassifier.get_params()<span class="comment">#获得参数</span></span><br><span class="line">RidgeClassifier.predict()<span class="comment">#预测</span></span><br><span class="line">RidgeClassifier.score(X, y, sample_weight=<span class="literal">None</span>)<span class="comment">#评价/得分</span></span><br><span class="line">RidgeClassifier.set_params()</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>机器学习</category>
+        <category>sklearn</category>
+        <category>线性模型</category>
+      </categories>
+      <tags>
+        <tag>机器学习</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>决策树算法</title>
+    <url>/posts/4012468743/</url>
+    <content><![CDATA[<p>[toc]</p>
+<h2 id="一、什么是决策树算法"><a href="#一、什么是决策树算法" class="headerlink" title="一、什么是决策树算法"></a>一、什么是决策树算法</h2><p><strong>决策树</strong>是一个预测模型；他代表的是对象属性与对象值之间的一种映射关系。树中每个节点表示某个对象，而每个分叉路径则代表某个可能的属性值，而每个叶节点则对应从根节点到该叶节点所经历的路径所表示的对象的值。决策树仅有单一输出，若欲有复数输出，可以建立独立的决策树以处理不同输出。 数据挖掘中决策树是一种经常要用到的技术，可以用于分析数据，同样也可以用来作预测，从数据产生决策树的机器学习技术叫做 <strong>决策树学习</strong> ,通俗说就是<strong>决策树</strong></p>
+<blockquote>
+<p>维基百科：<a href="https://zh.wikipedia.org/zh-cn/%E5%86%B3%E7%AD%96%E6%A0%91#%E7%AE%80%E4%BB%8B">https://zh.wikipedia.org/zh-cn/%E5%86%B3%E7%AD%96%E6%A0%91#%E7%AE%80%E4%BB%8B</a></p>
+</blockquote>
+<p>不懂？那我们引用<strong>周志华老师西瓜书</strong>上的例子，立马就能有一个大概了解。</p>
+<blockquote>
+<p>比如你带你表妹现在要去西瓜摊买西瓜，而作为卖西瓜老手的你总是能够一眼挑选出那个最好吃最甜的西瓜，而表妹总是选的不尽人意，表妹突发奇想向你请教怎么选出一个心满意足的西瓜。你说：得价钱！不对不对咱们在谈买西瓜，你说咱们啊，先看“它是什么颜色?”，如果是“青绿色”，则我们再看 “它的根蒂是什么形态?”，如果是“蜷缩 ”，我们再判断“它敲起来是什么声音?”，最后，我们得出最终决策：这个瓜很润，呸呸呸，是很甜！</p>
+</blockquote>
+<p>我相信你现在应该有一个大概了解了，不就是选择一个目的（我们需要进行的分类的标签），然后根据一系列的特征从而满足我们的目的，以后我们就借用这个特征去挑选“好瓜”。但是！先泼一盆凉水给你，我们怎么开始第一步呢？这还不简单，直接选择”颜色“呀！但是我们为什么不从”根茎“下手呢？下面就是我们要将的如何进行划分，也就是划分标准。</p>
+<h2 id="二、划分标准"><a href="#二、划分标准" class="headerlink" title="二、划分标准"></a>二、划分标准</h2><h3 id="2-1-信息增益-ID3决策树算法划分标准"><a href="#2-1-信息增益-ID3决策树算法划分标准" class="headerlink" title="2.1 信息增益(ID3决策树算法划分标准)"></a>2.1 信息增益(ID3决策树算法划分标准)</h3><p>必须先了解信息熵这个概念，<strong>信息熵</strong>，维基百科上的定义：是接收的每条消息中包含的信息的平均量。这里，“消息”代表来自分布或数据流中的事件、样本或特征。（熵最好理解为不确定性的量度而不是确定性的量度，因为越随机的信源的熵越大）来自信源的另一个特征是样本的概率分布。这里的想法是，比较不可能发生的事情，当它发生了，会提供更多的信息。由于一些其他的原因，把信息（熵）定义为概率分布的对数的相反数是有道理的。事件的概率分布和每个事件的信息量构成了一个随机变量，这个随机变量的均值（即期望）就是这个分布产生的信息量的平均值（即熵）。熵的概念最早起源于物理学，用于度量一个热力学系统的无序程度。在信息论里面，熵是对不确定性的测量。但是在信息世界，<strong>熵越高，则能传输越多的信息，熵越低，则意味着传输的信息越少</strong>。还是不懂？那你不妨记住：<strong>信息熵是对信息量的一种衡量</strong></p>
+<blockquote>
+<p>维基百科：<a href="https://zh.wikipedia.org/zh-cn/%E7%86%B5_(%E4%BF%A1%E6%81%AF%E8%AE%BA)">https://zh.wikipedia.org/zh-cn/%E7%86%B5_(%E4%BF%A1%E6%81%AF%E8%AE%BA)</a><br>Shannon,C.E.(1948).A Mathematical Theory of Communication. Bell System Technical Journal,27(3),379–423.doi:10.1002&#x2F;j.1538-7305.1948.tb01338.x</p>
+</blockquote>
+<p>一般地，划分数据集的大原则是：<strong>将无序的数据变得更加有序</strong>。在划分数据集之前之后信息发生的变化称为信息增益，知道如何计算信息增益，我们就可以计算每个特征值划分数据集获得的信息增益，<strong>获得信息增益最高的特征就是最好的选择</strong>。也就是说我们可用信息增益来进行决策树的划分属性选择，他们公式如下：</p>
+<p>$$<br>信息熵：Ent(D)&#x3D;-\displaystyle\sum_{k&#x3D;1}^{|y|}p_klog_2p_k \取负数：保证信息熵&gt;0<br>$$</p>
+<p>其中$Ent(D)$的值越小，则消息熵越小</p>
+<p>$$<br>信息增益Gain(D,a)&#x3D;Ent(D)-\sum_{v&#x3D;1}^{V}\frac{|D^v|}{|D|}Ent(D^v) \V:离散属性a的可能取值的个数<br>$$</p>
+<p>怎么使用？再次借用周志华老师书上例子，我们来区分好瓜坏瓜。</p>
+<blockquote>
+<p><img src="/%E5%86%B3%E7%AD%96%E6%A0%91%E7%AE%97%E6%B3%95/bVc6L9J.png" alt="决策树算法"></p>
+<ul>
+<li><strong>注释</strong>：本文都是采用的ID3决策树算法</li>
+</ul>
+<p>因为我们的目的是区分好瓜坏瓜所以先计算其信息熵：</p>
+<p>$$<br>Ent(D)&#x3D;-\sum_{k&#x3D;1}^{2}p_klog_2p_k&#x3D;-(\frac{8}{17}log_2(\frac{8}{17})+\frac{9}{17}log_2(\frac{9}{17}))&#x3D;0.998<br>$$</p>
+<p>同理可得假设我们以色泽进行分类，那么色泽有三种可能 {青绿、乌黑、浅白}，我们再计算每种色泽下所对应好坏瓜的概率（$p_1:好，p_2:坏$）：青绿：$p_1&#x3D;0.5,p_2&#x3D;0.5$；乌黑：$p_1&#x3D;\frac{4}{6}，p_2&#x3D;\frac{2}{6}$；浅白：$p_1&#x3D;\frac{1}{5},p_2&#x3D;\frac{4}{5}$；这样一来我们可以计算各种信息增益：</p>
+<p>$$<br>Ent(青绿)&#x3D;1，Ent(乌黑)&#x3D;0.918，Ent(浅白)&#x3D;0.722<br>$$</p>
+<p>然后计算信息增益:</p>
+<p>$$<br>Gain(D,色泽)&#x3D;Ent(D)-\sum_{v&#x3D;1}^{V}\frac{|D^v|}{|D|}Ent(D^v)&#x3D;0.998-(\frac{6}{17}\times1+\frac{6}{17}\times0.918+\frac{5}{17}\times0.722)&#x3D;0.109<br>$$</p>
+<p>$$<br>同理可得其他的信息增益：\Gain(D,根蒂)&#x3D;0.143;\Gain(D,敲声)&#x3D;0.141;\Gain(D,纹理)&#x3D;0.381;\Gain(D,脐部)&#x3D;0.289;\Gain(D,触感)&#x3D;0.006;<br>$$</p>
+<p>纹理的信息增益最大，所以我们取纹理作为我们的划分标准，同理从纹理出发再取计算其他属性，并且得到信息增益，以此类推只到所有标准都划分完毕。</p>
+</blockquote>
+<h3 id="2-2-基尼指数-CART决策树算法划分标准"><a href="#2-2-基尼指数-CART决策树算法划分标准" class="headerlink" title="2.2 基尼指数(CART决策树算法划分标准)"></a>2.2 基尼指数(CART决策树算法划分标准)</h3><h2 id="三、评价"><a href="#三、评价" class="headerlink" title="三、评价"></a>三、评价</h2><p><strong>决策树的优点</strong><br>1、决策树易于理解和实现.人们在通过解释后都有能力去理解决策树所表达的意义<br>2、对于决策树，数据的准备往往是简单或者是不必要的.其他的技术往往要求先把数据一般化，比如去掉多余的或者空白的属性<br>3、能够同时处理数据型和常规型属性。其他的技术往往要求数据属性的单一<br>4、是一个白盒模型如果给定一个观察的模型，那么根据所产生的决策树很容易推出相应的逻辑表达式<br>5、易于通过静态测试来对模型进行评测。表示有可能测量该模型的可信度<br>6、在相对短的时间内能够对大型数据源做出可行且效果良好的结果<br><strong>决策树的缺点</strong><br>对于那些各类别样本数量不一致的数据，在决策树当中信息增益的结果偏向于那些具有更多数值的特征</p>
+<p>文章如若有错误，欢迎大佬们批评指正。💪💪</p>
+<h2 id="四、代码"><a href="#四、代码" class="headerlink" title="四、代码"></a>四、代码</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment">#计算信息熵</span></span><br><span class="line"><span class="keyword">from</span> math <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">ent</span>(<span class="params">data</span>):</span><br><span class="line">    data_length = <span class="built_in">len</span>(data)</span><br><span class="line">    dic = &#123;&#125;</span><br><span class="line">    <span class="comment">#统计个数</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> data:</span><br><span class="line">        data_leable = i[-<span class="number">1</span>]</span><br><span class="line">        <span class="keyword">if</span> data_leable <span class="keyword">not</span> <span class="keyword">in</span> dic:</span><br><span class="line">            dic[data_leable] = <span class="number">0</span></span><br><span class="line">        dic[data_leable] +=<span class="number">1</span></span><br><span class="line">   <span class="comment">#return dic</span></span><br><span class="line">    <span class="comment">#计算信息熵</span></span><br><span class="line">    ent_number = <span class="number">0.0</span></span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> dic:</span><br><span class="line">        num1 = <span class="built_in">float</span>(dic[j])/data_length</span><br><span class="line">        ent_number = ent_number - num1*log(num1,<span class="number">2</span>)</span><br><span class="line">    <span class="keyword">return</span> ent_number</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment">#划分数据集合</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">data_split</span>(<span class="params">data, axis, value</span>):</span><br><span class="line">    data_list = []</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> data:</span><br><span class="line">        <span class="keyword">if</span> i[axis] == value:</span><br><span class="line">            feat = i[:axis]</span><br><span class="line">            feat.extend(i[axis+<span class="number">1</span>:])</span><br><span class="line">            data_list.append(feat)</span><br><span class="line">    <span class="keyword">return</span> data_list</span><br><span class="line"></span><br><span class="line"><span class="comment">#extend与append函数区别：a.extend(b):将b的值全部加到a中；a.append(b):将b列表加到a中</span></span><br><span class="line"><span class="comment"># a = [1,2]</span></span><br><span class="line"><span class="comment"># b = [3,4]</span></span><br><span class="line"><span class="comment"># c = [3,4]</span></span><br><span class="line"><span class="comment"># a.append(b)</span></span><br><span class="line"><span class="comment"># c.extend(b)</span></span><br><span class="line"><span class="comment"># print(a,c)</span></span><br><span class="line"><span class="comment"># [1, 2, [3, 4]] [3, 4, 3, 4]</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment">#计算信增益,并且挑选最佳特征</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">gain_chose</span>(<span class="params">data</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    data_ent:信息熵</span></span><br><span class="line"><span class="string">    feat_list:每一种标签的全部数据</span></span><br><span class="line"><span class="string">    feat_value:每一种标签下的取值</span></span><br><span class="line"><span class="string">    data_gain:信息增益</span></span><br><span class="line"><span class="string">    ent_number:计算各自列下的信息熵</span></span><br><span class="line"><span class="string">    prop:计算概率</span></span><br><span class="line"><span class="string">    best_feature:最佳划分特征</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    data_base_length = <span class="built_in">len</span>(data[<span class="number">0</span>])-<span class="number">1</span></span><br><span class="line">    ent_base = ent(data)</span><br><span class="line">    gain_max = -<span class="number">1</span> <span class="comment">#取任何小于0的值都可以</span></span><br><span class="line">    <span class="comment">#第一个for循环得到每一列，第二个for循环则是对每一列中取值</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(data_base_length):</span><br><span class="line">        feat_list = [a[i] <span class="keyword">for</span> a <span class="keyword">in</span> data]</span><br><span class="line">        feat_value = <span class="built_in">set</span>(feat_list)</span><br><span class="line">        ent_number = <span class="number">0.0</span></span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> feat_value:</span><br><span class="line">            data_split_use = data_split(data, i, j)</span><br><span class="line">            prop = <span class="built_in">len</span>(data_split_use)/<span class="built_in">float</span>(<span class="built_in">len</span>(data_split_use))</span><br><span class="line">            ent_number = ent_number + prop * ent(data_split_use)</span><br><span class="line">        data_gain = ent_base - ent_number </span><br><span class="line">        <span class="keyword">if</span> data_gain &gt; gain_max:</span><br><span class="line">            gain_max = data_gain</span><br><span class="line">            best_feature = i</span><br><span class="line">    <span class="keyword">return</span> best_feature</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment">#绘制决策树</span></span><br><span class="line"><span class="keyword">import</span> operator</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">majorityCnt</span>(<span class="params">classList</span>):</span><br><span class="line">    classCount=&#123;&#125;</span><br><span class="line">    <span class="keyword">for</span> vote <span class="keyword">in</span> classList:</span><br><span class="line">        <span class="keyword">if</span> vote <span class="keyword">not</span> <span class="keyword">in</span> classCount.keys(): classCount[vote] = <span class="number">0</span></span><br><span class="line">        classCount[vote] += <span class="number">1</span></span><br><span class="line">    sortedClassCount = <span class="built_in">sorted</span>(classCount.iteritems(), key=operator.itemgetter(<span class="number">1</span>), reverse=<span class="literal">True</span>)</span><br><span class="line">    <span class="keyword">return</span> sortedClassCount[<span class="number">0</span>][<span class="number">0</span>]</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">createTree</span>(<span class="params">dataSet,labels</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    classList:存储dataset中的标签</span></span><br><span class="line"><span class="string">    bestFeatLabel:根节点</span></span><br><span class="line"><span class="string">    myTree:存储树结构</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    classList = [example[-<span class="number">1</span>] <span class="keyword">for</span> example <span class="keyword">in</span> dataSet]</span><br><span class="line">    <span class="comment"># 如果全是一个特征，直接返回</span></span><br><span class="line">    <span class="keyword">if</span> classList.count(classList[<span class="number">0</span>]) == <span class="built_in">len</span>(classList): </span><br><span class="line">        <span class="keyword">return</span> classList[<span class="number">0</span>]</span><br><span class="line">    <span class="comment"># 如果数组长度为1，则</span></span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">len</span>(dataSet[<span class="number">0</span>]) == <span class="number">1</span>: </span><br><span class="line">        <span class="keyword">return</span> majorityCnt(classList)</span><br><span class="line"></span><br><span class="line">    bestFeat = gain_chose(dataSet)</span><br><span class="line">    bestFeatLabel = labels[bestFeat]     <span class="comment"># 挑选出根节点</span></span><br><span class="line">    myTree = &#123;bestFeatLabel:&#123;&#125;&#125;</span><br><span class="line">    <span class="keyword">del</span>(labels[bestFeat]) <span class="comment"># 删除以免再次选到</span></span><br><span class="line"></span><br><span class="line">    featValues = [example[bestFeat] <span class="keyword">for</span> example <span class="keyword">in</span> dataSet]</span><br><span class="line">    uniqueVals = <span class="built_in">set</span>(featValues)</span><br><span class="line">    <span class="keyword">for</span> value <span class="keyword">in</span> uniqueVals:</span><br><span class="line">        subLabels = labels[:] </span><br><span class="line">        myTree[bestFeatLabel][value] = createTree(data_split(dataSet, bestFeat, value),subLabels)</span><br><span class="line">    <span class="keyword">return</span> myTree   </span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="五、决策树算法流程"><a href="#五、决策树算法流程" class="headerlink" title="五、决策树算法流程"></a>五、决策树算法流程</h2><p>第一步：计算信息熵：利用<strong>哈希表</strong>得到分类标签的对应数量关系，而后感觉对应的数量关系计算信息熵。<br>第二步：计算信息增益并且挑选出最佳特征：分为两个步骤。第一步：划分数据集合，第二步计算</p>
+<ul>
+<li>第一步：以西瓜例子说明，我们在挑选好 ‘yes’or’no’ 之后，我们要回过头观察前面特征的集合（色泽：a），而后在色泽：a中分别计算满足’yes’or’no’的信息熵。依次类推分别得到纹理等特征的信息熵。</li>
+<li>第二步：在我们前一步所得到的信息熵中计算信息增益</li>
+<li>第三步：挑选信息增益最大的值<br>第三步：挑选好最佳特征之后开始绘制决策树</li>
+</ul>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><blockquote>
+<p>周志华 《西瓜书》</p>
+<p>《机器学习实战》</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>机器学习</category>
+      </categories>
+      <tags>
+        <tag>机器学习</tag>
+        <tag>评价标准</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title></title>
+    <url>/posts/8/</url>
+    <content><![CDATA[]]></content>
+  </entry>
+  <entry>
+    <title>数值计算</title>
+    <url>/posts/3172772673/</url>
+    <content><![CDATA[<blockquote>
+<p>前言：最近在学习深度学习，想借着暑假时间将深度学习基础理论、机器学习理论学完。并且如果时间允许进一步学习pytorch、以及将机器学习进行复现(python)。所以部分文章作为自己学习笔记，以便于后续阅读。</p>
+</blockquote>
+<p>理论学习书籍：</p>
+<ul>
+<li><strong>《深度学习》开源地址：<a href="http://www.deeplearningbook.org/">http://www.deeplearningbook.org</a></strong></li>
+<li><strong>《机器学习》周志华 清华大学出版社</strong></li>
+<li><strong>《机器学习公式推导(南瓜书)》</strong></li>
+</ul>
+<p>实操书籍：</p>
+<ul>
+<li><strong>《动手学深度学习pytorch》开源地址：<a href="https://zh-v2.d2l.ai/d2l-zh-pytorch.pdf">https://zh-v2.d2l.ai/d2l-zh-pytorch.pdf</a></strong></li>
+<li><strong>《pytorch深度学习实战》</strong></li>
+<li><strong><a href="https://scikit-learn.org/">https://scikit-learn.org/</a></strong></li>
+</ul>
+<p>[toc]</p>
+<h1 id="数值计算"><a href="#数值计算" class="headerlink" title="数值计算"></a>数值计算</h1><h2 id="基础理论"><a href="#基础理论" class="headerlink" title="基础理论"></a>基础理论</h2><ul>
+<li><strong>梯度、导数、方向导数</strong></li>
+</ul>
+<p>首先从二维平面上的角度进行解释：在二维上我们如何计算导数？</p>
+<p>$$<br>\lim_{x \to a}{\frac{f(x)-f(a)}{x-a}}<br>$$</p>
+<p>其在二维平面上的表述：<br><img src="/%E6%95%B0%E5%80%BC%E8%AE%A1%E7%AE%97/1680502924121.png" alt="1680502924121"><br>但是如果重新设想在三维平面上会是怎么样子的？在三维上导数可以向着各个方向——<strong>方向导数</strong>，而我们的梯度就是其方向上方向导数最大，其大小正好是此最大方向导数。</p>
+<blockquote>
+<p><a href="https://www.zhihu.com/question/36301367">https://www.zhihu.com/question/36301367</a><br><a href="https://zh.wikipedia.org/wiki/%E5%AF%BC%E6%95%B0">https://zh.wikipedia.org/wiki/%E5%AF%BC%E6%95%B0</a></p>
+</blockquote>
+<h2 id="上溢和下溢"><a href="#上溢和下溢" class="headerlink" title="上溢和下溢"></a>上溢和下溢</h2><p>我们知道计算机对于数字存储都是有限制的（无法在有限的内下精确表述），也就是说可能会出现数字舍入的问题，那么此时可能就会有问题出现：数字四舍五入出现0（下溢），数字无穷（上溢）。于是人们提出<strong>softmax函数</strong>：</p>
+<p>$$<br>softmax(x)&#x3D;\frac{exp(x_i)}{\sum_{j&#x3D;1}^{n}{x_j}}<br>$$</p>
+<p>但是我们假设$x_i$是一个常数C，那么还是会出现上溢、下溢的问题。那么可以通过计算：$softmax(z)$  $z&#x3D;x-max_ix_i$解决上两个问题。<br>在解释<strong>梯度下降算法</strong>以及<strong>牛顿法</strong>之前我们必须先了解这两个算法目的是干嘛。我们常常需要计算函数f(x)的最值情况。比如说：$f(x)&#x3D;x^2$的最值，可能很容易就计算得到在$x&#x3D;0$时取得，但是如果函数特别复杂（比如说：逻辑斯蒂回归），那么怎么解决？</p>
+<h2 id="梯度下降算法"><a href="#梯度下降算法" class="headerlink" title="梯度下降算法"></a>梯度下降算法</h2><p>介绍梯度下降算法之前，我们先了解下面几个概念：</p>
+<ul>
+<li>目标函数：需要最小化或者最大化的函数</li>
+<li>损失函数：目标函数最小化</li>
+</ul>
+<p>回想我们前面所了解的梯度知识，然后看下面这幅图：<br><img src="/%E6%95%B0%E5%80%BC%E8%AE%A1%E7%AE%97/1680504988382.png" alt="1680504988382"><br>对于函数$f(x)&#x3D;\frac{1}{2}x^2$我们很容易知道在x&#x3D;0的时候函数会有最小值，但是计算机并非如此！他可能会一个一个点不断的进行尝试而后去比较大小，最后得到最值情况。比如说：当点x落在x&#x3D;0的右侧时，我们函数导数大于0，那么此时我们需要向左移动才能找到最小值。左侧同理。进而得到梯度下降算法</p>
+<p>$$<br>x &#x3D; x-\eta\nabla_x f(x)<br>$$</p>
+<blockquote>
+<p>其中：$\eta:学习率$,$\nabla:梯度$</p>
+</blockquote>
+<blockquote>
+<p><a href="https://www.zhihu.com/question/305638940">https://www.zhihu.com/question/305638940</a></p>
+</blockquote>
+<h2 id="牛顿法"><a href="#牛顿法" class="headerlink" title="牛顿法"></a>牛顿法</h2><p>$$<br>x_{n+1}&#x3D;x_n-\frac{f(x)}{f^{‘}(x)}<br>$$</p>
+<p>下面图片更加直观的了解<br><img src="/%E6%95%B0%E5%80%BC%E8%AE%A1%E7%AE%97/%E7%89%9B%E9%A1%BF%E6%B3%95.gif" alt="1680506537705"></p>
+<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><p>1、《deep learning Ian Goodfellow and Yoshua Bengio and Aaron Courville》 <a href="http://www.deeplearningbook.org/">http://www.deeplearningbook.org</a><br>2、<a href="https://www.zhihu.com/question/36301367">https://www.zhihu.com/question/36301367</a></p>
+]]></content>
+      <categories>
+        <category>深度学习</category>
+      </categories>
+      <tags>
+        <tag>深度学习</tag>
+        <tag>梯度下降</tag>
+        <tag>牛顿法</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>机器学习评价标准</title>
+    <url>/posts/2592384004/</url>
+    <content><![CDATA[<h1 id="机器学习评估指标"><a href="#机器学习评估指标" class="headerlink" title="机器学习评估指标"></a>机器学习评估指标</h1><h2 id="一、分类算法"><a href="#一、分类算法" class="headerlink" title="一、分类算法"></a>一、分类算法</h2><p><strong>混淆矩阵</strong></p>
+<blockquote>
+<p>混淆矩阵是监督学习中的一种可视化工具，主要用于比较分类结果和实例的真实信息。矩阵中的每一行代表实例的 <strong>预测类别</strong> ,每一列代表实例的 <strong>真实类别</strong> 。<br><img src="/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E8%AF%84%E4%BB%B7%E6%A0%87%E5%87%86%5C20230320110308.png"></p>
+</blockquote>
+<p>混淆矩阵的指标</p>
+<blockquote>
+<p>1、TP：将正类预测为正类数</p>
+<p>2、FN：将正类预测为负类数</p>
+<p>3、FP：将负类预测为正类数</p>
+<p>4、TN：将负类预测为负类数</p>
+</blockquote>
+<h3 id="1、精确率"><a href="#1、精确率" class="headerlink" title="1、精确率"></a>1、精确率</h3><p>分类正确的正样本个数占分类器判定为正样本的样本个数的比例（预测分类为1，相应的预测对的概率）—<strong>错报</strong></p>
+<h3 id="2、召回率"><a href="#2、召回率" class="headerlink" title="2、召回率"></a>2、召回率</h3><p>分类正确的正样本个数占真正的正样本个数的比例（真实分类为1，相应的预测对的概率）—<strong>漏报</strong></p>
+<blockquote>
+<p>比如说：我们要从一个<strong>盒子</strong>里面挑选出10个球，其中盒子球的构成为红球：95，白球：5。那么抽到白球的准确率，召回率？</p>
+<p>第一次：10个都是红色—-那么准确率：0 召回率：0</p>
+<p>第二次：6个红色，4个白色—那么准确率：4&#x2F;10 召回率：4&#x2F;5</p>
+</blockquote>
+<p><strong>计算公式</strong></p>
+<p>$$<br>准确率&#x3D;\frac{所有预测正确的样本}{总样本}&#x3D;\frac{TP+TN}{TP+FN+FP+TN}<br>$$</p>
+<p>$$<br>召回率&#x3D;\frac{将正类预测为正类}{原本正类}&#x3D;\frac{TP}{TP+FN}<br>$$</p>
+<p>$$<br>精确率&#x3D;\frac{将正类预测为正类}{预测的正类}&#x3D;\frac{TP}{TP+FP}<br>$$</p>
+<p>取舍问题：在不同的场合对于<strong>精确率和召回率</strong>要求不同。</p>
+<p>例如：对于股票预测，更多的应该是关注精准率，假设关注股票上升的情况，高精准率意味着TP值高（正确地预测到股票会升），这个时候可以帮助人们调整投资，增加收入，如果这一指标低，就以为FP值高（错误地认为股票会升），也就是说股票其实是降的，而预测成升了，这将会使用户亏钱。而召回率低只是意味着在股票上升的情况中，对几个股票上升的情况没有被预测到，这对于投资者来说也是可以接受的，毕竟没有亏钱，因此低召回率对用户影响不是很大。</p>
+<p>例如：对于疾病预测领域，更多的应该关注召回率，因为高召回率意味着能够更多地将得病的病人预测出来，这个对于患病者非常重要。而精准率低意味着错误地预测病人患病，而这个时候只要被预测患病的人再去检查一下即可，实际上是可以接受的，因此低精准率对用户影响不大。</p>
+<h3 id="3、F1-score"><a href="#3、F1-score" class="headerlink" title="3、F1-score"></a>3、F1-score</h3><p>是一种量测算法的精确度常用的指标 ，经常用来判断算法的精确度。目前在辨识、侦测相关的算法中经常会分别提到 精确率 （precision）和 召回率 （recall），F-score能同时考虑这两个数值，平衡地反映这个算法的精确度。</p>
+<blockquote>
+<p>维基百科：<a href="https://zh.wikipedia.org/wiki/F-score">https://zh.wikipedia.org/wiki/F-score</a></p>
+</blockquote>
+<p><strong>计算公式：</strong></p>
+<p>$$<br>F_1&#x3D;\frac{2TP}{2TP+FN+FP}<br>$$</p>
+<p>设想一下一个比较极端的情况，如正样本90个，负样本10个，我们直接将所有样本分类为正样本，得到准确率为90%。单从数值上而言结果是可以接受的，但是这样就违背了我们进行分类的初衷，应该赛选出正样本的同时，尽可能少的让负样本进入。那么我们就引入TPR、FPR、TNR对其进行限制</p>
+<h3 id="4、ROC曲线和AUC值"><a href="#4、ROC曲线和AUC值" class="headerlink" title="4、ROC曲线和AUC值"></a>4、ROC曲线和AUC值</h3><h4 id="4-1-TPR、FPR、TNR"><a href="#4-1-TPR、FPR、TNR" class="headerlink" title="4.1 TPR、FPR、TNR"></a>4.1 TPR、FPR、TNR</h4><p><strong>真正类率</strong>，刻画的是被分类器正确分类的正实例占所有正实例的比例。<strong>即：正确判断为正的占全部正的比例</strong></p>
+<p>$$<br>TPR&#x3D;\frac{TP}{TP+FN}<br>$$</p>
+<p><strong>负正类率</strong>，计算的是被分类器错认为正类的负实例占所有负实例的比例。<strong>即：将负错误判断为正的占全部负的比例</strong></p>
+<p>$$<br>FPR&#x3D;\frac{FP}{FP+TN}<br>$$</p>
+<p><strong>真负类率</strong>，刻画的是被分类器正确分类的负实例占所有负实例的比例。<strong>即：正确分类为负占全部负的比例</strong></p>
+<p>$$<br>TNR&#x3D;1-FPR&#x3D;\frac{TN}{FP+TN}<br>$$</p>
+<p>那么通过分析容易知道，我们希望TPR的值越大越好，相反FPR的值越小越好。知道3个指标之后我们开始了解什么是ROC曲线，设想在一个分类问题（比如手写字体识别）中我们可能很难100%的判断就一定属于某个数值，但是要是给定属于某个数字的概率，比如说属于1的概率为95%，2的概率为90%……那么我们很可能做出判断这个手写字就是1，为什么呢？因为他的概率大？但是数字2的概率也有90%为什么不选择数字2呢？在实际生活中这种情况经常有，我们很难100%判断某个数字但是我们可以规定，比如说：概率大于90%那么就认为是1，反之记作0这样的话上面的例子就解释得通了。这个90%常常记作<strong>阈值</strong>，那么不同阈值和我们ROC曲线又有什么关系呢？不妨通过下面这个例子进行了解：</p>
+<blockquote>
+<p>分类问题：判断是不是🚲？</p>
+<table>
+<thead>
+<tr>
+<th align="center">序号</th>
+<th>类别</th>
+<th>概率</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">1</td>
+<td>🚳</td>
+<td>0.3</td>
+</tr>
+<tr>
+<td align="center">2</td>
+<td>🚲</td>
+<td>0.3</td>
+</tr>
+<tr>
+<td align="center">3</td>
+<td>🚲</td>
+<td>0.6</td>
+</tr>
+<tr>
+<td align="center">4</td>
+<td>🚲</td>
+<td>0.8</td>
+</tr>
+<tr>
+<td align="center">5</td>
+<td>🚲</td>
+<td>0.9</td>
+</tr>
+<tr>
+<td align="center">6</td>
+<td>🚳</td>
+<td>0.1</td>
+</tr>
+<tr>
+<td align="center">7</td>
+<td>🚳</td>
+<td>0.2</td>
+</tr>
+<tr>
+<td align="center">8</td>
+<td>🚳</td>
+<td>0.3</td>
+</tr>
+</tbody></table>
+<p>那么可以假设不同<strong>阈值</strong>，进而计算不同TPR和FPR的值。比如说:</p>
+<p>阈值取[0,0.1]的时候，发现概率都大于0.1那么我们认为全部都是🚲，所以就有</p>
+</blockquote>
+<blockquote>
+<p>$$<br>TPR&#x3D;\frac{TP}{TP+FN}&#x3D;\frac{4}{4+0}<br>$$</p>
+<p>$$<br>FPR&#x3D;\frac{FP}{FP+TN}&#x3D;\frac{4}{4+0}<br>$$</p>
+<p>这样的话我们就可以在ROC曲线上标记一个点，通过不断的移动阈值我们就可以得到一个ROC曲线<br>因此我们可以得到：</p>
+<p><img src="/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E8%AF%84%E4%BB%B7%E6%A0%87%E5%87%86/1679811953429.png" alt="1679811953429"></p>
+</blockquote>
+<p>这样的话我们就可以得到一条ROC曲线，但是问题有来了要是我们得到另外一条ROC曲线，也就是说我们现在有两条ROC曲线，那么我们应该怎么判断呢？这就是接下来要说的AUC值，问题又来了怎么知道AUC的值呢？—–&gt;计算面积阿伟。没错就是计算面积，我们可以通过计算不同ROC曲线与FPR的面积进而得到不同AUC的值，从而判断哪条ROC曲线更加的好！</p>
+<p>那么问题来了上述分析都是针对二分类问题，实际生活中并没有那么多非黑即白的事情，更多的是<strong>多分类的问题</strong>，什么是多分类？维基百科给出的定义：多元分类是将实例分配到多个（多于两个）类别中的其中一个（将实例分配到两个类别中的其中一个被称为二分类）。显然，分类算法可以分为二分类和多分类两种，而多分类算法可以通过将其转化为多个二分类来实现。简单从字面理解很容易，比如说给出大量的交通图片，交给计算机去将这些图片进行分类，划分什么是🚗🚆✈等等，那么对于多分类问题其评价指标如何？上述分析方法是否依旧行得通？对于多元分类我们可以将多分类化成二分类问题，比如说下图：</p>
+<p><img src="/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E8%AF%84%E4%BB%B7%E6%A0%87%E5%87%86/1679811981387.png" alt="1679811981387"></p>
+<h2 id="二、回归算法评价指标"><a href="#二、回归算法评价指标" class="headerlink" title="二、回归算法评价指标"></a>二、回归算法评价指标</h2><h3 id="1、RMSE均方根误差"><a href="#1、RMSE均方根误差" class="headerlink" title="1、RMSE均方根误差"></a>1、RMSE均方根误差</h3><p>$$<br>RMSE(X,h)&#x3D;\sqrt[2]{\frac{1}{m}\displaystyle\sum^{m}_{i&#x3D;1}(h(x_i)-y_i)^2}<br>$$</p>
+<h3 id="2、MSE均方误差"><a href="#2、MSE均方误差" class="headerlink" title="2、MSE均方误差"></a>2、MSE均方误差</h3><p>$$<br>MSE(X,h)&#x3D;\frac{1}{m}\displaystyle\sum^{m}_{i&#x3D;1}(h(x_i)-y_i)^2<br>$$</p>
+<h3 id="3、MAE平均绝对误差"><a href="#3、MAE平均绝对误差" class="headerlink" title="3、MAE平均绝对误差"></a>3、MAE平均绝对误差</h3><p>$$<br>MAE(X,h)&#x3D;\frac{1}{m}\displaystyle\sum^{m}_{i&#x3D;1}(|h(x_i|)-y_i|<br>$$</p>
+<h3 id="4、R-squared"><a href="#4、R-squared" class="headerlink" title="4、R-squared"></a>4、R-squared</h3><p>R Squared又叫可决系数(coefficient of determination)也叫拟合优度,反映的是自变量x对因变量y的变动的解释的程度.越接近于1,说明模型拟合得越好。可以这么理解：将TSS理解为全部按平均值预测，RSS理解为按模型预测，这就相当于去比较你模型预测和全部按平均值预测的比例，这个比例越小，则模型越精确。当然该指标存在负数的情况，即模型预测还不如全部按平均值预测<br>缺点：当数据分布方差比较大时，预测不准时，R^2依然比较大，此时改评价指标就不太好</p>
+<p>$$<br>R^2&#x3D;(y,\tilde{y})&#x3D;1-\frac{\displaystyle\sum_{i&#x3D;0}^{n}({y_i-\tilde{y_i}})^2}{\displaystyle\sum_{i&#x3D;0}^{n}({y_i-\tilde{y_i}})^2}&#x3D;\frac{ESS}{TSS}&#x3D;1-\frac{RSS}{TSS}<br>$$</p>
+<p><strong>参考</strong></p>
+<blockquote>
+<p><a href="https://blog.csdn.net/manduner/article/details/91040867">https://blog.csdn.net/manduner/article/details/91040867</a></p>
+<p><a href="https://www.jianshu.com/p/2ca96fce7e81">https://www.jianshu.com/p/2ca96fce7e81</a></p>
+<p><a href="https://www.bilibili.com/video/BV1wz4y197LU/?spm_id_from=333.337.search-card.all.click&vd_source=881c4826193cfb648b5cdd0bad9f19f0">【小萌五分钟】机器学习 | 模型评估: ROC曲线与AUC值_哔哩哔哩_bilibili</a><br><a href="https://blog.csdn.net/weixin_44441131/article/details/109037673">https://blog.csdn.net/weixin_44441131/article/details/109037673</a></p>
+<p><a href="https://www.jianshu.com/p/e74eb43960a1">https://www.jianshu.com/p/e74eb43960a1</a></p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>机器学习</category>
+      </categories>
+      <tags>
+        <tag>机器学习</tag>
+        <tag>评价标准</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>贝叶斯分类器</title>
+    <url>/posts/2045861030/</url>
+    <content><![CDATA[<h1 id="朴素贝叶斯分类器"><a href="#朴素贝叶斯分类器" class="headerlink" title="朴素贝叶斯分类器"></a>朴素贝叶斯分类器</h1><p>[toc]</p>
+<hr>
+<p>介绍之前说一个悲伤的故事：由于是自己重新学习机器学习算法，学校期间好多有关机器学习算法的课程都没怎么解释这个算法，而且老师上课一言难尽！然后我参加研究生复试，被问到这个算法当时人都傻了，听说过但是自己真的没有仔细去了解啊！害！被自己菜的一言难尽</p>
+<hr>
+<h2 id="数学理论"><a href="#数学理论" class="headerlink" title="数学理论"></a>数学理论</h2><ul>
+<li><strong>先验概率</strong></li>
+</ul>
+<p>根据以往经验和分析得到的概率</p>
+<ul>
+<li><strong>条件概率（后验概率）</strong></li>
+</ul>
+<p>在事件B发生的条件下A在发生的概率</p>
+<p>$$<br>P(A|B)&#x3D;\frac{P(AB)}{p(A)}<br>$$</p>
+<ul>
+<li><strong>朴素贝叶斯定理</strong><br>直观理解：我们假设B是我们的特征标签A是我们的分类标签。那么公式直观上的理解就是：我们在具有B这么多的特征之后一个样本属于A的概率有多大</li>
+</ul>
+<p>$$<br>P(A|B)&#x3D;\frac{P(B_1|A)P(B_2|A)P(B_3|A)…P(B_n|A)P(A)}{P(B)}\\text{公式中}P(B_i|A)\text{代表在训练集中}B_i特征下属于A的概率<br>$$</p>
+<blockquote>
+<p>此时问题来了：如果我们的特征是非数字数据比如说：绿色、蓝色等那么我们很容易就可以计算得到概率的计算，但是如果是具体数字呢？那么应该怎么计算呢？</p>
+</blockquote>
+<ul>
+<li><strong>高斯朴素贝叶斯</strong></li>
+</ul>
+<blockquote>
+<p>高斯分布：正态分布</p>
+</blockquote>
+<p>$$<br>P(A|B)&#x3D;\frac{1}{\sqrt{2\pi\sigma_{B}^{2}}}e^{-\frac{(A-\mu)^2}{2\sigma_{B}^{2}}}\\mu:均值 \sigma:方差<br>$$</p>
+<blockquote>
+<p><a href="https://zhuanlan.zhihu.com/p/38361524">正态分布判别</a></p>
+</blockquote>
+<h2 id="朴素贝叶斯"><a href="#朴素贝叶斯" class="headerlink" title="朴素贝叶斯"></a>朴素贝叶斯</h2><p>我们先看关于他的解释：朴素贝叶斯是一种建分类器的简单方法。该分类器模型会给问题实例分配用特征值表示的类标签，类标签取自有限集合。它不是训练这种分类器的单一算法，而是一系列基于相同原理的算法：所有朴素贝叶斯分类器都假定样本每个特征与其他特征都不相关。</p>
+<blockquote>
+<p><a href="https://zh.wikipedia.org/wiki/%E6%9C%B4%E7%B4%A0%E8%B4%9D%E5%8F%B6%E6%96%AF%E5%88%86%E7%B1%BB%E5%99%A8">https://zh.wikipedia.org/wiki/%E6%9C%B4%E7%B4%A0%E8%B4%9D%E5%8F%B6%E6%96%AF%E5%88%86%E7%B1%BB%E5%99%A8</a></p>
+</blockquote>
+<p>从定义上看起来觉得很麻烦，其实朴素贝叶斯算法的原理十分简单。我们以如下例子为例：</p>
+<blockquote>
+<p>假设训练集如下</p>
+<table>
+<thead>
+<tr>
+<th>性别</th>
+<th>身高（英尺）</th>
+<th>体重（磅）</th>
+<th>脚的尺寸（英寸）</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>男</td>
+<td>6</td>
+<td>180</td>
+<td>12</td>
+</tr>
+<tr>
+<td>男</td>
+<td>5.92 (5’11”)</td>
+<td>190</td>
+<td>11</td>
+</tr>
+<tr>
+<td>男</td>
+<td>5.58 (5’7”)</td>
+<td>170</td>
+<td>12</td>
+</tr>
+<tr>
+<td>男</td>
+<td>5.92 (5’11”)</td>
+<td>165</td>
+<td>10</td>
+</tr>
+<tr>
+<td>女</td>
+<td>5</td>
+<td>100</td>
+<td>6</td>
+</tr>
+<tr>
+<td>女</td>
+<td>5.5 (5’6”)</td>
+<td>150</td>
+<td>8</td>
+</tr>
+<tr>
+<td>女</td>
+<td>5.42 (5’5”)</td>
+<td>130</td>
+<td>7</td>
+</tr>
+<tr>
+<td>女</td>
+<td>5.75 (5’9”)</td>
+<td>150</td>
+<td>9</td>
+</tr>
+</tbody></table>
+<p>我们对训练集计算得到：</p>
+<table>
+<thead>
+<tr>
+<th>性别</th>
+<th>均值（身高）</th>
+<th>方差（体重）</th>
+<th>均值（体重）</th>
+<th>方差（体重）</th>
+<th>均值（脚的尺寸）</th>
+<th>方差（脚的尺寸）</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>男</td>
+<td>5.855</td>
+<td>3.5033e-02</td>
+<td>176.25</td>
+<td>1.2292e+02</td>
+<td>11.25</td>
+<td>9.1667e-01</td>
+</tr>
+<tr>
+<td>女</td>
+<td>5.4175</td>
+<td>9.7225e-02</td>
+<td>132.5</td>
+<td>5.5833e+02</td>
+<td>7.5</td>
+<td>1.6667e+00</td>
+</tr>
+</tbody></table>
+<p>那么在给定如下样本进行判别：</p>
+<ul>
+<li><p>身高：6 体重：130 脚的尺寸：8<br>如何计算呢？很简单！！！比如说我们计算$P(身高|男性)$我们只需要将身高6代入到我们的<strong>高斯贝叶斯公式</strong>里面就可以得到我们的概率。我们依次计算体重、脚的尺寸就可以得到一系列的概率，而后我们代入公式：</p>
+<p>$$<br>P(男性)&#x3D;\frac{P(男性)P(身高|男性)….}{P(A)}\P(A)&#x3D;P(男)*P(身高|男性)….+P(女性)*P(身高|女性)….\P(男)&#x3D;0.5&#x3D;P(女)<br>$$</p>
+</li>
+</ul>
+<p>而后判别男和女的概率大小进而判别是男性还是女性！</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>机器学习</category>
+      </categories>
+      <tags>
+        <tag>机器学习</tag>
+        <tag>贝叶斯分类器</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>逻辑斯蒂回归</title>
+    <url>/posts/317190628/</url>
+    <content><![CDATA[<h1 id="Logistic回归-逻辑斯蒂回归"><a href="#Logistic回归-逻辑斯蒂回归" class="headerlink" title="Logistic回归(逻辑斯蒂回归)"></a>Logistic回归(逻辑斯蒂回归)</h1><p>[toc]</p>
+<blockquote>
+<p>首先明确一点Logistic回归虽然叫回归，但是<strong>一般用于二分类问题</strong>，也就是说还是分类算法的一种！</p>
+</blockquote>
+<h2 id="数学理论准备"><a href="#数学理论准备" class="headerlink" title="数学理论准备"></a>数学理论准备</h2><ul>
+<li><strong>线性回归</strong><br>是利用称为线性回归方程的最小二乘函数对一个或多个自变量和因变量之间关系进行建模的一种回归分析</li>
+<li><strong>Sigmoid函数</strong><br>因其函数图像形状像字母S得名。其形状曲线至少有2个焦点，也叫“二焦点曲线函数”。S型函数是有界、可微的实函数，在实数范围内均有取值，且导数恒为非负 ，有且只有一个拐点。</li>
+</ul>
+<h2 id="逻辑斯蒂回归"><a href="#逻辑斯蒂回归" class="headerlink" title="逻辑斯蒂回归"></a>逻辑斯蒂回归</h2><p>我们先看百度百科关于他的解释：logistic回归是一种广义线性回归（generalized linear model），因此与多重线性回归分析有很多相同之处。<strong>它们的模型形式基本上相同</strong>，都具有 wx+b，其中w和b是待求参数，其区别在于他们的因变量的不同，多重线性回归直接将wx+b作为因变量，即y &#x3D;wx+b，而logistic回归则通过<strong>函数L</strong>将wx+b对应一个隐状态p，p &#x3D;L(wx+b)，然后根据p 与1-p的大小决定因变量的值。如果L是logistic函数，就是logistic回归。</p>
+<blockquote>
+<p><a href="https://baike.baidu.com/item/logistic%E5%9B%9E%E5%BD%92/2981575">logistic回归_百度百科 (baidu.com)</a></p>
+</blockquote>
+<p><strong>什么意思</strong>？听我给你解释！首先我们目的是利用这个算法做什么？分类！没错既然是分类算法，那么我必须就有一个进行分类的标准！比如说：KNN(K近邻算法)我们就是直接计算测试集与训练集之间的距离而后进行划分。贝叶斯分类器：就是直接通过计算概率而后进行分类。也就是说：分类算法模型的大致流程如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">graph LR</span><br><span class="line">A[数据]---&gt;B&#123;模型&#125;---&gt;c[结果]</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><strong>结果</strong>：通过模型我们得到的结果应该大致在一个区间内部（比如：0-1），这样我们就可以建立一个分类的标准，比如：&gt;0.5的时候分类结果为1，＜0.5的时候分类结果为0</p>
+</blockquote>
+<p>我们知道如果仅仅只使用$wx+b$我们是得不到上述<strong>结果</strong>，因此我们借助<strong>函数L</strong>，对$wx+b$的结果进行处理。</p>
+<h2 id="逻辑斯蒂函数"><a href="#逻辑斯蒂函数" class="headerlink" title="逻辑斯蒂函数"></a>逻辑斯蒂函数</h2><p>通过上述对逻辑斯蒂回归定义的了解我们得知，仅仅只借助$wx+b$是得不到我们需要的结果，我们还需要一个函数对$wx+b$进行处理，此处所用的函数就是<strong>逻辑斯蒂函数：</strong></p>
+<p>$$<br>y&#x3D;\frac{1}{1+e^{-z}}\z&#x3D;wx+b,那么将z代入上式得到：\y&#x3D;\frac{1}{1+e^{-(wx+b)}}<br>$$</p>
+<p>我们上式变形可以得到：</p>
+<p>$$<br>y&#x3D;\frac{1}{1+e^{-(wx+b)}}则：\frac{1}{y}-1&#x3D;e^{-(wx+b)}同时取对数:ln(\frac{y}{1-y})&#x3D;wx+b<br>$$</p>
+<p>此时我们只需要求解参数w和b就可以进行分类了</p>
+<h2 id="参数求解"><a href="#参数求解" class="headerlink" title="参数求解"></a>参数求解</h2><p>此处介绍两种求解方法：梯度下降算法、牛顿迭代算法</p>
+<h3 id="梯度上升算法"><a href="#梯度上升算法" class="headerlink" title="梯度上升算法"></a>梯度上升算法</h3><p>$$<br>\theta&#x3D;\theta-\eta\nabla_θ J(θ)\\eta:学习率，\nabla:求导<br>$$</p>
+]]></content>
+      <categories>
+        <category>机器学习</category>
+      </categories>
+      <tags>
+        <tag>机器学习</tag>
+        <tag>逻辑斯蒂回归</tag>
+      </tags>
+  </entry>
+</search>

@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Hjie">
+<meta property="og:url" content="http://example.com/page/2/index.html">
+<meta property="og:site_name" content="Hjie">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:author" content="hjie">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://example.com/page/2/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : true,
+    isPost : false,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>Hjie</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Hjie</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content index posts-expand">
+            
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/posts/1497842915/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/head.jpg">
+      <meta itemprop="name" content="hjie">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hjie">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/posts/1497842915/" class="post-title-link" itemprop="url">多层感知机（MLP）</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2023-06-04 13:36:32" itemprop="dateCreated datePublished" datetime="2023-06-04T13:36:32+08:00">2023-06-04</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">深度学习</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="多层感知机（MLP）"><a href="#多层感知机（MLP）" class="headerlink" title="多层感知机（MLP）"></a>多层感知机（MLP）</h1><blockquote>
+<p><strong>本文章基于3Blue1Brown视频并且结合自己学习总结的笔记</strong></p>
+</blockquote>
+<blockquote>
+<p>视频链接：<a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=aircAruvnKk">https://www.youtube.com/watch?v=aircAruvnKk</a></p>
+</blockquote>
+<blockquote>
+<p>本文只能帮你快速建立对知识理解，如果想细入了解知识——自己查阅文献以及书籍</p>
+<ul>
+<li>自己也在学习深度学习（花书），会不断更新此文章，尽可能的让这篇文章完美</li>
+</ul>
+</blockquote>
+<h2 id="引入"><a href="#引入" class="headerlink" title="引入"></a>引入</h2><p>以<strong>手写字体识别为例</strong>，我们人类可以很容易对一个手写字体进行识别比如下图：<br><img src="/MLP(%E5%A4%9A%E5%B1%82%E6%84%9F%E7%9F%A5%E6%9C%BA)/1680678137054.png" alt="1680678137054"><br>我们可以十分自信的说：这个数字是3！但是对于计算机并非如此！计算机并没有如同人类一样的视觉细胞，那么怎么让计算机认识这数字呢？我们在<strong>K近邻算法</strong>中有一个手写字体识别实验，我们是直接将数字<strong>进行2值化</strong></p>
+<blockquote>
+<p>将数字转化为0-1，如下图：</p>
+<p><img src="/MLP(%E5%A4%9A%E5%B1%82%E6%84%9F%E7%9F%A5%E6%9C%BA)/1680678374250.png" alt="1680678374250"></p>
+</blockquote>
+<p>然后将32x32的图像直接转化为1x1024，而后利用K近邻算法进行判别。这不妨是一个很好的办法，不过在数据量十分大的时候，计算会特别慢，另外一种办法直接将数字转化为不同的<strong>灰度值矩阵</strong>，如下：<img src="/MLP(%E5%A4%9A%E5%B1%82%E6%84%9F%E7%9F%A5%E6%9C%BA)/1680679926805.png" alt="1680679926805"></p>
+<p>我们后续介绍多层感知机也是灰度值变换后图像进行判别。</p>
+<h2 id="什么是多层感知机"><a href="#什么是多层感知机" class="headerlink" title="什么是多层感知机"></a>什么是多层感知机</h2><p>在介绍多层感知机前（不解释定义之类的，都可以自行百度），我们先了解<strong>单层神经网络</strong>的基本结构，<strong>单层神经网络</strong>一般由：输入层、输出层构成。如下：</p>
+<p><img src="/MLP(%E5%A4%9A%E5%B1%82%E6%84%9F%E7%9F%A5%E6%9C%BA)/1680679100906.png" alt="1680679100906"></p>
+<p>先暂时不解释各个层的作用，我们继续介绍<strong>多层感知机</strong>：</p>
+<p><img src="/MLP(%E5%A4%9A%E5%B1%82%E6%84%9F%E7%9F%A5%E6%9C%BA)/1680679187931.png" alt="1680679187931"></p>
+<p>对比两图最明显的区别就是<strong>多层感知机</strong>相较于<strong>单层神经网络</strong>额外的多了一个<strong>隐藏层</strong>。是不是该解释一下1每一层的作用了呢？不！（直接对概念下定义是很难理解的）我们借助我们引入的例子来对没一层进行解释。我们设计一个多层感知机模型如下（为什么这样设计后续解释，从左至右：<strong>输入层（784）–&gt;隐藏层（n）–&gt;隐藏层（n）–&gt;输出层（10）</strong>）：</p>
+<ul>
+<li><strong>括号里面数字代表层的数目</strong></li>
+</ul>
+<p><img src="/MLP(%E5%A4%9A%E5%B1%82%E6%84%9F%E7%9F%A5%E6%9C%BA)/1680679616132.png" alt="1680679616132"></p>
+<p>引入中我们已经提到手写数字已经被我们转化为一个<strong>28x28的灰度值矩阵</strong>，下面开始解释每一层都在干些什么事情！</p>
+<hr>
+<p><strong>输入层</strong></p>
+<p>我们知道数字已经转化为了一个28x28的灰度值矩阵，我们类似K近邻算法将其再次转为为1x784的矩阵，我们将矩阵中的每一个数字（灰度值）作为我们的<strong>神经元</strong>，也就是说我们拥有784个神经元（也就解释了为什么要设计输入层的数目为784）。</p>
+<hr>
+<p><strong>输出层</strong></p>
+<p>我们知道阿拉伯数字只有0-9（别抬杠说10，难道不是由0-1构成），那么是不是我们数据在经过处理之后返回的结果也应该是0-9，这0-9也就构成了我们的输出层（也就解释了输出层为什么是10）</p>
+<hr>
+<p><strong>隐藏层</strong></p>
+<p>至于隐藏层为什么设计两层，而且每层的数目是n。其实很容易解释，首先你不妨在纸上写任意几个数字（假如你写的是数字9），手写数字9是不是大体上可以分为两部分：9的头部的圆、9的尾部的竖线。依次类推任意数字我们都可以才分成几个部分组成（尽管由相似但是不影响我们对数字识别）。好啦假设我们已经对数字划分完毕，已经划分若干组成成分——我们也就构成了我们<strong>第二层隐藏层</strong>，依次类推是不是还可以继续细分呢？9的头部的圆（o）是不是可以细分其他样式呢？——<strong>第一层隐藏层</strong>。</p>
+<hr>
+<p>解释完各个层都在干嘛，你也没解释我们怎么识别数字呀！别急！接下来就解释！我们假设我们在<strong>第二层隐藏层</strong>得到了一个圈和一个竖线通过组合是不是可以得到数字9？为什么不是数字6呢？我们假设第二次隐藏层的数目是$a_1…..a_n（每一个a_i代表不同数字组成部分）$，细心的你肯定已经发现了不同层之间有着许多<strong>线进行连接</strong>，他们是干嘛的呢？<strong>权重</strong>，正是因为这些权重才能保证我们可以识别数字是9而不是6。以此类推第一场隐藏层也如此！</p>
+<p>以上都是一些口语化解释并没有涉及过多的专业名词，下面开始解释一些理论上的内容！</p>
+<h2 id="激活函数"><a href="#激活函数" class="headerlink" title="激活函数"></a>激活函数</h2><p>激活函数判别来确定神经元是否应该被激活，常见三类激活函数如下：</p>
+<h3 id="sigmoid函数"><a href="#sigmoid函数" class="headerlink" title="sigmoid函数"></a>sigmoid函数</h3><p>$$<br>sigmoid(x)&#x3D;\frac{1}{1+exp(-z)}<br>$$</p>
+<p>$$<br>z&#x3D;w_1a_1……w_na_n+b_0<br>$$</p>
+<p>$b_0$代表偏置，用于判别激活函数为多少情况下神经元是否被激活<br>函数图像如下：<br><img src="/MLP(%E5%A4%9A%E5%B1%82%E6%84%9F%E7%9F%A5%E6%9C%BA)/1680682161756.png" alt="1680682161756"></p>
+<h3 id="Relu函数"><a href="#Relu函数" class="headerlink" title="Relu函数"></a>Relu函数</h3><p>$$<br>Relu(z)&#x3D;max(x,0)<br>$$</p>
+<p>函数图像如下：<br><img src="/MLP(%E5%A4%9A%E5%B1%82%E6%84%9F%E7%9F%A5%E6%9C%BA)/1680682133055.png" alt="1680682133055"></p>
+<p>所有小于0的数字都处理为0</p>
+<h3 id="tanh函数"><a href="#tanh函数" class="headerlink" title="tanh函数"></a>tanh函数</h3><p>$$<br>tanh(z)&#x3D;\frac{1+exp(-2z)}{1+exp(-2z)}<br>$$</p>
+<p>函数图像如下：<br><img src="/MLP(%E5%A4%9A%E5%B1%82%E6%84%9F%E7%9F%A5%E6%9C%BA)/1680682185279.png" alt="1680682185279"></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/posts/1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/head.jpg">
+      <meta itemprop="name" content="hjie">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hjie">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/posts/1/" class="post-title-link" itemprop="url">未命名</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2023-06-04 13:36:31" itemprop="dateCreated datePublished" datetime="2023-06-04T13:36:31+08:00">2023-06-04</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+  </nav>
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="hjie"
+      src="/images/head.jpg">
+  <p class="site-author-name" itemprop="name">hjie</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">12</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">hjie</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://mist.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
