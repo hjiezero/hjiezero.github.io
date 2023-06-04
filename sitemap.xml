@@ -2,24 +2,6 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://example.com/posts/9b32ffc1/</loc>
-    
-    <lastmod>2023-06-04</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://example.com/posts/b447d159/</loc>
-    
-    <lastmod>2023-06-04</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>http://example.com/posts/6d8b26d3/</loc>
     
     <lastmod>2023-06-04</lastmod>
@@ -38,7 +20,43 @@
   </url>
   
   <url>
+    <loc>http://example.com/posts/4012468743/</loc>
+    
+    <lastmod>2023-06-04</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>http://example.com/posts/2592384004/</loc>
+    
+    <lastmod>2023-06-04</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://example.com/posts/3065358813/</loc>
+    
+    <lastmod>2023-06-04</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://example.com/posts/9b32ffc1/</loc>
+    
+    <lastmod>2023-06-04</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://example.com/posts/b447d159/</loc>
     
     <lastmod>2023-06-04</lastmod>
     
@@ -74,15 +92,6 @@
   </url>
   
   <url>
-    <loc>http://example.com/posts/1497842915/</loc>
-    
-    <lastmod>2023-06-04</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>http://example.com/posts/1516846897/</loc>
     
     <lastmod>2023-06-04</lastmod>
@@ -101,25 +110,7 @@
   </url>
   
   <url>
-    <loc>http://example.com/posts/4012468743/</loc>
-    
-    <lastmod>2023-06-04</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>http://example.com/posts/2045861030/</loc>
-    
-    <lastmod>2023-06-04</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://example.com/posts/3065358813/</loc>
     
     <lastmod>2023-06-04</lastmod>
     
@@ -179,13 +170,6 @@
   
   <url>
     <loc>http://example.com/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/</loc>
-    <lastmod>2023-06-04</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>http://example.com/tags/%E5%A4%9A%E5%B1%82%E6%84%9F%E7%9F%A5%E6%9C%BA/</loc>
     <lastmod>2023-06-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
