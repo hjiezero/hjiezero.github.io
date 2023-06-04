@@ -857,7 +857,7 @@
 <p>2、输入：4096，输出4096</p>
 <p>3、输入：4096，输出1000 (<strong>因为进行的是1000个分类</strong>）</p>
 <p>在参考文献1中作者同时比较了下面几种不同结构（VGG11、VGG16与VGG19）：</p>
-<img data-src="图像识别算法--VGG16.assets/image-20230521225247719.png" alt="image-20230521225247719" style="zoom: 50%;">
+<img data-src="https://s2.loli.net/2023/06/04/tDAGlFpbTnv7wXP.png" alt="image-20230521225247719" style="zoom: 50%;">
 
 <hr>
 <p><strong>建议</strong>：</p>
@@ -924,6 +924,39 @@
       <tags>
         <tag>深度学习</tag>
         <tag>图像识别</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>自动备份Hexo博客源文件</title>
+    <url>/posts/b6b5a9dd/</url>
+    <content><![CDATA[<p>由于自己经常通过hexo来写自己的blog那么万一那一天树莓派坏了（自己用树莓派做服务器），那么里面所有的东西都需要重新写那太遭罪了，所以去网上找了将hexo进行备份的操作。<br>⭐以下操作在⏱️2023.6.4⏱️可以完美实现</p>
+<span id="more"></span>
+<h1 id="hexo备份操作"><a href="#hexo备份操作" class="headerlink" title="hexo备份操作"></a>hexo备份操作</h1><h2 id="hexo需要备份什么东西？"><a href="#hexo需要备份什么东西？" class="headerlink" title="hexo需要备份什么东西？"></a>hexo需要备份什么东西？</h2><p>我们在<strong>新电脑</strong>通过hexo重新搭建博客的时候（跳过hexo安装）<code>hexo init</code>那么在目标目录下会生成一部分文件，但是我们不可能重新在<strong>新电脑</strong>里面把之前的东西在写一遍，此时需要将<strong>旧电脑</strong>写的东西迁移到新电脑。此时分为两种情况：</p>
+<h3 id="1、旧电脑还活着"><a href="#1、旧电脑还活着" class="headerlink" title="1、旧电脑还活着"></a>1、旧电脑还活着</h3><p>我们只需要把<strong>旧电脑</strong>上博客目录下的<code>source、themes、_config.yml</code>覆盖到 blog 的那个文件夹即可，只要hexo环境没问题，hexo的一系列操作都没问题（在第一次<code>hexo d</code>可能会有些慢，耐心等待）。同样，在新电脑上只要把环境搭建好，只要把两个文件夹一个配置文件覆盖过去，都没问题。包括在备份时也只需要把这两个文件夹一个配置文件备份好，其他的都不用管了。</p>
+<h3 id="2、旧电脑死了"><a href="#2、旧电脑死了" class="headerlink" title="2、旧电脑死了"></a>2、旧电脑死了</h3><p>此种情况就需要我们重新写blog了，但是我们可以避免这种情况！！！操作如下：<br><strong>第一步</strong>，我们先在github上创建一个仓库作为我们的博客存储。<br><strong>第二步</strong>，我们需要在<strong>旧电脑</strong>上执行如下命令：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git init</span><br><span class="line">git remote add origin git@github.com:yourname/hexo.git</span><br><span class="line">git pull origin master</span><br></pre></td></tr></table></figure>
+<p>正如我们上面<strong>第一种情况</strong>我们不需要对所有的文件进行操作，那么的话我们在<strong>根目录</strong>下新建文件<code>.gitignore </code>在此文件下输入我们不需要备份的文件，我的配置如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">.DS_Store</span><br><span class="line">Thumbs.db</span><br><span class="line">db.json</span><br><span class="line">*.log</span><br><span class="line">node_modules/</span><br><span class="line">public/</span><br><span class="line">.deploy*/</span><br></pre></td></tr></table></figure>
+<p><strong>第三步</strong>：执行如下命令：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git add .</span><br><span class="line">git commit -m &quot;备份hexo源码文件&quot;</span><br><span class="line">git push origin master</span><br></pre></td></tr></table></figure>
+<p><strong>测试</strong>：<br><img data-src="https://s2.loli.net/2023/06/04/WSO4JgRDtdGmsiE.png" alt="备份操作1" style="zoom:100%;"><br>不过！！！！万一哪一天忘记<code>git push </code>怎么办？</p>
+<h3 id="备份方法二"><a href="#备份方法二" class="headerlink" title="备份方法二"></a>备份方法二</h3><p>我们需要自动备份怎么办？要实现这个自动备份功能，需要依赖NodeJs的一个shelljs模块,该模块重新包装了child_process,调用系统命令更加的方便，该模块需要安装后使用。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm install --save shelljs</span><br></pre></td></tr></table></figure>
+<p><strong>编写自动化脚本</strong></p>
+<blockquote>
+<p>注意⭐：如下操作只是帮助你减少上面操作，也就是执行 <code> hexo d</code>的时候自动帮你把<code>git push</code>执行，所以我们还是需在github建立仓库！！！<br>shelljs模块安装完成后，在Hexo根目录的scripts文件夹下新建一个js文件，文件名随意取(我的文件名为:auto.js)。如果没有scripts目录，请新建一个。然后在脚本中，写入以下内容：</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">require(&#x27;shelljs/global&#x27;);</span><br><span class="line">try &#123;</span><br><span class="line">    hexo.on(&#x27;deployAfter&#x27;, function() &#123;//当deploy完成后执行备份</span><br><span class="line">        run();</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">&#125; catch (e) &#123;</span><br><span class="line">    console.log(&quot;产生了一个错误啊&lt;(￣3￣)&gt; !，错误详情为：&quot; + e.toString());</span><br><span class="line">&#125;</span><br><span class="line">function run() &#123;</span><br><span class="line">    if (!which(&#x27;git&#x27;)) &#123;</span><br><span class="line">        echo(&#x27;Sorry, this script requires git&#x27;);</span><br><span class="line">        exit(1);</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        echo(&quot;======================Auto Backup Begin===========================&quot;);</span><br><span class="line">        cd(&#x27;/home/pi/blog&#x27;);    //此处修改为Hexo根目录路径</span><br><span class="line">        if (exec(&#x27;git add --all&#x27;).code !== 0) &#123;</span><br><span class="line">            echo(&#x27;Error: Git add failed&#x27;);</span><br><span class="line">            exit(1);</span><br><span class="line">        &#125;</span><br><span class="line">        if (exec(&#x27;git commit -am &quot;blog auto backup script\&#x27;s commit&quot;&#x27;).code !== 0) &#123;</span><br><span class="line">            echo(&#x27;Error: Git commit failed&#x27;);</span><br><span class="line">            exit(1);</span><br><span class="line">        &#125;</span><br><span class="line">        // 下面if内容，如果你的Git远程仓库名称不为origin的话，还需要修改push命令，修改成自己的远程仓库名和相应的分支名</span><br><span class="line">        if (exec(&#x27;git push origin main&#x27;).code !== 0) &#123;</span><br><span class="line">            echo(&#x27;Error: Git push failed&#x27;);</span><br><span class="line">            exit(1);</span><br><span class="line">        &#125;</span><br><span class="line">        echo(&quot;==================Auto Backup Complete============================&quot;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>上述有两处需要更改，已经标注</li>
+</ul>
+<p>测试：&#96;&#96; heox d&#96;&#96;&#96;<br>结果如下：<br><img data-src="https://s2.loli.net/2023/06/04/tjhMsOceK6olzAy.png" alt="202306042002321" style="zoom:100%;"></p>
+]]></content>
+      <categories>
+        <category>hexo</category>
+      </categories>
+      <tags>
+        <tag>hexo备份</tag>
       </tags>
   </entry>
 </search>
