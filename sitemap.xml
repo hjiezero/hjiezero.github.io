@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://hjiezero.github.io/posts/cd6f0230/</loc>
+    
+    <lastmod>2023-06-05</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://hjiezero.github.io/books/index.html</loc>
     
     <lastmod>2023-06-05</lastmod>
@@ -50,15 +59,6 @@
     <loc>https://hjiezero.github.io/posts/9b32ffc1/</loc>
     
     <lastmod>2023-06-05</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://hjiezero.github.io/posts/cd6f0230/</loc>
-    
-    <lastmod>2023-06-04</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>

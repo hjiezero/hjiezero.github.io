@@ -626,8 +626,9 @@
   <entry>
     <title>机器学习可解释性--LIME</title>
     <url>/posts/cd6f0230/</url>
-    <content><![CDATA[<p>trusting a prediction or trusting a model<br>如果⼀个机器学习模型运⾏良好，为什么我们仅仅信任该模型⽽忽略为什么做出特定的决策呢？<br>诸如分类准确性之类的单⼀指标⽆法完整地描述⼤多数实际任务。当涉及到预测模型时，需要作出权衡：<strong>你是只想知道预测是什么？</strong>例如，客户流失的概率或某种药物对病⼈的疗效。<strong>还是想知道为什么做出这样的预测？</strong>这种情况下可能为了可解释性付出预测性能下降的代价。在某些情况下，你不必关⼼为什么要做出这样的预测，只要知道模型在测试数据集的预测性能良好就⾜够了。但是在其他情况下，了解 “为什么” 可以帮助你更多地了解问题、数据以及模型可能失败的原因。有些模型可能不需要解释，因为它们是在低风险的环境中使⽤的，这意味着错误不会造成严重后果 (例如，电影推荐系统)，或者该⽅法已经被⼴泛研究和评估 (例如，光学字符识别 OCR)。对可解释性的需求来⾃问题形式化的不完整性，这意味着对于某些问题或任务，仅仅获得预测结果是不够的。该模型还必须解释是怎么获得这个预测的，因为正确的预测只部分地解决了你的原始问题。</p>
+    <content><![CDATA[<p><strong>trusting a prediction or trusting a model</strong><br>如果⼀个机器学习模型运⾏良好，为什么我们仅仅信任该模型⽽忽略为什么做出特定的决策呢？<br>诸如分类准确性之类的单⼀指标⽆法完整地描述⼤多数实际任务。当涉及到预测模型时，需要作出权衡：<strong>你是只想知道预测是什么？</strong>例如，客户流失的概率或某种药物对病⼈的疗效。<strong>还是想知道为什么做出这样的预测？</strong>这种情况下可能为了可解释性付出预测性能下降的代价。在某些情况下，你不必关⼼为什么要做出这样的预测，只要知道模型在测试数据集的预测性能良好就⾜够了。但是在其他情况下，了解 “为什么” 可以帮助你更多地了解问题、数据以及模型可能失败的原因。有些模型可能不需要解释，因为它们是在低风险的环境中使⽤的，这意味着错误不会造成严重后果 (例如，电影推荐系统)，或者该⽅法已经被⼴泛研究和评估 (例如，光学字符识别 OCR)。对可解释性的需求来⾃问题形式化的不完整性，这意味着对于某些问题或任务，仅仅获得预测结果是不够的。该模型还必须解释是怎么获得这个预测的，因为正确的预测只部分地解决了你的原始问题。</p>
 <span id="more"></span>
+
 <h1 id="机器学习可解释性"><a href="#机器学习可解释性" class="headerlink" title="机器学习可解释性"></a>机器学习可解释性</h1><p>需要建立一个解释器来解释黑盒模型，并且这个解释器必须满足以下特征：<br><strong>可解释性</strong><br>要求解释器的模型与特征都必须是可解释的，像决策树、线性模型都是很适合拿来解释的模型；而可解释的模型必须搭配可解释的特征，才是真正的可解释性，让不了解机器学习的人也能通过解释器理解模型。<br><strong>局部保真度</strong><br>既然我们已经使用了可解释的模型与特征，就不可能期望简单的可解释模型在效果上等同于复杂模型（比如原始CNN分类器）。所以解释器不需要在全局上达到复杂模型的效果，但至少在局部上效果要很接近，而此处的局部代表我们想观察的那个样本的周围。<br><strong>与模型无关</strong><br>这里所指的是与复杂模型无关，换句话说无论多复杂的模型，像是SVM或神经网络，该解释器都可以工作。<br>除了传统的特征重要性排序外，ICE、PDP、SDT、LIME、SHAP都是揭开机器学习模型黑箱的有力工具。</p>
 <ul>
 <li>特征重要性计算依据某个特征进行决策树分裂时，分裂前后的信息增益（基尼系数）；</li>
@@ -637,21 +638,77 @@
 <li>SHAP的概念源于博弈论，核心思想是计算特征对模型输出的边际贡献；</li>
 </ul>
 <hr>
-<h1 id="机器学习可解释性–LIME"><a href="#机器学习可解释性–LIME" class="headerlink" title="机器学习可解释性–LIME"></a>机器学习可解释性–LIME</h1><h2 id="机器学习的解释性"><a href="#机器学习的解释性" class="headerlink" title="机器学习的解释性"></a>机器学习的解释性</h2><p>Trusting a prediction, i.e. whether a user trusts an individual prediction sufficiently to take some action based on it, and  trusting a model, i.e. whether the user trusts a model to behave in reasonable ways if deployed.” (Ribeiro 等, 2016, p. 1135) </p>
+<h1 id="机器学习可解释性–LIME"><a href="#机器学习可解释性–LIME" class="headerlink" title="机器学习可解释性–LIME"></a>机器学习可解释性–LIME</h1><p>[toc]</p>
+<h2 id="机器学习的解释性"><a href="#机器学习的解释性" class="headerlink" title="机器学习的解释性"></a>机器学习的解释性</h2><p>Trusting a prediction, i.e. whether a user trusts an individual prediction sufficiently to take some action based on it, and  trusting a model, i.e. whether the user trusts a model to behave in reasonable ways if deployed.” (Ribeiro 等, 2016, p. 1135)</p>
 <blockquote>
 <p>信任一个预测，即用户是否充分信任一个个体的预测，并在此基础上采取行动；信任一个模型，即用户是否信任一个模型在部署后的行为是否合</p>
 </blockquote>
 <p>LIME, an algorithm that can explain the predictions of any classifier or regressor in a faithful way, by approximating it locally with an interpretable model.” (Ribeiro 等, 2016, p. 1135)</p>
 <blockquote>
-<p>LIME是一种算法，通过用可解释的模型对其进行局部近似，可以忠实地解释任何分类器或回归器的预测。</p>
+<p>LIME是一种算法，通过用可解释的模型对其进行<strong>局部近似</strong>，可以忠实地解释任何分类器或回归器的预测。</p>
 </blockquote>
-<p>所谓机器学习可解释性就是：我们建立了一个模型预测得到了一个结果，但是你这个<strong>结果真的可以让人信服吗</strong>（从实际生产角度考虑，不从模型的准确率的角度考虑）？这个<strong>模型的影响因素</strong>又是什么呢？如下图<a href="%5Bhttps://doi.org/10.1145/2939672.2939778%5D(https://doi.org/10.1145/2939672.2939778)">^2</a>：<br><img data-src="https://s2.loli.net/2023/06/04/Pm6VexD4KinwA2l.png" alt="机器学习可解释性--LIME[^2]" style="zoom:60%;"></p>
+<p>所谓机器学习可解释性就是：我们建立了一个模型预测得到了一个结果，但是你这个<strong>结果真的可以让人信服吗</strong>（从实际生产角度考虑，不从模型的准确率的角度考虑）？这个<strong>模型的影响因素</strong>又是什么呢？如下图<a href="https://doi.org/10.1145/2939672.2939778">^2</a>：</p>
+<img data-src="https://s2.loli.net/2023/06/04/Pm6VexD4KinwA2l.png" alt="机器学习可解释性--LIME[^2]" style="zoom:60%;">
+
 <p>我们通过模型预测流感（flu），通过LIME得到的解释是：喷嚏（sneeze）、头疼（headche）对流感预测是“支持”，而没有疲劳（no fatigue）是“反对”。我们将模型结果交给决策者（human make decision）让她对模型结果做判断。<strong>机器学习</strong>只能作为我们辅助决策的工具，对于实际决策还是依靠<strong>人类</strong>。而我们的决策的依据就是<strong>解释</strong>（explainer），我们根据给出的解释来判别模型是否可作为我们的决策依据。</p>
-<h2 id="LIME原理"><a href="#LIME原理" class="headerlink" title="LIME原理"></a>LIME原理</h2><p><strong>LIME（Local Interpretable Model-agnostic Explanations）</strong>。该模型是一个局部可解释模型，并且是一个与模型自身的无关的可解释方法。<strong>使用训练的局部代理模型来对单个样本进行解释</strong>。假设对于需要解释的黑盒模型，取关注的实例样本，在其附近进行扰动生成新的样本点，并得到黑盒模型的预测值，使用新的数据集训练可解释的模型（如线性回归、决策树），得到对黑盒模型良好的局部近似<a href="%5Bhttps://blog.csdn.net/iqdutao/article/details/108397239%5D(https://blog.csdn.net/iqdutao/article/details/108397239)">^1</a>。</p>
-<p>“The overall goal of LIME is to identify an interpretable model over the interpretable representation that is locally faithful to the classifier.” (Ribeiro 等, 2016, p. 1137) </p>
+<h2 id="LIME原理"><a href="#LIME原理" class="headerlink" title="LIME原理"></a>LIME原理</h2><p><strong>LIME（Local Interpretable Model-agnostic Explanations）</strong>。该模型是一个<strong>局部</strong>可解释模型，并且是一个与模型自身的无关的可解释方法。使用训练的<strong>局部代理模型</strong>来对单个样本进行解释。假设对于需要解释的黑盒模型，取关注的实例样本，在其附近进行扰动生成新的样本点，并得到黑盒模型的预测值，使用新的数据集训练可解释的模型（如线性回归、决策树），得到对黑盒模型良好的局部近似<a href="https://blog.csdn.net/iqdutao/article/details/108397239">^1</a>。</p>
+<p>“The overall goal of LIME is to identify an interpretable model over the interpretable representation that is locally faithful to the classifier.” (Ribeiro 等, 2016, p. 1137)</p>
 <blockquote>
 <p>LIME的总体目标是基于局部可解释性模型 在局部忠实于分类器的可解释表示上识别一个可解释模型。</p>
 </blockquote>
+<p>LIME特点如下：</p>
+<ul>
+<li>Local：局部保证度，即我们希望解释真实反映的分类器</li>
+</ul>
+<h2 id="LIME计算"><a href="#LIME计算" class="headerlink" title="LIME计算"></a>LIME计算</h2><p>假设$f$作为我们需要解释的模型，那么我们定义解释模型$g \in G$ ，$G$作为<strong>解释族函数</strong>（一系列可能的解释模型（线性模型、决策树模型等）），因为并不是每一个$g\in G$都可能是简单到可以解释的，因此定义$\Omega(g)$作为<strong>复杂形测度</strong>，$\pi_{x}$作为实例$z$到$x$之间的邻近度量，从而定义$x$周围的局部性。最后定义$L(f,g,\pi_{x})$作为不忠实$g$在$\pi_{x}$定义的局部中逼近$f$，为了保证<strong>可解释性</strong>和<strong>局部忠实性</strong>计算公式：</p>
+<p>$$<br>\xi(s)&#x3D; argmin_{g\in G} L(f,g,\pi_{x})+\Omega(g)<br>$$</p>
+<h3 id="局部探索"><a href="#局部探索" class="headerlink" title="局部探索"></a>局部探索</h3><p>前面提及到了LIME是一种局部探索可解释模型，那么其局部探索功能如何实现呢？在论文中的 <code>3.3 Sampling for Local Exploration</code>作者给出解释如下：<br>如公式1所示我们需要最小化$L(f,g,\pi_{x})$，我们在$x$周围生成<strong>扰动样本</strong>（perturbed sample）设生成的扰动样本为$Z$，那么我们可以根据我们的$f$对我们所生成的扰动样本进行处理即：$f(Z)$，我们对扰动样本进行加权（距离$x$近的赋予较大权重，反之则较小权重）</p>
+<blockquote>
+<p>“where we sample instances both in the vicinity of $x$ (which have a high weight due to $\pi_{x}$) and far away from x (low weight from $\pi_{x}$).” ([Ribeiro 等, 2016, p. 1137]<br>其中，我们分别在$x$ (由于$\pi_{x}$而具有很高的权重)附近和远离$x$ (来自$\pi_{x}$的低权重)的地方采样实例。</p>
+</blockquote>
+<p>作者在论文中提到即使原始模型（$f$）很难全局进行解释，但是LIME能够在局部进行合理解释</p>
+<blockquote>
+<p>ven though the original model may be too complex to explain globally, LIME presents an explanation that is locally faithful</p>
+</blockquote>
+<h3 id="稀疏线性解释"><a href="#稀疏线性解释" class="headerlink" title="稀疏线性解释"></a>稀疏线性解释</h3><p>论文作者设置解释族函数$G$为线性模型（$g(Z)&#x3D;w_{g}z$），设置$L$为$ \underset{z,z^{‘}\in Z}{\sum}\pi_{x}(z)(f(z)-g(z^{‘})^{2}$，$\pi_{x}$为$exp(\frac{-D(x,z)^{2}}{\sigma^{2}})$，上面提及到的扰动样本$Z$，对于扰动样本设计线性函数去对扰动样本进行区分（已分类算法为例）那么我们所赋予的不同的权重$w_{g}$就是不同的样本中不同特征的影响。</p>
+<h3 id="LIME步骤"><a href="#LIME步骤" class="headerlink" title="LIME步骤"></a>LIME步骤</h3><ul>
+<li>对整个数据进行训练，模型可以是Lightgbm，XGBoost等复杂的模型（本身不可解释）;</li>
+<li>选择我们想要解释的变量$x$;</li>
+<li>对数据集中的数据进行可解释的N次扰动，生成扰动样本;</li>
+<li>对这些新的样本求出权重，这个权重是这些数据点与我们要解释的数据之间的距离;</li>
+<li>根据上面新的数据集，拟合一个简单的模型$g$，比如Lasso Regression得到模型的权重;</li>
+<li>通过简单模型$g$来对原复杂模型在$x$点附近进行解释;</li>
+</ul>
+<h2 id="LIME直观解释"><a href="#LIME直观解释" class="headerlink" title="LIME直观解释"></a>LIME直观解释</h2><h3 id="1、分类算法"><a href="#1、分类算法" class="headerlink" title="1、分类算法"></a>1、分类算法</h3><img data-src="https://s2.loli.net/2023/06/05/RqaWkvG7wHSo6jF.png" alt="202306052009422" style="zoom:50%;">
+
+<p>如上图不同的颜色块代表不同的类别（蓝色和粉色），很难通过线性模型进行近似。因此输入样本（加重红色×）在其周围生成不同的扰动样本（×和·，其大小代表距离），我们可以对所生成的扰动样本构建线性函数进行区分。具体步骤如下图所示：</p>
+<img data-src="https://s2.loli.net/2023/06/05/W2h9NPIY1sDdwi6.png" alt="202306052008339" style="zoom:60%;">
+
+<h3 id="2、图像识别"><a href="#2、图像识别" class="headerlink" title="2、图像识别"></a>2、图像识别</h3><p>在Local Interpretable Model-Agnostic Explanations (LIME): An Introduction<a href="https://www.oreilly.com/content/introduction-to-local-interpretable-model-agnostic-explanations-lime/">^3</a>中作者对图像识别做出了解释。对一只树蛙进行分类：</p>
+<img data-src="https://s2.loli.net/2023/06/05/srhUdaWXZK1jwgT.png" alt="202306052008339" style="zoom:60%;">
+
+<p>将一些可解释的成分 “关闭”（在这种情况下，使它们变成灰色）来生成一组扰乱实例的数据。对于每个被扰乱的实例，我们根据模型得到树蛙在图像中的概率。然后我们在这个数据集上学习一个简单的（线性）模型，这个模型是局部加权的–也就是说，我们更关心在与原始图像更相似的扰动实例中犯错误。最后，我们将具有最高正向权重的超级像素作为解释，而将其他的东西涂成灰色。</p>
+<img data-src="https://s2.loli.net/2023/06/05/xTNHmRpBsW52Lna.png" alt="202306052008339" style="zoom:60%;">
+
+<p>我们在任意图像上解释谷歌的 Inception 神经网络。在这种情况下，如下图 所示，分类器将“树蛙”预测为最有可能的类别，其次是概率较低的“台球桌”和“气球”。解释表明分类器主要关注青蛙的脸作为对预测类别的解释。它还阐明了为什么“台球桌”的概率不为零：青蛙的手和眼睛与台球很相似，尤其是在绿色背景下。同样，爱心也很像一个红色的气球。</p>
+<img data-src="https://s2.loli.net/2023/06/05/bE4x2AP1dktK8VZ.png" alt="202306052008339" style="zoom:60%;">
+
+<h2 id="LIME优缺点"><a href="#LIME优缺点" class="headerlink" title="LIME优缺点"></a>LIME优缺点</h2><p>1、LIME算法有很强的通用性，效果好。LIME除了能够对图像的分类结果进行解释外，还可以应用到自然语言处理的相关任务中，如主题分类、词性标注等。因为LIME本身的出发点就是模型无关的，具有广泛的适用性。</p>
+<p>2、LIME算法速度慢，LIME在采样完成后，每张采样出来的图片都要通过原模型预测一次结果，所以在速度上没有明显优势。</p>
+<p>3、LIME算法拓展方向，本文的作者在18年新提出了Anchors的方法，指的是复杂模型在局部所呈现出来的很强的规则性的规律，注意和LIME的区别，LIME是在局部建立一个可理解的线性可分模型，而Anchors的目的是建立一套更精细的规则系统。在和文本相关的任务上有不错的表现。有待我们继续研究。</p>
+<p>优点：</p>
+<ul>
+<li>表格型数据、文本和图片均适用；</li>
+<li>解释对人友好，容易明白；</li>
+<li>给出一个忠诚性度量，判断可解释模型是否可靠；</li>
+<li>LIME可以使用原模型所用不到的一些特征数据，比如文本中一个词是否出现。</li>
+</ul>
+<p>缺点：</p>
+<ul>
+<li>表格型数据中，相邻点很难定义，需要尝试不同的kernel来看LIME给出的可解释是否合理；</li>
+<li>扰动时，样本服从高斯分布，忽视了特征之间的相关性；</li>
+<li>稳定性不够好，重复同样的操作，扰动生成的样本不同，给出的解释可能会差别很大。</li>
+</ul>
 <h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1>]]></content>
       <categories>
         <category>机器学习</category>
