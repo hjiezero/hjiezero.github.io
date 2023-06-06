@@ -709,7 +709,11 @@
 <li>扰动时，样本服从高斯分布，忽视了特征之间的相关性；</li>
 <li>稳定性不够好，重复同样的操作，扰动生成的样本不同，给出的解释可能会差别很大。</li>
 </ul>
-<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1>]]></content>
+<h2 id="推荐阅读"><a href="#推荐阅读" class="headerlink" title="推荐阅读"></a>推荐阅读</h2><p><a href="http://hjiezero.github.io/posts/32fedbdb/">http://hjiezero.github.io/posts/32fedbdb/</a></p>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p>1、<a href="https://blog.csdn.net/iqdutao/article/details/1083972">https://blog.csdn.net/iqdutao/article/details/1083972</a></p>
+<p>2、 <a href="https://doi.org/10.1145/2939672.2939778">https://doi.org/10.1145/2939672.2939778</a></p>
+<p>3、<a href="https://www.oreilly.com/content/introduction-to-local-interpretable-model-agnostic-explanations-lime/">https://www.oreilly.com/content/introduction-to-local-interpretable-model-agnostic-explanations-lime/</a></p>
+]]></content>
       <categories>
         <category>机器学习</category>
       </categories>
