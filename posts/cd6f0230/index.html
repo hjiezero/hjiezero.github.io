@@ -35,8 +35,9 @@
 <meta property="og:image" content="https://s2.loli.net/2023/06/05/srhUdaWXZK1jwgT.png">
 <meta property="og:image" content="https://s2.loli.net/2023/06/05/xTNHmRpBsW52Lna.png">
 <meta property="og:image" content="https://s2.loli.net/2023/06/05/bE4x2AP1dktK8VZ.png">
+<meta property="og:image" content="https://s2.loli.net/2023/06/07/LPuY56g8dC1otTB.png">
 <meta property="article:published_time" content="2023-06-07T02:36:21.000Z">
-<meta property="article:modified_time" content="2023-06-07T06:59:30.505Z">
+<meta property="article:modified_time" content="2023-06-07T07:35:18.025Z">
 <meta property="article:author" content="hjie">
 <meta property="article:tag" content="机器学习">
 <meta property="article:tag" content="文献笔记">
@@ -153,7 +154,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%8F%AF%E8%A7%A3%E9%87%8A%E6%80%A7"><span class="nav-number">1.</span> <span class="nav-text">机器学习可解释性</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%8F%AF%E8%A7%A3%E9%87%8A%E6%80%A7%E2%80%93LIME"><span class="nav-number">2.</span> <span class="nav-text">机器学习可解释性–LIME</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%9A%84%E8%A7%A3%E9%87%8A%E6%80%A7"><span class="nav-number">2.1.</span> <span class="nav-text">机器学习的解释性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LIME%E5%8E%9F%E7%90%86"><span class="nav-number">2.2.</span> <span class="nav-text">LIME原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LIME%E8%AE%A1%E7%AE%97"><span class="nav-number">2.3.</span> <span class="nav-text">LIME计算</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B1%80%E9%83%A8%E6%8E%A2%E7%B4%A2"><span class="nav-number">2.3.1.</span> <span class="nav-text">局部探索</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A8%80%E7%96%8F%E7%BA%BF%E6%80%A7%E8%A7%A3%E9%87%8A"><span class="nav-number">2.3.2.</span> <span class="nav-text">稀疏线性解释</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#LIME%E6%AD%A5%E9%AA%A4"><span class="nav-number">2.3.3.</span> <span class="nav-text">LIME步骤</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LIME%E7%9B%B4%E8%A7%82%E8%A7%A3%E9%87%8A"><span class="nav-number">2.4.</span> <span class="nav-text">LIME直观解释</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1%E3%80%81%E5%88%86%E7%B1%BB%E7%AE%97%E6%B3%95"><span class="nav-number">2.4.1.</span> <span class="nav-text">1、分类算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2%E3%80%81%E5%9B%BE%E5%83%8F%E8%AF%86%E5%88%AB"><span class="nav-number">2.4.2.</span> <span class="nav-text">2、图像识别</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LIME%E4%BC%98%E7%BC%BA%E7%82%B9"><span class="nav-number">2.5.</span> <span class="nav-text">LIME优缺点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8E%A8%E8%8D%90%E9%98%85%E8%AF%BB"><span class="nav-number">2.6.</span> <span class="nav-text">推荐阅读</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8F%82%E8%80%83"><span class="nav-number">3.</span> <span class="nav-text">参考</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%8F%AF%E8%A7%A3%E9%87%8A%E6%80%A7"><span class="nav-number">1.</span> <span class="nav-text">机器学习可解释性</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%8F%AF%E8%A7%A3%E9%87%8A%E6%80%A7%E2%80%93LIME"><span class="nav-number">2.</span> <span class="nav-text">机器学习可解释性–LIME</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%9A%84%E8%A7%A3%E9%87%8A%E6%80%A7"><span class="nav-number">2.1.</span> <span class="nav-text">机器学习的解释性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LIME%E5%8E%9F%E7%90%86"><span class="nav-number">2.2.</span> <span class="nav-text">LIME原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LIME%E8%AE%A1%E7%AE%97"><span class="nav-number">2.3.</span> <span class="nav-text">LIME计算</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B1%80%E9%83%A8%E6%8E%A2%E7%B4%A2"><span class="nav-number">2.3.1.</span> <span class="nav-text">局部探索</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A8%80%E7%96%8F%E7%BA%BF%E6%80%A7%E8%A7%A3%E9%87%8A"><span class="nav-number">2.3.2.</span> <span class="nav-text">稀疏线性解释</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#LIME%E6%AD%A5%E9%AA%A4"><span class="nav-number">2.3.3.</span> <span class="nav-text">LIME步骤</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LIME%E7%9B%B4%E8%A7%82%E8%A7%A3%E9%87%8A"><span class="nav-number">2.4.</span> <span class="nav-text">LIME直观解释</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1%E3%80%81%E5%88%86%E7%B1%BB%E7%AE%97%E6%B3%95"><span class="nav-number">2.4.1.</span> <span class="nav-text">1、分类算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2%E3%80%81%E5%9B%BE%E5%83%8F%E8%AF%86%E5%88%AB"><span class="nav-number">2.4.2.</span> <span class="nav-text">2、图像识别</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LIME%E4%BC%98%E7%BC%BA%E7%82%B9"><span class="nav-number">2.5.</span> <span class="nav-text">LIME优缺点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8E%A8%E8%8D%90%E9%98%85%E8%AF%BB"><span class="nav-number">2.6.</span> <span class="nav-text">推荐阅读</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81"><span class="nav-number">3.</span> <span class="nav-text">代码</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8F%82%E8%80%83"><span class="nav-number">4.</span> <span class="nav-text">参考</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -244,7 +245,7 @@
       <span class="post-meta-item-text">发表于</span>
       
 
-      <time title="创建时间：2023-06-07 10:36:21 / 修改时间：14:59:30" itemprop="dateCreated datePublished" datetime="2023-06-07T10:36:21+08:00">2023-06-07</time>
+      <time title="创建时间：2023-06-07 10:36:21 / 修改时间：15:35:18" itemprop="dateCreated datePublished" datetime="2023-06-07T10:36:21+08:00">2023-06-07</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -323,7 +324,9 @@
 <blockquote>
 <p>ven though the original model may be too complex to explain globally, LIME presents an explanation that is locally faithful</p>
 </blockquote>
-<h3 id="稀疏线性解释"><a href="#稀疏线性解释" class="headerlink" title="稀疏线性解释"></a>稀疏线性解释</h3><p>论文作者设置解释族函数$G$为线性模型（$g(Z)&#x3D;w_{g}z$），设置$L$为<br>$$ \underset{z,z^{‘}\in Z}{\sum}\pi_{x}(z)(f(z)-g(z^{‘}))^{2}$$<br>$\pi_{x}$为$exp(\frac{-D(x,z)^{2}}{\sigma^{2}})$，上面提及到的扰动样本$Z$，对于扰动样本设计线性函数去对扰动样本进行区分（已分类算法为例）那么我们所赋予的不同的权重$w_{g}$就是不同的样本中不同特征的影响。</p>
+<h3 id="稀疏线性解释"><a href="#稀疏线性解释" class="headerlink" title="稀疏线性解释"></a>稀疏线性解释</h3><p>论文作者设置解释族函数$G$为线性模型（$g(Z)&#x3D;w_{g}z$），设置$L$为</p>
+<p>$$<br>\underset{z,z^{‘}\in Z}{\sum}\pi_{x}(z)(f(z)-g(z^{‘}))^{2}<br>$$</p>
+<p>$\pi_{x}$为$exp(\frac{-D(x,z)^{2}}{\sigma^{2}})$，上面提及到的扰动样本$Z$，对于扰动样本设计线性函数去对扰动样本进行区分（已分类算法为例）那么我们所赋予的不同的权重$w_{g}$就是不同的样本中不同特征的影响。</p>
 <h3 id="LIME步骤"><a href="#LIME步骤" class="headerlink" title="LIME步骤"></a>LIME步骤</h3><ul>
 <li>对整个数据进行训练，模型可以是Lightgbm，XGBoost等复杂的模型（本身不可解释）;</li>
 <li>选择我们想要解释的变量$x$;</li>
@@ -363,9 +366,31 @@
 <li>稳定性不够好，重复同样的操作，扰动生成的样本不同，给出的解释可能会差别很大。</li>
 </ul>
 <h2 id="推荐阅读"><a href="#推荐阅读" class="headerlink" title="推荐阅读"></a>推荐阅读</h2><p><a href="http://hjiezero.github.io/posts/32fedbdb/">http://hjiezero.github.io/posts/32fedbdb/</a></p>
+<h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1><p>Python库<a target="_blank" rel="noopener" href="https://github.com/marcotcr/lime">LIME</a>提供了实现模型解释的接口，按数据类型分为表格(LimeTabularExplainer), 图像(LimeImageExplainer) 和文本(LimeTextExplainer)<br>创建LimeTabularExplainer 类<a target="_blank" rel="noopener" href="https://e0hyl.github.io/BLOG-OF-E0/LIMEandSHAP/">^4</a></p>
+<ul>
+<li>必要参数是<code>training_data</code>,因为采样时会依照训练数据的分布，类型是 <code>numpy</code> 二维数组；</li>
+<li><code>feature_names</code> 和 <code>class_names</code> 分别是特征和类别的名字（字符串）；</li>
+<li>由于类别数据和数值数据的处理方式不同，需要把对应的特征编号传入参数 <code>categorical_features</code> 中；</li>
+<li>mode 参数代表任务的类型，可选分类（<code>classification</code>）或回归（<code>regression</code>）。</li>
+</ul>
+<p>解释单个样本：调用该类的 <code>explain_instance</code> 方法，返回 <code>Explanation</code> 对象</p>
+<ul>
+<li>必要参数 <code>data_row</code>：待解释的样本（一维<code>numpy</code>数组）；</li>
+<li>必要参数<code>predict_fn</code>，用于预测的函数（对分类任务而言，输入<code>numpy</code>数组，输出预测概率值，例如<code>sklearn</code>的分类器的<code>predict_proba</code>）;</li>
+<li><code>num_features</code>表示解释结果中最多能呈现的特征数量；</li>
+<li><code>distance_metric</code>默认的是 euclidean。<br>返回的 Explanation 有</li>
+<li><code>as_map</code>方法：返回字典类型，标签 -&gt; 元组（特征id，权重）的列表</li>
+<li><code>local_pred</code>属性：字典类型，类别标签 -&gt; 概率</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">from lime.lime_tabular import LimeTabularExplainer</span><br><span class="line">lime_explainer = LimeTabularExplainer(</span><br><span class="line">    x_train, #输入训练数据</span><br><span class="line">    feature_names=list(data_bs.columns[4:]), #特征</span><br><span class="line">    mode =&#x27;regression&#x27;, #处理类型</span><br><span class="line">    class_names=[&#x27;AQI&#x27;] #标签)</span><br><span class="line"></span><br><span class="line">exp = lime_explainer.explain_instance(</span><br><span class="line">    data_row=x_test[0], #处理数据：选择不同数据得到图不一样</span><br><span class="line">    predict_fn=mlp.predict #预测函数)</span><br><span class="line"></span><br><span class="line">#exp.show_in_notebook(show_table=True)</span><br><span class="line">exp.as_pyplot_figure()</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+
+<p>结果如下：</p>
+<img data-src="/images/loading/loading.gif" data-original="https://s2.loli.net/2023/06/07/LPuY56g8dC1otTB.png" alt="202306071525633" style="zoom:60%;">
+
 <h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p>1.<a target="_blank" rel="noopener" href="https://blog.csdn.net/iqdutao/article/details/1083972">https://blog.csdn.net/iqdutao/article/details/1083972</a></p>
 <p>2.<a target="_blank" rel="noopener" href="https://doi.org/10.1145/2939672.2939778">https://doi.org/10.1145/2939672.2939778</a></p>
 <p>3.<a target="_blank" rel="noopener" href="https://www.oreilly.com/content/introduction-to-local-interpretable-model-agnostic-explanations-lime/">https://www.oreilly.com/content/introduction-to-local-interpretable-model-agnostic-explanations-lime/</a></p>
+<p>4.<a target="_blank" rel="noopener" href="https://e0hyl.github.io/BLOG-OF-E0/LIMEandSHAP/">https://e0hyl.github.io/BLOG-OF-E0/LIMEandSHAP/</a></p>
 
     </div>
 

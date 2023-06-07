@@ -632,7 +632,9 @@
 <blockquote>
 <p>ven though the original model may be too complex to explain globally, LIME presents an explanation that is locally faithful</p>
 </blockquote>
-<h3 id="稀疏线性解释"><a href="#稀疏线性解释" class="headerlink" title="稀疏线性解释"></a>稀疏线性解释</h3><p>论文作者设置解释族函数$G$为线性模型（$g(Z)&#x3D;w_{g}z$），设置$L$为<br>$$ \underset{z,z^{‘}\in Z}{\sum}\pi_{x}(z)(f(z)-g(z^{‘}))^{2}$$<br>$\pi_{x}$为$exp(\frac{-D(x,z)^{2}}{\sigma^{2}})$，上面提及到的扰动样本$Z$，对于扰动样本设计线性函数去对扰动样本进行区分（已分类算法为例）那么我们所赋予的不同的权重$w_{g}$就是不同的样本中不同特征的影响。</p>
+<h3 id="稀疏线性解释"><a href="#稀疏线性解释" class="headerlink" title="稀疏线性解释"></a>稀疏线性解释</h3><p>论文作者设置解释族函数$G$为线性模型（$g(Z)&#x3D;w_{g}z$），设置$L$为</p>
+<p>$$<br>\underset{z,z^{‘}\in Z}{\sum}\pi_{x}(z)(f(z)-g(z^{‘}))^{2}<br>$$</p>
+<p>$\pi_{x}$为$exp(\frac{-D(x,z)^{2}}{\sigma^{2}})$，上面提及到的扰动样本$Z$，对于扰动样本设计线性函数去对扰动样本进行区分（已分类算法为例）那么我们所赋予的不同的权重$w_{g}$就是不同的样本中不同特征的影响。</p>
 <h3 id="LIME步骤"><a href="#LIME步骤" class="headerlink" title="LIME步骤"></a>LIME步骤</h3><ul>
 <li>对整个数据进行训练，模型可以是Lightgbm，XGBoost等复杂的模型（本身不可解释）;</li>
 <li>选择我们想要解释的变量$x$;</li>
@@ -672,9 +674,31 @@
 <li>稳定性不够好，重复同样的操作，扰动生成的样本不同，给出的解释可能会差别很大。</li>
 </ul>
 <h2 id="推荐阅读"><a href="#推荐阅读" class="headerlink" title="推荐阅读"></a>推荐阅读</h2><p><a href="http://hjiezero.github.io/posts/32fedbdb/">http://hjiezero.github.io/posts/32fedbdb/</a></p>
+<h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1><p>Python库<a href="https://github.com/marcotcr/lime">LIME</a>提供了实现模型解释的接口，按数据类型分为表格(LimeTabularExplainer), 图像(LimeImageExplainer) 和文本(LimeTextExplainer)<br>创建LimeTabularExplainer 类<a href="https://e0hyl.github.io/BLOG-OF-E0/LIMEandSHAP/">^4</a></p>
+<ul>
+<li>必要参数是<code>training_data</code>,因为采样时会依照训练数据的分布，类型是 <code>numpy</code> 二维数组；</li>
+<li><code>feature_names</code> 和 <code>class_names</code> 分别是特征和类别的名字（字符串）；</li>
+<li>由于类别数据和数值数据的处理方式不同，需要把对应的特征编号传入参数 <code>categorical_features</code> 中；</li>
+<li>mode 参数代表任务的类型，可选分类（<code>classification</code>）或回归（<code>regression</code>）。</li>
+</ul>
+<p>解释单个样本：调用该类的 <code>explain_instance</code> 方法，返回 <code>Explanation</code> 对象</p>
+<ul>
+<li>必要参数 <code>data_row</code>：待解释的样本（一维<code>numpy</code>数组）；</li>
+<li>必要参数<code>predict_fn</code>，用于预测的函数（对分类任务而言，输入<code>numpy</code>数组，输出预测概率值，例如<code>sklearn</code>的分类器的<code>predict_proba</code>）;</li>
+<li><code>num_features</code>表示解释结果中最多能呈现的特征数量；</li>
+<li><code>distance_metric</code>默认的是 euclidean。<br>返回的 Explanation 有</li>
+<li><code>as_map</code>方法：返回字典类型，标签 -&gt; 元组（特征id，权重）的列表</li>
+<li><code>local_pred</code>属性：字典类型，类别标签 -&gt; 概率</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">from lime.lime_tabular import LimeTabularExplainer</span><br><span class="line">lime_explainer = LimeTabularExplainer(</span><br><span class="line">    x_train, #输入训练数据</span><br><span class="line">    feature_names=list(data_bs.columns[4:]), #特征</span><br><span class="line">    mode =&#x27;regression&#x27;, #处理类型</span><br><span class="line">    class_names=[&#x27;AQI&#x27;] #标签)</span><br><span class="line"></span><br><span class="line">exp = lime_explainer.explain_instance(</span><br><span class="line">    data_row=x_test[0], #处理数据：选择不同数据得到图不一样</span><br><span class="line">    predict_fn=mlp.predict #预测函数)</span><br><span class="line"></span><br><span class="line">#exp.show_in_notebook(show_table=True)</span><br><span class="line">exp.as_pyplot_figure()</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+
+<p>结果如下：</p>
+<img data-src="https://s2.loli.net/2023/06/07/LPuY56g8dC1otTB.png" alt="202306071525633" style="zoom:60%;">
+
 <h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p>1.<a href="https://blog.csdn.net/iqdutao/article/details/1083972">https://blog.csdn.net/iqdutao/article/details/1083972</a></p>
 <p>2.<a href="https://doi.org/10.1145/2939672.2939778">https://doi.org/10.1145/2939672.2939778</a></p>
 <p>3.<a href="https://www.oreilly.com/content/introduction-to-local-interpretable-model-agnostic-explanations-lime/">https://www.oreilly.com/content/introduction-to-local-interpretable-model-agnostic-explanations-lime/</a></p>
+<p>4.<a href="https://e0hyl.github.io/BLOG-OF-E0/LIMEandSHAP/">https://e0hyl.github.io/BLOG-OF-E0/LIMEandSHAP/</a></p>
 ]]></content>
       <categories>
         <category>机器学习</category>
