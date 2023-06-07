@@ -617,7 +617,7 @@
 <img data-src="https://s2.loli.net/2023/06/04/Pm6VexD4KinwA2l.png" alt="机器学习可解释性--LIME[^2]" style="zoom:60%;">
 
 <p>我们通过模型预测流感（flu），通过LIME得到的解释是：喷嚏（sneeze）、头疼（headche）对流感预测是“支持”，而没有疲劳（no fatigue）是“反对”。我们将模型结果交给决策者（human make decision）让她对模型结果做判断。<strong>机器学习</strong>只能作为我们辅助决策的工具，对于实际决策还是依靠<strong>人类</strong>。而我们的决策的依据就是<strong>解释</strong>（explainer），我们根据给出的解释来判别模型是否可作为我们的决策依据。</p>
-<h2 id="LIME原理"><a href="#LIME原理" class="headerlink" title="LIME原理"></a>LIME原理</h2><p><strong>LIME（Local Interpretable Model-agnostic Explanations）</strong>。该模型是一个<strong>局部</strong>可解释模型，并且是一个与模型自身的无关的可解释方法。使用训练的<strong>局部代理模型</strong>来对单个样本进行解释。假设对于需要解释的黑盒模型，取关注的实例样本，在其附近进行扰动生成新的样本点，并得到黑盒模型的预测值，使用新的数据集训练可解释的模型（如线性回归、决策树），得到对黑盒模型良好的局部近似<a href="https://blog.csdn.net/iqdutao/article/details/108397239">^1</a>。</p>
+<h2 id="LIME原理"><a href="#LIME原理" class="headerlink" title="LIME原理"></a>LIME原理</h2><p><strong>LIME（Local Interpretable Model-agnostic Explanations）</strong>。该模型是一个<strong>局部</strong>可解释模型，并且是一个与模型自身的无关的可解释方法。使用训练的<strong>局部代理模型</strong>来对单个样本进行解释。假设对于需要解释的黑盒模型，取关注的实例样本(<strong>可解释输入$x$</strong>)，在其附近进行扰动生成新的样本点(<strong>生成扰动样本</strong>)，并得到黑盒模型的预测值，使用新的数据集（<strong>扰动样本</strong>）训练可解释的模型（如线性回归、决策树），得到对黑盒模型良好的局部近似<a href="https://blog.csdn.net/iqdutao/article/details/108397239">^1</a>。</p>
 <p>“The overall goal of LIME is to identify an interpretable model over the interpretable representation that is locally faithful to the classifier.” (Ribeiro 等, 2016, p. 1137)</p>
 <blockquote>
 <p>LIME的总体目标是基于局部可解释性模型 在局部忠实于分类器的可解释表示上识别一个可解释模型。</p>
@@ -1079,7 +1079,45 @@
 <li>SHAP的概念源于博弈论，核心思想是计算特征对模型输出的边际贡献；</li>
 </ul>
 <hr>
-<h1 id="机器学习可解释性–SHAP"><a href="#机器学习可解释性–SHAP" class="headerlink" title="机器学习可解释性–SHAP"></a>机器学习可解释性–SHAP</h1><p>[TOC]</p>
+<p>1、<a href="https://hjezero.github.io/posts/cd6f0230/">机器学习可解释性–LIME</a><br>2、<a href="https://hjezero.github.io/posts/5bf8429/">机器学习可解释性–SHAP</a></p>
+<h1 id="机器学习可解释性–SHAP"><a href="#机器学习可解释性–SHAP" class="headerlink" title="机器学习可解释性–SHAP"></a>机器学习可解释性–SHAP</h1><p>[toc]</p>
+<h2 id="1、Shapley-Value-1"><a href="#1、Shapley-Value-1" class="headerlink" title="1、Shapley Value[^1]"></a>1、Shapley Value[^1]</h2><p>沙普利值（Shapley value），是通过考虑各个代理（agent）做出的贡献，来公平地分配合作收益。代理的沙普利值是对于一个合作项目所期望的贡献量的平均值。计算公式：<br>设$I&#x3D;{1,2…n}$为$n$个人的集合那么$i$的贡献为：</p>
+<p>$$<br>\varphi_{i}&#x3D;\sum_{s\in S_{i}}w(|s|)[v(s)-v(s\i)]<br>$$</p>
+<p>其中$S_{i}$是$I$中包含成员$i$的所有子集形成的集合，$w(|s|)$是加权因子，$s\i$表示集合$s$中去掉元素$i$后的集合。<br>$v(s)-v(s\i)$成员i在联盟中的贡献，即成员i的边际贡献；$w(|s|)$权重$w(|s|&#x3D;\frac{(|s|-1)!(n-|s|)!}{n!})$</p>
+<blockquote>
+<p>WiKi：<br>1、<a href="https://en.wikipedia.org/wiki/Shapley_value">https://en.wikipedia.org/wiki/Shapley_value</a><br>《可解释的机器学习》<br>开源地址：<br>2、<a href="https://github.com/MingchaoZhu/InterpretableMLBook">https://github.com/MingchaoZhu/InterpretableMLBook</a><br>在线阅读：<br>3、<a href="https://hjezero.github.io/posts/32fedbdb/">https://hjezero.github.io/posts/32fedbdb/</a></p>
+</blockquote>
+<p>借助《可解释的机器学习》中例子，假设准备购买一间公寓，其中你所感兴趣的是：1、有无公园；2、公寓面积；3、公寓所位于的楼层；4、是否能养猫。而后对公寓价格预测。</p>
+<img data-src="https://s2.loli.net/2023/06/07/cgknwhxlI9uJT4H.png" alt="202306071608311" style="zoom:80%;">
+>⼀套 50 平⽅⽶的公寓，附近有公园以及禁⽌猫⼊内，预计价格为 300,000 欧元
+
+<p>那么1、公寓面积；2、公寓楼层；3、养猫？4、公园？这4个特征对<strong>预测价格</strong>300000欧元的<strong>贡献</strong>是怎么样的呢？</p>
+<blockquote>
+<p>比如说[^2]：一个程序C&#x3D;500行代码需要编写，今天产品经理找了三个程序猿来完成，按照完成量发奖金：<br>条件一：$V_{1}&#x3D;100$，$V_{2}&#x3D;125$，$V_{3}&#x3D;50$<br>解释：1号屌丝程序猿独立能写100行，2号大神程序猿独立能写125行，3号美女程序猿能写50行<br>条件二：$V_{12}&#x3D;270$，$V_{23}&#x3D;350$，$V_{13}&#x3D;375$<br>解释：1,2号合作能写270行，2,3号合作能写350行，1,3号合作能写375行<br>条件三：$V_{123}&#x3D;500$<br>3个人共同能完成500行<br>那么根据3组条件，合计6种组合分别如下：<br>A.1号程序猿邀请2号程序猿加入他组成S联盟，1,2号邀请3号加入共同编写。<br>B.1号邀请3号加入成为S小组，2号加入S小组<br>C.2号邀请1号加入成为S小组，3号加入S小组<br>D.2号邀请3号加入成为S小组，1号加入S小组<br>E.3号邀请1号加入成为S小组，2号加入S小组<br>F.3号邀请2号加入成为S小组，1号加入S小组<br>计算边际贡献：</p>
+<img data-src="https://pica.zhimg.com/450be1b5a2d5196399f6665086a728d2_r.jpg?source=1940ef5c" alt="202306071608311" style="zoom:80%;">
+
+<p>根据公式1得到：<br>1的shapely value：<br>$\frac{1}{6}(100+100+145+150+325+150)&#x3D;\frac{970}{6}$</p>
+<p>依次类推得到其他人的shapely value</p>
+</blockquote>
+<h2 id="2、A-Unified-Approach-to-Interpreting-Model-Predictions"><a href="#2、A-Unified-Approach-to-Interpreting-Model-Predictions" class="headerlink" title="2、A Unified Approach to Interpreting Model Predictions"></a>2、<a href="https://arxiv.org/pdf/1705.07874.pdf">A Unified Approach to Interpreting Model Predictions</a></h2><p>SHAP Value与LIME的方法类似，都是通过定义简单模型去对复杂模型进行解释。</p>
+<blockquote>
+<p>“we must use a simpler explanation model, which we define as any interpretable approximation of the original model.” (Lundberg 和 Lee, 2017, p. 2)</p>
+<p>我们必须使用一个更简单的解释模型，我们将其定义为对原模型的任何可解释的近似。</p>
+</blockquote>
+<p>回顾LIME模型，利用简单函数$g$去在$x$“周围”去对复杂函数$f$进行局部近似。在本论文作者将部分<strong>解释模型函数</strong>称为<em>Additive feature attribution methods</em>其形式形如：</p>
+<p>$$<br>g(z)&#x3D;\phi_{0}+\sum_{i&#x3D;1}^{M}\phi_{i}z_{i}<br>$$</p>
+<p>其中：$M$所有的简单输入特征的个数；$\phi_{i}$每一种特征的<strong>贡献</strong>（对于的shapely值）；通过计算所有特征的贡献去近似复杂函数$f(x)$</p>
+<blockquote>
+<p>论文中部分<strong>解释模型函数</strong>有：</p>
+<p>1、LIME模型对<strong>贡献</strong>计算：</p>
+<p>$$<br>\xi(s)&#x3D; argmin_{g\in G} L(f,g,\pi_{x})+\Omega(g)<br>$$</p>
+<p>2、DeepLIFT（面向深度学习的可解释方法）模型对<strong>贡献</strong>计算：</p>
+<p>$$<br>\sum_{i&#x3D;1}^{n}C_{\Delta x_{i}\Delta o}&#x3D;\Delta o<br>$$</p>
+<p>贡献为：$C_{\Delta x_{i}\Delta o}$，其中$o&#x3D;f(x)$为模型的输出，其中$r$为参考的样本输入，$\Delta o&#x3D;f(x)-f(r)$。</p>
+</blockquote>
+<h3 id="Kernel-SHAP-Linear-LIME-Shapley-values"><a href="#Kernel-SHAP-Linear-LIME-Shapley-values" class="headerlink" title="Kernel SHAP(Linear LIME + Shapley values)"></a><em>Kernel SHAP(Linear LIME + Shapley values)</em></h3><h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p>1、<a href="https://github.com/MingchaoZhu/InterpretableMLBook">https://github.com/MingchaoZhu/InterpretableMLBook</a></p>
+<p>2、<a href="https://www.zhihu.com/question/23180647">https://www.zhihu.com/question/23180647</a></p>
+<p>3、[关于Shapley Value（夏普利值）的公式 - 知乎 (zhihu.com)](<a href="https://zhuanlan.zhihu.com/p/483891565#:~:text=Shapley%20Value%E5%85%AC%E5%BC%8F%E5%A6%82%E4%B8%8B%EF%BC%9A%20%E8%AE%B0%20I%3D%20">https://zhuanlan.zhihu.com/p/483891565#:~:text=Shapley%20Value%E5%85%AC%E5%BC%8F%E5%A6%82%E4%B8%8B%EF%BC%9A%20%E8%AE%B0%20I%3D%20</a></p>
 ]]></content>
       <categories>
         <category>机器学习</category>
