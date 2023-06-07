@@ -632,7 +632,7 @@
 <blockquote>
 <p>ven though the original model may be too complex to explain globally, LIME presents an explanation that is locally faithful</p>
 </blockquote>
-<h3 id="稀疏线性解释"><a href="#稀疏线性解释" class="headerlink" title="稀疏线性解释"></a>稀疏线性解释</h3><p>论文作者设置解释族函数$G$为线性模型（$g(Z)&#x3D;w_{g}z$），设置$L$为$ \underset{z,z^{‘}\in Z}{\sum}\pi_{x}(z)(f(z)-g(z^{‘}))^{2}$，$\pi_{x}$为$exp(\frac{-D(x,z)^{2}}{\sigma^{2}})$，上面提及到的扰动样本$Z$，对于扰动样本设计线性函数去对扰动样本进行区分（已分类算法为例）那么我们所赋予的不同的权重$w_{g}$就是不同的样本中不同特征的影响。</p>
+<h3 id="稀疏线性解释"><a href="#稀疏线性解释" class="headerlink" title="稀疏线性解释"></a>稀疏线性解释</h3><p>论文作者设置解释族函数$G$为线性模型（$g(Z)&#x3D;w_{g}z$），设置$L$为<br>$$ \underset{z,z^{‘}\in Z}{\sum}\pi_{x}(z)(f(z)-g(z^{‘}))^{2}$$<br>$\pi_{x}$为$exp(\frac{-D(x,z)^{2}}{\sigma^{2}})$，上面提及到的扰动样本$Z$，对于扰动样本设计线性函数去对扰动样本进行区分（已分类算法为例）那么我们所赋予的不同的权重$w_{g}$就是不同的样本中不同特征的影响。</p>
 <h3 id="LIME步骤"><a href="#LIME步骤" class="headerlink" title="LIME步骤"></a>LIME步骤</h3><ul>
 <li>对整个数据进行训练，模型可以是Lightgbm，XGBoost等复杂的模型（本身不可解释）;</li>
 <li>选择我们想要解释的变量$x$;</li>
