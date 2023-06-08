@@ -1081,11 +1081,13 @@
 <hr>
 <p>1、<a href="https://hjezero.github.io/posts/cd6f0230/">机器学习可解释性–LIME</a><br>2、<a href="https://hjezero.github.io/posts/5bf8429/">机器学习可解释性–SHAP</a></p>
 <h1 id="机器学习可解释性–SHAP"><a href="#机器学习可解释性–SHAP" class="headerlink" title="机器学习可解释性–SHAP"></a>机器学习可解释性–SHAP</h1><p>[toc]</p>
-<h2 id="1、Shapley-Value-1"><a href="#1、Shapley-Value-1" class="headerlink" title="1、Shapley Value[^1]"></a>1、Shapley Value[^1]</h2><p>沙普利值（Shapley value），是通过考虑各个代理（agent）做出的贡献，来公平地分配合作收益。代理的沙普利值是对于一个合作项目所期望的贡献量的平均值。计算公式：<br>设$I&#x3D;{1,2…n}$为$n$个人的集合那么$i$的贡献为：</p>
+<h2 id="1、Shapley-Value"><a href="#1、Shapley-Value" class="headerlink" title="1、Shapley Value"></a>1、Shapley Value</h2><p><strong>沙普利值</strong><a href="https://github.com/MingchaoZhu/InterpretableMLBook">^1</a>（Shapley value），是通过考虑各个代理（agent）做出的贡献，来公平地分配合作收益。代理的沙普利值是对于一个合作项目所期望的贡献量的平均值。计算公式：<br>设$I&#x3D;{1,2…n}$为$n$个人的集合那么$i$的贡献为：</p>
 <p>$$<br>\varphi_{i}&#x3D;\sum_{s\in S_{i}}w(|s|)[v(s)-v(s\i)]<br>$$</p>
 <p>其中$S_{i}$是$I$中包含成员$i$的所有子集形成的集合，$w(|s|)$是加权因子，$s\i$表示集合$s$中去掉元素$i$后的集合。<br>$v(s)-v(s\i)$成员i在联盟中的贡献，即成员i的边际贡献；$w(|s|)$权重$w(|s|&#x3D;\frac{(|s|-1)!(n-|s|)!}{n!})$</p>
 <blockquote>
-<p>WiKi：<br>1、<a href="https://en.wikipedia.org/wiki/Shapley_value">https://en.wikipedia.org/wiki/Shapley_value</a><br>《可解释的机器学习》<br>开源地址：<br>2、<a href="https://github.com/MingchaoZhu/InterpretableMLBook">https://github.com/MingchaoZhu/InterpretableMLBook</a><br>在线阅读：<br>3、<a href="https://hjezero.github.io/posts/32fedbdb/">https://hjezero.github.io/posts/32fedbdb/</a></p>
+<p>WiKi：</p>
+<p>玩家联盟合作，并从合作中获得一定的整体收益。由于一些参与者可能比其他参与者对联盟贡献更多，或者可能拥有不同的议价能力（例如威胁要摧毁全部盈余），因此在任何特定博弈中，参与者之间产生的盈余的最终分配应该是什么？或者换句话说：每个参与者对整体合作有多重要，他或她可以合理预期的回报是什么？Shapley 值为这个问题提供了一个可能的答案。</p>
+<p>1、<a href="https://en.wikipedia.org/wiki/Shapley_value">https://en.wikipedia.org/wiki/Shapley_value</a><br>《可解释的机器学习》<br>开源地址：<br>2、<a href="https://github.com/MingchaoZhu/InterpretableMLBook">https://github.com/MingchaoZhu/InterpretableMLBook</a><br>在线阅读：<br>3、<a href="https://hjezero.github.io/posts/32fedbdb/">https://hjezero.github.io/posts/32fedbdb/</a></p>
 </blockquote>
 <p>借助《可解释的机器学习》中例子，假设准备购买一间公寓，其中你所感兴趣的是：1、有无公园；2、公寓面积；3、公寓所位于的楼层；4、是否能养猫。而后对公寓价格预测。</p>
 <img data-src="https://s2.loli.net/2023/06/07/cgknwhxlI9uJT4H.png" alt="202306071608311" style="zoom:80%;">
@@ -1093,10 +1095,13 @@
 
 <p>那么1、公寓面积；2、公寓楼层；3、养猫？4、公园？这4个特征对<strong>预测价格</strong>300000欧元的<strong>贡献</strong>是怎么样的呢？</p>
 <blockquote>
-<p>比如说[^2]：一个程序C&#x3D;500行代码需要编写，今天产品经理找了三个程序猿来完成，按照完成量发奖金：<br>条件一：$V_{1}&#x3D;100$，$V_{2}&#x3D;125$，$V_{3}&#x3D;50$<br>解释：1号屌丝程序猿独立能写100行，2号大神程序猿独立能写125行，3号美女程序猿能写50行<br>条件二：$V_{12}&#x3D;270$，$V_{23}&#x3D;350$，$V_{13}&#x3D;375$<br>解释：1,2号合作能写270行，2,3号合作能写350行，1,3号合作能写375行<br>条件三：$V_{123}&#x3D;500$<br>3个人共同能完成500行<br>那么根据3组条件，合计6种组合分别如下：<br>A.1号程序猿邀请2号程序猿加入他组成S联盟，1,2号邀请3号加入共同编写。<br>B.1号邀请3号加入成为S小组，2号加入S小组<br>C.2号邀请1号加入成为S小组，3号加入S小组<br>D.2号邀请3号加入成为S小组，1号加入S小组<br>E.3号邀请1号加入成为S小组，2号加入S小组<br>F.3号邀请2号加入成为S小组，1号加入S小组<br>计算边际贡献：</p>
+<p>比如说<a href="https://www.zhihu.com/question/23180647">^2</a>：一个程序C&#x3D;500行代码需要编写，今天产品经理找了三个程序猿来完成，按照完成量发奖金：<br>条件一：$V_{1}&#x3D;100$，$V_{2}&#x3D;125$，$V_{3}&#x3D;50$<br>解释：1号屌丝程序猿独立能写100行，2号大神程序猿独立能写125行，3号美女程序猿能写50行<br>条件二：$V_{12}&#x3D;270$，$V_{23}&#x3D;350$，$V_{13}&#x3D;375$<br>解释：1,2号合作能写270行，2,3号合作能写350行，1,3号合作能写375行<br>条件三：$V_{123}&#x3D;500$<br>3个人共同能完成500行<br>那么根据3组条件，合计6种组合分别如下：<br>A.1号程序猿邀请2号程序猿加入他组成S联盟，1,2号邀请3号加入共同编写。<br>B.1号邀请3号加入成为S小组，2号加入S小组<br>C.2号邀请1号加入成为S小组，3号加入S小组<br>D.2号邀请3号加入成为S小组，1号加入S小组<br>E.3号邀请1号加入成为S小组，2号加入S小组<br>F.3号邀请2号加入成为S小组，1号加入S小组<br>计算边际贡献：</p>
+</blockquote>
+<blockquote>
 <img data-src="https://pica.zhimg.com/450be1b5a2d5196399f6665086a728d2_r.jpg?source=1940ef5c" alt="202306071608311" style="zoom:80%;">
-
-<p>根据公式1得到：<br>1的shapely value：<br>$\frac{1}{6}(100+100+145+150+325+150)&#x3D;\frac{970}{6}$</p>
+</blockquote>
+<blockquote>
+<p>根据公式1得到：<br>1的shapley value：<br>$\frac{1}{6}(100+100+145+150+325+150)&#x3D;\frac{970}{6}$</p>
 <p>依次类推得到其他人的shapely value</p>
 </blockquote>
 <h2 id="2、A-Unified-Approach-to-Interpreting-Model-Predictions"><a href="#2、A-Unified-Approach-to-Interpreting-Model-Predictions" class="headerlink" title="2、A Unified Approach to Interpreting Model Predictions"></a>2、<a href="https://arxiv.org/pdf/1705.07874.pdf">A Unified Approach to Interpreting Model Predictions</a></h2><p>SHAP Value与LIME的方法类似，都是通过定义简单模型去对复杂模型进行解释。</p>
@@ -1113,11 +1118,48 @@
 <p>$$<br>\xi(s)&#x3D; argmin_{g\in G} L(f,g,\pi_{x})+\Omega(g)<br>$$</p>
 <p>2、DeepLIFT（面向深度学习的可解释方法）模型对<strong>贡献</strong>计算：</p>
 <p>$$<br>\sum_{i&#x3D;1}^{n}C_{\Delta x_{i}\Delta o}&#x3D;\Delta o<br>$$</p>
-<p>贡献为：$C_{\Delta x_{i}\Delta o}$，其中$o&#x3D;f(x)$为模型的输出，其中$r$为参考的样本输入，$\Delta o&#x3D;f(x)-f(r)$。</p>
+<p>贡献为：$C_{\Delta x_{i}\Delta o}$，其中$o&#x3D;f(x)$为模型的输出，其中$r$为参考的样本输入，$\Delta o&#x3D;f(x)-f(r)$。<br>3、经典Shapley Value计算：</p>
+<ul>
+<li>Shapley regression values</li>
+</ul>
+<blockquote>
+<p>feature importances for linear models in the presence of multicollinearity.<br>此模型要求计算模型所有的特征，认为每一个特征在模型中都起到了作用。计算公式如下：</p>
 </blockquote>
-<h3 id="Kernel-SHAP-Linear-LIME-Shapley-values"><a href="#Kernel-SHAP-Linear-LIME-Shapley-values" class="headerlink" title="Kernel SHAP(Linear LIME + Shapley values)"></a><em>Kernel SHAP(Linear LIME + Shapley values)</em></h3><h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p>1、<a href="https://github.com/MingchaoZhu/InterpretableMLBook">https://github.com/MingchaoZhu/InterpretableMLBook</a></p>
+<img data-src="https://s2.loli.net/2023/06/08/LFq8k1WHQsghB4P.png" alt="202306081444642" style="zoom:60%;">
+
+<blockquote>
+<p>就是上面列子中提及到的计算方法</p>
+</blockquote>
+<ul>
+<li>Shapley sampling values</li>
+<li>Quantitative Input Influence</li>
+</ul>
+</blockquote>
+<p>对于<em>additive feature attribution methods</em> 存在如下三点<a href="https://christophm.github.io/interpretable-ml-book/shap.html">性质</a>：<br>1、Local accuracy<br>2、Missingness<br>3、Consistency</p>
+<h2 id="Kernel-SHAP-Linear-LIME-Shapley-values"><a href="#Kernel-SHAP-Linear-LIME-Shapley-values" class="headerlink" title="Kernel SHAP(Linear LIME + Shapley values)"></a><em>Kernel SHAP(Linear LIME + Shapley values)</em></h2><h3 id="Kernel-SHAP计算步骤："><a href="#Kernel-SHAP计算步骤：" class="headerlink" title="Kernel SHAP计算步骤："></a>Kernel SHAP计算步骤：</h3><p><strong>※<em>1. 初始化一些数据, z’, 作为Simplified Features（随机生成（0,1,1,0）,(1,0,1,1)等）</em></strong></p>
+<blockquote>
+<p>其中：$z’_{k}\in{(0,1)}^{M}$（0：缺失特征；1：初始化中存在的特征）其中$M$是我们的维数（理解为样本特征数目），$k\in{(1,…K)}$代表生成数据个数</p>
+</blockquote>
+<p><strong>※<em>2. 将上面的Simplified Features转换到原始数据空间, 并计算对应的预测值, f(h(z’))</em></strong></p>
+<blockquote>
+<p>比如说上面卖房子例子，有四个特征所以$M&#x3D;4$那么假设初始化为$z’_{1}&#x3D;(0,1,1,0)$那么也就是存在第二和第三个特征的联盟，那么对于第一个和第四个则通过$h$函数进行转换</p>
+<img data-src="https://s2.loli.net/2023/06/08/g3nWKHrlfB5Z79T.png" alt="202306082023949" style="zoom:60%;">
+</blockquote>
+<p><strong>※<em>3. 对每一个z’计算对应的权重</em></strong></p>
+<blockquote>
+<p><strong>Kernel SHAP的权重函数</strong>$\pi$为：$\pi_{x^{‘}}(z^{‘})&#x3D;\frac{M-1}{(M;choose;|z^{‘}|)(M-|z^{‘}|)}$，其中$M$为维数（所有特征的个数），$|z^{‘}|$代表样本中1的个数，$M;choose;|z^{‘}|$代表$C_{M}^{z^{‘}}|z^{‘}|$。容易得到：若有很多1或很多0则取较高的权重，若0和1数量相近则取较低的权重。</p>
+<p><strong>LIME则是通过距离设置权重</strong></p>
+</blockquote>
+<p><strong>※<em>4. 拟合线性模型</em></strong><br><strong>※<em>5. 计算出每一个特征的Shapley Value, 也就是线性模型的系数</em></strong></p>
+<h3 id="Kernel-SHAP计算"><a href="#Kernel-SHAP计算" class="headerlink" title="Kernel SHAP计算"></a>Kernel SHAP计算</h3><p>损失函数：</p>
+<p>$$<br>L(f,g,\pi_x^{‘})&#x3D;\sum_{z^{‘} \in Z}[f(h_{x}^{-1}(z^{‘}))-g(z^{‘})]^{2}\pi_{x}^{‘}(z^{‘})<br>$$</p>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p>1、<a href="https://github.com/MingchaoZhu/InterpretableMLBook">https://github.com/MingchaoZhu/InterpretableMLBook</a></p>
 <p>2、<a href="https://www.zhihu.com/question/23180647">https://www.zhihu.com/question/23180647</a></p>
-<p>3、[关于Shapley Value（夏普利值）的公式 - 知乎 (zhihu.com)](<a href="https://zhuanlan.zhihu.com/p/483891565#:~:text=Shapley%20Value%E5%85%AC%E5%BC%8F%E5%A6%82%E4%B8%8B%EF%BC%9A%20%E8%AE%B0%20I%3D%20">https://zhuanlan.zhihu.com/p/483891565#:~:text=Shapley%20Value%E5%85%AC%E5%BC%8F%E5%A6%82%E4%B8%8B%EF%BC%9A%20%E8%AE%B0%20I%3D%20</a></p>
+<p>3、[关于Shapley Value（夏普利值）的公式 - 知乎 (zhihu.com)](<a href="https://zhuanlan.zhihu.com/p/483891565#:~:text=Shapley">https://zhuanlan.zhihu.com/p/483891565#:~:text=Shapley</a> Value公式如下： 记 I%3D { 1%2C2%2C…%2Cn}为n个合作人的集合 varphi_i (upsilon),- upsilon (s backslash  { i })]})</p>
+<p>4、<a href="https://e0hyl.github.io/BLOG-OF-E0/LIMEandSHAP/">https://e0hyl.github.io/BLOG-OF-E0/LIMEandSHAP/</a></p>
+<p>5、<a href="https://mathpretty.com/10699.html">https://mathpretty.com/10699.html</a></p>
+<h1 id="推荐阅读"><a href="#推荐阅读" class="headerlink" title="推荐阅读"></a>推荐阅读</h1><p>1、<a href="https://christophm.github.io/interpretable-ml-book">https://christophm.github.io/interpretable-ml-book</a></p>
+<p>[^3]: [关于Shapley Value（夏普利值）的公式 - 知乎 (zhihu.com)](<a href="https://zhuanlan.zhihu.com/p/483891565#:~:text=Shapley">https://zhuanlan.zhihu.com/p/483891565#:~:text=Shapley</a> Value公式如下： 记 I%3D { 1%2C2%2C…%2Cn}为n个合作人的集合 varphi_i (upsilon),- upsilon (s backslash  { i })]})</p>
 ]]></content>
       <categories>
         <category>机器学习</category>
