@@ -1,15 +1,20 @@
+---
+title: 404
+date: 2023-06-04 13:17:15
+type: "404"
+comments: false
+layout: false
+permalink: /404
+---
 <!DOCTYPE html>
 
 <html>
-
 <head>
   <style>
     @import 'https://fonts.googleapis.com/css?family=Inconsolata';
-
     html {
       min-height: 100%;
     }
-
     body {
       box-sizing: border-box;
       height: 100%;
@@ -22,7 +27,6 @@
         0 0 1ex rgba(51, 255, 51, 1),
         0 0 2px rgba(255, 255, 255, 0.8);
     }
-
     .overlay {
       pointer-events: none;
       position: absolute;
@@ -36,7 +40,6 @@
       background-size: auto 4px;
       z-index: 99;
     }
-
     .overlay::before {
       content: "";
       pointer-events: none;
@@ -57,18 +60,15 @@
       background-repeat: no-repeat;
       animation: scan 7.5s linear 0s infinite;
     }
-
     @keyframes scan {
       0% {
         background-position: 0 -100vh;
       }
-
       35%,
       100% {
         background-position: 0 100vh;
       }
     }
-
     .terminal {
       box-sizing: inherit;
       position: absolute;
@@ -78,18 +78,15 @@
       padding: 4rem;
       text-transform: uppercase;
     }
-
     .output {
       color: rgba(128, 255, 128, 0.8);
       text-shadow:
         0 0 1px rgba(51, 255, 51, 0.4),
         0 0 2px rgba(255, 255, 255, 0.8);
     }
-
     .output::before {
       content: "> ";
     }
-
     /*
 .input {
   color: rgba(192, 255, 192, 0.8);
@@ -97,41 +94,34 @@
       0 0 1px rgba(51, 255, 51, 0.4),
       0 0 2px rgba(255, 255, 255, 0.8);
 }
-
 .input::before {
   content: "$ ";
 }
 */
-
     a {
       color: #fff;
       text-decoration: none;
     }
-
     a::before {
       content: "[";
     }
-
     a::after {
       content: "]";
     }
-
     .errorcode {
       color: white;
     }
   </style>
 </head>
-
 <body>
   <div class="overlay"></div>
   <div class="terminal">
     <h1>Error <span class="errorcode">404</span></h1>
     <p class="output">The page you are looking for might have been removed, had its name changed or is temporarily
       unavailable</ü>
-    <p class="output">Please try <a href="https://upwnothing.github.io">Home Page</a> or <a
+    <p class="output">Please try <a href="https://hjiezero.github.io">Home Page</a> or <a
         href="javascript:history.back()">Go Back</a></p>
     <p class="output">Good luck</p>
   </div>
 </body>
-
 </html>
