@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://hjiezero.github.io/books/index.html</loc>
+    <loc>https://hjiezero.github.io/posts/5bf8429/</loc>
     
     <lastmod>2023-06-09</lastmod>
     
@@ -11,9 +11,9 @@
   </url>
   
   <url>
-    <loc>https://hjiezero.github.io/posts/5bf8429/</loc>
+    <loc>https://hjiezero.github.io/books/index.html</loc>
     
-    <lastmod>2023-06-08</lastmod>
+    <lastmod>2023-06-09</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
