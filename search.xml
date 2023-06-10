@@ -989,6 +989,82 @@
       </tags>
   </entry>
   <entry>
+    <title>贝叶斯优化</title>
+    <url>/posts/d129933e/</url>
+    <content><![CDATA[<p>未写完</p>
+<span id="more"></span>
+
+<h1 id="贝叶斯优化"><a href="#贝叶斯优化" class="headerlink" title="贝叶斯优化"></a>贝叶斯优化</h1><p>[toc]</p>
+<h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>问题一：如果存在函数$y&#x3D;x^2$那么对于这个函数很容易就可以得到他的最小值$x&#x3D;0$时取到最小值，但是如果只告诉我们存在函数$y&#x3D;f(x)$（$f(x)$具体的表达式未知），我们如何找到他的最小值呢？</p>
+<p>问题二：对于机器学习、深度学习模型都是由许多参数所决定的（比如说：深度学习中学习率、网络深度等），假如我们通过计算模型的$R^2$来选择我们的参数，那么如何选择参数的值使得$R^2$最大呢？</p>
+<p><strong>Grid Search？Random Search？Bayesian optimization？</strong></p>
+<blockquote>
+<p>超参数优化</p>
+<p>百度百科：</p>
+<p><a href="https://baike.baidu.com/item/%E8%B6%85%E5%8F%82%E6%95%B0/3101858">https://baike.baidu.com/item/%E8%B6%85%E5%8F%82%E6%95%B0/3101858</a></p>
+<p>Wiki：</p>
+<p><a href="https://en.wikipedia.org/wiki/Hyperparameter_optimization">https://en.wikipedia.org/wiki/Hyperparameter_optimization</a></p>
+</blockquote>
+<p>本文主要对<strong>Bayesian optimization</strong>进行解释。<strong>贝叶斯优化</strong>通过有限的步骤进行全局优化。定义我们的待优化函数：</p>
+<p>$$<br>x^{*}&#x3D;\underset{x\in X}{argmin}f(x)<br>$$</p>
+<blockquote>
+<p>上式子中：$x$代表<strong>决策向量</strong>（直观理解为：深度学习中的学习率、网络深度等），$X$代表<strong>决策空间</strong>（直观理解为：以学习率为例，假设我们能从学习率集合$\alpha&#x3D;(0.01,0.02,0.03)$[&lt;–这就是决策空间] 选择最佳学习率[&lt;–这就是我们决策向量]，$f$则代表目标函数（比如上面提到的$R^2$或者机器学习模型$f$））</p>
+</blockquote>
+<p>许多机器学习中的优化问题都是<strong>黑盒优化</strong>问题，我们函数是一个黑盒函数<a href="http://krasserm.github.io/2018/03/21/bayesian-optimization/">^1</a>。如何通过<strong>贝叶斯优化</strong>实现**(1)<strong>式子呢？贝叶斯优化的两板斧：（1）surrogate model（</strong>代理模型<strong>）；（2）acquisition function（</strong>采集函数**）。贝叶斯优化框架如下<a href="https://doi.org/10.13328/j.cnki.jos.005607.">^3</a>：</p>
+<img data-src="https://s2.loli.net/2023/06/10/cFwQxP2Doyfldtn.png" alt="202306101452451" style="zoom:80%;">
+
+<p>贝叶斯优化框架应用在一维函数$f(x)&#x3D;(x-0.3)^2+0.2sin(20x)$上3次迭代的示例：</p>
+<img data-src="https://s2.loli.net/2023/06/10/RE2hpHuvJ5wWGnB.png" alt="图一:贝叶斯优化示例" style="zoom:70%;">
+
+<h2 id="代理模型"><a href="#代理模型" class="headerlink" title="代理模型"></a>代理模型</h2><p>上面提及到机器学习是一个黑盒子(black box)，即我们只知道input和output，所以很难确直接定存在什么样的函数关系<a href="https://zhuanlan.zhihu.com/p/53826787">^2</a>。既然你的<strong>函数关系</strong>确定不了，那么我们就可以直接找到一个模型对你的函数进行<strong>替代</strong>（代理），这就是贝叶斯优化第一板斧：<strong>代理模型</strong>。（使用概率模型代理原始评估代价高昂的复杂目标函数）</p>
+<p>这里主要解释<strong>高斯过程（Gaussian processes，GP）</strong><a href="https://jgoertler.com/visual-exploration-gaussian-processes/">^4</a></p>
+<blockquote>
+<p>其他代理模型，感兴趣的可以阅读这篇<a href="https://doi.org/10.13328/j.cnki.jos.005607">论文</a></p>
+<p>WiKi：</p>
+<p><a href="https://zh.wikipedia.org/wiki/%E9%AB%98%E6%96%AF%E8%BF%87%E7%A8%8B">高斯过程 - 维基百科，自由的百科全书 (wikipedia.org)</a></p>
+<p>百度百科：</p>
+<p><a href="https://baike.baidu.com/item/%E9%AB%98%E6%96%AF%E8%BF%87%E7%A8%8B/4535435?structureClickId=4535435&structureId=56eafc20675c3e28256b410f&structureItemId=a46e4d355312e203fffb9c11">高斯过程_百度百科 (baidu.com)</a></p>
+</blockquote>
+<blockquote>
+<p>解释高斯过程前了解<strong>高斯分布</strong>学过概率论的应该都了解，高斯分布其实就是<strong>正态分布</strong>平时所学的大多为一元正态分布，推广到$n$维的高斯分布：</p>
+<p>$$<br>X&#x3D;\begin{bmatrix}X_1\X_2\…\X_n\end{bmatrix}∼N(\mu,\sum)<br>$$</p>
+<p>其中$\mu$代表均值，$\sum$代表协方差。</p>
+</blockquote>
+<p>高斯过程：</p>
+<p>$$<br>f(x)∼GP(m(x),k(x,x^{‘}))<br>$$</p>
+<p>其中$m(x)$代表均值（为了方便令$m(x)&#x3D;0$），$k$代表协方差。</p>
+<blockquote>
+<img data-src="https://s2.loli.net/2023/06/10/k8b4stXOKJfA2Ya.png" alt="202306102048432" style="zoom:60%;">
+
+<p>具有三个观测值的简单一维高斯过程。实线黑线是给定数据的目标函数的GP代理均值预测，阴影区域表示均值加减方差。</p>
+<p>Simple 1D Gaussian process with three observations. The solid black line is the GP surrogate mean prediction of the objective function given the data, and the shaded area shows the mean plus and minus the variance. The superimposed Gaussians correspond to the GP mean and standard deviation ($μ(·) $and $σ(·)) $of prediction at the points, $x_{1:3}$.</p>
+</blockquote>
+<hr>
+<h1 id="2023-06-10-写到这儿了"><a href="#2023-06-10-写到这儿了" class="headerlink" title="2023.06.10 写到这儿了"></a>2023.06.10 写到这儿了</h1><h2 id="采集函数"><a href="#采集函数" class="headerlink" title="采集函数"></a>采集函数</h2><p>上一节介绍了<strong>代理模型</strong>，去对我们的函数进行<strong>替代</strong>。如何选择下一个<strong>评估点</strong>，这就是贝叶斯优化第二板斧：<strong>采集函数</strong>。</p>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><p>代码参考：<a href="https://github.com/bayesian-optimization/BayesianOptimization">https://github.com/bayesian-optimization/BayesianOptimization</a></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> bayes_opt <span class="keyword">import</span> BayesianOptimization <span class="comment">#调用第三方库</span></span><br><span class="line"><span class="keyword">from</span> skelarn.svm <span class="keyword">import</span> SVR</span><br><span class="line"><span class="keyword">from</span> sklearn.metrics <span class="keyword">import</span> r2_score</span><br><span class="line"></span><br><span class="line"><span class="comment">#交叉验证贝叶斯优化</span></span><br><span class="line">X_train, X_test, Y_train, Y_test= train_test_split(x,y,test_size=<span class="number">0.2</span>,random_state=<span class="number">100</span>)</span><br><span class="line"><span class="keyword">from</span> sklearn.svm <span class="keyword">import</span> SVR</span><br><span class="line"><span class="keyword">def</span> <span class="title function_">svr_cv</span>(<span class="params">C, epsilon, gamma</span>):</span><br><span class="line">    kf = KFold(n_splits=<span class="number">5</span>, shuffle=<span class="literal">True</span>, random_state=<span class="number">100</span>)</span><br><span class="line">    svr = SVR(C=C, epsilon=epsilon, gamma=gamma)</span><br><span class="line">    <span class="keyword">for</span> i, (train_index, test_index) <span class="keyword">in</span> <span class="built_in">enumerate</span>(kf.split(X_train, Y_train.values)):</span><br><span class="line">        svr.fit(X_train[train_index], Y_train.values[train_index])</span><br><span class="line">        pred = svr.predict(X_train[test_index])</span><br><span class="line">        <span class="keyword">return</span> r2_score(pred, Y_train.values[test_index])</span><br><span class="line"></span><br><span class="line">svr_bo = BayesianOptimization(svr_cv,&#123;<span class="string">&#x27;C&#x27;</span>:(<span class="number">1</span>,<span class="number">16</span>), <span class="string">&#x27;epsilon&#x27;</span>:(<span class="number">0</span>,<span class="number">1</span>), <span class="string">&#x27;gamma&#x27;</span>:(<span class="number">0</span>,<span class="number">1</span>)&#125;)</span><br><span class="line"><span class="comment">#输入测试的函数，以及变量的范围</span></span><br><span class="line">svr_bo.maximize()</span><br></pre></td></tr></table></figure>
+
+<img data-src="https://s2.loli.net/2023/06/10/YTiR82Xsz4SHKxh.png" alt="202306101944250" style="zoom:60%;">
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">svr_bo.<span class="built_in">max</span> <span class="comment">#得到最佳参数</span></span><br><span class="line"><span class="comment">#&#123;&#x27;target&#x27;: 0.9875895309185105,</span></span><br><span class="line"><span class="comment"># &#x27;params&#x27;: &#123;&#x27;C&#x27;: 14.595794386042416,</span></span><br><span class="line"><span class="comment">#  &#x27;epsilon&#x27;: 0.09480102745231553,</span></span><br><span class="line"><span class="comment">#  &#x27;gamma&#x27;: 0.09251046201638335&#125;&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>通过最佳参数进行测试：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">svr1 =  SVR(C=<span class="number">14.595794386042416</span>, epsilon=<span class="number">0.09480102745231553</span>, gamma=<span class="number">0.09251046201638335</span>)</span><br><span class="line">svr1.fit(X_train, Y_train)</span><br><span class="line">r2_score(Y_test.values, svr1.predict(X_test))</span><br><span class="line"><span class="comment">#0.9945825852230629</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p>1、<a href="http://krasserm.github.io/2018/03/21/bayesian-optimization/">http://krasserm.github.io/2018/03/21/bayesian-optimization/</a></p>
+<p>2、<a href="https://zhuanlan.zhihu.com/p/53826787">https://zhuanlan.zhihu.com/p/53826787</a></p>
+<p>3、崔佳旭, 杨博. 贝叶斯优化方法和应用综述[J&#x2F;OL]. 软件学报, 2018, 29(10): 3068-3090. <a href="https://doi.org/10.13328/j.cnki.jos.005607">https://doi.org/10.13328/j.cnki.jos.005607</a>.</p>
+<p>4、<a href="https://jgoertler.com/visual-exploration-gaussian-processes/">https://jgoertler.com/visual-exploration-gaussian-processes/</a></p>
+]]></content>
+      <categories>
+        <category>优化算法</category>
+      </categories>
+      <tags>
+        <tag>机器学习</tag>
+        <tag>优化算法</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>贝叶斯分类器</title>
     <url>/posts/2045861030/</url>
     <content><![CDATA[<h1 id="朴素贝叶斯分类器"><a href="#朴素贝叶斯分类器" class="headerlink" title="朴素贝叶斯分类器"></a>朴素贝叶斯分类器</h1><span id="more"></span>

@@ -7,6 +7,7 @@ layout: false
 permalink: /404
 ---
 <!DOCTYPE html>
+
 <html>
 <head>
   <style>
