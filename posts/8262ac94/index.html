@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="google-site-verification" content="FcfBsHSYhe6V8WyKBbAUGEGJCXyaqgYY8zyol4Zizq8">
+  <meta name="msvalidate.01" content="81407BB95B6B10326AFF04EEC297B4F2">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha256-HtsXJanqjKTc8vVQjO4YMhiqFoXkfBsjBWcX91T1jr8=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" integrity="sha256-Vzbj7sDDS/woiFS3uNKo8eIuni59rjyNGtXfstRzStA=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"hjiezero.github.io","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.17.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="文章已被加密.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="A cofunctional grouping-based approach for non-redundant feature gene selection in unannotated single-cell RNA-seq analysis">
+<meta property="og:url" content="https://hjiezero.github.io/posts/8262ac94/index.html">
+<meta property="og:site_name" content="Hjie">
+<meta property="og:description" content="文章已被加密.">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-06-20T09:08:52.829Z">
+<meta property="article:modified_time" content="2023-06-20T09:10:03.990Z">
+<meta property="article:author" content="hjie">
+<meta property="article:tag" content="生物信息">
+<meta property="article:tag" content="RNA-seq">
+<meta property="article:tag" content="特征筛选">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://hjiezero.github.io/posts/8262ac94/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://hjiezero.github.io/posts/8262ac94/","path":"posts/8262ac94/","title":"A cofunctional grouping-based approach for non-redundant feature gene selection in unannotated single-cell RNA-seq analysis"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>A cofunctional grouping-based approach for non-redundant feature gene selection in unannotated single-cell RNA-seq analysis | Hjie</title>
+  
+
+
+
+
+
+
+
+<link rel="dns-prefetch" href="waline-hjiezero.vercel.app">
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+<!-- hexo injector head_end end --></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Hjie</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-book"><a href="/books" rel="section"><i class="fa fa-book-open fa-fw"></i>book</a></li><li class="menu-item menu-item-link"><a href="/links/" rel="section"><i class="fa fa-link fa-fw"></i>友链</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-overview-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="hjie"
+      src="/images/head.jpg">
+  <p class="site-author-name" itemprop="name">hjie</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">15</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/shangxiaaabb" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;shangxiaaabb" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:hjie20011001@gmail.com" title="E-Mail → mailto:hjie20011001@gmail.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://hjiezero.github.io/posts/8262ac94/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/head.jpg">
+      <meta itemprop="name" content="hjie">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hjie">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="A cofunctional grouping-based approach for non-redundant feature gene selection in unannotated single-cell RNA-seq analysis | Hjie">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          A cofunctional grouping-based approach for non-redundant feature gene selection in unannotated single-cell RNA-seq analysis
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2023-06-20 17:08:52 / 修改时间：17:10:03" itemprop="dateCreated datePublished" datetime="2023-06-20T17:08:52+08:00">2023-06-20</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%96%87%E7%8C%AE%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">文献笔记</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Waline：</span>
+  
+    <a title="waline" href="/posts/8262ac94/#waline" itemprop="discussionUrl">
+      <span class="post-comments-count waline-comment-count" data-path="/posts/8262ac94/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="Oh, this is an invalid password. Check and try again, please." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">
+  <script id="hbeData" type="hbeData" data-hmacdigest="af396f22bd0c57b421cf2b18b49c5d6fcaa2137d785142b0fd707f946d25b495">daa6b25f19a02606da7ec845b2402917ef5462eb62cbf5c0346ec705c5b946a2fd1cb5ab59715c5e7c2fb524eaee286a9609b71ce1d4ca7544391c5eba6dd0b3121bde74838719db75f98826ebe36ee8476fc1c663078e1193c5617439bf3ff7af0d429d514ebc5fae997371cff00d290feeb89c5e452150ce3c9f34542a452555e938b3ad8f7c43d8eaa12b3510b51664c4047a7db26ab5a855d85630d56cd4ff3ae917bf17a84ec4823bd2393436aadeb40916e98e6e30686b3b6977cf635d2a241b8116c971a5a2269feb529fbe915898a27ef10dff6fe01b748b3990940098594dc952642974512de2ec4fb72fc464be5bfbf099688ca3815814aa05154d133db8dddca38e9ed14ad457961e5956e49529ef8671cd85c98f04cd1c79876e9146063f0391d1a86e98f565242b5f293bf89d208f92b74935996c95029207c0ff2967134dfec86a678c3bfe13fd6bdb97c546eee098c3b2704887ffb3b5b1ed2d19bd35536df1793b95de5be2d9c11d439a25adb71099ccb172e0d859aadc56f009164141d30dcf2765cd2e8e77a430258b4b0bffb4f2586bba2cc0d581c0a4bae61d21119d08feee8ee4b9b7f8379f27ad25791b32fa5ed361aaf70d4fe0e65224937589433068774d25c5662639fa37a09b2345c58573455549e8b035285d9c49c47ad518474989974d52ce3f8297fe2f3df8c154a1ec23895e48917c353132f9aad1e594fb152144ba2d78fb5900c814cdd68cdd88e823563acc321e0bc84a1b994e2ede685c391d31431fc41336e9649bd5e24d01d4b328663d41c3686855a76022fa72ed07b1bedf4cb9fcea82b74cfab018794e4c01e70ab9809aa34f1f66dc0b6b2d409f2d2e304f56cd82d3724fc51f241d5d3ef0bafd701b3c6c799d7a2c6507d9d34542b5be41877fe7b240f0be8f99d3b9b7607de01ac2e509a907b03eb59a9e8306b6647aff2577997fc7398c355a7ed2135232999274f08bcd7ff1d3997e11a21b0a4c801f4944614db70ba1a139673bb7d4fbbf7cbf540ea8686275e30113c5f6f579c099ad350b40d12471f8f6c15ee41cc231dd40cb38ab13fc8aa792aceb670baf95a835380ad931d485dee9e861f5508984683b0bfd82e8a0449ccb895982e43e3078e4afb7258f93c6ddfaed88dc4c5aab65d965ad147877192a47c2f1f470565d1478fd35b0e6f990e8160aae04441f5555955daa5572ecc56e3b202cb7486fc0f77cd48078250871176ec5f0ee6cf3e3163159d1f5ea995d2d489a2598a8d33e00f35799ee3a2c3e5a1729598b78b2272497d27a22ac775ee161fd1b9f23842bc950046ad1c970f806f57dc28d64df784c7736d794b4fb67c429b5f9437fa8677cbc8c86ff96885f210a2a6d5950d574ac6c6db0e44575fae0c417fbc09ece70679fa90bd6325ff4ea14db44eea44e3fba363927762f162994ec8f959dbc9a886f8b5501004591e34de2da286c2511a008bd650a51633f88da19ff863cfa5cfd72dfd894040d0fc01c7d912c1df2e57641978f0273f642cf5c047b7187aed5141b174ff0ae21ff9ad364b5e4b1a35ca114e63161ec6fe3109aba8d03fb19a501166f8d984c84af25905fd92631a27860f8bd938fe91e58a85bbf492be63d5b9e3cc7336e45d4631ec42a0898068f61eb1d7f60bda9a99027af2d23e87cb08e45e176da224a47450b8264a2c8a6995317367167f80cae68c28db23fb7b8a8d2ccd8bab2c7359296ca9405fc663f7682f03452833d37d967d1dcf1786167e22c468337aa038613f85859fab7d50d17f2bdd8c8e71fac7658c6ebb82b4d9c17acfd7b37959c15bd0f0a7517713a8c112ba1f1a397b003fa59f08636e4ac10d3173380210f4942ba4ab8c033061e49ca87c9e876862f155516ebadb09cf3a6cd979c854bc3781b8dfc1771fb688962484b81b0e57e83c3eb10a00cd1b36d3242a37c7534b6f806e6d234ed5620f4848307464bb0c79a86e972162855ce868a26eff466517bd4854e6766d7f46ea9c62db862a8c1402f42f7d24eaad1a996c5680e5eaff755f30ad37b23d05a85f088bcaf426d0bf96e391efdf54380ee44952850970fb7036402562a01aed3d07bf074bd755077c04b04cedb59e41455133ebc807987f3a933bf2ed6d99eb870864e60c332990e9771f738307ee4ad810d2cc6027226cd24fd9a23e8a7e618413c6e092240e2693ef50213972db58508a4f81f363c1cb8dd0c3ac0feec9674c77f5df477d0a22eff919b42b15b7f2e26de022dd98d21d85ac69c5bd4617a0f477184602f80a2538062c2df782bfc70a16d26d9d2f533439d0909d9e5b2b1813c11adb64e497cf3c99c60e1b7aefebede73c9a8bb50cebdae94d1e266e6e27d10626d03de3a708a012cd583c33ef4bd7edcbafbf87e00476d857f87df3c0d7011919ac75ae006cd85b04caf705037053291654cd8fc16cfe856d2abe0da2f6cd937db62e922c50897a48e2b7471d891ef68fe0eea8a8b7611026f7595c77454797b3cbfd4cca60fa7e990c0db7cc9537b0c1553fd488705d20bc5810b089dcd4d7f77704e0ec3b925a2ffde7d385cb62e5e1b4246c94293c2c18c1f7607aba8089be1a745d317ca60008f355f63d0e88a36b7ea08cb94f34a3c5cf5ec237dbcf70f3424a70ee482b43b5a3850d29224aca010724be55cf5bbc9363bbfc0290dc7099d5848fc1b0fca7ad44d2baacdc146f659a8aaf53ea3ababd5bda823537d74bd06f51e11db7164442a01cde2f65e8cdfe731ce19b0bcfac5c6b0a1107d5f096c5bf7370c7a60a13968c7a8b184b740e7f2171e04d8e1a2ffe750b24cf0e16e9c0efb5e2f55f7421cc6aec755e0f820cfeb3baa64dd0b6bad5490f7ad9b0a152a4d2164664189d5066ff963fba18ba40f7e56a3997dfb50e040527cac00d1662204c989a5b922392487564251cfa735fac6d67d720bff9b4d20ef3be621a84b96e99bc0df298204f0893aecc7ab3e2582fd47085403ff373ecf69b2cba98cb966c29812b784768ccf7427401e9276fca3a56f0e2f1159ae8104fc2838a23df70d17f92a9a1ead65fac6bc59dc656484a67ae37ce44cd010a86281b5e99cd2e3f4b5764c6cce6e8aa29e3a5c8b5bebae1f5f696e8227cfc18f1802bd5f76a584599886b14b7791af423beb692b551abb60c3dcc7fffbd64b303dcd5e94b251d6a0a5f65d502a635f3f60da27779226f725b71342d1189d54dbdc1e57109cfc046bc61d83ad5a6235d7a12a3e25c340032c44e9a9dd23c4294f84d135189c9875f04e4df8df8e8dfb583cd1b67dc4d83d0752a81955a45c293ba81c28690826652feee9361ed27bc69dbd173955661ec5091995de8793891c1d1cfa4c6fd25694fc4769491e83c7821c8139dcc4d7a1cf0146716959a2c670ce084519ccbe7023b7297bcb69f13fc2c9b249c7a9072347f95dd98bbbbd2b0d372acd5e1e0fb72d14811f070cf1e17c9efb31b4fe2b8e846f4fb8fab5d3a801ca546df96b81afddf9777755a9521280d9a5829f982c22d8bdea528921bbe0289206ee367020c775e87ed6b6cec63332e5cf81d35236e9c76d626d34b625285bf493c278f782dd2c7ba20c37a0203a51750d79c4a7bb728b194cd267fa9e4d14813ed111f70b87405c41bb41707d0714cb16225230d5efbcf2d93660e17230c78440d7be7380b85eb68b107c8fc86eae939026db86e139e8eb1a767d9e9d1a96275a1f0036b2dc4f578e72097a8a1adb922df153cfc2d051586ff298ca05c36b9c2d90cba23614736b65eb94ceecd1474d9ee5471c9a5c20207b5674267981b396440d39b5b26f2a5834c949e711d0a845cc8f14bcdac5c5c00a63011738ec51199529767e98ca7a3bdef834bb68852cfa1be307c3a754ece1bb3eab377a18b4952c0fe20a7b4cc0d78e9f0497417d6fcaae62499ef7644830342de4a00c51d7aa67309ee8e4062c5e28a94b372aa78c788094cdd2560755b8e8c881130fd7a18f8d81be943c40e8e7e58255da2acf73621a97c1db43b89a4df01954d179d68eed92b5ae4c74fbcdc20c6b8cac99d73a66752de30474057347ab59c2463d6bd252fa06e0d4954f9d007d2b46363277d9ff700b3a2cdfba7c2781e84285fad0d425f43293ced492c60e4546f7322703234c1bd90ed0c815ba5ae42f3248e8ee3f15d789ab8aa1c360a4cec8f824bb23c37bb3e450c2bdca5897c4f3aec9ef3af9b7496e9ae54f318c3681f0197ccc601d650b42da7dfd146c63b6cb209c7eee894fd7135bc684d1f2a42eb6b6520575062301c4a008c2f43a3e0ed661a71efd650e51293b317bb229eea46dcdd8273ec54f317da816cd09fea0311433d3277f6e6b254fe9cd0bc3cbecbfc7b3bb97415063bf6004350b17c49a5ae87974bd0058a370790e864835bf4a23eaa8aa5ab09265247df52288d0836fdffc7499a65857184e75a988e9e9d2565e0118af528220f33b0c42a1bbd4e367244a7209b9aaa0acc30e8c9e85b8d478c420c525e0af22ffaf7c937bfd3c3f8f419947011f706910d6126a0c89fe84590b4ebea85d0cc70c49a4e5d3ab19916914302b8bc6222b9b16e27e25fcd8b848e2799368bbb4a0fee20069808275fe8fc7c10a4b29266413d03ec46930dfb187085b2c5df650f7317136d787e010015c57b543c68335cbfbdef75ff9ff0d30ea18a9482f4a7736ef567c0a4e594873c13885037d46dd37e138ae5fe5b05ab7314745816fbf2825ef1411fb672528ae37d7b2d816f255963b3fa48f569ed3a212d7318344cc5cbe74d563800d01cc13d9a0e72be129b8bd53e9</script>
+  <div class="hbe hbe-content">
+    <div class="hbe hbe-input hbe-input-default">
+      <input class="hbe hbe-input-field hbe-input-field-default" type="password" id="hbePass">
+      <label class="hbe hbe-input-label hbe-input-label-default" for="hbePass">
+        <span class="hbe hbe-input-label-content hbe-input-label-content-default">文章加密，请联系作者.</span>
+      </label>
+    </div>
+  </div>
+</div>
+<script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF/" rel="tag"># 生物信息</a>
+              <a href="/tags/RNA-seq/" rel="tag"># RNA-seq</a>
+              <a href="/tags/%E7%89%B9%E5%BE%81%E7%AD%9B%E9%80%89/" rel="tag"># 特征筛选</a>
+          </div>
+
+        
+
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments" id="waline"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">hjie</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" integrity="sha256-yt2kYMy0w8AbtF89WXb2P1rfjcP/HTHLT7097U8Y5b8=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lozad.js/1.16.0/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script><script src="/js/code-unfold.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+  <script class="next-config" data-name="pdf" type="application/json">{"object_url":{"url":"https://cdnjs.cloudflare.com/ajax/libs/pdfobject/2.2.11/pdfobject.min.js","integrity":"sha256-N6JtCNwaYm6kizuG92UtOOXamRHPwu+V1yF10g3bu/c="},"url":"/lib/pdf/web/viewer.html"}</script>
+  <script src="/js/third-party/tags/pdf.js"></script>
+
+
+
+  <script src="/js/third-party/fancybox.js"></script>
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","cdn":"//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+<script class="next-config" data-name="waline" type="application/json">{"lang":"zh-cn","enable":true,"serverURL":"waline-hjiezero.vercel.app","cssUrl":"https://unpkg.com/@waline/client@v2/dist/waline.css","commentCount":true,"pageview":false,"placeholder":"请文明评论","avatar":"mm","meta":["nick","mail","link"],"pageSize":10,"visitor":false,"comment_count":true,"requiredFields":[],"libUrl":"//unpkg.com/@waline/client@v2/dist/waline.js","el":"#waline","comment":true,"path":"/posts/8262ac94/"}</script>
+<link rel="stylesheet" href="https://unpkg.com/@waline/client@v2/dist/waline.css">
+<script>
+document.addEventListener('page:loaded', () => {
+  NexT.utils.loadComments(CONFIG.waline.el).then(() =>
+    NexT.utils.getScript(CONFIG.waline.libUrl, { condition: window.Waline })
+  ).then(() => 
+    Waline.init(Object.assign({}, CONFIG.waline,{ el: document.querySelector(CONFIG.waline.el) }))
+  );
+});
+</script>
+
+
+        <style>
+            [bg-lazy] {
+                background-image: none !important;
+                background-color: #eee !important;
+            }
+        </style>
+        <script>
+            window.imageLazyLoadSetting = {
+                isSPA: false,
+                preloadRatio: 1,
+                processImages: null,
+            };
+        </script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});</script><script>!function(r){r.imageLazyLoadSetting.processImages=t;var e=r.imageLazyLoadSetting.isSPA,n=r.imageLazyLoadSetting.preloadRatio||1,c=a();function a(){var t=Array.prototype.slice.call(document.querySelectorAll("img[data-original]")),e=Array.prototype.slice.call(document.querySelectorAll("[bg-lazy]"));return t.concat(e)}function t(){e&&(c=a());for(var t,o=0;o<c.length;o++)0<=(t=(t=c[o]).getBoundingClientRect()).bottom&&0<=t.left&&t.top<=(r.innerHeight*n||document.documentElement.clientHeight*n)&&function(){var t,e,n,a,i=c[o];e=function(){c=c.filter(function(t){return i!==t}),r.imageLazyLoadSetting.onImageLoaded&&r.imageLazyLoadSetting.onImageLoaded(i)},(t=i).hasAttribute("bg-lazy")?(t.removeAttribute("bg-lazy"),e&&e()):(n=new Image,a=t.getAttribute("data-original"),n.onload=function(){t.src=a,t.removeAttribute("data-original"),e&&e()},t.src!==a&&(n.src=a))}()}function i(){clearTimeout(t.tId),t.tId=setTimeout(t,500)}t(),document.addEventListener("scroll",i),r.addEventListener("resize",i),r.addEventListener("orientationchange",i)}(this);</script></body>
+</html>
