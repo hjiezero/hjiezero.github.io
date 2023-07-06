@@ -590,6 +590,11 @@
     <url>/posts/e92b12e5/</url>
     <content><![CDATA[<center>数据和特征决定了机器学习的上限，而模型和算法只是逼近这个上限而已</center>
 
+
+
+<span id="more"></span>
+
+
 <h1 id="数据预处理"><a href="#数据预处理" class="headerlink" title="数据预处理"></a>数据预处理</h1><p>[toc]</p>
 <h2 id="一、特征选择（feature-selection）"><a href="#一、特征选择（feature-selection）" class="headerlink" title="一、特征选择（feature selection）"></a>一、特征选择（feature selection）</h2><p><strong>为什么要进行特征选择？</strong></p>
 <pre class="mermaid">graph LR
@@ -621,12 +626,12 @@ A(挑选特征子集)-->B(评估挑选的特征)-->A</pre>
 <h4 id="1、Sequential-selection-algorithms（SFS）-3"><a href="#1、Sequential-selection-algorithms（SFS）-3" class="headerlink" title="1、Sequential selection algorithms（SFS）^3"></a>1、<strong>Sequential selection algorithms</strong>（SFS）<a href="https://rasbt.github.io/mlxtend/user_guide/feature_selection/SequentialFeatureSelector/">^3</a></h4><ul>
 <li>1、SFS</li>
 </ul>
-<p>$$<br>x^{+}&#x3D;arg\ max\ J(X_k+x),\ x\in Y- X_k\<br>X_k+1&#x3D;X_k+x^+\<br>k&#x3D;k+1<br>$$</p>
+<p>$$<br>x^{+}&#x3D;arg\ max\ J(X_k+x),\ x\in Y- X_k\\<br>X_k+1&#x3D;X_k+x^+\\<br>k&#x3D;k+1<br>$$</p>
 <p>在空的特征子集中添加特征$x$使得目标函数$J$最大</p>
 <ul>
 <li>2、Sequential Backward Selection（SBS）</li>
 </ul>
-<p>$$<br>x^-&#x3D;arg\ max\ J(X_k-x),\ x\in X_k\<br>X_{k-1}&#x3D;X_k-x^-\<br>k&#x3D;k-1\<br>$$</p>
+<p>$$<br>x^-&#x3D;arg\ max\ J(X_k-x),\ x\in X_k\\<br>X_{k-1}&#x3D;X_k-x^-\\<br>k&#x3D;k-1\\<br>$$</p>
 <p>与SFS相类似，只不过SBS是从完整的特征开始，而后逐渐减少特征。</p>
 <ul>
 <li>3、Sequential Floating Forward Selection （SFFS）</li>
@@ -634,10 +639,10 @@ A(挑选特征子集)-->B(评估挑选的特征)-->A</pre>
 <p>2、<strong>Heuristic Search Algorithms</strong></p>
 <p>算法步骤：首先初始化：$X_0&#x3D;\phi$，$k&#x3D;0$</p>
 <p>step1:</p>
-<p>$$<br>x^{+}&#x3D;arg\ max\ J(X_k+x),\ x\in Y- X_k\<br>X_k+1&#x3D;X_k+x^+\<br>k&#x3D;k+1\<br>go \ to \ step2<br>$$</p>
+<p>$$<br>x^{+}&#x3D;arg\ max\ J(X_k+x),\ x\in Y- X_k\\<br>X_k+1&#x3D;X_k+x^+\\<br>k&#x3D;k+1\\<br>go \ to \ step2<br>$$</p>
 <p>在空的特征子集中添加特征$x$使得目标函数$J$最大</p>
 <p>step2:</p>
-<p>$$<br>x^-&#x3D;arg\ max\ J(X_k-x),\ x\in X_k\<br>if\ J(X_k-x)&gt;J(X_k)\<br>X_{k-1}&#x3D;X_k-x^-\<br>k&#x3D;k-1\<br>go\ to\ step1<br>$$</p>
+<p>$$<br>x^-&#x3D;arg\ max\ J(X_k-x),\ x\in X_k\\<br>if\ J(X_k-x)&gt;J(X_k)\\<br>X_{k-1}&#x3D;X_k-x^-\\<br>k&#x3D;k-1\\<br>go\ to\ step1<br>$$</p>
 <p>SFFS较SFS多一个回溯操作（step2）</p>
 <p>循环step1和step2只到达到目标$k$值停止。</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">!pip install mlxtend </span><br><span class="line"><span class="keyword">from</span> mlxtend.feature_selection <span class="keyword">import</span> SequentialFeatureSelector <span class="keyword">as</span> SFS</span><br><span class="line">sfs = SFS(knn, <span class="comment">#选择模型</span></span><br><span class="line">          k_features=<span class="number">3</span>, <span class="comment">#选择筛选出的特征 </span></span><br><span class="line">          forward=<span class="literal">True</span>, </span><br><span class="line">          floating=<span class="literal">False</span>, </span><br><span class="line">          scoring=<span class="string">&#x27;accuracy&#x27;</span>, <span class="comment">#评价标准</span></span><br><span class="line">          cv=<span class="number">4</span>, <span class="comment">#交叉验证</span></span><br><span class="line">          n_jobs=-<span class="number">1</span> <span class="comment">#用于并行评估不同特征子集的CPU数量，-1代表全部)</span></span><br><span class="line">sfs = sfs.fit(X, y)</span><br><span class="line"><span class="built_in">print</span>(sbfs.k_feature_idx_) <span class="comment">#返回选择的特征的序号 k_feature_names_返回特征名称</span></span><br><span class="line"><span class="built_in">print</span>(sbfs.k_score_) <span class="comment">#返回评分</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">forward与floating参数选择：</span></span><br><span class="line"><span class="string">1、SFS算法True False</span></span><br><span class="line"><span class="string">2、SBS算法False False</span></span><br><span class="line"><span class="string">3、SFFS算法 True True</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br></pre></td></tr></table></figure>

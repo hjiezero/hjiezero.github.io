@@ -228,7 +228,7 @@
       <span class="post-meta-item-text">发表于</span>
       
 
-      <time title="创建时间：2023-07-06 16:44:59 / 修改时间：16:49:38" itemprop="dateCreated datePublished" datetime="2023-07-06T16:44:59+08:00">2023-07-06</time>
+      <time title="创建时间：2023-07-06 16:44:59 / 修改时间：16:59:24" itemprop="dateCreated datePublished" datetime="2023-07-06T16:44:59+08:00">2023-07-06</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -265,113 +265,14 @@
     
     <div class="post-body" itemprop="articleBody">
           <center>数据和特征决定了机器学习的上限，而模型和算法只是逼近这个上限而已</center>
-
-<h1 id="数据预处理"><a href="#数据预处理" class="headerlink" title="数据预处理"></a>数据预处理</h1><p>[toc]</p>
-<h2 id="一、特征选择（feature-selection）"><a href="#一、特征选择（feature-selection）" class="headerlink" title="一、特征选择（feature selection）"></a>一、特征选择（feature selection）</h2><p><strong>为什么要进行特征选择？</strong></p>
-<pre class="mermaid">graph LR
-B[input]-->A[ML]-->C[output]</pre>
-
-<p>观察上述流程图，假设$input$的数据特征为：{$t_1…t_n$}我们直接将输入投入到$ML$里面而后得到输出。但是问题来了，我们的特征$t_1…t_n$对于我们的$output$都有作用吗？</p>
-<blockquote>
-<p>例子：定义我们的我们的$ML$为：男孩女孩判断模型，$input$的特征有：长&#x2F;短头发、有&#x2F;无喉结、邻居孩子男&#x2F;女等，$output$为：男孩 or 女孩。</p>
-<p>我相信很容易判断特征：<strong>邻居孩子男&#x2F;女</strong>在对于我们模型效果上是不起作用的，那么的话在开始$input$时不添加该特征。</p>
-</blockquote>
-<p>回归正题。<strong>特征选择（feature selection）</strong>作为一种数据预处理策略，在各种数据挖掘和机器学习问题准备数据（尤其是高维数据）方面是有效且高效的，<strong>特征选择</strong>的目标包括构建更简单、更易于理解的模型、提高数据挖掘性能以及准备干净、可理解的数据<a target="_blank" rel="noopener" href="https://doi.org/10.1145/3136625">^1</a>。</p>
-<p>那么常用特征选择算法是什么呢？</p>
-<hr>
-<h2 id="1-1-传统特征选择算法"><a href="#1-1-传统特征选择算法" class="headerlink" title="1.1 传统特征选择算法"></a>1.1 传统特征选择算法</h2><h3 id="1-1-1-Wrapper-method（包装法）"><a href="#1-1-1-Wrapper-method（包装法）" class="headerlink" title="1.1.1 Wrapper method（包装法）"></a>1.1.1 Wrapper method（包装法）</h3><blockquote>
-<p>Wrapper methods rely on the predictive performance of a predefined learning algorithm to evaluate the quality of selected features.</p>
-<p>wrapper方法依赖<strong>预先定义的学习算法的预测性能</strong>来评估所挑选特征的质量</p>
-</blockquote>
-<p><strong>算法步骤</strong>：</p>
-<pre class="mermaid">graph LR
-A(挑选特征子集)-->B(评估挑选的特征)-->A</pre>
-
-<blockquote>
-<p>挑选特征子集，评估挑选特征直到合适为止</p>
-</blockquote>
-<p>那么在Wrapper methods中对于特征子集的挑选就显得格外重要了，但是如若特征搜索空间为$d$那么就行搜索次数为$2^d$，也就是说使用Wrapper methods很容易陷入NP-hard problem。两类参见的特征筛选方法：</p>
-<blockquote>
-<p>定义<strong>全部特征</strong>为：$Y&#x3D;{y_1…y_d}$，定义<strong>输出特征</strong>：$X_k&#x3D;{x_j|j&#x3D;1,2…k;x_j\in Y}$</p>
-</blockquote>
-<h4 id="1、Sequential-selection-algorithms（SFS）-3"><a href="#1、Sequential-selection-algorithms（SFS）-3" class="headerlink" title="1、Sequential selection algorithms（SFS）^3"></a>1、<strong>Sequential selection algorithms</strong>（SFS）<a target="_blank" rel="noopener" href="https://rasbt.github.io/mlxtend/user_guide/feature_selection/SequentialFeatureSelector/">^3</a></h4><ul>
-<li>1、SFS</li>
-</ul>
-<p>$$<br>x^{+}&#x3D;arg\ max\ J(X_k+x),\ x\in Y- X_k\<br>X_k+1&#x3D;X_k+x^+\<br>k&#x3D;k+1<br>$$</p>
-<p>在空的特征子集中添加特征$x$使得目标函数$J$最大</p>
-<ul>
-<li>2、Sequential Backward Selection（SBS）</li>
-</ul>
-<p>$$<br>x^-&#x3D;arg\ max\ J(X_k-x),\ x\in X_k\<br>X_{k-1}&#x3D;X_k-x^-\<br>k&#x3D;k-1\<br>$$</p>
-<p>与SFS相类似，只不过SBS是从完整的特征开始，而后逐渐减少特征。</p>
-<ul>
-<li>3、Sequential Floating Forward Selection （SFFS）</li>
-</ul>
-<p>2、<strong>Heuristic Search Algorithms</strong></p>
-<p>算法步骤：首先初始化：$X_0&#x3D;\phi$，$k&#x3D;0$</p>
-<p>step1:</p>
-<p>$$<br>x^{+}&#x3D;arg\ max\ J(X_k+x),\ x\in Y- X_k\<br>X_k+1&#x3D;X_k+x^+\<br>k&#x3D;k+1\<br>go \ to \ step2<br>$$</p>
-<p>在空的特征子集中添加特征$x$使得目标函数$J$最大</p>
-<p>step2:</p>
-<p>$$<br>x^-&#x3D;arg\ max\ J(X_k-x),\ x\in X_k\<br>if\ J(X_k-x)&gt;J(X_k)\<br>X_{k-1}&#x3D;X_k-x^-\<br>k&#x3D;k-1\<br>go\ to\ step1<br>$$</p>
-<p>SFFS较SFS多一个回溯操作（step2）</p>
-<p>循环step1和step2只到达到目标$k$值停止。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">!pip install mlxtend </span><br><span class="line"><span class="keyword">from</span> mlxtend.feature_selection <span class="keyword">import</span> SequentialFeatureSelector <span class="keyword">as</span> SFS</span><br><span class="line">sfs = SFS(knn, <span class="comment">#选择模型</span></span><br><span class="line">          k_features=<span class="number">3</span>, <span class="comment">#选择筛选出的特征 </span></span><br><span class="line">          forward=<span class="literal">True</span>, </span><br><span class="line">          floating=<span class="literal">False</span>, </span><br><span class="line">          scoring=<span class="string">&#x27;accuracy&#x27;</span>, <span class="comment">#评价标准</span></span><br><span class="line">          cv=<span class="number">4</span>, <span class="comment">#交叉验证</span></span><br><span class="line">          n_jobs=-<span class="number">1</span> <span class="comment">#用于并行评估不同特征子集的CPU数量，-1代表全部)</span></span><br><span class="line">sfs = sfs.fit(X, y)</span><br><span class="line"><span class="built_in">print</span>(sbfs.k_feature_idx_) <span class="comment">#返回选择的特征的序号 k_feature_names_返回特征名称</span></span><br><span class="line"><span class="built_in">print</span>(sbfs.k_score_) <span class="comment">#返回评分</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">forward与floating参数选择：</span></span><br><span class="line"><span class="string">1、SFS算法True False</span></span><br><span class="line"><span class="string">2、SBS算法False False</span></span><br><span class="line"><span class="string">3、SFFS算法 True True</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br></pre></td></tr></table></figure>
-
-<h4 id="2、Heuristic-search-algorithms-启发式搜索算法"><a href="#2、Heuristic-search-algorithms-启发式搜索算法" class="headerlink" title="2、Heuristic search algorithms 启发式搜索算法"></a>2、Heuristic search algorithms 启发式搜索算法</h4><p>Genetic Algorithm（GA）遗传算法</p>
-<h4 id="Wrapper-methods缺点"><a href="#Wrapper-methods缺点" class="headerlink" title="Wrapper methods缺点"></a>Wrapper methods缺点</h4><p>1、计算代价高</p>
-<p>2、容易过拟合</p>
-<h3 id="1-1-2-Filter-methods（过滤法）"><a href="#1-1-2-Filter-methods（过滤法）" class="headerlink" title="1.1.2 Filter methods（过滤法）"></a>1.1.2 Filter methods（过滤法）</h3><blockquote>
-<p>Filter methods use variable ranking techniques as the principle criteria for variable selection by ordering</p>
-<p>Filter methods使用变量<strong>排序方法</strong>作为按顺序选择变量的原则标准</p>
-</blockquote>
-<p>也就是说Fileter methods首先通过<em>排序</em>得到特征的相关性，而后进行筛选<a href="%5B10.1016/j.compeleceng.2013.11.024%5D(https://doi.org/10.1016/j.compeleceng.2013.11.024)">^2</a>  !</p>
-<p><strong>算法步骤</strong>：</p>
-<pre class="mermaid">graph LR
-A[特征重要性进行排序]-->B[将低特征滤出]</pre>
-
-<p><strong>排序方法（ranking methods）</strong></p>
-<p>特征重要性计算有：</p>
-<p>1、方差分析（ANOVA）：基于统计方法来计算特征与目标变量之间的相关程度，通过计算特征的F值来评估特征的重要性。</p>
-<p><strong>2、互信息（Mutual Information）</strong>：计算特征与目标变量之间的<strong>信息增益</strong>或互信息，衡量特征与目标变量之间的依赖关系。</p>
-<blockquote>
-<p>如：通过信息增益进行评价</p>
-<p>首先计算香农熵：</p>
-<p>$$<br>H(Y)&#x3D;-\sum p(y)log(p(y))<br>$$</p>
-<p>条件熵计算：</p>
-<p>$$<br>H(Y|X)&#x3D;-\sum_{x} \sum_{y}p(x,y)log(p(y|x))<br>$$</p>
-<p>而后计算：</p>
-<p>$$<br>I(Y,X)&#x3D;H(Y)-H(Y|X)<br>$$</p>
-<p>通过计算（3）就可以得到：如果$X$与$Y$之间相互独立那么将会趋近0</p>
-</blockquote>
-<p><strong>3、相关系数（Correlation Coefficient）</strong>：计算特征和目标变量之间的线性相关性，常用的方法有Pearson相关系数和Spearman相关系数。</p>
-<blockquote>
-<p>$$<br>R(i)&#x3D;\frac{cov(x_i,Y)}{\sqrt{var(x_i)*var(Y)}}<br>$$</p>
-<p>其中$Y$作为输出变量（output）而$x_i$则为我们的input</p>
-</blockquote>
-<p>4、卡方检验（Chi-square Test）：针对分类问题，对特征和目标变量之间的关联程度进行检验，判断特征的重要性。</p>
-<p>5、方差选择（Variance Threshold）：通过计算特征的方差来判断其重要性，方差较低的特征可能对目标变量的预测作用较小</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.feature_selection <span class="keyword">import</span> VarianceThreshold</span><br><span class="line">X = [[<span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>], [<span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>], [<span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>], [<span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>], [<span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>], [<span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>]]</span><br><span class="line">sel = VarianceThreshold(threshold=(<span class="number">.8</span> * (<span class="number">1</span> - <span class="number">.8</span>))) <span class="comment">#threshold指定特征选择的方法</span></span><br><span class="line">sel.fit_transform(X)</span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">array([[0, 1],</span></span><br><span class="line"><span class="string">       [1, 0],</span></span><br><span class="line"><span class="string">       [0, 0],</span></span><br><span class="line"><span class="string">       [1, 1],</span></span><br><span class="line"><span class="string">       [1, 0],</span></span><br><span class="line"><span class="string">       [1, 1]])</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span><span class="string">&quot;</span></span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>参数说明：</p>
-<p><a target="_blank" rel="noopener" href="https://scikit-learn.org/stable/modules/generated/sklearn.feature_selection.VarianceThreshold.html#sklearn.feature_selection.VarianceThreshold">sklearn-filter methods</a></p>
-</blockquote>
-<h3 id="1-1-3-Embedded-methods（嵌入法）"><a href="#1-1-3-Embedded-methods（嵌入法）" class="headerlink" title="1.1.3 Embedded methods（嵌入法）"></a>1.1.3 Embedded methods（嵌入法）</h3><blockquote>
-<p>Embedded methods is a tradeoff between filter and wrapper methods that embed the feature selection into model learning.</p>
-<p>Embedded方法将Wrapped和filter方法进行权衡，将特征选择嵌入到模型学习中去</p>
-</blockquote>
-<h2 id="二、数据降维"><a href="#二、数据降维" class="headerlink" title="二、数据降维"></a>二、数据降维</h2><p>数据降维分类<a target="_blank" rel="noopener" href="https://members.loria.fr/moberger/Enseignement/AVR/Exposes/TR_Dimensiereductie.pdf">^4</a>：</p>
-<img data-src="/images/loading/loading.gif" data-original="https://s2.loli.net/2023/07/05/pS7VKD9gRAMbzCx.png" alt="数据降维技术分类" style="zoom:100%;">
-
-<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><p>[1] LI J, CHENG K, WANG S, 等. Feature Selection: A Data Perspective[J&#x2F;OL]. ACM Computing Surveys, 2018, 50(6): 1-45. <a target="_blank" rel="noopener" href="https://doi.org/10.1145/3136625">https://doi.org/10.1145/3136625</a>.</p>
-<p>[2]CHANDRASHEKAR G, SAHIN F. A survey on feature selection methods[J&#x2F;OL]. Computers &amp; Electrical Engineering, 2014, 40(1): 16-28. DOI:<a target="_blank" rel="noopener" href="https://doi.org/10.1016/j.compeleceng.2013.11.024">10.1016&#x2F;j.compeleceng.2013.11.024</a>.</p>
-<p>[3]<a target="_blank" rel="noopener" href="https://rasbt.github.io/mlxtend/user_guide/feature_selection/SequentialFeatureSelector/">https://rasbt.github.io/mlxtend/user_guide/feature_selection/SequentialFeatureSelector/</a></p>
-<p>[4]Van Der Maaten, Laurens, Eric Postma, and Jaap Van den Herik. “Dimensionality reduction: a comparative.” <em>J Mach Learn Res</em> 10.66-71 (2009).</p>
-<p>[2]<a target="_blank" rel="noopener" href="https://scikit-learn.org/stable/modules/feature_selection.html#rfe">https://scikit-learn.org/stable/modules/feature_selection.html#rfe</a></p>
-<p>[3]<a target="_blank" rel="noopener" href="https://scikit-learn.org/stable/modules/feature_selection.html#univariate-feature-selection">https://scikit-learn.org/stable/modules/feature_selection.html#univariate-feature-selection</a></p>
-<p>[4]<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_41521681/article/details/86500616#%E7%89%B9%E5%BE%81%E9%80%89%E6%8B%A9%20(feature_selection)">https://blog.csdn.net/weixin_41521681/article/details/86500616#%E7%89%B9%E5%BE%81%E9%80%89%E6%8B%A9%20(feature_selection)</a></p>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/posts/e92b12e5/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
