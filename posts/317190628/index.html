@@ -160,18 +160,18 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">15</span>
+          <span class="site-state-item-count">16</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-count">7</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-count">15</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -285,7 +285,8 @@
 <p><a target="_blank" rel="noopener" href="https://baike.baidu.com/item/logistic%E5%9B%9E%E5%BD%92/2981575">logistic回归_百度百科 (baidu.com)</a></p>
 </blockquote>
 <p><strong>什么意思</strong>？听我给你解释！首先我们目的是利用这个算法做什么？分类！没错既然是分类算法，那么我必须就有一个进行分类的标准！比如说：KNN(K近邻算法)我们就是直接计算测试集与训练集之间的距离而后进行划分。贝叶斯分类器：就是直接通过计算概率而后进行分类。也就是说：分类算法模型的大致流程如下：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">graph LR</span><br><span class="line">A[数据]---&gt;B&#123;模型&#125;---&gt;c[结果]</span><br></pre></td></tr></table></figure>
+<pre class="mermaid">graph LR
+A[数据]--->B{模型}--->c[结果]</pre>
 
 <blockquote>
 <p><strong>结果</strong>：通过模型我们得到的结果应该大致在一个区间内部（比如：0-1），这样我们就可以建立一个分类的标准，比如：&gt;0.5的时候分类结果为1，＜0.5的时候分类结果为0</p>
