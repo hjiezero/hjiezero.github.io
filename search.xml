@@ -44,6 +44,73 @@
       </tags>
   </entry>
   <entry>
+    <title>Attention is all you need阅读笔记</title>
+    <url>/posts/44dbd2a1/</url>
+    <content><![CDATA[<h1 id="Attention-is-all-you-need"><a href="#Attention-is-all-you-need" class="headerlink" title="Attention is all you need"></a>Attention is all you need</h1><blockquote>
+<p><strong>Transformer</strong>模型</p>
+</blockquote>
+<h2 id="Model-Architecture"><a href="#Model-Architecture" class="headerlink" title="Model Architecture"></a>Model Architecture</h2><p><strong>Transformer</strong>结构上和传统的翻译模型相同，拥有<strong>encoder-decoder structure</strong></p>
+<blockquote>
+<p><strong>encoder</strong>：将一系列输入的符号表示$(x_1…,x_n)$映射到连续表示$z&#x3D;(z_1….,z_n)$<br><strong>decoder</strong>：将$z$解码出系列输出序列$(y_i,….,y_n)$</p>
+</blockquote>
+<p>模型结构图：</p>
+<div align="center"><img data-src="https://s2.loli.net/2023/09/26/XH1zOVho89r2YKq.png" alt="202309261042951" style="zoom:100%;"></div>
+
+<p>上述结构图中：左侧为<code>encoder</code>结构，右侧为<code>decoder</code>结构<br>1、<code>encoder</code>结构：整体上<code>encoder</code>由两部分构成：<strong>1、Multi-head Attention</strong>；<strong>2、Feed Forwarded</strong>构成。在每一部分里面都是通过<em>残差进行连接</em>。(论文中对此的描述为：$LayerNorm(x+Sublayer(x))$其中$x+Sublayer(x)$就是一个残差连接的操作，而$LayerNorm$就是一个<em>Norm</em>所进行的一个操作。)</p>
+<p>2、<code>decoder</code>结构整体与<code>encoder</code>相似，只是多了一个<strong>Masker Multi-Head Attention</strong>结构，这部分结构起到的作用为：因为如果是做序列预测（时间序列、翻译等）一般来说都是不去借助<strong>未来</strong>的数据，也就是说保证我们在预测$i$时候只考虑了$i$之前的信息。</p>
+<blockquote>
+<p>This masking, combined with fact that the output embeddings are offset by one position, ensures that the predictions for position i can depend only on the known outputs at positions less than i.</p>
+</blockquote>
+<h2 id="Attention模型"><a href="#Attention模型" class="headerlink" title="Attention模型"></a>Attention模型</h2><div align="center"><img data-src="https://s2.loli.net/2023/09/25/zIMCbZgAOlHLqxN.png" alt="202309251434370" style="zoom:80%;"></div>
+
+<p>在Transformer函数中设计的注意模型：<br>1、Scaled Dot-Product Attention<br>$$<br>Attention(Q,K,V)&#x3D;softmax(\frac{QK^T}{\sqrt{d_k}})V<br>$$<br>QKV理解视频<br><a href="https://www.youtube.com/watch?v=OyFJWRnt_AY">https://www.youtube.com/watch?v=OyFJWRnt_AY</a></p>
+<h2 id="补充内容"><a href="#补充内容" class="headerlink" title="补充内容"></a>补充内容</h2><h3 id="1、encoder-decoder"><a href="#1、encoder-decoder" class="headerlink" title="1、encoder-decoder"></a>1、encoder-decoder</h3><p><a href="https://proceedings.neurips.cc/paper_files/paper/2014/hash/09c6c3783b4a70054da74f2538ed47c6-Abstract.html">https://proceedings.neurips.cc/paper_files/paper/2014/hash/09c6c3783b4a70054da74f2538ed47c6-Abstract.html</a></p>
+<h3 id="2、norm"><a href="#2、norm" class="headerlink" title="2、norm"></a>2、norm</h3><p><strong>Training state-of-the-art, deep neural networks is computationally expensive. One way to reduce the training time is to normalize the activities of the neurons.</strong></p>
+<p>正则化：$x&#x3D;\frac{x-x_{min}}{x_{max}- x_{min}}$将数据都转化到$[0,1]$；以及标准化：$x&#x3D;\frac{x- \mu}{\sigma}$将数据都转化为<strong>0均值同方差</strong>。在深度学习中常见4类<strong>标准化</strong>操作：<br>1、Bath-Norm；2、Layer-Norm；3、Instance-Norm；4、Group-Norm。这4类标准化化唯一区别就在对样本$\mu,\sigma$的计算区别。</p>
+<blockquote>
+<p>定义如下计算公式：<br>$$<br>\mu_i&#x3D; \frac{1}{m}\sum_{k\in S_i}x_k<br>$$<br>$$<br>\sigma_i&#x3D; \sqrt{\frac{1}{m}\sum_{k\in S_i}(x_k- \mu_i)^2+\epsilon}<br>$$<br>4类标准化区别就在于对于参数$S_i$的定义！！！<br>如：对一组图片定义如下变量：$(N,C,H,W)$分别代表：batch、channel、height、width<br><strong>Bath-norm</strong>：$S_i&#x3D;{k_C&#x3D;i_C}$<br><strong>Layer-norm</strong>：$S_i&#x3D;{k_C&#x3D;i_N}$<br><strong>Instance-norm</strong>：$S_i&#x3D;{k_C&#x3D;i_C,K_N&#x3D;i_N}$<br><strong>Group-norm</strong>：$S_i&#x3D;{k_N&#x3D;i_N, \lfloor \frac{k_C}{C&#x2F;G} \rfloor&#x3D;\lfloor \frac{i_C}{C&#x2F;G} \rfloor}$<br>$G$代表组的数量，$C&#x2F;G$每个组的通道数量</p>
+</blockquote>
+<p>对于<em>Layer-norm</em>、<em>batch-norm</em>、<em>Instance-norm</em>、<em>Group-norm</em>理解直观的用下面一组图片了解：</p>
+<div align="center"><img data-src="https://s2.loli.net/2023/10/02/qtyoT1przb6alLR.png" alt="Group Normalization" style="zoom:100%;"></div>
+
+<blockquote>
+<p>图片来源：<a href="http://arxiv.org/abs/1803.08494">http://arxiv.org/abs/1803.08494</a></p>
+</blockquote>
+<h4 id="2-1-Batch-norm详细原理"><a href="#2-1-Batch-norm详细原理" class="headerlink" title="2.1 Batch-norm详细原理"></a>2.1 Batch-norm详细原理</h4><blockquote>
+<p>参考：<a href="https://proceedings.mlr.press/v37/ioffe15.html">https://proceedings.mlr.press/v37/ioffe15.html</a><br>在原始论文中主要是将<em>Batch-norm</em>运用在图算法（CNN等）中，作者得到结论：通过添加<em>Batch-norm</em>可以加快模型的训练速度，模型效果较以前算法效果更加好</p>
+</blockquote>
+<p><strong>原理</strong>：对每一个<strong>特征</strong>独立的进行归一化</p>
+<blockquote>
+<p>we will normalize each scalar feature independently, by making it have zero mean and unit variance.</p>
+</blockquote>
+<p>对于每一层$d$维输入$x&#x3D;(x^{(1)},…,x^{(d)})$通过:<br>$$<br>\widehat{x}^{(k)}&#x3D;\frac{x^{k}- E[x^{k}]}{\sqrt{Var[x^{k}]}}<br>$$<br><strong>问题一</strong>：如果只是简单的对每一层输入进行简单的正则化将会改变该层所表示的内容（原文中提到：对于通过<code>sigmoid函数</code>处理的输入进行正则化将会导致原本应该的非线性转化为线性）</p>
+<blockquote>
+<p>Note that simply normalizing each input of a layer may change what the layer can represent. For instance, normalizing the inputs of a sigmoid would constrain them to the linear regime of the nonlinearity.</p>
+</blockquote>
+<p>通过构建$y^{(k)}&#x3D;\gamma^{(k)}\widehat{x}^{(k)}+\beta^{(k)}$其中$\gamma^{(k)}&#x3D;\sqrt{Var[x^{(k)}]}、\beta^{(k)}&#x3D;E[x^{(k)}]$</p>
+<p><strong>问题二</strong>：在训练过程中运用的是全部的数据集，因此想要做到随机优化是不可能的，因为通过小批量随机梯度训练，在每一次小梯度过程中都会产生均值以及方差。（<code>Batch Normalizing Transform</code>）</p>
+<h4 id="2-2-Layer-norm详细原理"><a href="#2-2-Layer-norm详细原理" class="headerlink" title="2.2 Layer-norm详细原理"></a>2.2 Layer-norm详细原理</h4><blockquote>
+<p>参考：<a href="http://arxiv.org/abs/1607.06450">http://arxiv.org/abs/1607.06450</a><br>针对<em>Batch-norm</em>的部分缺点以及其在序列数据上的表现较差，提出通过使用<em>Layer-norm</em>在序列数据（时间序列、文本数据）上进行使用</p>
+</blockquote>
+<p><strong>原理</strong>：通过从一个训练样例中计算用于归一化的所有神经元输入之和的均值和方差（也就是说直接对某个神经元的所有的输入进行标准化）</p>
+<blockquote>
+<p>we transpose batch normalization into layer normalization by computing the mean and variance used for normalization from all of the summed inputs to the neurons in a layer on a single training case</p>
+</blockquote>
+<p>$$<br>\mu^l&#x3D; \frac{1}{H}\sum_{i&#x3D;1}^{H}a_i^l \<br>\sigma^l&#x3D;\sqrt{\frac{1}{H}\sum_{i&#x3D;1}^{H}(a_i^l- \mu^l)^2}<br>$$<br>其中$H$代表隐藏层的数量、$a^l$代表一层神经元的输入、$\mu和\sigma$则分别代表该层神经元的均值以及方差。</p>
+<h4 id="2-3-Group-norm"><a href="#2-3-Group-norm" class="headerlink" title="2.3 Group-norm"></a>2.3 Group-norm</h4><blockquote>
+<p>参考：<a href="http://arxiv.org/abs/1803.08494">http://arxiv.org/abs/1803.08494</a></p>
+</blockquote>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p>1、<a href="http://arxiv.org/abs/1706.03762">http://arxiv.org/abs/1706.03762</a></p>
+]]></content>
+      <categories>
+        <category>深度学习</category>
+      </categories>
+      <tags>
+        <tag>基础算法</tag>
+        <tag>深度学习</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>自动备份Hexo博客源文件</title>
     <url>/posts/b6b5a9dd/</url>
     <content><![CDATA[<p>由于自己经常通过hexo来写自己的blog那么万一那一天树莓派坏了（自己用树莓派做服务器），那么里面所有的东西都需要重新写那太遭罪了，所以去网上找了将hexo进行备份的操作。<br>⭐以下操作在⏱️2023.6.4⏱️可以完美实现.</p>
@@ -995,38 +1062,6 @@ A[特征重要性进行排序]-->B[将低特征滤出]</pre>
       </tags>
   </entry>
   <entry>
-    <title>深度学习优化--正则化和优化算法</title>
-    <url>/posts/b8446bf4/</url>
-    <content><![CDATA[<p>本文关于深度学习模型优化主要围绕下面两个方面展开：</p>
-<p>1、优化问题：深度神经网络的优化十分困难。集中在下面三个原因：1、神经网络的损失函数是一个非凸函数，找到全局最优解通常比较困难。2、深度神经网络的参数多，训练数据大。3、深度神经网络存在梯度消失或爆炸问题，导致基于梯度的优化方法经常失效。 </p>
-<p>2、泛化问题：由于深度神经网络的复杂度比较高，并且拟合能力很强，很容易在训练集上产生过拟合。因此在训练深度神经网络时，同时也需要通过一定 的正则化方法来改进网络的泛化能力。</p>
-<p>所有代码都是基于pytorch</p>
-<span id="more"></span>
-
-<p>[TOC]</p>
-<h1 id="一、优化算法"><a href="#一、优化算法" class="headerlink" title="一、优化算法"></a>一、优化算法</h1><h2 id="1-1-问题提出"><a href="#1-1-问题提出" class="headerlink" title="1.1 问题提出"></a>1.1 问题提出</h2><p>我们常使用的<strong>随机梯度下降算法（stochastic gradient descent，SGD）</strong>原理是什么呢？直观上理解就是：山坡滚球，球以最快速度掉到山脚。但是有没有这种可能：球掉了一个“坑道（局部最低）”。在数学上对“坑道”的定义为<strong>鞍点</strong>即在此点梯度为0。回顾梯度下降公式：<br>$$<br>\widehat \theta&#x3D;\theta-\alpha \frac{\partial J(\theta)}{\partial \theta}<br>$$<br>其中$J(\theta)$为损失函数；$\alpha$为学习率；$\theta$为优化参数。鞍点处梯度为0那么也就意味着我们需要调整的参数$\theta $将会一直被困在“原地”无法进行更新。鞍点示意图如下：</p>
-<p>从上图可以发现，我们通过随机梯度下降只是到达函数的<strong>局部最优</strong></p>
-<h2 id="2、优化算法提出"><a href="#2、优化算法提出" class="headerlink" title="2、优化算法提出"></a>2、优化算法提出</h2><h3 id="2-1-梯度下降算法"><a href="#2-1-梯度下降算法" class="headerlink" title="2.1 梯度下降算法"></a>2.1 梯度下降算法</h3><p>在我们平时编程过程中经常所使用的是随机梯度下降算法，但是一般的梯度下降算法分为三类：1、批量梯度下降算法；2、随机梯度下降算法；3、小批量梯度下降算法。</p>
-<p><strong>1、随机梯度下降算法</strong></p>
-<p>首先SGD算法运算流程如下：</p>
-<img data-src="https://s2.loli.net/2023/05/29/oa2PnzsWRwXNif7.png" alt="image-20230529201451914.png" style="zoom:67%;">
-
-<p><strong>2、小批量梯度下降算法</strong></p>
-<p>在训练深度神经网络时，面对较大规模的数据集如果直接对整个训练集的梯度进行计算，显然这是不合适的对资源的消耗太大、计算也十分冗余。因此，在训练深度神经网络时，经常使用<strong>小批量梯度下降法（Mini-Batch Gradient Descent）</strong></p>
-<img data-src="https://s2.loli.net/2023/05/29/m8y7ueMvD4BdZR5.png" alt="image-20230529195427115.png" style="zoom:67%;">
-
-<p>通过对梯度下降算法观察发现存在两个参数可以进行优化：1、学习率$\alpha $</p>
-<h2 id="2-2-学习率调整"><a href="#2-2-学习率调整" class="headerlink" title="2.2 学习率调整"></a>2.2 学习率调整</h2><h3 id="2-2-1-AdaGrad算法"><a href="#2-2-1-AdaGrad算法" class="headerlink" title="2.2.1 AdaGrad算法"></a>2.2.1 AdaGrad算法</h3><h3 id="2-2-2-RMSprop算法"><a href="#2-2-2-RMSprop算法" class="headerlink" title="2.2.2 RMSprop算法"></a>2.2.2 RMSprop算法</h3><h3 id="2-2-3-Adam算法"><a href="#2-2-3-Adam算法" class="headerlink" title="2.2.3 Adam算法"></a>2.2.3 Adam算法</h3><h1 id="n、参考文献"><a href="#n、参考文献" class="headerlink" title="n、参考文献"></a>n、参考文献</h1><p>1、<a href="https://www.deeplearningbook.org/">https://www.deeplearningbook.org/</a></p>
-]]></content>
-      <categories>
-        <category>文献笔记</category>
-      </categories>
-      <tags>
-        <tag>深度学习</tag>
-        <tag>图像识别</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>机器学习评价标准</title>
     <url>/posts/2592384004/</url>
     <content><![CDATA[<p>介绍机器学习评估标准</p>
@@ -1154,6 +1189,38 @@ A[特征重要性进行排序]-->B[将低特征滤出]</pre>
       <tags>
         <tag>机器学习</tag>
         <tag>评价标准</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>深度学习优化--正则化和优化算法</title>
+    <url>/posts/b8446bf4/</url>
+    <content><![CDATA[<p>本文关于深度学习模型优化主要围绕下面两个方面展开：</p>
+<p>1、优化问题：深度神经网络的优化十分困难。集中在下面三个原因：1、神经网络的损失函数是一个非凸函数，找到全局最优解通常比较困难。2、深度神经网络的参数多，训练数据大。3、深度神经网络存在梯度消失或爆炸问题，导致基于梯度的优化方法经常失效。 </p>
+<p>2、泛化问题：由于深度神经网络的复杂度比较高，并且拟合能力很强，很容易在训练集上产生过拟合。因此在训练深度神经网络时，同时也需要通过一定 的正则化方法来改进网络的泛化能力。</p>
+<p>所有代码都是基于pytorch</p>
+<span id="more"></span>
+
+<p>[TOC]</p>
+<h1 id="一、优化算法"><a href="#一、优化算法" class="headerlink" title="一、优化算法"></a>一、优化算法</h1><h2 id="1-1-问题提出"><a href="#1-1-问题提出" class="headerlink" title="1.1 问题提出"></a>1.1 问题提出</h2><p>我们常使用的<strong>随机梯度下降算法（stochastic gradient descent，SGD）</strong>原理是什么呢？直观上理解就是：山坡滚球，球以最快速度掉到山脚。但是有没有这种可能：球掉了一个“坑道（局部最低）”。在数学上对“坑道”的定义为<strong>鞍点</strong>即在此点梯度为0。回顾梯度下降公式：<br>$$<br>\widehat \theta&#x3D;\theta-\alpha \frac{\partial J(\theta)}{\partial \theta}<br>$$<br>其中$J(\theta)$为损失函数；$\alpha$为学习率；$\theta$为优化参数。鞍点处梯度为0那么也就意味着我们需要调整的参数$\theta $将会一直被困在“原地”无法进行更新。鞍点示意图如下：</p>
+<p>从上图可以发现，我们通过随机梯度下降只是到达函数的<strong>局部最优</strong></p>
+<h2 id="2、优化算法提出"><a href="#2、优化算法提出" class="headerlink" title="2、优化算法提出"></a>2、优化算法提出</h2><h3 id="2-1-梯度下降算法"><a href="#2-1-梯度下降算法" class="headerlink" title="2.1 梯度下降算法"></a>2.1 梯度下降算法</h3><p>在我们平时编程过程中经常所使用的是随机梯度下降算法，但是一般的梯度下降算法分为三类：1、批量梯度下降算法；2、随机梯度下降算法；3、小批量梯度下降算法。</p>
+<p><strong>1、随机梯度下降算法</strong></p>
+<p>首先SGD算法运算流程如下：</p>
+<img data-src="https://s2.loli.net/2023/05/29/oa2PnzsWRwXNif7.png" alt="image-20230529201451914.png" style="zoom:67%;">
+
+<p><strong>2、小批量梯度下降算法</strong></p>
+<p>在训练深度神经网络时，面对较大规模的数据集如果直接对整个训练集的梯度进行计算，显然这是不合适的对资源的消耗太大、计算也十分冗余。因此，在训练深度神经网络时，经常使用<strong>小批量梯度下降法（Mini-Batch Gradient Descent）</strong></p>
+<img data-src="https://s2.loli.net/2023/05/29/m8y7ueMvD4BdZR5.png" alt="image-20230529195427115.png" style="zoom:67%;">
+
+<p>通过对梯度下降算法观察发现存在两个参数可以进行优化：1、学习率$\alpha $</p>
+<h2 id="2-2-学习率调整"><a href="#2-2-学习率调整" class="headerlink" title="2.2 学习率调整"></a>2.2 学习率调整</h2><h3 id="2-2-1-AdaGrad算法"><a href="#2-2-1-AdaGrad算法" class="headerlink" title="2.2.1 AdaGrad算法"></a>2.2.1 AdaGrad算法</h3><h3 id="2-2-2-RMSprop算法"><a href="#2-2-2-RMSprop算法" class="headerlink" title="2.2.2 RMSprop算法"></a>2.2.2 RMSprop算法</h3><h3 id="2-2-3-Adam算法"><a href="#2-2-3-Adam算法" class="headerlink" title="2.2.3 Adam算法"></a>2.2.3 Adam算法</h3><h1 id="n、参考文献"><a href="#n、参考文献" class="headerlink" title="n、参考文献"></a>n、参考文献</h1><p>1、<a href="https://www.deeplearningbook.org/">https://www.deeplearningbook.org/</a></p>
+]]></content>
+      <categories>
+        <category>文献笔记</category>
+      </categories>
+      <tags>
+        <tag>深度学习</tag>
+        <tag>图像识别</tag>
       </tags>
   </entry>
   <entry>
