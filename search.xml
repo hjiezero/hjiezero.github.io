@@ -46,7 +46,10 @@
   <entry>
     <title>Attention is all you need阅读笔记</title>
     <url>/posts/44dbd2a1/</url>
-    <content><![CDATA[<h1 id="Attention-is-all-you-need"><a href="#Attention-is-all-you-need" class="headerlink" title="Attention is all you need"></a>Attention is all you need</h1><blockquote>
+    <content><![CDATA[<p>论文《attention is all you need》阅读笔记</p>
+<span id="more"></span>
+
+<h1 id="Attention-is-all-you-need"><a href="#Attention-is-all-you-need" class="headerlink" title="Attention is all you need"></a>Attention is all you need</h1><blockquote>
 <p><strong>Transformer</strong>模型</p>
 </blockquote>
 <h2 id="Model-Architecture"><a href="#Model-Architecture" class="headerlink" title="Model Architecture"></a>Model Architecture</h2><p><strong>Transformer</strong>结构上和传统的翻译模型相同，拥有<strong>encoder-decoder structure</strong></p>
@@ -1570,7 +1573,10 @@ A[数据]--->B{模型}--->c[结果]</pre>
   <entry>
     <title>GAN阅读笔记</title>
     <url>/posts/ab615615/</url>
-    <content><![CDATA[<h1 id="Generative-Adversarial-Nets-生成对抗网络"><a href="#Generative-Adversarial-Nets-生成对抗网络" class="headerlink" title="Generative Adversarial Nets(生成对抗网络)"></a>Generative Adversarial Nets(生成对抗网络)</h1><h2 id="模型架构"><a href="#模型架构" class="headerlink" title="模型架构"></a>模型架构</h2><p><strong>generative model G</strong>（生成模型）—&gt;captures data distribution and generative the fake data</p>
+    <content><![CDATA[<p>GAN笔记</p>
+<span id="more"></span>
+
+<h1 id="Generative-Adversarial-Nets-生成对抗网络"><a href="#Generative-Adversarial-Nets-生成对抗网络" class="headerlink" title="Generative Adversarial Nets(生成对抗网络)"></a>Generative Adversarial Nets(生成对抗网络)</h1><h2 id="模型架构"><a href="#模型架构" class="headerlink" title="模型架构"></a>模型架构</h2><p><strong>generative model G</strong>（生成模型）—&gt;captures data distribution and generative the fake data</p>
 <p><strong>discriminative model D</strong>（判别模型）—&gt;estimate the probability from the training data or model G </p>
 <p>两个模型一个产生”虚假数据”一个模型对虚假数据进行识别</p>
 <pre class="mermaid">graph LR
